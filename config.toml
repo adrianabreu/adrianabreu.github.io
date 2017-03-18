@@ -1,0 +1,13 @@
+baseurl = "http://adrianabreu.github.io"
+languageCode = "es-ES"
+title = "Adrián Abreu"
+theme = "material-design"
+Paginate = 5
+Copyright = "2017 Adrián Abreu"
+
+[params]
+  twitter = "aabreuglez"
+  github = "adrianabreu"
+  linkedin = "AdrianAbreu"
+  emailAddress = "me@adrianabreu.com"
+  description = "Programador, lector y corredor."
