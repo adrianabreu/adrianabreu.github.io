@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  <title>Como construir un portfolio</title>
+  <link href="http://adrianabreu.github.io/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="http://adrianabreu.github.io/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>  <nav>
+    <div id="top-nav" class="nav-wrapper">
+        <a href="#" data-activates="mobile-demo" class="hide-on-med-and-up button-collapse"><i class="mdi-action-view-headline"></i></a>
+        <ul class="hide-on-small-only">
+            <li><a href="http://adrianabreu.github.io"><i class="mdi-action-home left"></i>Home<i class="mdi-hardware-keyboard-arrow-right right"></i></a></li>
+            <li><a href="http://adrianabreu.github.io/post/"><i class="mdi-action-description left"></i>Blog<i class="mdi-hardware-keyboard-arrow-right right"></i></a></li>
+            <li><a href="http://adrianabreu.github.io/projects/"><i class="mdi-action-pageview left"></i>Proyectos<i class="mdi-hardware-keyboard-arrow-right right"></i></a></li>
+            <li><a href="http://adrianabreu.github.io/about/"><i class="mdi-action-account-circle left"></i>Contáctame<i class="mdi-hardware-keyboard-arrow-right right"></i></a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+            <li><a href="http://adrianabreu.github.io"><i class="mdi-action-home left"></i>Home<i class="mdi-hardware-keyboard-arrow-right right"></i></a></li>
+            <li><a href="http://adrianabreu.github.io/post/"><i class="mdi-action-description left"></i>Blog<i class="mdi-hardware-keyboard-arrow-right right"></i></a></li>
+            <li><a href="http://adrianabreu.github.io/projects/"><i class="mdi-action-pageview left"></i>Proyectos<i class="mdi-hardware-keyboard-arrow-right right"></i></a></li>
+            <li><a href="http://adrianabreu.github.io/about/"><i class="mdi-action-account-circle left"></i>Contáctame<i class="mdi-hardware-keyboard-arrow-right right"></i></a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="single-section">
+
+        <div class="row">
+            <div class="col s12">
+                <h4>Como construir un portfolio</h4>
+                <p>
+                    
+                </p>
+                <p>12 Mar 2017 
+                </p>
+                <p>
+
+<p>Desde hace un tiempo en los países anglosajones los desarrolladores tienen una herramienta más importante que su CV, el portfolio.</p>
+
+<p>Un portfolio no es más que una muestra de tus trabajos y una justificación de las habilidades escritas en tu CV. A día de hoy, es increíblemente fácil tener un portfolio. Pero ya que voy a hablar de eso, aprovecharé para hablar también de qué debería contener un portfolio, y como enfocar el portfolio de un desarrollador junior proporcionando algunas ideas básicas.</p>
+
+<h2 id="1-donde-alojar-el-portfolio">1. Donde alojar el portfolio</h2>
+
+<p>Aunque puede que tengas tu propio host o vps, creo que lo más sensato es utilizar github. <a href="https://pages.github.com/">En la propia página de github</a> explican como tener tu web: &ldquo;username.github.io&rdquo;. De hecho, es donde ahora mismo está alojado este blog.</p>
+
+<h2 id="2-contenidos-de-un-portfolio">2. Contenidos de un portfolio</h2>
+
+<p>Aquí empieza a abrirse el abanico de opciones. En general, la creatividad se premia, pero vamos a centrarnos en algunos conceptos clave:</p>
+
+<ol>
+<li><p>Tus datos de contacto deben ser visibles. Un gran error de un portfolio es no dar visibilidad a la sección de contacto o carecer de los famosos iconos de redes sociales.</p></li>
+
+<li><p>Debe ser una muestra de tu trabajo, no tiene por qué ser muy extenso. Lo más sensato es que tengas alguna pequeña imagen, una breve descripción y un enlace para probar el proyecto.</p></li>
+
+<li><p>Muestra a qué puesto te gustaría aspirar, que rama te interesa más, si te interesa entrar en algún sector en concreto, etcétera.</p></li>
+
+<li><p><strong>NO PONGAS UNA LISTA DE LENGUAJES / HABILIDADES Y LE DES UNA PUNTUACIÓN A CADA UNO DE ELLOS</strong>. Aunque no quería ponerlo, creo que es importante resaltarlo. Valorarse a uno mismo es un error <strong>casi tan grande como poner todos los lenguajes que has tocado para intentar parecer que tienes un gran dominio</strong>. En la carrera trabajé con C++ un par de cursos. ¿Me pongo ya un 5 sobre 5 en C++? <a href="https://www.slideshare.net/olvemaudal/deep-c/255">El creador del lenguaje se pone a sí mismo un 7 sobre 10</a>.</p></li>
+
+<li><p>También debe hablar algo de ti, tus aficiones. Seguimos siendo personas, y no un conjunto de datos.</p></li>
+</ol>
+
+<p>Con esto ya tenemos lo básico para un portfolio.</p>
+
+<p>Pero claro, se plantea una duda. Una persona que se dedique altamente al front-end, va a tener muy fácil el destacar. Ya que sus proyectos son usables y visibles. Por otro lado, alguien que quiera enfocarse más al backend no lo va a tener tan sencillo. Para estos últimos recomiendo que describan su proyecto. Que planteen el problema y que estructura se siguió para resolverlo.</p>
+
+<p>Por ejemplo:</p>
+
+<blockquote>
+<p>WordreferenceBot es un bot para telegram que permite traducir palabras del inglés al español y viceversa. Utiliza NodeJS para hacer webscraping de la página de wordreference y luego genera un mensaje en formato markdown para telegram.
+Para mejorar los tiempos de respuesta las traducciones se almacenan en una base de datos (MongoDB) de tal forma que queden cacheadas, así, cuánto más se use, más rápido responderá.</p>
+
+<p>Además se ha añadido un endpoint web utilizando ejs donde se puede ver en tiempo real la cantidad de palabras almacenada en la base de datos gracias al uso de websockets.</p>
+</blockquote>
+
+<p>Con esto queda más o menos claro las herramientas que hemos utilizado en el proyecto y como lo hemos enfocado.</p>
+
+<h2 id="3-qué-utilizo-para-portfolio">3. ¿Qué utilizo para portfolio?</h2>
+
+<p>Este tema lo reflexionado bastante y creo que tras leer múltiples opiniones, lo mejor es utilizar un html estático.</p>
+
+<p>Aplica tu creatividad y si eres bueno en tema de diseño quizás quieras demostrar más habilidades aún evitando utilizar bootstrap y jQuery.</p>
+
+<p>También, al igual que yo puedes hacer utilizar algún generador estático, como por ejemplo: <a href="https://jekyllrb.com/">Jekyll</a> (Ruby), <a href="https://hexo.io/">Hexo</a> (Node) o <a href="https://gohugo.io/">Hugo</a> (Go).</p>
+
+<p><a href="http://adrianabreu.com/post/2017-03-04-Why-you-should-start-a-blog/">Hace unas entradas</a> argumenté las ventajas de tener un blog y de escribir las cosas que se van aprendiendo.</p>
+
+<h2 id="4-qué-podría-usar-para-rellenar-el-portfolio">4. ¿Qué podría usar para rellenar el portfolio?</h2>
+
+<p>La creatividad manda, no hace falta elaborar proyectos complicados, pero creo que existen una serie de puntos que dbeerían estar en tu portfolio.</p>
+
+<ol>
+<li><p>Demostrar tu dominio del DOM: Hacer algún proyecto sencillo que interactúe con el DOM. Algo tan simplecomo una lista de la compra que vaya creando y borrando elementos y cantidad puede ser un buen ejemplo.</p></li>
+
+<li><p>Demostrar que sabes AJAX: Hacer un cliente para alguna api abierta. Por ejemplo yo hice un cliente en angular para una API que daba frases de Chuck Norris. Existen muchas apis abiertas, <a href="https://github.com/toddmotto/public-apis">aquí tienes una lista</a>.</p></li>
+
+<li><p>Demostrar que conoces &ldquo;la parte de atrás&rdquo;: Montar un CRUD en backend, ofreciendo y diseñando tu mismo la API y realizando persistencia en base de datos.</p></li>
+</ol>
+
+<h2 id="5-y-que-hago-con-todos-estos-proyectos">5. ¿Y que hago con todos estos proyectos?</h2>
+
+<p>Lo primero sería publicarlos en github, eso como base. Así se puede ver como trabajas a través de tu historial de commits.</p>
+
+<p>Ahora, para los proyectos de front (html, css y js), si creas una rama &ldquo;gh-pages&rdquo; en el repositorio, puedes acceder &ldquo;in vivo&rdquo; al proyecto a traves de la dirección <strong>username.github.io/nombredelrepositorio</strong>.</p>
+
+<p>Ahora, para el tema del backend, existen unas cuantas soluciones gratuitas. Por enumerar los que he probado: <a href="https://dashboard.heroku.com/login">Heroku</a>, <a href="https://imagine.microsoft.com/en-us/Catalog/Product/99">Microsoft Azure (plan de estudiantes)</a>, <a href="https://www.openshift.com/">Openshift</a>.</p>
+
+<p>Así que no necesitas invertir en host ni en vps para poder alojar tus aplicaciones.</p>
+
+<h2 id="6-ejemplos">6. ¿Ejemplos?</h2>
+
+<p>Ya que ahora mismo mi blog no es un gran ejemplo. (<strong>Excusa</strong>: No he parado de irme de un sitio a otro para decidir que iba a utilizar como geneador hasta decidirme por hugo). Voy a aprovechar para dejar algunos buenos ejemplos de portfolio:</p>
+
+<ul>
+<li><a href="http://zertukis.com/">http://zertukis.com/</a></li>
+<li><a href="http://jordancarney.com/">http://jordancarney.com/</a></li>
+<li><a href="https://chrisgreg.github.io/Portfolio/index.html">https://chrisgreg.github.io/Portfolio/index.html</a></li>
+<li><a href="http://jamesiv.es/">http://jamesiv.es/</a></li>
+</ul>
+
+<h2 id="7-conclusiones">7. Conclusiones:</h2>
+
+<p>Espero que estos pasos sirvan de guía para alguien y tenga las cosas más claras a la hora de crear su propio portfolio.</p>
+
+<p>Ante cualquier duda o sugerencia, podéis contactar conmigo a través de <a href="https://twitter.com/aabreuglez">twitter</a> o <a href="mailto:me@adrianabreu.com">email</a></p>
+</p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s3 m1">
+                
+                <a class="btn-floating btn-large paginate-button" href="http://adrianabreu.github.io/post/2017-03-24-Ciclos-de-vida-Angular/"><i class="mdi-navigation-arrow-back"></i></a>                
+            </div>
+            <div class="col s6 m10 center">&nbsp</div>
+            <div class="col s3 m1">
+                
+                <a class="btn-floating btn-large paginate-button" href="http://adrianabreu.github.io/post/2017-03-11-Sin-componentes-a-componentes/"><i class="mdi-navigation-arrow-forward"></i></a>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="page-footer">
+  <div class="footer-copyright">
+    <div class="container">
+      2017 Adrián Abreu
+    </div>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="http://adrianabreu.github.io/js/materialize.min.js"></script>
+<script src="http://adrianabreu.github.io/js/init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+
+</body>
+
+</html>

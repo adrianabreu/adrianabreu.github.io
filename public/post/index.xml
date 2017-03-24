@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Adrián Abreu</title>
+    <link>http://adrianabreu.github.io/post/index.xml</link>
+    <description>Recent content in Posts on Adrián Abreu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-ES</language>
+    <copyright>2017 Adrián Abreu</copyright>
+    <lastBuildDate>Fri, 24 Mar 2017 23:11:22 +0000</lastBuildDate>
+    <atom:link href="http://adrianabreu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Interacción a través de ViewChild en Angular</title>
+      <link>http://adrianabreu.github.io/post/2017-03-24-Ciclos-de-vida-Angular/</link>
+      <pubDate>Fri, 24 Mar 2017 23:11:22 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-03-24-Ciclos-de-vida-Angular/</guid>
+      <description>&lt;p&gt;Hoy me he encontrado con una situación peculiar en un código. Aunque considero que quizás como está realizada la tarea no sea la mejor opción, creo que es un buen ejemplo para entender algunos conceptos de Angular.&lt;/p&gt;
+
+&lt;p&gt;Partiendo de una aplicaicón muy básica donde tenemos dos componentes: &lt;strong&gt;AppComponent&lt;/strong&gt; y &lt;strong&gt;ChildComponent&lt;/strong&gt;, vamos a renderizar dinámicamente el componente hijo desde el componente padre y ejecutar una serie de acciones.&lt;/p&gt;
+
+&lt;p&gt;Empecemos por el componente padre:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;h1&amp;gt;
+  {{title}}
+&amp;lt;/h1&amp;gt;
+
+&amp;lt;button type=&amp;quot;button&amp;quot; (click)=&amp;quot;renderChildAndDoChildStuff()&amp;quot;&amp;gt;Render the child!&amp;lt;/button&amp;gt;
+&amp;lt;child *ngIf=&amp;quot;timeToRenderChild&amp;quot;&amp;gt;&amp;lt;/child&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;app.component.ts&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import { Component, ViewChild } from &#39;@angular/core&#39;;
+import { ChildComponent } from &#39;./child/child.component&#39;;
+
+@Component({
+  selector: &#39;app-root&#39;,
+  templateUrl: &#39;./app.component.html&#39;,
+  styleUrls: [&#39;./app.component.css&#39;]
+})
+export class AppComponent {
+  title = &#39;app works!&#39;;
+
+  @ViewChild(ChildComponent)
+  private childComponent: ChildComponent;
+
+  private timeToRenderChild: boolean;
+
+  constructor() {
+    this.timeToRenderChild = false;
+  }
+
+  renderChildAndDoChildStuff() {
+    this.timeToRenderChild = true;
+    this.childComponent.doStuff();
+  }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;app.component.html&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Varios detalles:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;La directiva ngIf hace que hasta que no se cumpla la condición no empiece el renderizado del componente hijo.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;El decorator @ViewChild permite que un componente padre acceda a las propiedades de un componente hijo.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;La funcion doStuff no hace más que modificar un valor de texto en el componente hijo. ¿Que pasa cuando hacemos click en el botón?&lt;/p&gt;
+
+&lt;p&gt;Tenemos un error, que nos dice que nuestro componente aún está en estado undefined.
+¿Como podemos saber que nuestro componente está listo?&lt;/p&gt;
+
+&lt;p&gt;Aquí entran en juego los &lt;a href=&#34;https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html&#34;&gt;lifecycle hooks&lt;/a&gt;. Si utlizamos OnInit, ya estará nuestro componente resuelto. Pero, y aquí el quid del post, aún falta una cosa. Y es que el componente padre sepa que el hijo ha terminado de instanciarse. En un principio notificar una acción de un componente hijo a un componente padre es tan sencillo como usar un evento.&lt;/p&gt;
+
+&lt;p&gt;Pero esto no es suficiente: Cuando el componente hijo ya esté creado será demasiado tarde como para modificar el componente padre en el mismo ciclo (debido a la estructura en árbol del detector de cambios), por tanto, es necesario esperar un tiempo, y esto se consigue utilizando por ejemplo un setTimeOut.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setTimeout(() =&amp;gt; this.childComponent.doStuff(), 0);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Para ver el código del post:
+&lt;a href=&#34;https://github.com/adrianabreu/angular_viewchild_lifecycle&#34;&gt;https://github.com/adrianabreu/angular_viewchild_lifecycle&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Para más información:
+&lt;a href=&#34;https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html#smarter-change-detection&#34;&gt;https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html#smarter-change-detection&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Como construir un portfolio</title>
+      <link>http://adrianabreu.github.io/post/2017-03-12-Como-construir-un-portfolio/</link>
+      <pubDate>Sun, 12 Mar 2017 10:39:22 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-03-12-Como-construir-un-portfolio/</guid>
+      <description>
+
+&lt;p&gt;Desde hace un tiempo en los países anglosajones los desarrolladores tienen una herramienta más importante que su CV, el portfolio.&lt;/p&gt;
+
+&lt;p&gt;Un portfolio no es más que una muestra de tus trabajos y una justificación de las habilidades escritas en tu CV. A día de hoy, es increíblemente fácil tener un portfolio. Pero ya que voy a hablar de eso, aprovecharé para hablar también de qué debería contener un portfolio, y como enfocar el portfolio de un desarrollador junior proporcionando algunas ideas básicas.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-donde-alojar-el-portfolio&#34;&gt;1. Donde alojar el portfolio&lt;/h2&gt;
+
+&lt;p&gt;Aunque puede que tengas tu propio host o vps, creo que lo más sensato es utilizar github. &lt;a href=&#34;https://pages.github.com/&#34;&gt;En la propia página de github&lt;/a&gt; explican como tener tu web: &amp;ldquo;username.github.io&amp;rdquo;. De hecho, es donde ahora mismo está alojado este blog.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-contenidos-de-un-portfolio&#34;&gt;2. Contenidos de un portfolio&lt;/h2&gt;
+
+&lt;p&gt;Aquí empieza a abrirse el abanico de opciones. En general, la creatividad se premia, pero vamos a centrarnos en algunos conceptos clave:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Tus datos de contacto deben ser visibles. Un gran error de un portfolio es no dar visibilidad a la sección de contacto o carecer de los famosos iconos de redes sociales.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Debe ser una muestra de tu trabajo, no tiene por qué ser muy extenso. Lo más sensato es que tengas alguna pequeña imagen, una breve descripción y un enlace para probar el proyecto.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Muestra a qué puesto te gustaría aspirar, que rama te interesa más, si te interesa entrar en algún sector en concreto, etcétera.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;NO PONGAS UNA LISTA DE LENGUAJES / HABILIDADES Y LE DES UNA PUNTUACIÓN A CADA UNO DE ELLOS&lt;/strong&gt;. Aunque no quería ponerlo, creo que es importante resaltarlo. Valorarse a uno mismo es un error &lt;strong&gt;casi tan grande como poner todos los lenguajes que has tocado para intentar parecer que tienes un gran dominio&lt;/strong&gt;. En la carrera trabajé con C++ un par de cursos. ¿Me pongo ya un 5 sobre 5 en C++? &lt;a href=&#34;https://www.slideshare.net/olvemaudal/deep-c/255&#34;&gt;El creador del lenguaje se pone a sí mismo un 7 sobre 10&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;También debe hablar algo de ti, tus aficiones. Seguimos siendo personas, y no un conjunto de datos.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Con esto ya tenemos lo básico para un portfolio.&lt;/p&gt;
+
+&lt;p&gt;Pero claro, se plantea una duda. Una persona que se dedique altamente al front-end, va a tener muy fácil el destacar. Ya que sus proyectos son usables y visibles. Por otro lado, alguien que quiera enfocarse más al backend no lo va a tener tan sencillo. Para estos últimos recomiendo que describan su proyecto. Que planteen el problema y que estructura se siguió para resolverlo.&lt;/p&gt;
+
+&lt;p&gt;Por ejemplo:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;WordreferenceBot es un bot para telegram que permite traducir palabras del inglés al español y viceversa. Utiliza NodeJS para hacer webscraping de la página de wordreference y luego genera un mensaje en formato markdown para telegram.
+Para mejorar los tiempos de respuesta las traducciones se almacenan en una base de datos (MongoDB) de tal forma que queden cacheadas, así, cuánto más se use, más rápido responderá.&lt;/p&gt;
+
+&lt;p&gt;Además se ha añadido un endpoint web utilizando ejs donde se puede ver en tiempo real la cantidad de palabras almacenada en la base de datos gracias al uso de websockets.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Con esto queda más o menos claro las herramientas que hemos utilizado en el proyecto y como lo hemos enfocado.&lt;/p&gt;
+
+&lt;h2 id=&#34;3-qué-utilizo-para-portfolio&#34;&gt;3. ¿Qué utilizo para portfolio?&lt;/h2&gt;
+
+&lt;p&gt;Este tema lo reflexionado bastante y creo que tras leer múltiples opiniones, lo mejor es utilizar un html estático.&lt;/p&gt;
+
+&lt;p&gt;Aplica tu creatividad y si eres bueno en tema de diseño quizás quieras demostrar más habilidades aún evitando utilizar bootstrap y jQuery.&lt;/p&gt;
+
+&lt;p&gt;También, al igual que yo puedes hacer utilizar algún generador estático, como por ejemplo: &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; (Ruby), &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt; (Node) o &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; (Go).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://adrianabreu.com/post/2017-03-04-Why-you-should-start-a-blog/&#34;&gt;Hace unas entradas&lt;/a&gt; argumenté las ventajas de tener un blog y de escribir las cosas que se van aprendiendo.&lt;/p&gt;
+
+&lt;h2 id=&#34;4-qué-podría-usar-para-rellenar-el-portfolio&#34;&gt;4. ¿Qué podría usar para rellenar el portfolio?&lt;/h2&gt;
+
+&lt;p&gt;La creatividad manda, no hace falta elaborar proyectos complicados, pero creo que existen una serie de puntos que dbeerían estar en tu portfolio.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Demostrar tu dominio del DOM: Hacer algún proyecto sencillo que interactúe con el DOM. Algo tan simplecomo una lista de la compra que vaya creando y borrando elementos y cantidad puede ser un buen ejemplo.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Demostrar que sabes AJAX: Hacer un cliente para alguna api abierta. Por ejemplo yo hice un cliente en angular para una API que daba frases de Chuck Norris. Existen muchas apis abiertas, &lt;a href=&#34;https://github.com/toddmotto/public-apis&#34;&gt;aquí tienes una lista&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Demostrar que conoces &amp;ldquo;la parte de atrás&amp;rdquo;: Montar un CRUD en backend, ofreciendo y diseñando tu mismo la API y realizando persistencia en base de datos.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;5-y-que-hago-con-todos-estos-proyectos&#34;&gt;5. ¿Y que hago con todos estos proyectos?&lt;/h2&gt;
+
+&lt;p&gt;Lo primero sería publicarlos en github, eso como base. Así se puede ver como trabajas a través de tu historial de commits.&lt;/p&gt;
+
+&lt;p&gt;Ahora, para los proyectos de front (html, css y js), si creas una rama &amp;ldquo;gh-pages&amp;rdquo; en el repositorio, puedes acceder &amp;ldquo;in vivo&amp;rdquo; al proyecto a traves de la dirección &lt;strong&gt;username.github.io/nombredelrepositorio&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ahora, para el tema del backend, existen unas cuantas soluciones gratuitas. Por enumerar los que he probado: &lt;a href=&#34;https://dashboard.heroku.com/login&#34;&gt;Heroku&lt;/a&gt;, &lt;a href=&#34;https://imagine.microsoft.com/en-us/Catalog/Product/99&#34;&gt;Microsoft Azure (plan de estudiantes)&lt;/a&gt;, &lt;a href=&#34;https://www.openshift.com/&#34;&gt;Openshift&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Así que no necesitas invertir en host ni en vps para poder alojar tus aplicaciones.&lt;/p&gt;
+
+&lt;h2 id=&#34;6-ejemplos&#34;&gt;6. ¿Ejemplos?&lt;/h2&gt;
+
+&lt;p&gt;Ya que ahora mismo mi blog no es un gran ejemplo. (&lt;strong&gt;Excusa&lt;/strong&gt;: No he parado de irme de un sitio a otro para decidir que iba a utilizar como geneador hasta decidirme por hugo). Voy a aprovechar para dejar algunos buenos ejemplos de portfolio:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://zertukis.com/&#34;&gt;http://zertukis.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jordancarney.com/&#34;&gt;http://jordancarney.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://chrisgreg.github.io/Portfolio/index.html&#34;&gt;https://chrisgreg.github.io/Portfolio/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jamesiv.es/&#34;&gt;http://jamesiv.es/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;7-conclusiones&#34;&gt;7. Conclusiones:&lt;/h2&gt;
+
+&lt;p&gt;Espero que estos pasos sirvan de guía para alguien y tenga las cosas más claras a la hora de crear su propio portfolio.&lt;/p&gt;
+
+&lt;p&gt;Ante cualquier duda o sugerencia, podéis contactar conmigo a través de &lt;a href=&#34;https://twitter.com/aabreuglez&#34;&gt;twitter&lt;/a&gt; o &lt;a href=&#34;mailto:me@adrianabreu.com&#34;&gt;email&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sin componentes a componentes</title>
+      <link>http://adrianabreu.github.io/post/2017-03-11-Sin-componentes-a-componentes/</link>
+      <pubDate>Sat, 11 Mar 2017 17:44:11 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-03-11-Sin-componentes-a-componentes/</guid>
+      <description>&lt;p&gt;Hace unos meses mientras me formaba en Angular 1 hice con un amigo un cliente para una api que proporcionaba frases de Chuck Norris.&lt;/p&gt;
+
+&lt;p&gt;Fue un desarrollo divertido donde almacenábamos las frases descargadas en localStorage y permítiamos filtrar las frases por categorías.&lt;/p&gt;
+
+&lt;p&gt;El diseño era modular y me quedé contento con lo que aprendí. Pero entonces entré en prácticas en la empresa y me puse a formarme en Angular 2.&lt;/p&gt;
+
+&lt;p&gt;Y ahí me encontré que había un nuevo concepto, los componentes. En el mundo de angular vi: directivas, controladores, servicios, módulos&amp;hellip;  Pero en el mundo de Angular 2 entraron los &lt;strong&gt;componentes&lt;/strong&gt; en juego.&lt;/p&gt;
+
+&lt;p&gt;Lo primero, ¿qué son los componentes? Los componentes vienen a ser los bloques de construcción de la aplicación, viene a ser cualquier cosa que sea visible para el usuario final y que además, se puede utilizar muchas veces en una aplicación.&lt;/p&gt;
+
+&lt;p&gt;Así que ahora, unos meses más tarde, he rehecho el cliente en Angular 2 y se pueden observar las diferencias entre las tecnologías.&lt;/p&gt;
+
+&lt;p&gt;La verdad es que prefiero mucho más Angular 2, y en mi opinión, el nuevo código es mucho más comprensible.&lt;/p&gt;
+
+&lt;p&gt;De hecho para añadirle más fuerza al argumento a favor de los componentes, a partir de la versión 1.5 de Angular también existe el concepto de componente.&lt;/p&gt;
+
+&lt;p&gt;Pero como siempre, creo que es mejor que sea el lector el que compare, así que aquí dejo los links a ambos repositorios:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/adrianabreu/chuck-norris-angular-client&#34;&gt;ChuckNorrisAngularClient&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/adrianabreu/chuck-norris-angular2-client&#34;&gt;ChuckNorrisAngular2Client&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quizás deberías empezar un blog</title>
+      <link>http://adrianabreu.github.io/post/2017-03-04-Why-you-should-start-a-blog/</link>
+      <pubDate>Sat, 04 Mar 2017 19:46:22 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-03-04-Why-you-should-start-a-blog/</guid>
+      <description>&lt;p&gt;Me encanta leer artículos de programación y de tecnología. Leo muchísimos artículos.&lt;/p&gt;
+
+&lt;p&gt;Es más, considero que paso al menos de media, 2 horas diarias leyendo esta clase de artículos.&lt;/p&gt;
+
+&lt;p&gt;Pero soy otro lector invisible más, no devuelvo lo que aprendo a la comunidad (aunque ahora me he ido animando con los comentarios) y lo peor, no lo almaceno.&lt;/p&gt;
+
+&lt;p&gt;Un blog puede ser una parte más de tu portfolio, puede recoger tus dudas y tu avance. Recuerdo, leer muchos artículos del blog de &lt;a href=&#34;https://giltesa.com/&#34;&gt;giltesa&lt;/a&gt;, aunque en aquellos momentos yo estaba programando en pañales, me gustaba mucho ver los pequeños códigos en C que ponía.&lt;/p&gt;
+
+&lt;p&gt;Por supuesto, al igual que con el código, también ocurre lo contrario. Que no quieras compartir los pequeños códigos que haces, ya sea porque te de vergüenza o porque realmente crees que no vale la pena. Pero yo opino lo contrario. Creo que, en este punto, cualquier aporte que harás te ayudará a reflexionar sobre lo que sabes, por donde vas. Y aportará, quizás no a la comunidad, pero sí a tu yo del mañana.&lt;/p&gt;
+
+&lt;p&gt;Así que, quizás deberías empezar un blog.&lt;/p&gt;
+
+&lt;p&gt;Actualización 05-03-2017: Como curiosidad, hoy han abierto un hilo en reddit acerca de esto mismo: &lt;a href=&#34;https://www.reddit.com/r/webdev/comments/5xmu09/developers_apart_from_your_95_or_studying_what/&#34;&gt;Developers, apart from your 9-5 or studying, what activities have you found effective at boosting your career ? (blogging? open source? networking etc.)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;En las primeras respuestas, ya se ve claro: &lt;strong&gt;&amp;ldquo;Blogging has definitely helped me with my career, in more ways than one.&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Probando Hugo</title>
+      <link>http://adrianabreu.github.io/post/2017-02-05-Probando-hugo/</link>
+      <pubDate>Sun, 05 Feb 2017 17:31:42 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-02-05-Probando-hugo/</guid>
+      <description>&lt;p&gt;La verdad es que estoy asombrado. Hexo me tenía muy contento, pero aún así el rendimiento no me convencía tanto como esperaba. Y me pasaba los días dando largas hasta ponerme a postear. Aprovechando que quería hacer una pequeña limpieza antes de ponerme con el trabajo de fin de grado, he estado mirando este generador, Hugo.&lt;/p&gt;
+
+&lt;p&gt;Este generador basado en el lenguaje Go, es increíblemente potente, portable, y sencillo de instalar. Sinceramente, tras probar Jekyll, Hexo y Hugo, sin duda me quedo con este último. Habia visto otros como Octopress, pero tampoco llegó a convencerme.&lt;/p&gt;
+
+&lt;p&gt;Si por casualidad queréis hacer un blog estático, ya sea para vuestra página personal o para alguna web de contenido, mi opinión es clara.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Nuevos comienzos</title>
+      <link>http://adrianabreu.github.io/post/2017-01-08-Nuevos-comienzos/</link>
+      <pubDate>Sun, 08 Jan 2017 10:22:36 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-01-08-Nuevos-comienzos/</guid>
+      <description>&lt;p&gt;No creía que fuera a estar escribiendo esto tan pronto, pero hace poco terminé de realizar las prácticas externas y ya tengo un trabajo en esa misma empresa.&lt;/p&gt;
+
+&lt;p&gt;Mis labores, al igual que en las prácticas, consiste en desarrollar utilizando Angular 2 y Java.&lt;/p&gt;
+
+&lt;p&gt;He ido aprendiendo (y sigo, y seguiré) muchísimo. Y es por eso que necesito este blog. Un lugar donde compartir toda la información que voy absorbiendo sobre esta tecnología que cada día me gusta más.&lt;/p&gt;
+
+&lt;p&gt;Ahora mismo, me debato sobre si mi Trabajo Final de Grado será también Angular 2. En unas semanas espero tenerlo más claro (por ahora pinta que sí, pero React pega fuerte).&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
