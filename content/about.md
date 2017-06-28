@@ -7,8 +7,10 @@ layout = "about"
 
 Si estás interesado en contactar conmigo puedes encontrarme a través de:
 
-* **[Github](http://github.com/adrianabreu)**
-* **[Twitter](https://twitter.com/aabreuglez)**
-* **[Linkedin](https://linkedin.com/in/adrianabreu)**
+**[Github](http://github.com/adrianabreu)**
+
+**[Twitter](https://twitter.com/aabreuglez)**
+
+**[Linkedin](https://linkedin.com/in/adrianabreu)**
 
 O incluso a través de mi correo electrónico: **[me@adrianabreu.com](mailto:me@adrianabreu.com)**

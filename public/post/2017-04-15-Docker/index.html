@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  <title>Docker</title>
+  <link href="http://adrianabreu.github.io/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="http://adrianabreu.github.io/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>  <nav>
+    <div id="top-nav" class="nav-wrapper">
+        <a href="#" data-activates="mobile-demo" class="hide-on-med-and-up button-collapse"><i class="mdi-action-view-headline"></i></a>
+        <ul class="hide-on-small-only">
+            <li><a href="http://adrianabreu.github.io"><i class="mdi-action-home left"></i>Home</a></li>
+            <li><a href="http://adrianabreu.github.io/post/"><i class="mdi-action-description left"></i>Blog</a></li>
+            <li><a href="http://adrianabreu.github.io/projects/"><i class="mdi-action-pageview left"></i>Proyectos</a></li>
+            <li><a href="http://adrianabreu.github.io/about/"><i class="mdi-action-account-circle left"></i>Contáctame</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+            <li><a href="http://adrianabreu.github.io"><i class="mdi-action-home left"></i>Home</a></li>
+            <li><a href="http://adrianabreu.github.io/post/"><i class="mdi-action-description left"></i>Blog</a></li>
+            <li><a href="http://adrianabreu.github.io/projects/"><i class="mdi-action-pageview left"></i>Proyectos</a></li>
+            <li><a href="http://adrianabreu.github.io/about/"><i class="mdi-action-account-circle left"></i>Contáctame</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="single-section">
+
+        <div class="row">
+            <div class="col s12">
+                <h4>Docker</h4>
+                <p>
+                    
+                </p>
+                <p>15 Apr 2017 
+                </p>
+                <p>
+
+<h2 id="qué-es-docker">¿Qué es docker?</h2>
+
+<p>Docker es un software que permite automatizar el despliegue de aplicaciones utilizando contenedores.</p>
+
+<p>Los contenedores hacen uso de la virtualización a nivel de sistema operativo, con lo cual son mucho más ligeros y rápidos que las máquinas virtuales.</p>
+
+<h2 id="para-qué-lo-puedo-necesitar">¿Para qué lo puedo necesitar?</h2>
+
+<p>En el día a día, una de las cosas para las que Docker me resulta más útil sin duda es para desplegar las bases de datos en desarrollo.</p>
+
+<p>Sobre todo cuando trabajas con múltiples bases de datos, estar instalandos los distintos tipos: oracle, postgres, mysql, etcétera. No resulta del todo sencillo, y con docker se convierte en una tarea trivial.</p>
+
+<p>También podemos utilizarlo para emparejar el entorno de desarrollo y producción (mantener mismas versiones y así asegurarnos de que no hay incompatibilidades).</p>
+
+<h2 id="y-no-me-sirve-vagrant">¿Y no me sirve Vagrant?</h2>
+
+<p>Por supuesto. Docker no es más que otra solución. Mucha gente ha trabajado hasta ahora utilizando Vagrant para automatizar el despliegue de sus máquinas virtuales, y creo que la mejor forma de comprender las diferencias entre una máquina virtual y un contenedor, es con la siguiente imagen:</p>
+
+
+<figure >
+    
+        <img src="https://insights.sei.cmu.edu/assets/content/VM-Diagram.png" />
+    
+    
+</figure>
+
+
+<p>Eliminando las capas de hypervisor y de sistema operativo invitado, nos ahorramos muchísimos recursos y ganamos en velocidad. (¿Quién no ha tenido que esperar tras un vagrant up?)</p>
+
+<h2 id="cómo-lo-utilizo">¿Cómo lo utilizo?</h2>
+
+<p>Obviamente, el primer paso es instalarlo. Como curiosidad, solo hay una versión de Windows que soporta docker de forma nativa, pero se puede utilizar igualmente mediante una máquina virtual.</p>
+
+<p>Tras instalar Docker, vamos a buscar imágenes de docker en <a href="https://hub.docker.com/">Docker Hub</a>.</p>
+
+<p>Por ejemplo, yo ahora mismo necesito una base de datos de postgres. Así que me utilizaré esta imagen, que es oficial: <a href="https://hub.docker.com/_/postgres/">https://hub.docker.com/_/postgres/</a></p>
+
+<p>Realmente, podría automatizar todo el proceso de despliegue y docker podría buscar por mí en el hub y bajarme la imagen con el comando que pone en la guía, pero creo que es mejor hacerlo a mano para esta entrada.</p>
+
+<p>En mi caso voy a utilizar la versión 9.5 de docker por temas de compatibilidad con la versión de pgAdminIII que utilizo. Recomiendo encarecidamente utilizar la 9.6 para no tener que estar esperando por las actualizaciones.</p>
+
+<p>Bajamos la carpeta con el dockerfile, nos movemos a la ruta correspondiente, y ejecutamos <code>docker build -t &quot;postgres:9.5&quot; .</code></p>
+
+<p>El flag -t no es más que un tag.</p>
+
+<pre><code>adrianabreu@adrianabreu-CX61-2PC:~/docker-images/postgres/9.5$ docker build -t &quot;postgres:9.5&quot; .
+Sending build context to Docker daemon 19.97 kB
+[...]
+Step 23/23 : CMD postgres
+ ---&gt; Running in 635831399de8
+ ---&gt; e8635acd406b
+Removing intermediate container 635831399de8
+Successfully built e8635acd406b
+</code></pre>
+
+<p>Ahora, podemos ver que se ha añadido la imagen correspondiente con: <code>docker images</code>.</p>
+
+<pre><code>adrianabreu@adrianabreu-CX61-2PC:~/docker-images/postgres/9.5$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+postgres            9.5                 e8635acd406b        About a minute ago   265 MB
+debian              jessie              8cedef9d7368        2 weeks ago          123 MB
+hello-world         latest              48b5124b2768        2 months ago         1.84 kB
+</code></pre>
+
+<p>Vale, lancemos una nueva instancia de postgres:</p>
+
+<pre><code>docker run --name prueba-postgres -e POSTGRES_PASSWORD=prueba -P -d postgres:9.5
+</code></pre>
+
+<p><strong>Nota: El flag -P es MUY importante, es el que se encarga de publicar el puerto del contenedor al sistema operativo.</strong></p>
+
+<p>Comprobemos que ha arrancado:</p>
+
+<pre><code>docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                     NAMES
+111090b29e46        postgres:9.5        &quot;docker-entrypoint...&quot;   13 seconds ago      Up 11 seconds       0.0.0.0:32770-&gt;5432/tcp   prueba-postgres
+</code></pre>
+
+<p>Como vemos, nuestro docker está escuchando en el puerto 32770. Hagamos a hacer la prueba de fuego:</p>
+
+
+<figure >
+    
+        <img src="/images/docker-pgadmin.png" />
+    
+    
+</figure>
+
+
+<p>¡Perfecto! Espero que esto os anime a usar docker y ganéis la flexibilidad que necesitáis.</p>
+</p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s3 m1">
+                
+                <a class="btn-floating btn-large disabled"><i class="mdi-navigation-arrow-back"></i></a> 
+            </div>
+            <div class="col s6 m10 center">&nbsp</div>
+            <div class="col s3 m1">
+                
+                <a class="btn-floating btn-large paginate-button" href="http://adrianabreu.github.io/post/2017-04-08-Capas-en-el-backend/"><i class="mdi-navigation-arrow-forward"></i></a>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="page-footer">
+  <div class="footer-copyright">
+    <div class="container">
+      2017 Adrián Abreu
+    </div>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="http://adrianabreu.github.io/js/materialize.min.js"></script>
+<script src="http://adrianabreu.github.io/js/init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+
+</body>
+
+</html>

@@ -2,7 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-03-24-Ciclos-de-vida-Angular/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-06-04-Empezar-a-programar/</loc>
+    <lastmod>2017-06-04T13:07:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://adrianabreu.github.io/post/2017-04-09-Docker/</loc>
+    <lastmod>2017-04-09T15:20:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://adrianabreu.github.io/post/2017-04-08-Capas-en-el-backend/</loc>
+    <lastmod>2017-04-08T17:33:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://adrianabreu.github.io/post/2017-03-24-Interaccion-a-traves-de-viewchild/</loc>
     <lastmod>2017-03-24T23:11:22+00:00</lastmod>
   </url>
   
@@ -83,13 +98,13 @@
   
   <url>
     <loc>http://adrianabreu.github.io/</loc>
-    <lastmod>2017-03-24T23:11:22+00:00</lastmod>
+    <lastmod>2017-06-04T13:07:30+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://adrianabreu.github.io/post/</loc>
-    <lastmod>2017-03-24T23:11:22+00:00</lastmod>
+    <lastmod>2017-06-04T13:07:30+00:00</lastmod>
     <priority>0</priority>
   </url>
   

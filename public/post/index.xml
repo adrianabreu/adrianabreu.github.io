@@ -7,15 +7,466 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ES</language>
     <copyright>2017 Adrián Abreu</copyright>
-    <lastBuildDate>Fri, 24 Mar 2017 23:11:22 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 Jun 2017 13:07:30 +0000</lastBuildDate>
     <atom:link href="http://adrianabreu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Empezar a programar</title>
+      <link>http://adrianabreu.github.io/post/2017-06-04-Empezar-a-programar/</link>
+      <pubDate>Sun, 04 Jun 2017 13:07:30 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-06-04-Empezar-a-programar/</guid>
+      <description>
+
+&lt;p&gt;Creo que me he visto en más de una decena de ocasiones aconsejando a gente como empezar en el mundo
+de la programación, así que esta entrada viene dedicada a todos ellos.&lt;/p&gt;
+
+&lt;p&gt;Por supuesto se trata de una guía basada en mi opinión y solo mi opinión.&lt;/p&gt;
+
+&lt;h3 id=&#34;daw-o-dam&#34;&gt;¿DAW o DAM?&lt;/h3&gt;
+
+&lt;p&gt;Realmente mi respuesta es bastante clara: &lt;strong&gt;DAW&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;El mundo web cada vez va tomando más y más fuerza.
+Ya se pueden desarrollar aplicaciones de escritorio utilizando como base aplicaciones web con tecnologías
+como &lt;a href=&#34;https://electron.atom.io/&#34;&gt;electron&lt;/a&gt; (un buen ejemplo de este tipo de aplicaciones &lt;a href=&#34;https://code.visualstudio.com/&#34;&gt;Visual Studio Code&lt;/a&gt;). Y además también
+se pueden desarrollar aplicaciones móviles con &lt;a href=&#34;https://facebook.github.io/react-native/&#34;&gt;React Native&lt;/a&gt; e &lt;a href=&#34;http://ionicframework.com/&#34;&gt;Ionic&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;como-empezar&#34;&gt;¿Como empezar?&lt;/h3&gt;
+
+&lt;p&gt;Fundamentos. Programar siempre va a ser programar, sea cual sea el lenguaje.
+No vas a perder mucho por empezar por C y luego ir a Java. A mí me gusta mucho enseñar con C y C++. ¿Por qué? Porque se puede uno concentrar en los fundamenos básicos de la
+programación estructurada y luego en la orientación a objetos.&lt;/p&gt;
+
+&lt;p&gt;Pero esto, si no tienes claro lo que quieres hacer, puede resultar bastante desmotivante. Y mucha gente
+necesita una mayor motivación, la cual consigue pensando en la aplicación directa de las cosas. No puedo culparlos. Así que vamos a centrarnos
+en las dos tecnologías más usadas: Java y Javascript.&lt;/p&gt;
+
+&lt;h3 id=&#34;java&#34;&gt;Java&lt;/h3&gt;
+
+&lt;p&gt;Java es un lenguaje compilado e interpretado desarrollado por Oracle ampliamente utilizado en el mundo web. Mediante la especificación de JavaEE se puede lograr que Java gestione peticiones web y actuar
+como un lenguaje del servidor. Normalmente se utiliza junto a la tecnología &lt;a href=&#34;https://spring.io/&#34;&gt;Spring&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Y es realmente potente. Java es un lenguaje muy rapido que no ha parado de mejorar durante todos estos
+años. Puede que no sea &amp;ldquo;cool&amp;rdquo;, que no esté en el top de &lt;em&gt;trending languages&lt;/em&gt;, &lt;a href=&#34;https://www.tiobe.com/tiobe-index/&#34;&gt;pero es el top 1 en los lenguajes más utilizados y eso no se puede discutir&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para aprender Java recomiendo utilizar los dos &lt;em&gt;MOOC&lt;/em&gt; (Masive Open Online Course) de la universidad
+de Helsinki. Yo mismo los he utilizado y sé que resultarán muy útiles.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mooc.fi/courses/2013/programming-part-1/&#34;&gt;http://mooc.fi/courses/2013/programming-part-1/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mooc.fi/courses/2013/programming-part-2/&#34;&gt;http://mooc.fi/courses/2013/programming-part-2/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Eso sí, en perfecto inglés. Es lo que hay y cuanto antes empieces a adaptarte al inglés, mejor. Existen
+algunos libros muy importantes de Java, yo suelo citar este:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Effective Java&lt;/em&gt;, Josucha Bloch, 2nd Edition.&lt;/p&gt;
+
+&lt;p&gt;Y como recursos online para consultar:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.tutorialspoint.com/java/&#34;&gt;https://www.tutorialspoint.com/java/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.mkyong.com/&#34;&gt;https://www.mkyong.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;javascript&#34;&gt;Javascript&lt;/h3&gt;
+
+&lt;p&gt;Javascript es un lenguaje compilado e interpretado (surprise!), desarrollado por Brendan Elrich para ser
+utilizado en el navegador. Con la aparición de las aplicaciones web dinámicas que hacían uso de Ajax
+(Gmail), comenzó una tendencia hacia un nuevo tipo de arquitectura.&lt;/p&gt;
+
+&lt;p&gt;Javascript es un lenguaje que ha cogido una gran fama en los últimos años. Es el lenguaje más utilizado en
+Github y además con la fama que han ido adquiriendo las librerías y frameworks, es un gran momento para
+aprenderlo.&lt;/p&gt;
+
+&lt;p&gt;Para ello recomiendo hacer los cursos de &lt;a href=&#34;https://www.freecodecamp.com/&#34;&gt;freecodecamp&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para dudas, un libro bastante interesante a consultar es: &lt;a href=&#34;http://eloquentjavascript.net/&#34;&gt;Eloquent Javascript&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;qué-debo-aprender&#34;&gt;¿Qué debo aprender?&lt;/h3&gt;
+
+&lt;p&gt;En esto si que solemos coincidir todos, para empezar a programar se deben comprender estos conceptos:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tipos de datos.&lt;/li&gt;
+&lt;li&gt;Entrada / salida de datos.&lt;/li&gt;
+&lt;li&gt;Condicionales. (if)&lt;/li&gt;
+&lt;li&gt;Bucles. (for, while&amp;hellip;)&lt;/li&gt;
+&lt;li&gt;Funciones.&lt;/li&gt;
+&lt;li&gt;Estructuras de datos básicas (Arrays, Listas).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Esto es lo que daría cualquier persona que empezara a programar. Una vez comprendido y entendido esto,
+pasaríamos a la programación Orientada a Objetos y a estructuras más avanzadas.&lt;/p&gt;
+
+&lt;p&gt;Y ya con eso tenemos las bases para empezar a hacer lo que realmente nos importa: Resolver problemas.&lt;/p&gt;
+
+&lt;h3 id=&#34;ya-tengo-las-bases-quiero-más&#34;&gt;Ya tengo las bases, quiero más.&lt;/h3&gt;
+
+&lt;p&gt;En un principio iba a extender este tutorial, pero creo que es mejor dejarlo para otra entrada.
+Por lo pronto diré que al menos es necesario que conozcas como usar SQL, qué es una &lt;a href=&#34;http://www.restapitutorial.com/&#34;&gt;API Rest&lt;/a&gt;
+y como hacer peticiones &lt;a href=&#34;https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp&#34;&gt;HTTP con Javascript&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://adrianabreu.github.io/post/2017-04-09-Docker/</link>
+      <pubDate>Sun, 09 Apr 2017 15:20:44 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-04-09-Docker/</guid>
+      <description>
+
+&lt;h2 id=&#34;qué-es-docker&#34;&gt;¿Qué es docker?&lt;/h2&gt;
+
+&lt;p&gt;Docker es un software que permite automatizar el despliegue de aplicaciones utilizando contenedores.&lt;/p&gt;
+
+&lt;p&gt;Los contenedores hacen uso de la virtualización a nivel de sistema operativo, con lo cual son mucho más ligeros y rápidos que las máquinas virtuales.&lt;/p&gt;
+
+&lt;h2 id=&#34;para-qué-lo-puedo-necesitar&#34;&gt;¿Para qué lo puedo necesitar?&lt;/h2&gt;
+
+&lt;p&gt;En el día a día, una de las cosas para las que Docker me resulta más útil sin duda es para desplegar las bases de datos en desarrollo.&lt;/p&gt;
+
+&lt;p&gt;Sobre todo cuando trabajas con múltiples bases de datos, estar instalandos los distintos tipos: oracle, postgres, mysql, etcétera. No resulta del todo sencillo, y con docker se convierte en una tarea trivial.&lt;/p&gt;
+
+&lt;p&gt;También podemos utilizarlo para emparejar el entorno de desarrollo y producción (mantener mismas versiones y así asegurarnos de que no hay incompatibilidades).&lt;/p&gt;
+
+&lt;h2 id=&#34;y-no-me-sirve-vagrant&#34;&gt;¿Y no me sirve Vagrant?&lt;/h2&gt;
+
+&lt;p&gt;Por supuesto. Docker no es más que otra solución. Mucha gente ha trabajado hasta ahora utilizando Vagrant para automatizar el despliegue de sus máquinas virtuales, y creo que la mejor forma de comprender las diferencias entre una máquina virtual y un contenedor, es con la siguiente imagen:&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://insights.sei.cmu.edu/assets/content/VM-Diagram.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;Eliminando las capas de hypervisor y de sistema operativo invitado, nos ahorramos muchísimos recursos y ganamos en velocidad. (¿Quién no ha tenido que esperar tras un vagrant up?)&lt;/p&gt;
+
+&lt;h2 id=&#34;cómo-lo-utilizo&#34;&gt;¿Cómo lo utilizo?&lt;/h2&gt;
+
+&lt;p&gt;Obviamente, el primer paso es instalarlo. Como curiosidad, solo hay una versión de Windows que soporta docker de forma nativa, pero se puede utilizar igualmente mediante una máquina virtual.&lt;/p&gt;
+
+&lt;p&gt;Tras instalar Docker, vamos a buscar imágenes de docker en &lt;a href=&#34;https://hub.docker.com/&#34;&gt;Docker Hub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Por ejemplo, yo ahora mismo necesito una base de datos de postgres. Así que me utilizaré esta imagen, que es oficial: &lt;a href=&#34;https://hub.docker.com/_/postgres/&#34;&gt;https://hub.docker.com/_/postgres/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Realmente, podría automatizar todo el proceso de despliegue y docker podría buscar por mí en el hub y bajarme la imagen con el comando que pone en la guía, pero creo que es mejor hacerlo a mano para esta entrada.&lt;/p&gt;
+
+&lt;p&gt;En mi caso voy a utilizar la versión 9.5 de docker por temas de compatibilidad con la versión de pgAdminIII que utilizo. Recomiendo encarecidamente utilizar la 9.6 para no tener que estar esperando por las actualizaciones.&lt;/p&gt;
+
+&lt;p&gt;Bajamos la carpeta con el dockerfile, nos movemos a la ruta correspondiente, y ejecutamos &lt;code&gt;docker build -t &amp;quot;postgres:9.5&amp;quot; .&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;El flag -t no es más que un tag.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;adrianabreu@adrianabreu-CX61-2PC:~/docker-images/postgres/9.5$ docker build -t &amp;quot;postgres:9.5&amp;quot; .
+Sending build context to Docker daemon 19.97 kB
+[...]
+Step 23/23 : CMD postgres
+ ---&amp;gt; Running in 635831399de8
+ ---&amp;gt; e8635acd406b
+Removing intermediate container 635831399de8
+Successfully built e8635acd406b
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ahora, podemos ver que se ha añadido la imagen correspondiente con: &lt;code&gt;docker images&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;adrianabreu@adrianabreu-CX61-2PC:~/docker-images/postgres/9.5$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+postgres            9.5                 e8635acd406b        About a minute ago   265 MB
+debian              jessie              8cedef9d7368        2 weeks ago          123 MB
+hello-world         latest              48b5124b2768        2 months ago         1.84 kB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Vale, lancemos una nueva instancia de postgres:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run --name prueba-postgres -e POSTGRES_PASSWORD=prueba -P -d postgres:9.5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Nota: El flag -P es MUY importante, es el que se encarga de publicar el puerto del contenedor al sistema operativo.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Comprobemos que ha arrancado:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                     NAMES
+111090b29e46        postgres:9.5        &amp;quot;docker-entrypoint...&amp;quot;   13 seconds ago      Up 11 seconds       0.0.0.0:32770-&amp;gt;5432/tcp   prueba-postgres
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Como vemos, nuestro docker está escuchando en el puerto 32770. Hagamos a hacer la prueba de fuego:&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://adrianabreu.github.io/images/docker-pgadmin.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;¡Perfecto! Espero que esto os anime a usar docker y ganéis la flexibilidad que necesitáis.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Capas en el backend</title>
+      <link>http://adrianabreu.github.io/post/2017-04-08-Capas-en-el-backend/</link>
+      <pubDate>Sat, 08 Apr 2017 17:33:10 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-04-08-Capas-en-el-backend/</guid>
+      <description>
+
+&lt;p&gt;Una de las cosas más difíciles cuando ves un proyecto de backend por primera vez es discernir la funcionalidad y responsabilidad de las distintas capas. Así que me he planteado dar una visión general.&lt;/p&gt;
+
+&lt;p&gt;Antes de nada, quiero aclarar que es probable que esta nomenclatura no coincida con otra que veais por ahí, existen muchos sinónimos para los mismos conceptos, yo por mi parte, voy a explicar cual utilizo actualmente.&lt;/p&gt;
+
+&lt;p&gt;Por supuesto, todo estará ilustrado con un sencillo proyecto de ejemplo que he hecho para la ocasión. Así que, comencemos por el patrón DTO.&lt;/p&gt;
+
+&lt;h2 id=&#34;data-transfer-object&#34;&gt;Data Transfer Object&lt;/h2&gt;
+
+&lt;p&gt;Un DTO es un objeto que se utiliza en transferencias. Existen varios motivos para utilizar este tipo de objeto:&lt;/p&gt;
+
+&lt;p&gt;El motivo original es que con lo costoso que resulta abrir un canal de comunicación, debería traerse toda la información posible en esta para &amp;ldquo;amortizarla&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;No siempre es necesario mandar al front end todos los campos del backend. Quizás algunos campos sean de control, o quizás no necesitemos transferir todo el objeto.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class GreetingDTO {
+
+	private Long id;
+	
+	private String message;
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}	
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;mapper&#34;&gt;Mapper&lt;/h2&gt;
+
+&lt;p&gt;Para convertir las entidades en DTO y viceversa, utilizamos un mapper. Aquí un breve ejemplo. Nótese que lo he anotado como un componente de Spring con @Component.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@Component
+public class GreetingMapper {
+
+	public GreetingDTO toDTO(Greeting source) {
+		if (source == null) {
+			return null;
+		}
+		
+		GreetingDTO target = new GreetingDTO();
+		target.setId(source.getId());
+		target.setMessage(source.getMessage());
+		return target;
+	}
+	
+	public Greeting toEntity(GreetingDTO source) {
+		if (source == null) {
+			return null;
+		}
+		
+		Greeting target = new Greeting();
+		target.setId(source.getId());
+		target.setMessage(source.getMessage());
+		return target;
+	}
+	
+	public List&amp;lt;GreetingDTO&amp;gt; toDTOList(List&amp;lt;Greeting&amp;gt; source) {
+		if (source == null) {
+			return null;
+		}
+		List&amp;lt;GreetingDTO&amp;gt; target = source.stream().map(greeting -&amp;gt; toDTO(greeting)).collect(Collectors.toList());
+		return target;	
+	}
+	
+	public List&amp;lt;Greeting&amp;gt; toEntityList(List&amp;lt;GreetingDTO&amp;gt; source) {
+		if (source == null) {
+			return null;
+		}
+		List&amp;lt;Greeting&amp;gt; target = source.stream().map(greetingDTO -&amp;gt; toEntity(greetingDTO)).collect(Collectors.toList());
+		return target;
+				
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;resource-controller&#34;&gt;Resource / Controller&lt;/h2&gt;
+
+&lt;p&gt;Los controladores (denominados también recursos) van a ser los encargados de relacionar tal acción cuando ejecutemos X método HTTP (GET, POST, PUT, DELETE&amp;hellip;) sobre Y ruta (/users, /greetings).&lt;/p&gt;
+
+&lt;p&gt;Es importante separar la lógica de negocio del controlador. Por lo general, un controlador solo debería llamar a los mapper y a los servicios que correspondan.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@RequestMapping(&amp;quot;/greetings&amp;quot;)
+@RestController
+public class GreetingResource {
+
+	@Autowired
+	private GreetingService greetingService;
+	
+	@Autowired
+	private GreetingMapper greetingMapper;
+	
+    @GetMapping(&amp;quot;&amp;quot;)
+    public List&amp;lt;GreetingDTO&amp;gt; obtener() {
+    	List&amp;lt;Greeting&amp;gt; greetings = greetingService.findAll();
+    	List&amp;lt;GreetingDTO&amp;gt; greetingDTOs = greetingMapper.toDTOList(greetings);
+    	return greetingDTOs;
+    }
+    
+    
+    @PostMapping(&amp;quot;&amp;quot;)
+    public GreetingDTO crear(GreetingDTO greetingDTO) {
+    	Greeting greeting = greetingMapper.toEntity(greetingDTO);
+    	greeting = greetingService.save(greeting);
+    	greetingDTO = greetingMapper.toDTO(greeting);
+    	
+    	return greetingDTO;
+    }
+    
+    @GetMapping(&amp;quot;/{id}&amp;quot;)
+    public GreetingDTO optenerPorId(@PathVariable(value=&amp;quot;id&amp;quot;) Long greetingId) {
+    	Greeting greeting = greetingService.findOneById(greetingId);
+    	GreetingDTO greetingDTO = greetingMapper.toDTO(greeting);
+    	return greetingDTO;
+    }
+    
+    @DeleteMapping(&amp;quot;/{id}&amp;quot;)
+    public ResponseEntity borrar(@PathVariable(value=&amp;quot;id&amp;quot;) Long greetingId) {
+    	greetingService.delete(greetingId);
+    	return new ResponseEntity&amp;lt;&amp;gt;(HttpStatus.OK);
+    }
+    
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;service&#34;&gt;Service&lt;/h2&gt;
+
+&lt;p&gt;La capa de servicio es la capa que se encargará de gestionar la lógica de negocio y de &amp;ldquo;enmascarar&amp;rdquo; la capa de acceso a los datos.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@Service
+public class GreetingService {
+	
+	@Autowired
+	private GreetingRepository greetingRepository;
+	
+	
+	public List&amp;lt;Greeting&amp;gt; findAll() {
+		return greetingRepository.findAll();
+	}
+	
+	public Greeting findOneById(Long id) {
+		return greetingRepository.findOneById(id);
+	}
+	
+	public Greeting save(Greeting greeting) {
+		// Usando la lógica de negocio modificamos los campos que solo nos interesan de la entidad
+		greeting.setUpdated(Boolean.TRUE);
+		return greetingRepository.save(greeting);
+	}
+	
+	public void delete(Long id) {
+		greetingRepository.delete(id);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;repository&#34;&gt;Repository&lt;/h2&gt;
+
+&lt;p&gt;La capa de repository se encargará de acceder a los datos. Para este ejemplo tan sencillo he utilizado como almacenamiento un HashMap.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@Repository
+public class GreetingRepository {
+
+	private AtomicInteger idCounter = new AtomicInteger();
+	private HashMap&amp;lt;Long,Greeting&amp;gt; greetings = new HashMap();
+	
+	public List&amp;lt;Greeting&amp;gt; findAll() {
+		return new ArrayList&amp;lt;Greeting&amp;gt;(greetings.values());
+	}
+	
+	public Greeting findOneById(Long id) {
+		return greetings.get(id);
+	}
+	
+	public Greeting save(Greeting greeting) {
+		greeting.setId(idCounter.longValue());
+		greetings.put(idCounter.longValue(), greeting);
+		idCounter.incrementAndGet();
+		return greeting;
+	}
+	
+	public void delete(Long id) {
+		greetings.remove(id);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Para demostrar que el ejemplo funciona correctamente, haré algunas peticiones REST. Para esto, utilizo normalmente el cliente &lt;a href=&#34;https://www.getpostman.com/&#34;&gt;Postman&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Primero, almacenaremos dos objetos.
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://adrianabreu.github.io/images/capas-backend/1.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Después, recuperaremos la lista de objetos.
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://adrianabreu.github.io/images/capas-backend/2.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Por último, borremos uno de ellos.
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://adrianabreu.github.io/images/capas-backend/3.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Como vemos, las diferentes capas en la aplicación hacen una gran separación de responsabilidades. Dandonos una estructura clara y robusta.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/adrianabreu/spring-layers-example&#34;&gt;Aquí tenéis el proyecto completo en Github&lt;/a&gt;, para poder ver el código completo.&lt;/p&gt;
+
+&lt;h2 id=&#34;bibliografía&#34;&gt;Bibliografía&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://martinfowler.com/eaaCatalog/dataTransferObject.html&#34;&gt;https://martinfowler.com/eaaCatalog/dataTransferObject.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://martinfowler.com/eaaCatalog/serviceLayer.html&#34;&gt;https://martinfowler.com/eaaCatalog/serviceLayer.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://martinfowler.com/eaaCatalog/applicationController.html&#34;&gt;https://martinfowler.com/eaaCatalog/applicationController.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Interacción a través de ViewChild en Angular</title>
-      <link>http://adrianabreu.github.io/post/2017-03-24-Ciclos-de-vida-Angular/</link>
+      <link>http://adrianabreu.github.io/post/2017-03-24-Interaccion-a-traves-de-viewchild/</link>
       <pubDate>Fri, 24 Mar 2017 23:11:22 +0000</pubDate>
       
-      <guid>http://adrianabreu.github.io/post/2017-03-24-Ciclos-de-vida-Angular/</guid>
+      <guid>http://adrianabreu.github.io/post/2017-03-24-Interaccion-a-traves-de-viewchild/</guid>
       <description>&lt;p&gt;Hoy me he encontrado con una situación peculiar en un código. Aunque considero que quizás como está realizada la tarea no sea la mejor opción, creo que es un buen ejemplo para entender algunos conceptos de Angular.&lt;/p&gt;
 
 &lt;p&gt;Partiendo de una aplicaicón muy básica donde tenemos dos componentes: &lt;strong&gt;AppComponent&lt;/strong&gt; y &lt;strong&gt;ChildComponent&lt;/strong&gt;, vamos a renderizar dinámicamente el componente hijo desde el componente padre y ejecutar una serie de acciones.&lt;/p&gt;
@@ -71,6 +522,15 @@ export class AppComponent {
 &lt;/ol&gt;
 
 &lt;p&gt;La funcion doStuff no hace más que modificar un valor de texto en el componente hijo. ¿Que pasa cuando hacemos click en el botón?&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://adrianabreu.github.io/images/error-viewchild-lifecycle.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
 
 &lt;p&gt;Tenemos un error, que nos dice que nuestro componente aún está en estado undefined.
 ¿Como podemos saber que nuestro componente está listo?&lt;/p&gt;
