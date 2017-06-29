@@ -18,8 +18,16 @@ box: debian
 # http://devcenter.wercker.com/docs/pipelines/index.html
 build:
     steps:
+        - install-packages:
+            packages: git 
+        - script:
+            name: download theme
+            code: |
+                $(git clone https://github.com/adrianabreu/blog-theme ./themes/material-design)
         - arjen/hugo-build:
+            version: "0.14"
             theme: material-design
+            flags: --buildDrafts=true
 deploy:
     steps:
         - install-packages:
@@ -27,5 +35,6 @@ deploy:
         - leipert/git-push:
             gh_oauth: $GIT_TOKEN
             repo: adrianabreu/adrianabreu.github.io
+            domain: adrianabreu.com
             branch: master
             basedir: public
