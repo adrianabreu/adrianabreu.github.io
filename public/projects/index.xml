@@ -7,8 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ES</language>
     <copyright>2017 Adrián Abreu</copyright>
-    <lastBuildDate>Sat, 11 Mar 2017 18:04:42 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jun 2017 21:19:42 +0000</lastBuildDate>
     <atom:link href="http://adrianabreu.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Simde Simulator</title>
+      <link>http://adrianabreu.github.io/projects/simde-simulator/</link>
+      <pubDate>Wed, 28 Jun 2017 21:19:42 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/projects/simde-simulator/</guid>
+      <description>&lt;p&gt;Herramienta de ayuda para la docencia de simuladores que representa el funcionamiento de una máquina superescalar.&lt;/p&gt;
+
+&lt;p&gt;Construida sobre Typescript, React y Webpack, permite a cualquier usuario ver el flujo de las instrucciones a lo largo de su ejecución en la máquina y comprender conceptos tan fundamentales como: La predicción de saltos; el funcionamiento el algoritmo de Tomasulo&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chuck Norris Angular 2 Client</title>

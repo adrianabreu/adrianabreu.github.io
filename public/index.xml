@@ -7,8 +7,276 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ES</language>
     <copyright>2017 Adrián Abreu</copyright>
-    <lastBuildDate>Sun, 04 Jun 2017 13:07:30 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Aug 2017 16:37:11 +0000</lastBuildDate>
     <atom:link href="http://adrianabreu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Auto deployment en gh-pages con Travis</title>
+      <link>http://adrianabreu.github.io/post/2017-08-04-Autodeploy-con-Travis/</link>
+      <pubDate>Fri, 04 Aug 2017 16:37:11 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-08-04-Autodeploy-con-Travis/</guid>
+      <description>&lt;p&gt;Una de las mejores características de github sin duda alguna, son las &lt;a href=&#34;https://pages.github.com/&#34;&gt;gh-pages&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Las gh-pages nos permiten desplegar el código de nuestra aplicación frontend a través de esta rama, de tal forma que muchos de nuestros proyectos (por ejemplo este blog) estén disponibles sin tener limitaciones de hosting.&lt;/p&gt;
+
+&lt;p&gt;Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar.&lt;/p&gt;
+
+&lt;p&gt;¡Pero todo esto puede automatizarse mediante el uso de travis! &lt;a href=&#34;https://travis-ci.org/&#34;&gt;Travis&lt;/a&gt; es una herramienta gratuita* que permite hacer integración continua (es la responsable de las famosas notas de la build).&lt;/p&gt;
+
+&lt;p&gt;Como el procedimiento de activación de la cuenta es muy sencillo y hay decenas de tutoriales, voy a centrarme en el aspecto del deploy, que es lo realmente importante. Para ello usaré un script de gist y lo explicaré detalladamente:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/domenic/ec8b0fc8ab45f39403dd&#34;&gt;Fuente&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+set -e # Exit with nonzero exit code if anything fails
+
+SOURCE_BRANCH=&amp;quot;master&amp;quot;
+TARGET_BRANCH=&amp;quot;gh-pages&amp;quot;
+
+function doCompile {
+  ./compile.sh
+}
+
+# Pull requests and commits to other branches shouldn&#39;t try to deploy, just build to verify
+if [ &amp;quot;$TRAVIS_PULL_REQUEST&amp;quot; != &amp;quot;false&amp;quot; -o &amp;quot;$TRAVIS_BRANCH&amp;quot; != &amp;quot;$SOURCE_BRANCH&amp;quot; ]; then
+    echo &amp;quot;Skipping deploy; just doing a build.&amp;quot;
+    doCompile
+    exit 0
+fi
+
+# Save some useful information
+REPO=`git config remote.origin.url`
+SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+SHA=`git rev-parse --verify HEAD`
+
+# Clone the existing gh-pages for this repo into out/
+# Create a new empty branch if gh-pages doesn&#39;t exist yet (should only happen on first deply)
+git clone $REPO out
+cd out
+git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+cd ..
+
+# Clean out existing contents
+rm -rf out/**/* || exit 0
+
+# Run our compile script
+doCompile
+
+# Now let&#39;s go have some fun with the cloned repo
+cd out
+git config user.name &amp;quot;Travis CI&amp;quot;
+git config user.email &amp;quot;$COMMIT_AUTHOR_EMAIL&amp;quot;
+
+# If there are no changes to the compiled out (e.g. this is a README update) then just bail.
+if git diff --quiet; then
+    echo &amp;quot;No changes to the output on this push; exiting.&amp;quot;
+    exit 0
+fi
+
+# Commit the &amp;quot;changes&amp;quot;, i.e. the new version.
+# The delta will show diffs between new and old versions.
+git add -A .
+git commit -m &amp;quot;Deploy to GitHub Pages: ${SHA}&amp;quot;
+
+# Get the deploy key by using Travis&#39;s stored variables to decrypt deploy_key.enc
+ENCRYPTED_KEY_VAR=&amp;quot;encrypted_${ENCRYPTION_LABEL}_key&amp;quot;
+ENCRYPTED_IV_VAR=&amp;quot;encrypted_${ENCRYPTION_LABEL}_iv&amp;quot;
+ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
+ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
+openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../deploy_key.enc -out ../deploy_key -d
+chmod 600 ../deploy_key
+eval `ssh-agent -s`
+ssh-add deploy_key
+
+# Now that we&#39;re all set up, we can push.
+git push $SSH_REPO $TARGET_BRANCH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Revisemos poco a poco que hace este script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function doCompile {
+  ./compile.sh
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Esta función se encargará de compilar nuestro código, para un proyecto tipico quedaría&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function doCompile {
+  npm run build
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Saltaré las siguientes comprobaciones por son lo propio que explica el comentario, me centraré en este bloque:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone $REPO out
+cd out
+git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+cd ..
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;out&lt;/strong&gt; representa el directorio de salida de la compilación, en mi caso es dist, asi que lo modifico.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone $REPO dist
+cd dist
+git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+cd ..
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;¿Qué es lo que hace? Clona nuestro repositorio de nuevo en la carpeta de salida de nuestra build, se mete en ella y cambia de rama, de esta forma nuestra carpeta de salida estará vinculada a nuestra rama de gh-pages. En caso de que la rama no exista utiliza el parámetro &lt;code&gt;--orphan&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Este parámetro es realmente interesante. Cuando creamos una rama en git normalmente partimos de un commit inicial. Por ejemplo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;master: A ----- B ----- C
+                 \
+gh-pages:         \----- D 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sin embargo, cuando le decimos que es de tipo &lt;code&gt;orphan&lt;/code&gt; lo que hace es crear una rama totalmente desvinculada que tiene su propio initial commit y sus ficheros no están relacionados.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;master:   A ----- B ----- C
+
+gh-pages: D ----- E ----- F 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Esto es precisamente lo que necesitamos para la rama de gh-pages, ya que solo va a incluir los ficheros de la carpeta de salida.&lt;/p&gt;
+
+&lt;p&gt;Bien, el resto en general parece bastante claro, asi que pasemos a la parte final:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Get the deploy key by using Travis&#39;s stored variables to decrypt deploy_key.enc
+ENCRYPTED_KEY_VAR=&amp;quot;encrypted_${ENCRYPTION_LABEL}_key&amp;quot;
+ENCRYPTED_IV_VAR=&amp;quot;encrypted_${ENCRYPTION_LABEL}_iv&amp;quot;
+ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
+ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
+openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../deploy_key.enc -out ../deploy_key -d
+chmod 600 ../deploy_key
+eval `ssh-agent -s`
+ssh-add deploy_key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Con el objetivo de mejorar la seguridad utilizaremos un deploy_key. Lo que vamos a hacer es lo siguiente:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Generar una nueva clave de ssh &lt;code&gt;ssh-keygen -t rsa -b 4096 -C &amp;quot;tu@email.com&amp;quot;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Añadir la clave pública al repositorio en cuestión en la sección de &lt;strong&gt;&amp;ldquo;Deploy keys&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Ahora es necesario que publiquemos nuestra clave privada en el repositorio, cosa que no es muy segura, asi que vamos a utilizar el &lt;a href=&#34;https://github.com/travis-ci/travis.rb&#34;&gt;cliente de travis&lt;/a&gt;. Nos logueamos utilizando &lt;code&gt;travis login&lt;/code&gt; y utilizamos la utilidad &lt;code&gt;travis encrypt-file&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;La idea es generar el fichero &lt;code&gt;deploy_key.enc&lt;/code&gt; que utilizaremos en el script. A la salida nos saldrá un comando ssl que deberemos añadir, pero el script se preocupa de ello por nosotros, asi que solo necesitamos la cadena que sale entre _. Por ejemplo de &lt;code&gt;$encrypted_0a6446eb3ae3_key&lt;/code&gt; necesitamos &lt;code&gt;0a6446eb3ae3&lt;/code&gt;. Esta variable se irá al fichero .travis.yml.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Añadimos un fichero .travis.yml
+```
+language: generic # don&amp;rsquo;t install any environment&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;script: bash ./deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: &amp;ldquo;&amp;lt;&amp;hellip;. encryption label from previous step &amp;hellip;.&amp;gt;&amp;rdquo;
+  - COMMIT_AUTHOR_EMAIL: &amp;ldquo;you@example.com&amp;rdquo;
+  ```&lt;/p&gt;
+
+&lt;p&gt;Donde el encription label es la clave que hemos sacado del pasado anterior y el author email nuestro email.&lt;/p&gt;
+
+&lt;p&gt;Con todo esto listo, cuando hagamos el próximo push a master, nuestro proyecto se compilará automáticamente y subirá el resultado a gh-pages.&lt;/p&gt;
+
+&lt;p&gt;Si queréis ver algún ejemplo ahora mismo tengo dos proyectos utilizando esta configuración:
+&lt;a href=&#34;https://github.com/adrianabreu/SIMDE-Simulator&#34;&gt;Simde Simulator&lt;/a&gt; y &lt;a href=&#34;https://github.com/adrianabreu/chuck-norris-angular-client&#34;&gt;Chuck Norris Angular Client&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Espero que esto fomente la creación de muchísimos proyectos nuevos y que os animéis.&lt;/p&gt;
+
+&lt;p&gt;* Gratuita con limitaciones, ya que no permite hacer la gestión de los repositorios privados si no &amp;ldquo;aflojas pasta&amp;rdquo;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mi experiencia con React</title>
+      <link>http://adrianabreu.github.io/post/2017-07-28-Mi-experiencia-con-React/</link>
+      <pubDate>Fri, 28 Jul 2017 17:11:10 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/post/2017-07-28-Mi-experiencia-con-React/</guid>
+      <description>&lt;p&gt;Hoy se cumple un mes desde que entregué mi trabajo de fin de grado. &lt;em&gt;(Modestia aparte, conseguí un 10)&lt;/em&gt;. Han pasado muchas cosas desde entonces, como que por ejemplo ahora mismo estoy viviendo en Barcelona y que trabajo para nada más y nada menos que &lt;strong&gt;Plain Concepts&lt;/strong&gt;. Pero al margen de eso, vamos a centrarnos en mi trabajo de fin de grado.&lt;/p&gt;
+
+&lt;p&gt;En tercero de grado de ingeniería informática es posible escoger una especialidad. Yo descontento con la mayoría me decidí por Ingeniería de Computadores &lt;em&gt;a.k.a.&lt;/em&gt; Hardware. Y a lo largo de estos dos cursos me encontré con dos asignaturas de &lt;strong&gt;Arquitectura de Computadores&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;En la primera de ellas se explicaba el funcionamiento del paralelismo a nivel de instrucción (una conjunto de técnicas que permiten mejorar el rendimiento de los ordenadores y que es un concepto fundamental a día de hoy) mediante el uso de un simulador desarrollado en 2004: &lt;strong&gt;SIMDE&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;img src=&#34;http://adrianabreu.github.io/images/experiencia-react/simde-original.png&#34; class=&#34;responsive-img&#34;&gt;
+
+&lt;p&gt;El uso de este simulador era bastante importante ya que hablamos de comprender en papel algoritmos de hace 40 años. Como por ejemplo el algoritmo de Tomasulo.&lt;/p&gt;
+
+&lt;img src=&#34;http://adrianabreu.github.io/images/experiencia-react/tomasulo.png&#34; class=&#34;responsive-img&#34;&gt;
+
+&lt;p&gt;Como os imaginareis es un suplicio usar este simulador. Aunque hace su cometido casi perfectamente se trata de una aplicación hecha en C++ 98 cuya documentación no es accesible y con un aspecto tosco y viejo.&lt;/p&gt;
+
+&lt;p&gt;Una de las propuestas de este año fue: Convertirlo a web.&lt;/p&gt;
+
+&lt;p&gt;Cuando salió esta propuesta me reuní con el profesor (¡el mismo que lo había desarrollado hace 13 años!) y jugué mi baza más importante: &lt;strong&gt;Aceptaría el tfg si se me daba libertad de usar lo que quisiera&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Y así fue. Dediqué las navidades a investigar sobre como podría hacer las cosas y que podría utilizar. En aquel momento ya estaba trabajando con Angular asi que al menos sabía que quería &lt;em&gt;Typescript&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;No tenía muy claro la parte web, pero la verdad es que ya iba apuntando maneras. Sabía que iba a utilizar alguna librería para gestionar la aplicación porque:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;No quería perder el tiempo haciendo bindings.&lt;/li&gt;
+&lt;li&gt;Los componentes saltaban a la vista.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Tras todo esto, me puse manos a la obra. Primero tuve que migrar muchísimo código C++ antiguo a Typescript y comprender el funcionamiento. Para ello utilicé de base un proyecto que había salido por enero que usaba Ava para ejecutar test.&lt;/p&gt;
+
+&lt;p&gt;Al inicio del proyecto me encontré con tareas tan divertidas como reescribir el compilador del código ensamblador en Lex. Por suerte con una librería publicada en npm y escribiendo un wrapper para typescript, no fue nada difícil.&lt;/p&gt;
+
+&lt;p&gt;Luego me tocó marearme mirando código y comprendiendo el modelo de la aplicación. Al tratarse un dominio tan específico era bastante difícil tener una visión clara de lo que se esperaba de la máquina.&lt;/p&gt;
+
+&lt;p&gt;Una vez migradas las estructuras necesarias, me puse manos a la obra con React. &lt;a href=&#34;https://facebook.github.io/react/&#34;&gt;Con el tutorial oficial se puede llegar a comprender su funcionamiento de forma clara.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Y luego llegó el momento clave:
+¿Como conecto los objetos creados a React? Para solucionar esto fue tan sencillo como usar callbacks que se registraban en un objeto común que colgaba de windows. Con esto, cada iteración de la máquina llamaba a esos callbacks y refrescaba la vista.&lt;/p&gt;
+
+&lt;p&gt;Aquí ya tuve un primer contacto maravilloso con React, y es que su flexibilidad me permitía seguir jugando con Javascript para solucionar mis problemas.&lt;/p&gt;
+
+&lt;p&gt;El proyecto lo integré con Webpack y también utilicé Typescript con React. En general la experiencia fue positiva y me lo pasé muy bien, aunque me tuve que romper la cabeza algunas veces para comprender los errores.&lt;/p&gt;
+
+&lt;p&gt;También me costó bastante conseguir empaquetar la app en modo producción, no recuerdo exactamente por qué, pero al final tenía el iconito verde maravilloso en la extensión de react-developer-tools. &lt;em&gt;&lt;a href=&#34;https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en&#34;&gt;(Sí, hay una extensión de react para desarrollo y deberías utilizarla.)&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Por falta de tiempo no integré ningún sistema de gestión de estados como &lt;strong&gt;Redux&lt;/strong&gt; o &lt;strong&gt;Mobx&lt;/strong&gt;, si no que me hice un time travelling casero. Funciona perfectamente y me hizo ganar muchos puntos antes el profesor y el tribunal.&lt;/p&gt;
+
+&lt;p&gt;La idea es que para que un componente muestre su contenido debe transformar lo que le pasa el simulador. Así que tras realizar esta transformación este objeto se almacena en un array. Y si el usuario decide implementar time travelling no hace más que moverse en la interfaz a lo largo de este array, sin alterar la ejecución.&lt;/p&gt;
+
+&lt;p&gt;Coincidiendo con mi incorporaicón a la empresa he aprovechado para añadirle un par de cosas al proyecto, que quizás puedan ser interesantes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;La aplicación tiene CD/CI con Travis. Ahora tras ejecutar los test (¡que tiene bastantes para la lógica!), la aplicación se despliega automáticamente en github-pages.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Coveralls se encarga de mostrar el porcentaje de código cubierto. Otra característica muy agradable de ver.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;He añadido polyfills para aumentar la compatibilidad cross browser, ¡incluso funciona en Internet Explorer!&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Y ya que estoy, aprovecho para dejar un pequeño roadmap. De cara a un futuro cercano:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Implementar algunas características de la versión antigua que se han quedado en el aire.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Actualizar a React fiber, la nueva versión de React mucho más rápida.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Y bueno, ya con esto se cubren muchos casos. La verdad es que desarrollar una aplicación tan particular con React ha sido una maravilla. Si te has quedado con ganas de verla: &lt;a href=&#34;https://github.com/adrianabreu/SIMDE-Simulator&#34;&gt;aquí tienes su código fuente, que por cierto está bajo licencia GPLv3&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Simde Simulator</title>
+      <link>http://adrianabreu.github.io/projects/simde-simulator/</link>
+      <pubDate>Wed, 28 Jun 2017 21:19:42 +0000</pubDate>
+      
+      <guid>http://adrianabreu.github.io/projects/simde-simulator/</guid>
+      <description>&lt;p&gt;Herramienta de ayuda para la docencia de simuladores que representa el funcionamiento de una máquina superescalar.&lt;/p&gt;
+
+&lt;p&gt;Construida sobre Typescript, React y Webpack, permite a cualquier usuario ver el flujo de las instrucciones a lo largo de su ejecución en la máquina y comprender conceptos tan fundamentales como: La predicción de saltos; el funcionamiento el algoritmo de Tomasulo&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Empezar a programar</title>
@@ -44,7 +312,7 @@ en las dos tecnologías más usadas: Java y Javascript.&lt;/p&gt;
 
 &lt;h3 id=&#34;java&#34;&gt;Java&lt;/h3&gt;
 
-&lt;p&gt;Java es un lenguaje compilado e interpretado desarrollado por Oracle ampliamente utilizado en el mundo web. Mediante la especificación de JavaEE se puede lograr que Java gestione peticiones web y actuar
+&lt;p&gt;Java es un lenguaje compilado e interpretado desarrollado por &lt;em&gt;Sun Mycrosystems&lt;/em&gt; ampliamente utilizado en el mundo web. Mediante la especificación de JavaEE se puede lograr que Java gestione peticiones web y actuar
 como un lenguaje del servidor. Normalmente se utiliza junto a la tecnología &lt;a href=&#34;https://spring.io/&#34;&gt;Spring&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Y es realmente potente. Java es un lenguaje muy rapido que no ha parado de mejorar durante todos estos
@@ -70,7 +338,7 @@ algunos libros muy importantes de Java, yo suelo citar este:&lt;/p&gt;
 
 &lt;h3 id=&#34;javascript&#34;&gt;Javascript&lt;/h3&gt;
 
-&lt;p&gt;Javascript es un lenguaje compilado e interpretado (surprise!), desarrollado por Brendan Elrich para ser
+&lt;p&gt;Javascript es un lenguaje compilado e interpretado (surprise!), desarrollado por Brendan Eich para ser
 utilizado en el navegador. Con la aparición de las aplicaciones web dinámicas que hacían uso de Ajax
 (Gmail), comenzó una tendencia hacia un nuevo tipo de arquitectura.&lt;/p&gt;
 
@@ -134,14 +402,7 @@ y como hacer peticiones &lt;a href=&#34;https://www.w3schools.com/xml/ajax_xmlht
 
 &lt;p&gt;Por supuesto. Docker no es más que otra solución. Mucha gente ha trabajado hasta ahora utilizando Vagrant para automatizar el despliegue de sus máquinas virtuales, y creo que la mejor forma de comprender las diferencias entre una máquina virtual y un contenedor, es con la siguiente imagen:&lt;/p&gt;
 
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;https://insights.sei.cmu.edu/assets/content/VM-Diagram.png&#34; /&gt;
-    
-    
-&lt;/figure&gt;
-
+&lt;img src=&#34;https://insights.sei.cmu.edu/assets/content/VM-Diagram.png&#34; class=&#34;responsive-img&#34;&gt;
 
 &lt;p&gt;Eliminando las capas de hypervisor y de sistema operativo invitado, nos ahorramos muchísimos recursos y ganamos en velocidad. (¿Quién no ha tenido que esperar tras un vagrant up?)&lt;/p&gt;
 
@@ -196,14 +457,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 &lt;p&gt;Como vemos, nuestro docker está escuchando en el puerto 32770. Hagamos a hacer la prueba de fuego:&lt;/p&gt;
 
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://adrianabreu.github.io/images/docker-pgadmin.png&#34; /&gt;
-    
-    
-&lt;/figure&gt;
-
+&lt;img src=&#34;http://adrianabreu.github.io/images/docker-pgadmin.png&#34; class=&#34;responsive-img&#34;&gt;
 
 &lt;p&gt;¡Perfecto! Espero que esto os anime a usar docker y ganéis la flexibilidad que necesitáis.&lt;/p&gt;
 </description>
@@ -418,34 +672,13 @@ public class GreetingRepository {
 &lt;p&gt;Para demostrar que el ejemplo funciona correctamente, haré algunas peticiones REST. Para esto, utilizo normalmente el cliente &lt;a href=&#34;https://www.getpostman.com/&#34;&gt;Postman&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Primero, almacenaremos dos objetos.
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://adrianabreu.github.io/images/capas-backend/1.png&#34; /&gt;
-    
-    
-&lt;/figure&gt;
-&lt;/p&gt;
+&lt;img src=&#34;http://adrianabreu.github.io/images/capas-backend/1.png&#34; class=&#34;responsive-img&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;Después, recuperaremos la lista de objetos.
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://adrianabreu.github.io/images/capas-backend/2.png&#34; /&gt;
-    
-    
-&lt;/figure&gt;
-&lt;/p&gt;
+&lt;img src=&#34;http://adrianabreu.github.io/images/capas-backend/2.png&#34; class=&#34;responsive-img&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;Por último, borremos uno de ellos.
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://adrianabreu.github.io/images/capas-backend/3.png&#34; /&gt;
-    
-    
-&lt;/figure&gt;
-&lt;/p&gt;
+&lt;img src=&#34;http://adrianabreu.github.io/images/capas-backend/3.png&#34; class=&#34;responsive-img&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;Como vemos, las diferentes capas en la aplicación hacen una gran separación de responsabilidades. Dandonos una estructura clara y robusta.&lt;/p&gt;
 
@@ -523,14 +756,7 @@ export class AppComponent {
 
 &lt;p&gt;La funcion doStuff no hace más que modificar un valor de texto en el componente hijo. ¿Que pasa cuando hacemos click en el botón?&lt;/p&gt;
 
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://adrianabreu.github.io/images/error-viewchild-lifecycle.png&#34; /&gt;
-    
-    
-&lt;/figure&gt;
-
+&lt;img src=&#34;http://adrianabreu.github.io/images/error-viewchild-lifecycle.png&#34; class=&#34;responsive-img&#34;&gt;
 
 &lt;p&gt;Tenemos un error, que nos dice que nuestro componente aún está en estado undefined.
 ¿Como podemos saber que nuestro componente está listo?&lt;/p&gt;
@@ -767,36 +993,6 @@ Para mejorar los tiempos de respuesta las traducciones se almacenan en una base 
       
       <guid>http://adrianabreu.github.io/projects/chucknorrisangularclient/</guid>
       <description>&lt;p&gt;Un cliente realizado en AngularJS que consume una api externa y te permite conseguir frases divertidas de Chuck Norris.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Sqlatch-back</title>
-      <link>http://adrianabreu.github.io/projects/sqlatch/</link>
-      <pubDate>Fri, 05 Aug 2016 13:22:01 +0000</pubDate>
-      
-      <guid>http://adrianabreu.github.io/projects/sqlatch/</guid>
-      <description>&lt;p&gt;Un backend para Sqlatch, una aplicación que te permite construir consultas para la base de datos. Se ha utilizado Maven, JavaEE y Gson.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Daily Nasa Pics Bot</title>
-      <link>http://adrianabreu.github.io/projects/dailynasapics/</link>
-      <pubDate>Fri, 08 Jul 2016 13:22:01 +0000</pubDate>
-      
-      <guid>http://adrianabreu.github.io/projects/dailynasapics/</guid>
-      <description>&lt;p&gt;Este bot de telegram consume la api de la NASA y mediante un cron evía diariamente la foto que se publica a un canal de telegram.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Qversare</title>
-      <link>http://adrianabreu.github.io/projects/qversare/</link>
-      <pubDate>Sun, 05 Jun 2016 13:22:01 +0000</pubDate>
-      
-      <guid>http://adrianabreu.github.io/projects/qversare/</guid>
-      <description>&lt;p&gt;Una aplicación de chat hecha con QT. Utiliza una base de datos embebida de SQLite para almacenar los mensajes y tiene un protocolo propio creado con Google Protobuffer. También incorpora un demonio para la gestión del servidor.&lt;/p&gt;
 </description>
     </item>
     

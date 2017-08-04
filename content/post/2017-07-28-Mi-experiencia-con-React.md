@@ -10,12 +10,12 @@ En tercero de grado de ingeniería informática es posible escoger una especiali
 
 En la primera de ellas se explicaba el funcionamiento del paralelismo a nivel de instrucción (una conjunto de técnicas que permiten mejorar el rendimiento de los ordenadores y que es un concepto fundamental a día de hoy) mediante el uso de un simulador desarrollado en 2004: **SIMDE**.
 
-{{< figure class="responsive-img" src="/images/experiencia-react/simde-original.png" >}}
+{{< resp-image "/images/experiencia-react/simde-original.png" >}}
 
 
 El uso de este simulador era bastante importante ya que hablamos de comprender en papel algoritmos de hace 40 años. Como por ejemplo el algoritmo de Tomasulo.
 
-{{< figure class="responsive-img" src="/images/experiencia-react/tomasulo.png" >}}
+{{< resp-image "/images/experiencia-react/tomasulo.png" >}}
 
 Como os imaginareis es un suplicio usar este simulador. Aunque hace su cometido casi perfectamente se trata de una aplicación hecha en C++ 98 cuya documentación no es accesible y con un aspecto tosco y viejo. 
 

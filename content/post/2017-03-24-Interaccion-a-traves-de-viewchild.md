@@ -59,7 +59,7 @@ Varios detalles:
 
 La funcion doStuff no hace más que modificar un valor de texto en el componente hijo. ¿Que pasa cuando hacemos click en el botón?
 
-{{< figure src="/images/error-viewchild-lifecycle.png" >}}
+{{< resp-image "/images/error-viewchild-lifecycle.png" >}}
 
 Tenemos un error, que nos dice que nuestro componente aún está en estado undefined.
 ¿Como podemos saber que nuestro componente está listo?

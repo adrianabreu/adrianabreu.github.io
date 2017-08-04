@@ -211,13 +211,13 @@ public class GreetingRepository {
 Para demostrar que el ejemplo funciona correctamente, haré algunas peticiones REST. Para esto, utilizo normalmente el cliente [Postman](https://www.getpostman.com/).
 
 Primero, almacenaremos dos objetos. 
-{{< figure src="/images/capas-backend/1.png" >}}
+{{< resp-image "/images/capas-backend/1.png" >}}
 
 Después, recuperaremos la lista de objetos.
-{{< figure src="/images/capas-backend/2.png" >}}
+{{< resp-image "/images/capas-backend/2.png" >}}
 
 Por último, borremos uno de ellos.
-{{< figure src="/images/capas-backend/3.png" >}}
+{{< resp-image "/images/capas-backend/3.png" >}}
 
 Como vemos, las diferentes capas en la aplicación hacen una gran separación de responsabilidades. Dandonos una estructura clara y robusta.
 
