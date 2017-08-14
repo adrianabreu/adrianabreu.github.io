@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-08-04-Autodeploy-con-Travis/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-08-14-angular-series-i-transclusion/</loc>
+    <lastmod>2017-08-14T17:32:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://adrianabreu.github.io/post/2017-08-04-autodeploy-con-travis/</loc>
     <lastmod>2017-08-04T16:37:11+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-07-28-Mi-experiencia-con-React/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-07-28-mi-experiencia-con-react/</loc>
     <lastmod>2017-07-28T17:11:10+00:00</lastmod>
   </url>
   
@@ -17,27 +23,27 @@
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-06-04-Empezar-a-programar/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-06-04-empezar-a-programar/</loc>
     <lastmod>2017-06-04T13:07:30+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-04-09-Docker/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-04-09-docker/</loc>
     <lastmod>2017-04-09T15:20:44+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-04-08-Capas-en-el-backend/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-04-08-capas-en-el-backend/</loc>
     <lastmod>2017-04-08T17:33:10+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-03-24-Interaccion-a-traves-de-viewchild/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-03-24-interaccion-a-traves-de-viewchild/</loc>
     <lastmod>2017-03-24T23:11:22+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-03-12-Como-construir-un-portfolio/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-03-12-como-construir-un-portfolio/</loc>
     <lastmod>2017-03-12T10:39:22+00:00</lastmod>
   </url>
   
@@ -47,17 +53,17 @@
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-03-11-Sin-componentes-a-componentes/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-03-11-sin-componentes-a-componentes/</loc>
     <lastmod>2017-03-11T17:44:11+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-03-04-Why-you-should-start-a-blog/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-03-04-why-you-should-start-a-blog/</loc>
     <lastmod>2017-03-04T19:46:22+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-02-05-Probando-hugo/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-02-05-probando-hugo/</loc>
     <lastmod>2017-02-05T17:31:42+00:00</lastmod>
   </url>
   
@@ -67,7 +73,7 @@
   </url>
   
   <url>
-    <loc>http://adrianabreu.github.io/post/2017-01-08-Nuevos-comienzos/</loc>
+    <loc>http://adrianabreu.github.io/post/2017-01-08-nuevos-comienzos/</loc>
     <lastmod>2017-01-08T10:22:36+00:00</lastmod>
   </url>
   
@@ -113,19 +119,29 @@
   
   <url>
     <loc>http://adrianabreu.github.io/</loc>
-    <lastmod>2017-08-04T16:37:11+00:00</lastmod>
+    <lastmod>2017-08-14T17:32:37+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://adrianabreu.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://adrianabreu.github.io/post/</loc>
-    <lastmod>2017-08-04T16:37:11+00:00</lastmod>
+    <lastmod>2017-08-14T17:32:37+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://adrianabreu.github.io/projects/</loc>
     <lastmod>2017-06-28T21:19:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://adrianabreu.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   

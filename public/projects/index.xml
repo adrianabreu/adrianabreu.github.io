@@ -2,13 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects on Adrián Abreu</title>
-    <link>http://adrianabreu.github.io/projects/index.xml</link>
+    <link>http://adrianabreu.github.io/projects/</link>
     <description>Recent content in Projects on Adrián Abreu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ES</language>
     <copyright>2017 Adrián Abreu</copyright>
     <lastBuildDate>Wed, 28 Jun 2017 21:19:42 +0000</lastBuildDate>
-    <atom:link href="http://adrianabreu.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://adrianabreu.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Simde Simulator</title>
@@ -16,10 +18,8 @@
       <pubDate>Wed, 28 Jun 2017 21:19:42 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/simde-simulator/</guid>
-      <description>&lt;p&gt;Herramienta de ayuda para la docencia de simuladores que representa el funcionamiento de una máquina superescalar.&lt;/p&gt;
-
-&lt;p&gt;Construida sobre Typescript, React y Webpack, permite a cualquier usuario ver el flujo de las instrucciones a lo largo de su ejecución en la máquina y comprender conceptos tan fundamentales como: La predicción de saltos; el funcionamiento el algoritmo de Tomasulo&amp;hellip;&lt;/p&gt;
-</description>
+      <description>Herramienta de ayuda para la docencia de simuladores que representa el funcionamiento de una máquina superescalar.
+Construida sobre Typescript, React y Webpack, permite a cualquier usuario ver el flujo de las instrucciones a lo largo de su ejecución en la máquina y comprender conceptos tan fundamentales como: El funcionamiento de la ejecución especulativa, el funcionamiento el algoritmo de Tomasulo&amp;hellip;</description>
     </item>
     
     <item>
@@ -28,8 +28,7 @@
       <pubDate>Sat, 11 Mar 2017 18:04:42 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/chucknorrisangular2client/</guid>
-      <description>&lt;p&gt;Una actualización del cliente para la API de Chuck Norris, hecho ahora en Angular 2.&lt;/p&gt;
-</description>
+      <description>Una actualización del cliente para la API de Chuck Norris, hecho ahora en Angular 2.</description>
     </item>
     
     <item>
@@ -38,8 +37,7 @@
       <pubDate>Fri, 11 Nov 2016 13:20:57 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/chucknorrisangularclient/</guid>
-      <description>&lt;p&gt;Un cliente realizado en AngularJS que consume una api externa y te permite conseguir frases divertidas de Chuck Norris.&lt;/p&gt;
-</description>
+      <description>Un cliente realizado en AngularJS que consume una api externa y te permite conseguir frases divertidas de Chuck Norris.</description>
     </item>
     
     <item>
@@ -48,8 +46,7 @@
       <pubDate>Fri, 05 Aug 2016 13:22:01 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/sqlatch/</guid>
-      <description>&lt;p&gt;Un backend para Sqlatch, una aplicación que te permite construir consultas para la base de datos. Se ha utilizado Maven, JavaEE y Gson.&lt;/p&gt;
-</description>
+      <description>Un backend para Sqlatch, una aplicación que te permite construir consultas para la base de datos. Se ha utilizado Maven, JavaEE y Gson.</description>
     </item>
     
     <item>
@@ -58,8 +55,7 @@
       <pubDate>Fri, 08 Jul 2016 13:22:01 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/dailynasapics/</guid>
-      <description>&lt;p&gt;Este bot de telegram consume la api de la NASA y mediante un cron evía diariamente la foto que se publica a un canal de telegram.&lt;/p&gt;
-</description>
+      <description>Este bot de telegram consume la api de la NASA y mediante un cron evía diariamente la foto que se publica a un canal de telegram.</description>
     </item>
     
     <item>
@@ -68,8 +64,7 @@
       <pubDate>Sun, 05 Jun 2016 13:22:01 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/qversare/</guid>
-      <description>&lt;p&gt;Una aplicación de chat hecha con QT. Utiliza una base de datos embebida de SQLite para almacenar los mensajes y tiene un protocolo propio creado con Google Protobuffer. También incorpora un demonio para la gestión del servidor.&lt;/p&gt;
-</description>
+      <description>Una aplicación de chat hecha con QT. Utiliza una base de datos embebida de SQLite para almacenar los mensajes y tiene un protocolo propio creado con Google Protobuffer. También incorpora un demonio para la gestión del servidor.</description>
     </item>
     
     <item>
@@ -78,8 +73,7 @@
       <pubDate>Thu, 05 May 2016 13:20:57 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/wordreferencebot/</guid>
-      <description>&lt;p&gt;Un bot de telegram que traduce palabras del español al inglés o vicervesa, para ella hace scraping de la web de wordreference. Además, cachea las traducciones en una base de datos de MongoDB para acelerar las traducciones posteriores.&lt;/p&gt;
-</description>
+      <description>Un bot de telegram que traduce palabras del español al inglés o vicervesa, para ella hace scraping de la web de wordreference. Además, cachea las traducciones en una base de datos de MongoDB para acelerar las traducciones posteriores.</description>
     </item>
     
     <item>
@@ -88,8 +82,7 @@
       <pubDate>Tue, 15 Mar 2016 13:22:01 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/talk/</guid>
-      <description>&lt;p&gt;Un clon de talk creado con C++, utilizando namespaces, casting, multithreading, sockets&amp;hellip; También tiene una GUI externa hecha con QT.&lt;/p&gt;
-</description>
+      <description>Un clon de talk creado con C++, utilizando namespaces, casting, multithreading, sockets&amp;hellip; También tiene una GUI externa hecha con QT.</description>
     </item>
     
     <item>
@@ -98,8 +91,7 @@
       <pubDate>Fri, 05 Jun 2015 13:22:01 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/monsterhunterbot/</guid>
-      <description>&lt;p&gt;Mi primer bot de telegram y mi primer proyecto de web scraping. Este bot hace scraping en la web de &amp;ldquo;Kiranico&amp;rdquo; y te permite ver las recompensas de matar a un monstruo en Monster Hunter o sus puntos débiles.&lt;/p&gt;
-</description>
+      <description>Mi primer bot de telegram y mi primer proyecto de web scraping. Este bot hace scraping en la web de &amp;ldquo;Kiranico&amp;rdquo; y te permite ver las recompensas de matar a un monstruo en Monster Hunter o sus puntos débiles.</description>
     </item>
     
     <item>
@@ -108,8 +100,7 @@
       <pubDate>Tue, 05 May 2015 13:22:01 +0000</pubDate>
       
       <guid>http://adrianabreu.github.io/projects/softwaredefinednetworks/</guid>
-      <description>&lt;p&gt;Múltiples dispositivos simulados utilizando Mininet y Openflow, todos ellos basados en el controlador de Ryu.&lt;/p&gt;
-</description>
+      <description>Múltiples dispositivos simulados utilizando Mininet y Openflow, todos ellos basados en el controlador de Ryu.</description>
     </item>
     
   </channel>
