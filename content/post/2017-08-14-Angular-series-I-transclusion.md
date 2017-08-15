@@ -4,7 +4,7 @@ date = "2017-08-14T17:32:37Z"
 title = "Angular series I - Proyección de contenido (Content projection)"
 +++
 
-Cuaqndo creé este blog tenía bastante claro que uno de los objetivos principales era que me sirviera de utilidad para interiorizar lo que voy aprendiendo.
+Cuando creé este blog tenía bastante claro que uno de los objetivos principales era que me sirviera de utilidad para interiorizar lo que voy aprendiendo.
 Y aunque he escrito ciertas cosas útiles para mi día a día no estoy registrando ni una centésima parte de la información que mi mente ha ido procesando estos
 meses.
 
@@ -60,7 +60,7 @@ export class AComponent {
 
 Y esto nos genera como resultado...
 
-{{< figure src="/images/angular1-cp/result1.png" >}}
+{{< figure src="/images/angular-1-cp/result1.png" >}}
 
 
 ¿Sencillo, verdad? Ahora solo queda un problema. ¿Que pasaría si quisieramos pasar diversas parte de un contenido? Pensemos en esta plantilla para un componente **Artículo**.
@@ -107,7 +107,7 @@ Y si ahora nuestro componente padre nos indica el contenido de esas secciones...
 
 Obtendremos esto: voilá.
 
-{{< figure src="/images/angular1-cp/result2.png" >}}
+{{< figure src="/images/angular-1-cp/result2.png" >}}
 
 
 Como siempre, [tenéis el código fuente disponible en github](https://github.com/adrianabreu/angular-samples/tree/master/transclusion), espero que haya servido de ayuda, al menos a mí si que me ha servido.
