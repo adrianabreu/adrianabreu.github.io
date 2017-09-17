@@ -2,7 +2,7 @@ baseurl = "http://adrianabreu.github.io"
 languageCode = "es-ES"
 title = "Adrián Abreu"
 theme = "hugo-sustain"
-Paginate = 5
+Paginate = 8
 Copyright = "2017 Adrián Abreu"
 
 [params.social]
