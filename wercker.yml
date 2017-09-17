@@ -23,10 +23,10 @@ build:
         - script:
             name: download theme
             code: |
-                $(git clone https://github.com/adrianabreu/blog-theme ./themes/material-design)
+                $(git clone https://github.com/adrianabreu/blog-theme ./themes/hugo-sustain)
         - arjen/hugo-build:
             version: "0.14"
-            theme: material-design
+            theme: hugo-sustain
             flags: --buildDrafts=true
 deploy:
     steps:

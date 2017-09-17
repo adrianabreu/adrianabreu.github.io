@@ -1,13 +1,27 @@
 baseurl = "http://adrianabreu.github.io"
 languageCode = "es-ES"
 title = "Adrián Abreu"
-theme = "material-design"
+theme = "hugo-sustain"
 Paginate = 5
 Copyright = "2017 Adrián Abreu"
 
-[params]
-  twitter = "aabreuglez"
-  github = "adrianabreu"
-  linkedin = "AdrianAbreu"
-  emailAddress = "me@adrianabreu.com"
-  description = "Programador, lector y corredor."
+[params.social]
+  Twitter = "aabreuglez"
+  Github = "adrianabreu"
+  Linkedin = "AdrianAbreu"
+  Email = "me@adrianabreu.com"
+ 
+ [permalinks]
+  post = "/:year/:month/:day/:slug"
+
+## Main Menu
+[[menu.main]]
+  name = "blog"
+  weight = 100
+  identifier = "blog"
+  url = "/blog/"
+[[menu.main]]
+  name = "projects"
+  identifier = "projects"
+  weight = 200
+  url = "/projects/"

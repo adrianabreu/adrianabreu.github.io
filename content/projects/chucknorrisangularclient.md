@@ -7,4 +7,7 @@ linkActionTitle = "Demo"
 image = "/images/chucknorrisangularclient.PNG"
 +++
 
-Un cliente realizado en AngularJS que consume una api externa y te permite conseguir frases divertidas de Chuck Norris.
+Una particular versión de "TODO" que permita desarrollar AngularJS con tecnologías como Typescript, Sass, Webpack...
+
+<!--more-->
+Este cliente básicamente extrae chistes de Chuck Norris de una API externa y permite almacenarlos en localStorage.
