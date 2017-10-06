@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "Download theme"
-        command: git clone https://github.com/adrianabreu/blog-theme ~/project/themes/hugo-sustain
+          name: "Download theme"
+          command: git clone https://github.com/adrianabreu/blog-theme ~/project/themes/hugo-sustain
       - run:
           name: "Run Hugo"
           command: HUGO_ENV=production hugo -v -s ~/project/
