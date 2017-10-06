@@ -12,6 +12,9 @@ jobs:
       - run:
           name: "Run Hugo"
           command: HUGO_ENV=production hugo -v -s ~/project/
+      - run:
+          name: "Recover CNAME"
+          command: cp ~/project/CNAME ~/project/public/CNAME
       - add_ssh_keys
       - deploy:
           command: cd ~/project/public && git init && git config --local user.name "Horus" && git config --local user.email "me@adrianabreu.com" && git add . && git commit -m "New entry" && git push -f git@github.com:adrianabreu/adrianabreu.github.io.git master
