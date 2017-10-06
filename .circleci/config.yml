@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: felicianotech/docker-hugo:0.21
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+        name: "Download theme"
+        command: git clone https://github.com/adrianabreu/blog-theme ~/project/themes/hugo-sustain
+      - run:
+          name: "Run Hugo"
+          command: HUGO_ENV=production hugo -v -s ~/project/
+      - add_ssh_keys
+      - deploy:
+        command: cd ~/project/public && git push git@github.com:adrianabreu/adrianabreu.github.io.git master
