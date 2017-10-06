@@ -14,4 +14,4 @@ jobs:
           command: HUGO_ENV=production hugo -v -s ~/project/
       - add_ssh_keys
       - deploy:
-          command: cd ~/project/public && git init && git commit -a -m "New entry" && git push -f git@github.com:adrianabreu/adrianabreu.github.io.git master
+          command: cd ~/project/public && git init && git config --user.name "Horus" && git config --user.email "me@adrianabreu.com" && git commit -a -m "New entry" && git push -f git@github.com:adrianabreu/adrianabreu.github.io.git master
