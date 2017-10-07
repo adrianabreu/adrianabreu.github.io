@@ -1,6 +1,6 @@
 +++
 date = "2017-06-28T21:19:42Z"
-title = "Simde Simulator"
+title = "SIMDE Simulator"
 link = "https://github.com/adrianabreu/SIMDE-Simulator"
 linkActionTitle = "Demo"
 source = "http://adrianabreu.com/SIMDE-Simulator/"
