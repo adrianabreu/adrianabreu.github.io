@@ -84,7 +84,7 @@ Si ahora nuestro método quisiera hacer uso se encontraría con una desagradable
 
 ## ISP: Interface Segregation Principle
 
-**Los clientes no dbeerían ser forzados a depender en interfaces que no usan.**
+**Los clientes no deberían ser forzados a depender en interfaces que no usan.**
 
 Este principio hace referencia a las desventajas de las interfaces "gordas". Si dependemos de una interfaz que agrupa mucha funcionalidad en ese caso estamos creando acomplamiento en todos los clientes de esta interfaz, aunque usen subpartes diferentes de la misma.
 
@@ -92,7 +92,7 @@ Para evitar esto, lo mejor que podemos hacer es desgranar nuestra interface en p
 
 ## DIP: Dependency Inversion Principle
 
-**Los módulos de alto no nivel no deben depender en módulos de bajo nivel. Ambos depender en abstracciones. Y estas abstracciones no deben depender en detalles, son los detalles los que deberían depender en las abstracciones.**
+**Los módulos de alto no nivel no deben depender de módulos de bajo nivel. Ambos depender de abstracciones. Y estas abstracciones no deben depender de detalles, son los detalles los que deberían depender de las abstracciones.**
 
 Los módulos de alto nivel serían aquellos que contienen la lógica de negocio y el modelo, en definitiva *"nuestra"* aplicación. Y nuestro objetivo es, por supuesto, reutilizarlos. 
 
