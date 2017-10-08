@@ -161,6 +161,7 @@ Con el objetivo de mejorar la seguridad utilizaremos un deploy_key. Lo que vamos
 4. La idea es generar el fichero `deploy_key.enc` que utilizaremos en el script. A la salida nos saldrá un comando ssl que deberemos añadir, pero el script se preocupa de ello por nosotros, asi que solo necesitamos la cadena que sale entre _. Por ejemplo de `$encrypted_0a6446eb3ae3_key ` necesitamos `0a6446eb3ae3`. Esta variable se irá al fichero .travis.yml.
 
 5. Añadimos un fichero .travis.yml 
+
 ```
 language: generic # don't install any environment
 
@@ -169,7 +170,7 @@ env:
   global:
   - ENCRYPTION_LABEL: "<.... encryption label from previous step ....>"
   - COMMIT_AUTHOR_EMAIL: "you@example.com"
-  ```
+```
 
 Donde el encription label es la clave que hemos sacado del pasado anterior y el author email nuestro email.
 
