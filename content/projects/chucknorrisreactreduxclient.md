@@ -1,6 +1,6 @@
 +++
 date = "2017-11-07T23:20:57Z"
-title = "Chuck Norris React Redux Client"
+title = "Chuck Norris React Redux"
 source = "https://github.com/adrianabreu/chuck-norris-react-redux-client"
 link = "http://adrianabreu.com/chuck-norris-react-redux-client"
 linkActionTitle = "Demo"

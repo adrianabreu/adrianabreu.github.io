@@ -1,6 +1,6 @@
 +++
 date = "2016-11-11T13:20:57Z"
-title = "Chuck Norris Angular Client"
+title = "Chuck Norris Angular"
 source = "https://github.com/adrianabreu/chuck-norris-angular-client"
 link = "http://adrianabreu.com/chuck-norris-angular-client"
 linkActionTitle = "Demo"
