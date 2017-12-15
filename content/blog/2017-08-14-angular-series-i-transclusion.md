@@ -22,7 +22,8 @@ en estos dos hijos. De hecho, para darle más "gracia", el objetivo es que para 
 Asumiendo que ya están los componentes definidos en sus respectivos módulos y demás, vamos a poner una estructura muy simple. La clave de esto es la
 etiqueta `ng-content`que será reemplazada por el contenido que proyectemos. 
 
-```
+{{< highlight ts >}}
+
 @Component({
   selector: 'app-b',
   template: `<h2><ng-content></ng-content><h2>`
@@ -38,13 +39,14 @@ export class CComponent {
 
 }
 
-```
+{{</ highlight >}}
+
 
 Como vemos los componentes no hacen nada más que proyectar el contenido de su padre y decorar el mismo. 
 
 Ahora el componente A se encargará de mandar la información necesaria.
 
-```
+{{< highlight ts >}}
 @Component({
   selector: 'app-a',
   template: `<app-c>{{title | uppercase }}</app-c>
@@ -56,26 +58,26 @@ export class AComponent {
   title = 'Content projection';
 
 }
-```
+{{</ highlight >}}
 
 Y esto nos genera como resultado...
 
-{{< figure src="/images/angular-1-cp/res1.png" >}}
+<iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-transclusion-i?ctl=1&embed=1&file=index.html&view=preview"></iframe>
 
 
 ¿Sencillo, verdad? Ahora solo queda un problema. ¿Que pasaría si quisieramos pasar diversas parte de un contenido? Pensemos en esta plantilla para un componente **Artículo**.
 
-```
+{{< highlight html >}}
 <article>
   <header><ng-content></ng-content></header>
   <section><ng-content></ng-content></section>
   <footer><ng-content></ng-content></footer>
 </article>
-```
+{{</ highlight  >}}
 
 Como vemos este "artículo", soporta no uno, sino **tres** ng-content. ¿Como identificamos donde va lo que corresponde? Simplemente: nombrándolos.  
 
-```
+{{< highlight html >}}
 <article>
   <header>
     <ng-content select=".header"></ng-content>
@@ -87,7 +89,7 @@ Como vemos este "artículo", soporta no uno, sino **tres** ng-content. ¿Como id
     <ng-content select=".footer"></ng-content>
   </footer>
 </article>
-```
+{{</ highlight >}}
 
 En este caso le decimos al ng-content, que nos reemplace el contenido por el de aquellos elementos que tengan la clase del tipo correspondiente.
 
@@ -95,7 +97,7 @@ Se pueden usar etiquetas o directivas, [como explica el fabuloso libro de Rangle
 
 Y si ahora nuestro componente padre nos indica el contenido de esas secciones...
 
-```
+{{< highlight html >}}
 <ng-container *ngFor="let datum of data">
   <article>
     <div class="header">{{datum.header}}</div>
@@ -103,11 +105,10 @@ Y si ahora nuestro componente padre nos indica el contenido de esas secciones...
     <div class="footer">{{datum.footer}}</div>
   </article>
 </ng-container>
-```
+{{</ highlight >}}
 
 Obtendremos esto: voilá.
 
-{{< figure src="/images/angular-1-cp/res2.png" >}}
-
+<iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-transclusion-ii?ctl=1&embed=1&file=index.html&view=preview"></iframe>
 
 Como siempre, [tenéis el código fuente disponible en github](https://github.com/adrianabreu/angular-samples/tree/master/transclusion), espero que haya servido de ayuda, al menos a mí si que me ha servido.
