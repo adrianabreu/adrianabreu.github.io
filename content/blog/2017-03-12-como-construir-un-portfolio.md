@@ -42,7 +42,7 @@ Con esto queda más o menos claro las herramientas que hemos utilizado en el pro
 
 ## 3. ¿Qué utilizo para portfolio?
 
-Este tema lo reflexionado bastante y creo que tras leer múltiples opiniones, lo mejor es utilizar un html estático.
+Este tema lo he estado reflexionado bastante y creo, tras leer múltiples opiniones, que lo mejor es utilizar un html estático.
 
 Aplica tu creatividad y si eres bueno en tema de diseño quizás quieras demostrar más habilidades aún evitando utilizar bootstrap y jQuery.
 
@@ -53,9 +53,9 @@ También, al igual que yo puedes hacer utilizar algún generador estático, como
 
 ## 4. ¿Qué podría usar para rellenar el portfolio? 
 
-La creatividad manda, no hace falta elaborar proyectos complicados, pero creo que existen una serie de puntos que dbeerían estar en tu portfolio.
+La creatividad manda, no hace falta elaborar proyectos complicados, pero creo que existen una serie de puntos que deberían estar en tu portfolio.
 
-1. Demostrar tu dominio del DOM: Hacer algún proyecto sencillo que interactúe con el DOM. Algo tan simplecomo una lista de la compra que vaya creando y borrando elementos y cantidad puede ser un buen ejemplo.
+1. Demostrar tu dominio del DOM: Hacer algún proyecto sencillo que interactúe con el DOM. Algo tan simple como una lista de la compra que vaya creando y borrando elementos y cantidad puede ser un buen ejemplo.
 
 2. Demostrar que sabes AJAX: Hacer un cliente para alguna api abierta. Por ejemplo yo hice un cliente en angular para una API que daba frases de Chuck Norris. Existen muchas apis abiertas, [aquí tienes una lista](https://github.com/toddmotto/public-apis).
 
@@ -73,7 +73,7 @@ Así que no necesitas invertir en host ni en vps para poder alojar tus aplicacio
 
 ## 6. ¿Ejemplos?
 
-Ya que ahora mismo mi blog no es un gran ejemplo. (**Excusa**: No he parado de irme de un sitio a otro para decidir que iba a utilizar como geneador hasta decidirme por hugo). Voy a aprovechar para dejar algunos buenos ejemplos de portfolio:
+Ya que ahora mismo mi blog no es un gran ejemplo. (**Excusa**: No he parado de irme de un sitio a otro para decidir que iba a utilizar como generador hasta decidirme por hugo). Voy a aprovechar para dejar algunos buenos ejemplos de portfolio:
 
 * http://zertukis.com/
 * http://jordancarney.com/
