@@ -148,7 +148,7 @@ Pero un template puede tener variables declarada por ella misma, y además, un c
 
 Un ejemplo muy sencillo es el siguiente, voy a interceptar los mensajes emitidos por **HelloComponent** en el ejemplo anterior y voy a hacer que se rendericen a nivel de hijo sin modificar las llamadas del padre, de tal forma que la proyección de contenido continue funcionando.
 
-Para ello en la salida del hijo le proveo de un **ngOutLetContext** y le digo a que métodos quiero que llame. 
+Para ello en la salida del hijo le proveo de un **ngOutLetContext** y le digo a que métodos quiero que llame. Nótese que estamos usando una arrow function y es que el contexto se pierde al hacer el binding a través de los objetos. Una alternativa sería pasar la funcion bindeando el this.
 
 **Child:**
 {{<  highlight ts >}}
