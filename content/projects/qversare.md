@@ -2,6 +2,7 @@
 date = "2016-06-05T13:22:01Z"
 title = "Qversare"
 source = "https://github.com/adrianabreu/Qversare"
+image = "/images/qversare.PNG"
 link = "https://www.youtube.com/watch?v=dE3YBymie80"
 linkActionTitle = "Youtube video"
 +++
