@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2017-12-17T15:43:32Z"
+date = "2017-12-17T14:43:32Z"
 title = "Angular Series III - Dynamic components"
 +++
 
