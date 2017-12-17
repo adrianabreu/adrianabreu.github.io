@@ -10,7 +10,7 @@ Esto está documentado en la documentación de angular bajo el nombre de [Dynami
  
 ### ¿Cómo funcionan estos dynamics components?  
  
-Explicado mal y pronto, la idea es: Escoger un elemento de la vista que actué de contenedor e inyectar el componente debe ir ahí.  
+Explicado mal y pronto, la idea es: Escoger un elemento de la vista que actue de contenedor e inyectar el componente debe ir ahí.  
  
 **¿Cómo se puede hacer esto?**
 
