@@ -16,7 +16,7 @@ Explicado mal y pronto, la idea es: Escoger un elemento de la vista que actue de
 
 Antes de empezar he de aclarar que los componentes dinámicos que queramos crear deben ser declarados como [Entry Components](https://angular.io/guide/ngmodule-faq#what-is-an-entry-component). 
 
-La documentación de angular lo explica realmente bien: *"An entry component is any component that Angular loads imperatively by type."*
+Un entry component es un un componente que no se usa de forma directa en ninguna plantilla. Por ejemplo un componente dinámico como este será eliminado por el compilador. Al declararlo como entry components el compilador no lo eliminará y podremos utilizarlo.
 
 
 Ahora que ya tenemos esto claro, veamos lo que necesitamos: El [compontentFactoryResolver](https://angular.io/api/core/ComponentFactoryResolver) y el [ViewContainerRef](https://angular.io/api/core/ViewContainerRef). 

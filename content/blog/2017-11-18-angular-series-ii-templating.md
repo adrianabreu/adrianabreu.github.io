@@ -50,7 +50,7 @@ Como vemos, ahora la plantilla sí que se renderiza. ¿Qué está haciendo la di
 
 Ahora, ¿qué pasa si un componente padre nos pasara el contenido a mostrar por templating?
 
-Pongamos que nuestro padre le pasa 
+Pongamos que nuestro padre le pasa:
 
 {{< highlight html >}}
     <child>
@@ -71,7 +71,7 @@ Y el hijo lo único que haría sería mostrar esta plantilla, tal como hacia el 
 
 <iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-template-series-iii?ctl=1&embed=1&file=app/child/child/child.component.ts&view=preview"></iframe>
 
-Y ops... **NO FUNCIONA**. ¿Por qué? Por el contexto en el que se evalua la plantilla, al componente le hace falta tener constancia de está plantilla, para eso el componente tenemos que usar la anotación **@ContentChild**.
+Y ops... **NO FUNCIONA**. ¿Por qué? Por el contexto en el que se evalúa la plantilla. Al componente le hace falta tener constancia de la existencia de esta plantilla, para eso en el componente tenemos que usar la anotación **@ContentChild**.
 
 {{< highlight ts >}}
 import { Component, ContentChild, TemplateRef } from '@angular/core';
@@ -97,7 +97,7 @@ export class ChildComponent {
 
 Lo primero es entender quien tiene el control del contenido, vamos a hacer algo muy sencillo, vamos a pasar un componente a otro componente tanto por templating como por content projection y vamos a controlar cuando ocurre el ngOnInit de este componente.
 
-Además, el contenido recibido lo envolveremos en un ngIf, porque no queremos que los componentes se construyan hasta que el hijo decida. 
+Además, el contenido recibido lo envolveremos en un *ngIf*, porque no queremos que los componentes se construyan hasta que el hijo decida. 
 
 **Child:**
 {{< highlight html >}}
@@ -136,13 +136,17 @@ Además, el contenido recibido lo envolveremos en un ngIf, porque no queremos qu
 
 <iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-template-series-v?ctl=1&embed=1&file=app/parent/parent1.component.ts&view=preview"></iframe>
 
-¡Sorpresa! ¿Como es que ya hay uno de los mensajes si ambos componentes están bajo un ngIf?
+¡Sorpresa! ¿Cómo es que ya hay uno de los mensajes si ambos componentes están bajo un ngIf?
 
-Concretamente se está creando el componente pasado por proyección de contenido, y es que el encargado de crear el componente y mandarlo hacia abajo, es el **ParentComponent**. Con lo cual el comportamiento que tenemos no es el esperado, es más, es bastante más serio, ya que el componente solo se ha instanciado una única vez, con lo cual da igual lo que haga el ngIf en el hijo, que no tiene control sobre el componente.
+Lo esperado sería que el mensaje de **"Projected created"** no apareciera hasta que presionaramos el botón *Toggle content*
+
+Concretamente se está creando el componente pasado por proyección de contenido, y es que el encargado de crear el componente y mandarlo hacia abajo, es el **ParentComponent**. Con lo cual el comportamiento que tenemos no es el esperado, es más, es bastante más serio.
+
+Si empezamos a hacer click en el primer botón (el asociado al templating) podemos ver que el mensaje se va acumulando **"Template created"**, sin embargo, por más que le demos al segundo botón solo hay un mensaje. Esto significa que el componente  pasado por proyección de contenido solo se ha instanciado una vez, con lo cual da igual que lo envolvamos con un ngIf en el hijo, ya que este no tiene control sobre el componente.
 
 ## ¿Eso es todo?
 
-No, hay mucho más. ¿Cuál es el contexto de la plantilla? En principio, de la misma forma que en la proyección de contenido el contexto corresponde a donde se declara, con lo que sería para nuestro caso: **ParentComponent**.
+No, hay mucho más. ¿Cuál es el contexto de la plantilla? En principio, de la misma forma que en la proyección de contenido, el contexto corresponde a donde se declara. Con lo que sería para nuestro caso: **ParentComponent**.
 
 Pero un template puede tener variables declarada por ella misma, y además, un contexto.
 
