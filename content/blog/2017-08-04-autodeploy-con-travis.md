@@ -177,7 +177,7 @@ Donde el encription label es la clave que hemos sacado del pasado anterior y el 
 Con todo esto listo, cuando hagamos el próximo push a master, nuestro proyecto se compilará automáticamente y subirá el resultado a gh-pages.
 
 Si queréis ver algún ejemplo ahora mismo tengo dos proyectos utilizando esta configuración: 
-[Simde Simulator](https://github.com/adrianabreu/SIMDE-Simulator) y [Chuck Norris Angular Client](https://github.com/adrianabreu/chuck-norris-angular-client)
+[SIMDE](https://github.com/etsiiull/SIMDE) y [Chuck Norris Angular Client](https://github.com/adrianabreu/chuck-norris-angular-client)
 
 Espero que esto fomente la creación de muchísimos proyectos nuevos y que os animéis.
 

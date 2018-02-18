@@ -65,6 +65,6 @@ Y ya que estoy, aprovecho para dejar un pequeño roadmap. De cara a un futuro ce
 
 * Actualizar a React fiber, la nueva versión de React mucho más rápida.
 
-Y bueno, ya con esto se cubren muchos casos. La verdad es que desarrollar una aplicación tan particular con React ha sido una maravilla. Si te has quedado con ganas de verla: [aquí tienes su código fuente, que por cierto está bajo licencia GPLv3](https://github.com/adrianabreu/SIMDE-Simulator).
+Y bueno, ya con esto se cubren muchos casos. La verdad es que desarrollar una aplicación tan particular con React ha sido una maravilla. Si te has quedado con ganas de verla: [aquí tienes su código fuente, que por cierto está bajo licencia GPLv3](https://github.com/etsiiull/SIMDE).
 
 

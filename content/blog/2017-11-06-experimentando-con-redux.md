@@ -4,7 +4,7 @@ date = "2017-11-06T23:18:17Z"
 title = "Experimentando con Redux"
 +++
 
-Con el objetivo de mejorar el [simulador SIMDE](https://github.com/adrianabreu/SIMDE-Simulator) me decidí a probar un sistema de gestión de estados y concentrar el funcionamiento de la aplicación. ¿El motivo? Era la única forma sensata que tenía de poder gestionar la UI cuando entrara la máquina VLIW sin que todo fuera un caos.
+Con el objetivo de mejorar el [simulador SIMDE](https://github.com/etsiiull/SIMDE) me decidí a probar un sistema de gestión de estados y concentrar el funcionamiento de la aplicación. ¿El motivo? Era la única forma sensata que tenía de poder gestionar la UI cuando entrara la máquina VLIW sin que todo fuera un caos.
 
 Para ello he recurrido a mi aplicación favorita: Chuck Norris client app. (Ya la he hecho en AngularJS y Angular previamente). Como boilerplate he utilizado el template de visual studio, ya que quería tener compatibilidad con typescript. 
 
