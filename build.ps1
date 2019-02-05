@@ -1,1 +1,1 @@
-../hugo/hugo.exe serve
+../../hugo/hugo.exe serve
