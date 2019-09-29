@@ -18,12 +18,14 @@ Si para la tabla actual tenemos los siguientes datos
 
 Y aplicamos el cálculo obtendríamos:
 
-| datekey    | sales | profit | datekey_14_ago |sales_14_days_ago | profit_14_days_ago |
-|----------- |-------|--------|----------------|----------------- |--------------------|
-| 2019-09-01 | 12    | 38.10  | 2019-08-18     | null             | null               |
-| 2019-09-15 | 10    | 27.05  | 2019-09-01     | 12               | 38.10              |
-| 2019-09-29 | 5     | 16     | 2019-09-15     | 10               | 27.05              |
-
+<div class="table-responsive">
+<table>
+    <th>datekey</th><th> sales</th><th> profit</th><th>datekey_14_ago</th><th>sales_14_days_ago</th><th>profit_14_days_ago</th>
+    <tr><td>2019-09-01</td><td>12</td><td>38.10</td><td>2019-08-18</td><td>null</td><td> null  </td></tr>
+    <tr><td>2019-09-15</td><td>10</td><td>27.05</td><td>2019-09-01</td><td>12  </td><td> 38.10 </td></tr>
+    <tr><td>2019-09-29</td><td>5 </td><td>16   </td><td>2019-09-15</td><td>10  </td><td> 27.05 </td></tr>
+</table>
+</div>
 
 En un primer momento, el código que se usó para resolver el problema fue tal que este:
 
