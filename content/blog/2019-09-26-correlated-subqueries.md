@@ -4,30 +4,26 @@ date = "2019-09-26T20:43:32Z"
 title = "Correlated subqueries"
 +++
 
-Llevo un par de meses viendo como la mayoría de esfuerzos se centran en evitar los jobs en las distintas capas de análisis. Aprovechando el poder del big data se intentaba tener las estructuras muy desnormalizadas y se había "endemoniado" al join, una 
-operación que es realmente importante.
+Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había "endemoniado" al join considerarlo perjudicial.
 
-Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a-14 hasta b, se quiere que entre a y b se "colapsen" los datos de hace 14 días. Me explico
+Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se "colapsen" los datos de hace 14 días. Será mejor con un ejemplo:
 
 Si para la tabla actual tenemos los siguientes datos
 
-```
 | datekey     | sales  | profit |
 | ----------- | ------ | ------ |
 | 2019-09-01  | 12     | 38.10  |
 | 2019-09-15  | 10     | 27.05  |
 | 2019-09-29  | 5      | 16     |
-```
 
 Y aplicamos el cálculo obtendríamos:
 
-```
 | datekey    | sales | profit | datekey_14_ago |sales_14_days_ago | profit_14_days_ago |
 |----------- |-------|--------|----------------|----------------- |--------------------|
 | 2019-09-01 | 12    | 38.10  | 2019-08-18     | null             | null               |
 | 2019-09-15 | 10    | 27.05  | 2019-09-01     | 12               | 38.10              |
 | 2019-09-29 | 5     | 16     | 2019-09-15     | 10               | 27.05              |
-```
+
 
 En un primer momento, el código que se usó para resolver el problema fue tal que este:
 
@@ -46,7 +42,7 @@ from (
 Esto me rompió absolutamente todos los esquemas. Algunos compañeros lo veían absolutamente normal y otros estaban igual que yo.
 Investigando esta tarde encontré el nombre de este tipo de operación: [correlated subqueries](https://en.wikipedia.org/wiki/Correlated_subquery). 
 Y aquí se explica muy bien, la consulta se evalua **para cada fila** del conjunto resultando y ya se apunta 
-a que es una méotod que puede ser lento, yo estaba más bien interesado en como Spark realizaba este cálculo.
+a que es una método que puede ser lento aunque yo estaba interesado en como Spark realizaba este cálculo.
 
 Y me encontré con este pequeño plan de ejecución:
 ```
