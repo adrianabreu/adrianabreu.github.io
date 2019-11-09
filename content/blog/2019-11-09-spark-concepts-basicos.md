@@ -1,18 +1,13 @@
 +++
 Description = ""
 date = "2019-11-09T19:22:32Z"
-title = "Spark conceptos básicos"
+title = "Conceptos básicos de Spark"
 +++
-
-Todo: dibujar el esquema de mayor a menor. 
-
- 
 
 **Nota del autor**: Todos los contenidos de este artículo son extractos del libro "The Data Engineer's Guide to Apache Spark" que puedes descargar desde la pagina de databricks: https://databricks.com/lp/ebook/data-engineer-spark-guide 
 
  
-
-## Conceptos básicos: 
+## Preludio: 
 
  
 ### Cluster: 
