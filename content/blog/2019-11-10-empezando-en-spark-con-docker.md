@@ -13,7 +13,7 @@ https://medium.com/@singhpraveen2010/install-apache-spark-and-configure-with-jup
 
  
 
-Se me ha hecho cuesta arriba el poder conectar un notebook de jupyter y utilizar Scala. Entre configurar el apache toree para poder usar scala en los notebooks y algún error luego en spark al usarlo desde IntelliJ luego, me he acabado rindiendo. 
+Se me ha hecho cuesta arriba el poder conectar un notebook de jupyter y utilizar Scala. Entre configurar el apache toree para poder usar scala en los notebooks y algún error luego en spark al usarlo desde IntelliJ, me he acabado rindiendo. 
 
 *Nota del autor:* Como disclaimer esto ocurre probablemente porque estoy en Manjaro y mi version de Scala es incompatible. Esta clase de problemas en su día las solucionaba fijando una versión, sin embargo, creo que teniendo una herramienta tan potente como es Docker estoy reinventando la rueda par un problema ya resuelto. Además de que voy a probarlo también en un windows para ver que es una solución agnóstical SO.
  

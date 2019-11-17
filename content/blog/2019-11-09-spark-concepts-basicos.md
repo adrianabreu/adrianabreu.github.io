@@ -28,7 +28,7 @@ Es una representación de una tabla con filas y columnas. Podemos encontrar las 
     
 
 ### Datasets: 
-Son otra representación de datos pero que está vez están tipados. Como "truco" un dataframe es un dataset de un tipo abstracto llamado "Row". 
+Son otra representación de datos pero tipados. Como "truco" un dataframe es un dataset de un tipo abstracto llamado "Row". 
     
 
 ### RDD: 
