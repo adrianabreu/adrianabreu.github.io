@@ -26,11 +26,6 @@ Copyright = "2017 Adrián Abreu"
   identifier = "blog"
   url = "/blog/"
 [[menu.main]]
-  name = "proyectos"
-  identifier = "projects"
-  weight = 200
-  url = "/projects/"
-[[menu.main]]
   name = "knowledge"
   identifier = "knowledge"
   weight = 200
