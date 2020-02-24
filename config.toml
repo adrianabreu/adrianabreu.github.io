@@ -18,15 +18,20 @@ Copyright = "2017 Adrián Abreu"
 [[menu.main]]
   name = "Inicio"
   weight = 100
-  identifier = "Inicio"
+  identifier = 1
   url = "/"
 [[menu.main]]
   name = "blog"
   weight = 100
-  identifier = "blog"
+  identifier = 2
   url = "/blog/"
 [[menu.main]]
   name = "knowledge"
-  identifier = "knowledge"
+  identifier = 3
   weight = 200
   url = "/knowledge/"
+[[menu.main]]
+  name = "archive"
+  weight = 100
+  identifier = 4
+  url = "/archive/"
