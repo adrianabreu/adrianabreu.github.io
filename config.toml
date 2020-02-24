@@ -1,4 +1,4 @@
-baseurl = "http://adrianabreu.github.io"
+baseurl = "https://adrianabreu.github.io"
 languageCode = "es-ES"
 title = "Adrián Abreu"
 theme = "hugo-sustain"
