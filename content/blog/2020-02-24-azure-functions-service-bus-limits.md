@@ -35,6 +35,8 @@ Después de darle vueltas, estuve revisando que pasaba con el caso de los mensaj
 
 Existe dentro del código un visibilityTimeout que realmente representa lo que queremos: El tiempo en el cual el mensaje esta marcado como invisible. Ese código es [este](https://github.com/Azure/azure-webjobs-sdk/blob/4130350327c6d637d48456222de7e658c6cf729a/src/Microsoft.Azure.WebJobs.Extensions.Storage/Queues/Listeners/QueueListener.cs#L104).
 
+Y como se ve más abajo, [va renovando automáticamente el mensaje, sin límite](https://github.com/Azure/azure-webjobs-sdk/blob/4130350327c6d637d48456222de7e658c6cf729a/src/Microsoft.Azure.WebJobs.Extensions.Storage/Queues/Listeners/QueueListener.cs#L363)
+
 Ahora, la nueva implementación ha pasado a ser esta:
 
 {{< resp-image "/images/function-bus-queue.png" >}}
