@@ -1,0 +1,17 @@
+<div class="aa-navigator">
+    <div class="row">
+        <div class="col-xs-2 col-lg-3" style="text-align: right">
+            {{if .NextInSection }}
+            <a href="{{ .NextInSection.Permalink }}">
+                <i class="fa fa-2x fa-arrow-left" aria-hidden="true"></i>
+            </a> {{end}}
+        </div>
+        <div class="col-xs-8 col-lg-6 center"></div>
+        <div class="col-xs-2 col-lg-3">
+            {{if .PrevInSection}}
+            <a class="btn-floating btn-large paginate-button" href="{{ .PrevInSection.Permalink }}">
+                <i class="fa fa-2x fa-arrow-right" aria-hidden="true"></i>
+            </a> {{end}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,151 @@
+@import 'variables';
+@import './modules/main';
+
+/* Main page with stikky-footer */
+html, body {
+    height: 100%;
+    font-size: $font-size-base;
+    background-color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+p {
+    text-indent: 2rem;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    padding-bottom: 50px;
+    min-height: 100%;
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto -65px;
+    /* Pad bottom by footer height */
+    /*padding: 0 0 60px;*/
+}
+
+/* Custom page CSS */
+.container {
+    width: auto;
+    max-width: 800px;
+    text-align: left;
+}
+.container .text-muted {
+    margin: 20px 0;
+}
+.container a {
+    color: $color-brand;
+}
+.container a:hover {
+    color: $color-brand-dark;
+}
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+.panel-default h4 {
+    text-align: left;
+    line-height: 24px;
+    font-size: 22px;
+}
+.panel-default h5 {
+    text-align: left;
+    line-height: 30px;
+    font-size: 18px;
+}
+.panel-default h6 {
+    font-size: 15px;
+}
+.panel-default h4 a, h5 a {
+    color: $color-brand;
+}
+.panel-default h4 a:hover, h5 a:hover {
+    color: $color-brand-dark;
+}
+.panel {
+    border-style: none;
+}
+.panel-body {
+    padding-top: -10px;
+    text-align: left;
+}
+.social-links {
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    animation: fade 1s ease 1s both;
+}
+.social-links li {
+    display: inline-block;
+    padding: 5px;
+    padding-top: 0;
+    text-align: center;
+}
+.social-links li a {
+    font-size: 20px;
+    color: black;
+    padding: 10px;
+    padding-bottom: 4px;
+    transition: all .4s ease;
+}
+.social-links li a:hover {
+    color: black;
+}
+.avatar {
+    padding-top: 5%;
+}
+
+/* Footer  */
+.footer {
+    text-decoration: none !important;
+}
+.text-muted {
+    color: $color-text;
+}
+
+.project {
+    border-bottom: 1px solid rgba(39,168,34, .4);
+}
+.page-not-found {
+    padding-top: 20%;
+    color: $color-brand-dark;
+    font-size: $font-size-xxl;
+    text-align: center;
+}
+
+.projects-list {
+    display: flex;
+    flex: 1 0 auto;
+    flex-wrap: wrap;
+}
+
+#about > .container {
+    text-align: center;
+}
+
+.aa-navigator {
+    a {
+        color: $color-brand;
+
+        &:hover {
+            color: $color-brand-dark;
+        }
+    }
+}
+
+.aa_iframes {
+    width: 100%;
+    min-height: 350px;
+}
+
+table {
+  tr {
+      td {
+          padding: 0.25rem;
+          border: 1px solid black;
+      }
+  }
+}

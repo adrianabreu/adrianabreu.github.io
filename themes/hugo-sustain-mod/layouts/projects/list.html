@@ -1,0 +1,28 @@
+{{ partial "head" . }}
+
+<body>
+    <div id="wrap">
+        <!-- Header -->
+        {{ partial "header" . }}
+        <div class="container">
+            <div class="projects-list">
+                {{ range .Data.Pages.ByPublishDate.Reverse }}
+                <div class="aa-project">
+                    <div class="aa-project-header">
+                        <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+                    </div>
+                    <div class="aa-project-body">
+                        <div class="aa-project-body_content">
+                            <p>{{.Summary }}</p>
+                        </div>
+                        <img class="img-responsive aa-project-body_preview" src="{{ .Params.image }}">
+                    </div>
+                    {{ partial "project-footer" .}}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+{{ partial "head" . }}
+
+<body>
+    <div id="wrap">
+        {{ partial "header" . }}
+        <section id="about">
+            <div class="container">
+                <h1>
+                    <strong>ADRIAN ABREU</strong>
+                </h1>
+                {{ partial "social.html" . }}
+                <h3>Soy un desarrollador que vive actualmente en Barcelona (España).</h3>
+                <h3>Trabajo ahora mismo para
+                    <a href="https://www.plainconcepts.com/">Plain Concepts</a>, una empresa especializada en las tecnologías de Microsoft, concretamente en tecnologías Big Data.</h3>
+                <h3>Tengo tres pasiones:
+                    <strong>Leer</strong>,
+                    <strong>correr</strong> y
+                    <strong>programar</strong>.</h3>
+                <h3>En mi tiempo libre mejoro mi
+                    <i>“craftsmanship”</i> con proyectos personales.
+                    <a href="/projects">Puedes verlos aquí.</a>
+                </h3>
+                <h3>Además,
+                    <a href="/blog">tengo un blog donde escribo sobre las tecnologías que uso</a>, porque tengo la manía de hacer apuntes
+                    de todo desde la universidad.</h3>
+
+                <h3>Puedes contactarme a través
+                    <a href="http://twitter.com/{{ .Site.Params.Social.Twitter }}">@{{ .Site.Params.Social.Twitter }}</a> o por
+                    <a href="mailto:{{ .Site.Params.Social.Email }}">email</a>.</h3>
+
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

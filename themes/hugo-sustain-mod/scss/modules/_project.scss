@@ -1,0 +1,61 @@
+@import '../variables';
+
+.aa-project {
+    width: 50%;
+    padding: 0;
+    padding-right: .75rem;
+    display: flex;
+    flex-flow: column;
+
+    &-header {
+        flex: 1 0 auto;
+        text-align: center;
+        font-size: $font-size-xxl;
+        font-weight: $font-weight-bold;
+    }
+    &-body {
+        flex: 4 0 auto;
+        font-size: $font-size-lg;
+        padding-bottom: 1.5rem;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+        &:hover .aa-project-body_content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            cursor: default;
+        }
+        &_content {
+            padding: .3rem .4rem;
+            display: none;
+            background-color: rgba(255,255,255,.98);
+            color: $color-text;
+            border-radius: 4px;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    &-footer {
+        flex: 1 0 auto;
+        font-size: $font-size-xl;
+        border-bottom: 1px solid $color-text-light;
+        display: flex;
+        padding: .5rem .2rem;
+    }
+
+    &_link {
+        flex: 1 0 auto;
+        text-align: center;
+        box-shadow: 1px 1px 1px rgba(0,105,0,.4);
+    }
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 767px) {
+    .aa-project {
+        width: 100%;
+        padding-right: 0;
+    }
+}

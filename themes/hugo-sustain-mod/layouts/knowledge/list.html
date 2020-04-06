@@ -1,0 +1,21 @@
+{{ partial "head" . }}
+
+<body>
+    <div id="wrap">
+        <!-- Header -->
+        {{ partial "header" . }}
+        <div class="container">
+            <div class="knowledge-list">
+                {{ range .Data.Pages.ByPublishDate }}
+                <div class="aa-knowledge">
+                    <div class="aa-knowledge-header">
+                        <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+                    </div>
+                </div>
+                <hr /> {{ end }}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

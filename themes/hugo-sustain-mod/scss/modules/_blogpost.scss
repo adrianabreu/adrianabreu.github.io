@@ -1,0 +1,35 @@
+@import '../variables';
+
+.aa-blogpost {
+    &-header {
+        &_title {
+            padding-top: 2px;
+            font-size: $font-size-xxl;
+            font-weight: $font-weight-bold;
+            &:hover {
+                color: $color-brand-dark;
+            }
+        }
+        &_date {
+            color: $color-text;
+            font-size: $font-size-sm;
+        }
+    }
+    &-summary {
+        padding-top: 15px;
+        font-size: $font-size-lg;
+        text-align: left;
+        text-indent: 2rem;
+    }
+
+    &-content {
+        text-align: left;
+        font-size: $font-size-lg;
+    }
+}
+
+@media (max-width: 767px) {
+    .aa-blogpost {
+        text-align: center;
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "hugo-sustain",
+  "version": "1.0.0",
+  "description": "![Sustain - Logo][logo]",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianabreu/blog-theme.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrianabreu/blog-theme/issues"
+  },
+  "homepage": "https://github.com/adrianabreu/blog-theme#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-run-command": "^0.0.9",
+    "gulp-sass": "^3.2.1",
+    "lodash": "^4.17.15"
+  }
+}

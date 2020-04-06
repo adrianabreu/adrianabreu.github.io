@@ -1,0 +1,29 @@
+{{ partial "head" . }}
+
+<body>
+    <div id="wrap">
+
+        <!-- Header -->
+        {{ partial "header" . }} {{ if isset .Params "showpagemeta" }} {{ .Render "projects" }} {{ else }}
+        <div class="container">
+            <div class="aa-project_detail">
+                <div class="aa-project_detail-header">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </div>
+                <div class="aa-project_detail-body">
+                    <div class="aa-project_detail-body_content">
+                        <p>{{.Content }}</p>
+                    </div>
+                    <div class="aa-project_detail-body_image">
+                        {{ if isset .Params "image" }}
+                        <img class="img-responsive" src={{ .Params.image }}> {{ end}}
+                    </div>
+                </div>
+                {{ partial "project-footer" .}}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</body>
+
+</html>
