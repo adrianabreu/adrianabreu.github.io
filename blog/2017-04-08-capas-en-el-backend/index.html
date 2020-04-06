@@ -1,0 +1,160 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="map[]"><title>Capas en el backend</title><meta name=generator content="Hugo 0.68.3"><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet type=text/css href=https://adrianabreu.github.io/css/main.css><link rel=stylesheet type=text/css href=https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel=stylesheet><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script><script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]--></head><body><div id=wrap><nav class="navbar navbar-default"><div class=container><div class=navbar-header><a class=navbar-brand href=https://adrianabreu.github.io><i class="fa fa-home"></i></a></div><div id=navbar><ul class="nav navbar-nav navbar-right"><li><a href=/>INICIO</a></li><li><a href=/blog/>BLOG</a></li><li><a href=/knowledge/>KNOWLEDGE</a></li><li><a href=/archive/>ARCHIVE</a></li></ul></div></div></nav><div class=container><div class=aa-blogpost><div class=aa-blogpost-header><div class=aa-blogpost-header_title><a href=/blog/2017-04-08-capas-en-el-backend/>Capas en el backend</a></div><div class=aa-blogpost-header_date>08-04-2017</div></div></div><div class=aa-blogpost-content><p>Una de las cosas más difíciles cuando ves un proyecto de backend por primera vez es discernir la funcionalidad y responsabilidad de las distintas capas. Así que me he planteado dar una visión general.</p><p>Antes de nada, quiero aclarar que es probable que esta nomenclatura no coincida con otra que veais por ahí, existen muchos sinónimos para los mismos conceptos, yo por mi parte, voy a explicar cual utilizo actualmente.</p><p>Por supuesto, todo estará ilustrado con un sencillo proyecto de ejemplo que he hecho para la ocasión. Así que, comencemos por el patrón DTO.</p><h2 id=data-transfer-object>Data Transfer Object</h2><p>Un DTO es un objeto que se utiliza en transferencias. Existen varios motivos para utilizar este tipo de objeto:</p><p>El motivo original es que con lo costoso que resulta abrir un canal de comunicación, debería traerse toda la información posible en esta para &ldquo;amortizarla&rdquo;.</p><p>No siempre es necesario mandar al front end todos los campos del backend. Quizás algunos campos sean de control, o quizás no necesitemos transferir todo el objeto.</p><pre><code>public class GreetingDTO {
+
+	private Long id;
+	
+	private String message;
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}	
+}
+</code></pre><h2 id=mapper>Mapper</h2><p>Para convertir las entidades en DTO y viceversa, utilizamos un mapper. Aquí un breve ejemplo. Nótese que lo he anotado como un componente de Spring con @Component.</p><pre><code>@Component
+public class GreetingMapper {
+
+	public GreetingDTO toDTO(Greeting source) {
+		if (source == null) {
+			return null;
+		}
+		
+		GreetingDTO target = new GreetingDTO();
+		target.setId(source.getId());
+		target.setMessage(source.getMessage());
+		return target;
+	}
+	
+	public Greeting toEntity(GreetingDTO source) {
+		if (source == null) {
+			return null;
+		}
+		
+		Greeting target = new Greeting();
+		target.setId(source.getId());
+		target.setMessage(source.getMessage());
+		return target;
+	}
+	
+	public List&lt;GreetingDTO&gt; toDTOList(List&lt;Greeting&gt; source) {
+		if (source == null) {
+			return null;
+		}
+		List&lt;GreetingDTO&gt; target = source.stream().map(greeting -&gt; toDTO(greeting)).collect(Collectors.toList());
+		return target;	
+	}
+	
+	public List&lt;Greeting&gt; toEntityList(List&lt;GreetingDTO&gt; source) {
+		if (source == null) {
+			return null;
+		}
+		List&lt;Greeting&gt; target = source.stream().map(greetingDTO -&gt; toEntity(greetingDTO)).collect(Collectors.toList());
+		return target;
+				
+	}
+}
+</code></pre><h2 id=resource--controller>Resource / Controller</h2><p>Los controladores (denominados también recursos) van a ser los encargados de relacionar tal acción cuando ejecutemos X método HTTP (GET, POST, PUT, DELETE&mldr;) sobre Y ruta (/users, /greetings).</p><p>Es importante separar la lógica de negocio del controlador. Por lo general, un controlador solo debería llamar a los mapper y a los servicios que correspondan.</p><pre><code>@RequestMapping(&quot;/greetings&quot;)
+@RestController
+public class GreetingResource {
+
+	@Autowired
+	private GreetingService greetingService;
+	
+	@Autowired
+	private GreetingMapper greetingMapper;
+	
+    @GetMapping(&quot;&quot;)
+    public List&lt;GreetingDTO&gt; obtener() {
+    	List&lt;Greeting&gt; greetings = greetingService.findAll();
+    	List&lt;GreetingDTO&gt; greetingDTOs = greetingMapper.toDTOList(greetings);
+    	return greetingDTOs;
+    }
+    
+    
+    @PostMapping(&quot;&quot;)
+    public GreetingDTO crear(GreetingDTO greetingDTO) {
+    	Greeting greeting = greetingMapper.toEntity(greetingDTO);
+    	greeting = greetingService.save(greeting);
+    	greetingDTO = greetingMapper.toDTO(greeting);
+    	
+    	return greetingDTO;
+    }
+    
+    @GetMapping(&quot;/{id}&quot;)
+    public GreetingDTO optenerPorId(@PathVariable(value=&quot;id&quot;) Long greetingId) {
+    	Greeting greeting = greetingService.findOneById(greetingId);
+    	GreetingDTO greetingDTO = greetingMapper.toDTO(greeting);
+    	return greetingDTO;
+    }
+    
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseEntity borrar(@PathVariable(value=&quot;id&quot;) Long greetingId) {
+    	greetingService.delete(greetingId);
+    	return new ResponseEntity&lt;&gt;(HttpStatus.OK);
+    }
+    
+}
+</code></pre><h2 id=service>Service</h2><p>La capa de servicio es la capa que se encargará de gestionar la lógica de negocio y de &ldquo;enmascarar&rdquo; la capa de acceso a los datos.</p><pre><code>@Service
+public class GreetingService {
+	
+	@Autowired
+	private GreetingRepository greetingRepository;
+	
+	
+	public List&lt;Greeting&gt; findAll() {
+		return greetingRepository.findAll();
+	}
+	
+	public Greeting findOneById(Long id) {
+		return greetingRepository.findOneById(id);
+	}
+	
+	public Greeting save(Greeting greeting) {
+		// Usando la lógica de negocio modificamos los campos que solo nos interesan de la entidad
+		greeting.setUpdated(Boolean.TRUE);
+		return greetingRepository.save(greeting);
+	}
+	
+	public void delete(Long id) {
+		greetingRepository.delete(id);
+	}
+}
+</code></pre><h2 id=repository>Repository</h2><p>La capa de repository se encargará de acceder a los datos. Para este ejemplo tan sencillo he utilizado como almacenamiento un HashMap.</p><pre><code>@Repository
+public class GreetingRepository {
+
+	private AtomicInteger idCounter = new AtomicInteger();
+	private HashMap&lt;Long,Greeting&gt; greetings = new HashMap();
+	
+	public List&lt;Greeting&gt; findAll() {
+		return new ArrayList&lt;Greeting&gt;(greetings.values());
+	}
+	
+	public Greeting findOneById(Long id) {
+		return greetings.get(id);
+	}
+	
+	public Greeting save(Greeting greeting) {
+		greeting.setId(idCounter.longValue());
+		greetings.put(idCounter.longValue(), greeting);
+		idCounter.incrementAndGet();
+		return greeting;
+	}
+	
+	public void delete(Long id) {
+		greetings.remove(id);
+	}
+}
+</code></pre><p>Para demostrar que el ejemplo funciona correctamente, haré algunas peticiones REST. Para esto, utilizo normalmente el cliente <a href=https://www.getpostman.com/>Postman</a>.</p><p>Primero, almacenaremos dos objetos.
+<img src=/images/capas-backend/1.png class=img-responsive></p><p>Después, recuperaremos la lista de objetos.
+<img src=/images/capas-backend/2.png class=img-responsive></p><p>Por último, borremos uno de ellos.
+<img src=/images/capas-backend/3.png class=img-responsive></p><p>Como vemos, las diferentes capas en la aplicación hacen una gran separación de responsabilidades. Dandonos una estructura clara y robusta.</p><p><a href=https://github.com/adrianabreu/spring-layers-example>Aquí tenéis el proyecto completo en Github</a>, para poder ver el código completo.</p><h2 id=bibliografía>Bibliografía</h2><ul><li><a href=https://martinfowler.com/eaaCatalog/dataTransferObject.html>https://martinfowler.com/eaaCatalog/dataTransferObject.html</a></li><li><a href=https://martinfowler.com/eaaCatalog/serviceLayer.html>https://martinfowler.com/eaaCatalog/serviceLayer.html</a></li><li><a href=https://martinfowler.com/eaaCatalog/applicationController.html>https://martinfowler.com/eaaCatalog/applicationController.html</a></li></ul></div></div><div class=aa-navigator><div class=row><div class="col-xs-2 col-lg-3" style=text-align:right><a href=https://adrianabreu.github.io/blog/2017-04-09-docker/><i class="fa fa-2x fa-arrow-left" aria-hidden=true></i></a></div><div class="col-xs-8 col-lg-6 center"></div><div class="col-xs-2 col-lg-3"><a class="btn-floating btn-large paginate-button" href=https://adrianabreu.github.io/blog/2017-03-24-interaccion-a-traves-de-viewchild/><i class="fa fa-2x fa-arrow-right" aria-hidden=true></i></a></div></div></div></div></div></body></html>

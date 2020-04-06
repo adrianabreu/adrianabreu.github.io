@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="map[]"><title>Correlated subqueries</title><meta name=generator content="Hugo 0.68.3"><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet type=text/css href=https://adrianabreu.github.io/css/main.css><link rel=stylesheet type=text/css href=https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel=stylesheet><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script><script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]--></head><body><div id=wrap><nav class="navbar navbar-default"><div class=container><div class=navbar-header><a class=navbar-brand href=https://adrianabreu.github.io><i class="fa fa-home"></i></a></div><div id=navbar><ul class="nav navbar-nav navbar-right"><li><a href=/>INICIO</a></li><li><a href=/blog/>BLOG</a></li><li><a href=/knowledge/>KNOWLEDGE</a></li><li><a href=/archive/>ARCHIVE</a></li></ul></div></div></nav><div class=container><div class=aa-blogpost><div class=aa-blogpost-header><div class=aa-blogpost-header_title><a href=/blog/2019-09-26-correlated-subqueries/>Correlated subqueries</a></div><div class=aa-blogpost-header_date>26-09-2019</div></div></div><div class=aa-blogpost-content><p>Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había &ldquo;endemoniado&rdquo; al join considerarlo perjudicial.</p><p>Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &ldquo;colapsen&rdquo; los datos de hace 14 días. Será mejor con un ejemplo:</p><p>Si para la tabla actual tenemos los siguientes datos</p><table><thead><tr><th>datekey</th><th>sales</th><th>profit</th></tr></thead><tbody><tr><td>2019-09-01</td><td>12</td><td>38.10</td></tr><tr><td>2019-09-15</td><td>10</td><td>27.05</td></tr><tr><td>2019-09-29</td><td>5</td><td>16</td></tr></tbody></table><p>Y aplicamos el cálculo obtendríamos:</p><p>En un primer momento, el código que se usó para resolver el problema fue tal que este:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>select</span> <span style=color:#f92672>*</span>,
+(<span style=color:#66d9ef>select</span> <span style=color:#66d9ef>max</span>(sales) <span style=color:#66d9ef>from</span> fact_table f <span style=color:#66d9ef>where</span> f.datekey <span style=color:#f92672>=</span> historic.datekey_14_ago) <span style=color:#66d9ef>as</span> sales_14_days_ago,
+(<span style=color:#66d9ef>select</span> <span style=color:#66d9ef>max</span>(profit) <span style=color:#66d9ef>from</span> fact_table f <span style=color:#66d9ef>where</span> f.datekey <span style=color:#f92672>=</span> historic.datekey_14_ago) <span style=color:#66d9ef>as</span> profit_14_days_ago
+<span style=color:#66d9ef>from</span> (
+    <span style=color:#66d9ef>select</span> <span style=color:#f92672>*</span>,
+    date_sub(<span style=color:#66d9ef>cast</span>(datekey  <span style=color:#66d9ef>as</span> date), <span style=color:#ae81ff>14</span>) <span style=color:#66d9ef>as</span> datekey_14_ago
+    <span style=color:#66d9ef>from</span> fact_table
+) historic</code></pre></div><p>Esto me rompió absolutamente todos los esquemas. Algunos compañeros lo veían absolutamente normal y otros estaban igual que yo.
+Investigando esta tarde encontré el nombre de este tipo de operación: <a href=https://en.wikipedia.org/wiki/Correlated_subquery>correlated subqueries</a>.
+Y aquí se explica muy bien, la consulta se evalua <strong>para cada fila</strong> del conjunto resultando y ya se apunta
+a que es una método que puede ser lento aunque yo estaba interesado en como Spark realizaba este cálculo.</p><p>Y me encontré con este pequeño plan de ejecución:</p><pre><code>== Optimized Logical Plan ==
+Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1572, max(sales)#1580L AS sales_14_days_ago#1574L, max(profit)#1582 AS profit_14_days_ago#1576]
++- Join LeftOuter, (cast(datekey#1509#1584 as date) = datekey_14_ago#1572)
+   :- Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1572, max(sales)#1580L]
+   :  +- Join LeftOuter, (cast(datekey#1509#1583 as date) = datekey_14_ago#1572)
+   :     :- Project [datekey#1509, sales#1510L, profit#1511, date_sub(cast(datekey#1509 as date), 14) AS datekey_14_ago#1572]
+   :     :  +- Relation[datekey#1509,sales#1510L,profit#1511] orc
+   :     +- Aggregate [datekey#1509], [max(sales#1510L) AS max(sales)#1580L, datekey#1509 AS datekey#1509#1583]
+   :        +- Project [datekey#1509, sales#1510L]
+   :           +- Filter isnotnull(datekey#1509)
+   :              +- Relation[datekey#1509,sales#1510L,profit#1511] orc
+   +- Aggregate [datekey#1509], [max(profit#1511) AS max(profit)#1582, datekey#1509 AS datekey#1509#1584]
+      +- Project [datekey#1509, profit#1511]
+         +- Filter isnotnull(datekey#1509)
+            +- Relation[datekey#1509,sales#1510L,profit#1511] orc
+</code></pre><p>Y en el optimized logical plan al final lo que tenemos un <strong>join por columna</strong> y una <strong>función de agrupacion por columna</strong>. Como vemos que se usa la misma condición para unir vamos a reescribir la query con un join:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>select</span> historic.<span style=color:#f92672>*</span>,
+f.sales <span style=color:#66d9ef>as</span> sales_14_days_ago,
+f.profit <span style=color:#66d9ef>as</span> profit_14_days_ago
+<span style=color:#66d9ef>from</span> (
+    <span style=color:#66d9ef>select</span> <span style=color:#f92672>*</span>,
+    date_sub(<span style=color:#66d9ef>cast</span>(datekey  <span style=color:#66d9ef>as</span> date), <span style=color:#ae81ff>14</span>) <span style=color:#66d9ef>as</span> datekey_14_ago
+    <span style=color:#66d9ef>from</span> fact_table
+) historic
+<span style=color:#66d9ef>left</span> <span style=color:#66d9ef>join</span> fact_table f
+<span style=color:#66d9ef>on</span> historic.datekey_14_ago <span style=color:#f92672>=</span> f.datekey_14_ago</code></pre></div><p>Y esto nos devuelve el siguiente plan de ejecución:</p><pre><code>== Optimized Logical Plan ==
+Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1872, sales#1878L AS sales_14_days_ago#1873L, profit#1879 AS profit_14_days_ago#1874]
++- Join LeftOuter, (cast(datekey_14_ago#1872 as string) = datekey#1877)
+   :- Project [datekey#1509, sales#1510L, profit#1511, date_sub(cast(datekey#1509 as date), 14) AS datekey_14_ago#1872]
+   :  +- Relation[datekey#1509,sales#1510L,profit#1511] orc
+   +- Filter isnotnull(datekey#1877)
+      +- Relation[datekey#1877,sales#1878L,profit#1879] orc
+</code></pre><p>Como vemos aquí solo se produce un único join y se evita todo tipo de funciones de agrupación que son realmente costosas obteniendo el mismo resultado.</p><p>En definitiva, las correlated subqueries acaban transformandose en joins y su rendimiento puede ser bastante inferior al de realizar la operación de join directamente.</p></div></div><div class=aa-navigator><div class=row><div class="col-xs-2 col-lg-3" style=text-align:right><a href=https://adrianabreu.github.io/blog/2019-11-10-empezando-en-spark-con-docker/><i class="fa fa-2x fa-arrow-left" aria-hidden=true></i></a></div><div class="col-xs-8 col-lg-6 center"></div><div class="col-xs-2 col-lg-3"><a class="btn-floating btn-large paginate-button" href=https://adrianabreu.github.io/blog/2020-05-17-depurando-hive-queries/><i class="fa fa-2x fa-arrow-right" aria-hidden=true></i></a></div></div></div></div></div></body></html>

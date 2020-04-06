@@ -1,0 +1,101 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="map[]"><title>Auto deployment en gh-pages con Travis</title><meta name=generator content="Hugo 0.68.3"><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet type=text/css href=https://adrianabreu.github.io/css/main.css><link rel=stylesheet type=text/css href=https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel=stylesheet><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script><script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]--></head><body><div id=wrap><nav class="navbar navbar-default"><div class=container><div class=navbar-header><a class=navbar-brand href=https://adrianabreu.github.io><i class="fa fa-home"></i></a></div><div id=navbar><ul class="nav navbar-nav navbar-right"><li><a href=/>INICIO</a></li><li><a href=/blog/>BLOG</a></li><li><a href=/knowledge/>KNOWLEDGE</a></li><li><a href=/archive/>ARCHIVE</a></li></ul></div></div></nav><div class=container><div class=aa-blogpost><div class=aa-blogpost-header><div class=aa-blogpost-header_title><a href=/blog/2017-08-04-autodeploy-con-travis/>Auto deployment en gh-pages con Travis</a></div><div class=aa-blogpost-header_date>04-08-2017</div></div></div><div class=aa-blogpost-content><p>Una de las mejores características de github sin duda alguna, son las <a href=https://pages.github.com/>gh-pages</a>.</p><p>Las gh-pages nos permiten desplegar el código de nuestra aplicación frontend a través de esta rama, de tal forma que muchos de nuestros proyectos (por ejemplo este blog) estén disponibles sin tener limitaciones de hosting.</p><p>Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar.</p><p>¡Pero todo esto puede automatizarse mediante el uso de travis! <a href=https://travis-ci.org/>Travis</a> es una herramienta gratuita* que permite hacer integración continua (es la responsable de las famosas notas de la build).</p><p>Como el procedimiento de activación de la cuenta es muy sencillo y hay decenas de tutoriales, voy a centrarme en el aspecto del deploy, que es lo realmente importante. Para ello usaré un script de gist y lo explicaré detalladamente:</p><p><a href=https://gist.github.com/domenic/ec8b0fc8ab45f39403dd>Fuente</a></p><pre><code>#!/bin/bash
+set -e # Exit with nonzero exit code if anything fails
+
+SOURCE_BRANCH=&quot;master&quot;
+TARGET_BRANCH=&quot;gh-pages&quot;
+
+function doCompile {
+  ./compile.sh
+}
+
+# Pull requests and commits to other branches shouldn't try to deploy, just build to verify
+if [ &quot;$TRAVIS_PULL_REQUEST&quot; != &quot;false&quot; -o &quot;$TRAVIS_BRANCH&quot; != &quot;$SOURCE_BRANCH&quot; ]; then
+    echo &quot;Skipping deploy; just doing a build.&quot;
+    doCompile
+    exit 0
+fi
+
+# Save some useful information
+REPO=`git config remote.origin.url`
+SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+SHA=`git rev-parse --verify HEAD`
+
+# Clone the existing gh-pages for this repo into out/
+# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
+git clone $REPO out
+cd out
+git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+cd ..
+
+# Clean out existing contents
+rm -rf out/**/* || exit 0
+
+# Run our compile script
+doCompile
+
+# Now let's go have some fun with the cloned repo
+cd out
+git config user.name &quot;Travis CI&quot;
+git config user.email &quot;$COMMIT_AUTHOR_EMAIL&quot;
+
+# If there are no changes to the compiled out (e.g. this is a README update) then just bail.
+if git diff --quiet; then
+    echo &quot;No changes to the output on this push; exiting.&quot;
+    exit 0
+fi
+
+# Commit the &quot;changes&quot;, i.e. the new version.
+# The delta will show diffs between new and old versions.
+git add -A .
+git commit -m &quot;Deploy to GitHub Pages: ${SHA}&quot;
+
+# Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
+ENCRYPTED_KEY_VAR=&quot;encrypted_${ENCRYPTION_LABEL}_key&quot;
+ENCRYPTED_IV_VAR=&quot;encrypted_${ENCRYPTION_LABEL}_iv&quot;
+ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
+ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
+openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../deploy_key.enc -out ../deploy_key -d
+chmod 600 ../deploy_key
+eval `ssh-agent -s`
+ssh-add deploy_key
+
+# Now that we're all set up, we can push.
+git push $SSH_REPO $TARGET_BRANCH
+</code></pre><p>Revisemos poco a poco que hace este script:</p><pre><code>function doCompile {
+  ./compile.sh
+}
+</code></pre><p>Esta función se encargará de compilar nuestro código, para un proyecto tipico quedaría</p><pre><code>function doCompile {
+  npm run build
+}
+</code></pre><p>Saltaré las siguientes comprobaciones por son lo propio que explica el comentario, me centraré en este bloque:</p><pre><code>git clone $REPO out
+cd out
+git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+cd ..
+</code></pre><p><strong>out</strong> representa el directorio de salida de la compilación, en mi caso es dist, asi que lo modifico.</p><pre><code>git clone $REPO dist
+cd dist
+git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+cd ..
+</code></pre><p>¿Qué es lo que hace? Clona nuestro repositorio de nuevo en la carpeta de salida de nuestra build, se mete en ella y cambia de rama, de esta forma nuestra carpeta de salida estará vinculada a nuestra rama de gh-pages. En caso de que la rama no exista utiliza el parámetro <code>--orphan</code>.</p><p>Este parámetro es realmente interesante. Cuando creamos una rama en git normalmente partimos de un commit inicial. Por ejemplo.</p><pre><code>master: A ----- B ----- C
+                 \
+gh-pages:         \----- D 
+</code></pre><p>Sin embargo, cuando le decimos que es de tipo <code>orphan</code> lo que hace es crear una rama totalmente desvinculada que tiene su propio initial commit y sus ficheros no están relacionados.</p><pre><code>master:   A ----- B ----- C
+
+gh-pages: D ----- E ----- F 
+</code></pre><p>Esto es precisamente lo que necesitamos para la rama de gh-pages, ya que solo va a incluir los ficheros de la carpeta de salida.</p><p>Bien, el resto en general parece bastante claro, asi que pasemos a la parte final:</p><pre><code># Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
+ENCRYPTED_KEY_VAR=&quot;encrypted_${ENCRYPTION_LABEL}_key&quot;
+ENCRYPTED_IV_VAR=&quot;encrypted_${ENCRYPTION_LABEL}_iv&quot;
+ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
+ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
+openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../deploy_key.enc -out ../deploy_key -d
+chmod 600 ../deploy_key
+eval `ssh-agent -s`
+ssh-add deploy_key
+</code></pre><p>Con el objetivo de mejorar la seguridad utilizaremos un deploy_key. Lo que vamos a hacer es lo siguiente:</p><ol><li><p>Generar una nueva clave de ssh <code>ssh-keygen -t rsa -b 4096 -C "tu@email.com"</code></p></li><li><p>Añadir la clave pública al repositorio en cuestión en la sección de <strong>&ldquo;Deploy keys&rdquo;</strong>.</p></li><li><p>Ahora es necesario que publiquemos nuestra clave privada en el repositorio, cosa que no es muy segura, asi que vamos a utilizar el <a href=https://github.com/travis-ci/travis.rb>cliente de travis</a>. Nos logueamos utilizando <code>travis login</code> y utilizamos la utilidad <code>travis encrypt-file</code>.</p></li><li><p>La idea es generar el fichero <code>deploy_key.enc</code> que utilizaremos en el script. A la salida nos saldrá un comando ssl que deberemos añadir, pero el script se preocupa de ello por nosotros, asi que solo necesitamos la cadena que sale entre _. Por ejemplo de <code>$encrypted_0a6446eb3ae3_key</code> necesitamos <code>0a6446eb3ae3</code>. Esta variable se irá al fichero .travis.yml.</p></li><li><p>Añadimos un fichero .travis.yml</p></li></ol><pre><code>language: generic # don't install any environment
+
+script: bash ./deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: &quot;&lt;.... encryption label from previous step ....&gt;&quot;
+  - COMMIT_AUTHOR_EMAIL: &quot;you@example.com&quot;
+</code></pre><p>Donde el encription label es la clave que hemos sacado del pasado anterior y el author email nuestro email.</p><p>Con todo esto listo, cuando hagamos el próximo push a master, nuestro proyecto se compilará automáticamente y subirá el resultado a gh-pages.</p><p>Si queréis ver algún ejemplo ahora mismo tengo dos proyectos utilizando esta configuración:
+<a href=https://github.com/etsiiull/SIMDE>SIMDE</a> y <a href=https://github.com/adrianabreu/chuck-norris-angular-client>Chuck Norris Angular Client</a></p><p>Espero que esto fomente la creación de muchísimos proyectos nuevos y que os animéis.</p><p>* Gratuita con limitaciones, ya que no permite hacer la gestión de los repositorios privados si no &ldquo;aflojas pasta&rdquo;.</p></div></div><div class=aa-navigator><div class=row><div class="col-xs-2 col-lg-3" style=text-align:right><a href=https://adrianabreu.github.io/blog/2017-08-14-angular-series-i-transclusion/><i class="fa fa-2x fa-arrow-left" aria-hidden=true></i></a></div><div class="col-xs-8 col-lg-6 center"></div><div class="col-xs-2 col-lg-3"><a class="btn-floating btn-large paginate-button" href=https://adrianabreu.github.io/blog/2017-07-28-mi-experiencia-con-react/><i class="fa fa-2x fa-arrow-right" aria-hidden=true></i></a></div></div></div></div></div></body></html>
