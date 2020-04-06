@@ -1,1 +1,0 @@
-../../hugo/hugo.exe serve
