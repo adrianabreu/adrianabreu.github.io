@@ -1,7 +1,7 @@
 baseurl = "https://adrianabreu.github.io"
 languageCode = "es-ES"
 title = "Adrián Abreu"
-theme = "hugo-sustain"
+theme = "hugo-sustain-mod"
 Paginate = 8
 Copyright = "2017 Adrián Abreu"
 
