@@ -1,7 +1,7 @@
 +++
 Description = ""
-date = "2019-05-17T22:43:32Z"
-title = "Estructuras de datos funcionales"
+date = "2020-04-27T20:55:32Z"
+title = "Scala best practices notes"
 +++
 
 He aprovechado estos días de cuarentena para revisar algunos de los "huecos" de conocimiento que tenía en Scala. Una de las charlas que he podido ver es esta: [Scala best practices I wish someone'd told me about - Nicolas Rinaudo](https://www.youtube.com/watch?v=DGa58FfiMqc)
