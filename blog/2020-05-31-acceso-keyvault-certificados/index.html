@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="map[]"><title>Acceso al keyvault mediante certificados</title><meta name=generator content="Hugo 0.72.0"><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet type=text/css href=https://adrianabreu.github.io/css/main.css><link rel=stylesheet type=text/css href=https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel=stylesheet><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script><script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]--></head><body><div id=wrap><nav class="navbar navbar-default"><div class=container><div class=navbar-header><a class=navbar-brand href=https://adrianabreu.github.io><i class="fa fa-home"></i></a></div><div id=navbar><ul class="nav navbar-nav navbar-right"><li><a href=/>INICIO</a></li><li><a href=/blog/>BLOG</a></li><li><a href=/knowledge/>KNOWLEDGE</a></li><li><a href=/archive/>ARCHIVE</a></li></ul></div></div></nav><div class=container><div class=aa-blogpost><div class=aa-blogpost-header><div class=aa-blogpost-header_title><a href=/blog/2020-05-31-acceso-keyvault-certificados/>Acceso al keyvault mediante certificados</a></div><div class=aa-blogpost-header_date>30-05-2020</div></div></div><div class=aa-blogpost-content><p>En el proceso de migración de una aplicación de webjob a azure batch, nos encontramos con la problemática de gestionar los secretos. El servicio de batch se encarga de recoger una aplicación de un storage y hacer ejecuciones de ellas (tasks) en unas máquinas concretas (pool).</p><p>Para poder gestionar los secretos de la aplicación, estos estaban guardados en keyvault. Y teníamos que acceder de forma segura a ello. Por eso optamos por utilizar la autenticación via certificado. La idea de este tutorial es reproducir los mismos pasos que he usado yo para poder usar este certificado.</p><p>El objetivo es conseguir recuperar este secreto desde keyvault:</p><img src=/images/acceso-keyvault/1.png class=img-responsive><p>Lo primero es generar un certificado en la sección de <strong>Certificados</strong> de keyvault.</p><p>Lo generaremos de tipo <strong>pfx</strong>.</p><p>Y lo habilitaremos (simplemente hacer click en el certificado y marcarlo como habilitado).</p><img src=/images/acceso-keyvault/2.png class=img-responsive><p>Exportamos el certificado en formato .cer.</p><p>Ahora registraremos una aplicación en el directorio activo y le asociaremos este certificado:</p><img src=/images/acceso-keyvault/3.png class=img-responsive><p>Por último, le daremos permisos a esta aplicación para gestionar los secretos en la sección de <strong>Access Policies</strong> del keyvault.</p><img src=/images/acceso-keyvault/4.png class=img-responsive><p>Llega el momento de probar todo lo que hemos configurado. Exportamos el certificado en formato pfx y lo instalamos en nuestra máquina.
+Ahora nos falta el código para acceder:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>using</span> Microsoft.Extensions.Configuration;
+<span style=color:#66d9ef>using</span> System;
+<span style=color:#66d9ef>using</span> System.Linq;
+<span style=color:#66d9ef>using</span> System.Security.Cryptography.X509Certificates;
+
+<span style=color:#66d9ef>namespace</span> testkeyvaultsecret
+{
+    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+    {
+        <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main(<span style=color:#66d9ef>string</span>[] args)
+        {
+            <span style=color:#66d9ef>var</span> configurationBuilder = <span style=color:#66d9ef>new</span> ConfigurationBuilder();
+
+            <span style=color:#66d9ef>var</span> store = <span style=color:#66d9ef>new</span> X509Store(StoreLocation.CurrentUser);
+            store.Open(OpenFlags.ReadOnly);
+
+            <span style=color:#66d9ef>var</span> thumbprint = <span style=color:#e6db74>&#34;CERTIFICATE_THUMBPRINT&#34;</span>;
+
+            <span style=color:#66d9ef>var</span> cert = store.Certificates.Find(X509FindType.FindByThumbprint, thumbprint, <span style=color:#66d9ef>false</span>)
+                                         .OfType&lt;X509Certificate2&gt;().SingleOrDefault();
+
+            <span style=color:#66d9ef>if</span> (cert == <span style=color:#66d9ef>null</span>) <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Exception(<span style=color:#e6db74>&#34;No Certificate found&#34;</span>);
+
+            configurationBuilder.AddAzureKeyVault
+                                (<span style=color:#e6db74>&#34;KEY_VAULT_URL&#34;</span>,
+                                <span style=color:#e6db74>&#34;AAD_CLIENT_IDS&#34;</span>,
+                                cert);
+
+            <span style=color:#66d9ef>var</span> config = configurationBuilder.Build();
+
+            Console.WriteLine(config[<span style=color:#e6db74>&#34;mysecret&#34;</span>]);
+            Console.ReadKey();
+        }
+    }
+}
+</code></pre></div><p>Y este es el resultado:</p><img src=/images/acceso-keyvault/5.png class=img-responsive><p>Voilá.</p><p>Espero que esto os haya servido :) Para cualquier duda o sugerencia podeis contactarme por twitter o email.</p></div></div><div class=aa-navigator><div class=row><div class="col-xs-2 col-lg-3" style=text-align:right></div><div class="col-xs-8 col-lg-6 center"></div><div class="col-xs-2 col-lg-3"><a class="btn-floating btn-large paginate-button" href=https://adrianabreu.github.io/blog/2020-04-27-scala-best-practices-nicolas-rinaudo/><i class="fa fa-2x fa-arrow-right" aria-hidden=true></i></a></div></div></div></div></div></body></html>
