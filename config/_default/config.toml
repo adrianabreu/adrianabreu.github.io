@@ -1,15 +1,29 @@
 baseurl = "https://adrianabreu.github.io"
 languageCode = "es-ES"
 title = "Adrián Abreu"
-theme = "hugo-sustain-mod"
+theme = "kiss"
 Paginate = 8
-Copyright = "2017 Adrián Abreu"
+copyright = "2017 Adrián Abreu powered by Hugo and Kiss Theme"
+enableRobotsTXT = true
+
+[markup.goldmark.renderer]
+unsafe= true
+
+[params.rss] # Adding this tag enables RSS feed
+includeContent = true # Includes whole content in rss
+authorName = "Adrian Abreu" # Author full name
+authorEmail = "aabreuglez@gmail.com" # Author email
+
+[params.info]
+adsense = "" # Adsense ID (ID only, without ca-pub-)
+enableSocial = true # Adds OpenGraph and Twitter cards
+homeTitle = "Adrian Abreu Data Engineer Blog" # Title for home page
 
 [params.social]
-  Twitter = "aabreuglez"
-  Github = "adrianabreu"
-  Linkedin = "AdrianAbreu"
-  Email = "me@adrianabreu.com"
+  twitter = "aabreuglez"
+  github = "adrianabreu"
+  linkedin = "AdrianAbreu"
+  Email = "aabreuglez@gmail.com"
  
  [permalinks]
   post = "/:year/:month/:day/:slug"
@@ -35,3 +49,6 @@ Copyright = "2017 Adrián Abreu"
   weight = 100
   identifier = 4
   url = "/archive/"
+
+  [params.social.config]
+platforms = ["github","twitter","email","linkedin"]
