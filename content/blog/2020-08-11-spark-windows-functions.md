@@ -45,18 +45,16 @@ Para esto hay que entender las tres partes que componen la función de ventana:
 
 * **Partitioning**: En base a una expresión las filas con este criterio se “mueven” a un mismo conjunto (partición). No reduce los valores a únicos, como haría un group by. Si no se específica una cláusula de partitioning, se considera que todas las filas pertenencen a la misma partición. 
 
-* **Ordering**: Dentro de cada partición podemos ordenar las filas, se debe notar que esto no necesariamente ordena el resultado final, pues el ordenamiento es local. El mejor ejemplo de uso son las funciones de rank: row_number, rank, dense_rank....  
+* **Ordering**: Dentro de cada partición podemos ordenar las filas, es decir podemos hacer un ordenamiento es local. El mejor ejemplo de uso de este ordenamiento son las funciones de rank: row_number, rank, dense_rank....  
 
-* **Framing**: Una vez hemos determinado la partición, para algunas funciones podemos “restringir” los valores sobre los que actuará la ventana. Existen dos modos de hacerlo, uno es el modo *rows*, que trata cada fila como un valor único, el otro es *range*, que se apoya en el order by. Para mi la forma de entenderlo ha sido pensar en el rank, a dos valores iguales de order by, les corresponde el mismo valor de rank, puen en este caso la ventana les asigna el mismo valor calculado. 
+* **Framing**: Una vez hemos determinado la partición, para algunas funciones podemos “restringir” los valores sobre los que actuará la ventana. Existen dos modos de hacerlo, uno es el modo *rows*, que trata cada fila como un valor único, el otro es *range*, que se apoya en el order by. Para mi la forma de entenderlo ha sido pensar en el rank, a dos valores iguales de order by, les corresponde el mismo valor de rank, pues en este caso la ventana les asigna el mismo valor calculado. 
 
-
-![Partes de una función de ventana](/images/windowsparts.png)
 
 En el paper de Viktor Leis [1], se proporciona una imagen que da un buen contexto: 
 
- 
+![Partes de una función de ventana](/images/windowsparts.png)
 
-Y con esto definido podemo susar una windows function para resolver el problema.  
+Y con esto definido podemos usar una windows function para resolver el problema.  
 
 Lo primero que haremos será simplemente unir los dos usuarios: 
 
@@ -76,14 +74,35 @@ Nos interesa una ventana en la que cuya partición englobe a todas las filas, es
 
 Ahora ordenaremos las filas por datekey de manera ascendente 
 
+`val w1 = Window.partitionBy().orderBy(col(“DateKey”).asc)`
+
+Realmente esto es equivalente a su valor por defecto de no poner el partitionBy, quedando así:
+
 `val w1 = Window.orderBy(col(“DateKey”).asc)`
+
 
 Y por ultimos nos falta definir el frame que determine que filas hemos de coger. Como no hay duplicados será indistinto. [3]
 
-`val w1 = Window.orderBy(col(“DateKey”).asc).rowsBetween(Window.unboundedPreceding, Window.currentRow)`
+`val w1 = Window.orderBy(col(“DateKey”).asc).rangeBetween(Window.unboundedPreceding, Window.currentRow)`
 
- 
-Ahora podemos aplicar a nuestro dataframe la funcion de ventana a través de un select por ejemplo
+Y de nuevo, nos encontramos utilizando el valor por defecto de framing.  
+Si revisamos un plan de ejecución podemos ver el *windowsspecdefinition*:
+
+```
+windowspecdefinition(day1#50 ASC NULLS FIRST, specifiedwindowframe(RangeFrame, unboundedpreceding$(), currentrow$())) AS
+```
+
+Y con la versión simplificada
+
+`val w1 = Window.orderBy(col(“DateKey”).asc)`
+
+Obtenemos el mismo plan
+
+```
+specifiedwindowframe(RangeFrame, unboundedpreceding$(), currentrow$())) AS
+```
+
+Ahora podemos aplicar a nuestro dataframe la funcion de ventana a través de un select por ejemplo.
 
  
 ```
