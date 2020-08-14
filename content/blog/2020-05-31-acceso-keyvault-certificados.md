@@ -2,6 +2,7 @@
 Description = ""
 date = "2020-05-30T19:52:32Z"
 title = "Acceso al keyvault mediante certificados"
+tags = ["Azure", "KeyVault"]
 +++
 
 En el proceso de migración de una aplicación de webjob a azure batch, nos encontramos con la problemática de gestionar los secretos. El servicio de batch se encarga de recoger una aplicación de un storage y hacer ejecuciones de ellas (tasks) en unas máquinas concretas (pool).

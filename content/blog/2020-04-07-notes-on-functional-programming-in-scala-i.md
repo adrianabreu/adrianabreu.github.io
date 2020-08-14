@@ -2,6 +2,7 @@
 Description = ""
 date = "2020-04-06T18:22:32Z"
 title = "Notas sobre programación funcional en Scala I"
+tags = ["Scala", "FP"]
 +++
 
 Hace unos días pude comprarme el [libro de Paul Chiusano y Rúnar Bjarnason: Functional Programming in scala](https://www.amazon.es/Functional-Programming-Scala-Paul-Chiusano/dp/1617290653) y no puedo estar más contento con él.

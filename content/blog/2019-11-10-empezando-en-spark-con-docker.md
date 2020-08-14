@@ -2,6 +2,7 @@
 Description = ""
 date = "2019-11-09T19:22:32Z"
 title = "Empezando en Spark con Docker"
+tags = ["Spark", "Docker"]
 +++
 
 

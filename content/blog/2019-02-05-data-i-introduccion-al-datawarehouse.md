@@ -2,6 +2,7 @@
 Description = ""
 date = "2019-02-05T14:43:32Z"
 title = "Datos I - Introducción al Datawarehousing"
+tags = ["Analytics", "SQL"]
 +++
 
 En los últimos meses mi trabajo ha pivotado del mundo de la web al mundo de los datos. He entrado a participar en un proyecto de Data Warehouse y he acabado muy contento en él. Hace unos días mi cambio se oficializó completamente y ahora me he dado cuenta de que no solo tengo un mundo técnico ante mí, sino que además necesito consolidar algunas bases teóricas.

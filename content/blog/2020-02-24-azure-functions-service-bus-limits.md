@@ -2,6 +2,7 @@
 Description = ""
 date = "2020-02-24T19:22:32Z"
 title = "Límites en azure functions para procesos de larga duración"
+tags = ["Azure"]
 +++
 
 Estas últimas semanas he tenido que implementar ciertas mejoras en un proyecto. El objetivo era muy simple, conectar el proyecto a una aplicación de datawarehousing existente, y de forma externa, realizar agregados y luego aplicar cierto procesamiento para un servicio en particular.

@@ -2,6 +2,7 @@
 Description = ""
 date = "2019-09-26T20:43:32Z"
 title = "Correlated subqueries"
+tags = ["Spark", "Analytics", "SQL"]
 +++
 
 Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había "endemoniado" al join considerarlo perjudicial.

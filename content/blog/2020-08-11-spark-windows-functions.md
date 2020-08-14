@@ -2,6 +2,7 @@
 Description = ""
 date = "2020-08-11T18:52:32Z"
 title = "Spark windows functions (I)"
+tags = ["Spark", "Analytics", "SQL"]
 +++
 
 En analítica, es muy común hacer uso de las funciones de ventana para distintos cálculos. Hace poco me encontré con un pequeño problema cuya solución mejoró muchísimo al usar las funciones de ventana, demos un poco de contexto.  
