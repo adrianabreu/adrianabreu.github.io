@@ -11,19 +11,17 @@ Tenemos una dimensión de usuarios donde los usuarios se van registrando con una
 Y lo que queremos dar es una visión de cómo cada día evoluciona el programa, para ello se quiere que cada día estén tanto las ventas acumuladas como los registros acumulados. 
 
 Asumamos que no hay ninguna dimensión de fecha y que solo contamos con estos datos, no es necesario mostrar datos en fechas en los que no ha ocurrido nada. 
-  
-| DateKey  | Sales  |
-| -------  | ------ |
-| 1 | 2 |
-| 2 | 3 | 
-| 3 | 5 | 
-
 
 | DateKey | Users |
 | ------- | ----- |
 | 1 |  2 | 
 | 3 |  1 | 
 
+| DateKey  | Sales  |
+| -------  | ------ |
+| 1 | 2 |
+| 2 | 3 | 
+| 3 | 5 | 
 
 Y lo que queremos obtener sería algo como esto:     
 
@@ -32,8 +30,6 @@ Y lo que queremos obtener sería algo como esto:
 | 1 | 2 | 2 | 
 | 2 | 5 | 2 | 
 | 3 | 10 | 3 | 
-
-  
 
 Para este problema con las herramientas habituales acababa generando un “monstruo” de tabla temporal que superaba con creces el tamaño de la tabla final, solo para tener acceso a otras filas mientras trabajaba con ellas.                                         
 
@@ -58,7 +54,9 @@ Y con esto definido podemos usar una windows function para resolver el problema.
 
 Lo primero que haremos será simplemente unir los dos usuarios: 
 
-`val df = sales.join(users, Seq(“DateKey”), “left”)`
+```scala
+val df = sales.join(users, Seq(“DateKey”), “left”)
+```
 
 Ahora, tendriamos todos los datos tal que así: 
 
@@ -68,22 +66,28 @@ Ahora, tendriamos todos los datos tal que así:
 | 2 | 3 | null |
 | 3 | 5 | 1 | 
 
-Para poder general una función de ventana, tenemos que importar el paquete: `org.apache.spark.sql.expressions.Window` 
+Para poder general una función de ventana, tenemos que importar el paquete: `org.apache.spark.sql.expressions.Window`
 
 Nos interesa una ventana en la que cuya partición englobe a todas las filas, es decir, que no haya particionado. 
 
 Ahora ordenaremos las filas por datekey de manera ascendente 
 
-`val w1 = Window.partitionBy().orderBy(col(“DateKey”).asc)`
+```scala
+val w1 = Window.partitionBy().orderBy(col(“DateKey”).asc)
+```
 
 Realmente esto es equivalente a su valor por defecto de no poner el partitionBy, quedando así:
 
-`val w1 = Window.orderBy(col(“DateKey”).asc)`
+```scala
+val w1 = Window.orderBy(col(“DateKey”).asc)
+```
 
 
 Y por ultimos nos falta definir el frame que determine que filas hemos de coger. Como no hay duplicados será indistinto. [3]
 
-`val w1 = Window.orderBy(col(“DateKey”).asc).rangeBetween(Window.unboundedPreceding, Window.currentRow)`
+```scala
+val w1 = Window.orderBy(col(“DateKey”).asc).rangeBetween(Window.unboundedPreceding, Window.currentRow)
+```
 
 Y de nuevo, nos encontramos utilizando el valor por defecto de framing.  
 Si revisamos un plan de ejecución podemos ver el *windowsspecdefinition*:
@@ -94,26 +98,24 @@ windowspecdefinition(day1#50 ASC NULLS FIRST, specifiedwindowframe(RangeFrame, u
 
 Y con la versión simplificada
 
-`val w1 = Window.orderBy(col(“DateKey”).asc)`
+```scala
+val w1 = Window.orderBy(col(“DateKey”).asc)
+```
 
 Obtenemos el mismo plan
 
-```
+```scala
 specifiedwindowframe(RangeFrame, unboundedpreceding$(), currentrow$())) AS
 ```
 
 Ahora podemos aplicar a nuestro dataframe la funcion de ventana a través de un select por ejemplo.
 
  
-```
+```scala
 df.select( 
-
     col(“DateKey”) 
-
     sum(“sales”) over w1 as "AccumulatedSales" 
-
     sum(“users”) over w1 as "AccumulatedUsers" 
-
 ) 
 ```
 
