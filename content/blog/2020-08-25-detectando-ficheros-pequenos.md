@@ -21,6 +21,9 @@ Nota: Este ajuste se hizo en base al tipo de dato que se trataba.
 El código es el siguiente:
 
 ```scala
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 class FilesCategory(val smallSize: Int, val mediumSize: Int, val bigSize: Int) {
   override def  toString() = {
     s"Small: ${smallSize} Medium: ${mediumSize} Big: ${bigSize}, percentage of files smaller than 30mb is ${(smallSize + mediumSize) * 100 / (smallSize + mediumSize + bigSize)} %"
@@ -33,8 +36,8 @@ object EntityFilesInfo {
     def readFiles(from: String, to: String, entity:String): FilesCategory = {
       val parsedFrom = LocalDate.parse(from, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
       val parsedTo =  LocalDate.parse(to, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-      val dates = TimeRange(parsedFrom, parsedTo).days
-      val files = dates.map(d => generatePath(d)).filter(p => checkIfPathExists(p)).map(p => dbutils.fs.ls(p)).reduce(_ ++ _) 
+      val dates = for (i <- 0 to (parsedTo.toEpochDay - parsedFrom.toEpochDay).toInt) yield parsedFrom.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+      val files = dates.map(d => generatePath(entity, d)).filter(p => checkIfPathExists(p)).map(p => dbutils.fs.ls(p)).reduce(_ ++ _) 
       val validFiles = files.filter(f => f.name.startsWith("part"))
       val smallFiles = validFiles.filter(f => f.size <= smallSize).length
       val mediumFiles = validFiles.filter(f => f.size > smallSize && f.size <= mediumSize).length
@@ -42,7 +45,7 @@ object EntityFilesInfo {
       new FilesCategory(smallFiles, mediumFiles, bigFiles)
     }
   
-  def generatePath(d: String): String = s"adl://datalake.azuredatalakestore.net/${entity}/datekey=${d}"
+  def generatePath(entity: String, d: String): String = s"adl://datalake.azuredatalakestore.net/${entity}/datekey=${d}"
   
   def checkIfPathExists(p: String): Boolean = {
      try {
@@ -55,6 +58,8 @@ object EntityFilesInfo {
   }
 }
 ```
+
+**¡No os olvidéis de poner el path de datalake que corresponda así como la estructura que mejor se ajuste a vuestras entidades!**
 
 Como veis es muy sencillo, nuestra entidad está particionada por días y lo único que hacemos es recorrer cada uno de los path que generamos a partir de un rango temporal. Así, contamos cuantos ficheros hay de cada tipo. Además se hace una pequeña validación para que no haya problemas de encontrar algún path inválido.
 
