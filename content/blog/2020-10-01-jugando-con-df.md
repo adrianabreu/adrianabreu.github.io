@@ -23,6 +23,8 @@ Este proceso nos permitía trabajar con dos versiones del proyecto en lo que hac
 
 Pues todas esta arquitectura se ha simplificado en: **Data Factory.**
 
+![Arquitectura actual](/images/data-factory/simplified-architecture.png)
+
 Lo primero que teníamos que resolver era el renombrado del fichero. Al final desde la propia API de hadoop se puede realizar este renombrado sin atacar directamente a la implementación por debajo.
 
 Ahora, tenemos que construir nuestra pipeline de data factory. 
@@ -95,7 +97,7 @@ sourcePath - @trigger().outputs.body.folderPath
 sourceName - @trigger().outputs.body.fileName
 ```
 
-Ahora configuraremos el blob trigger. Añadimos un sufijo para que no nos molesten los otros ficheros, solo los nuestros:
+Ahora configuraremos el blob trigger. Añadimos un sufijo para que no nos molesten los otros ficheros (incluyendo el primer fichero que escribiremos desde spark previo al renombrado):
 
 ![Arquitectura actual](/images/data-factory/trigger-conf.png)
 
@@ -103,7 +105,7 @@ Ahora configuraremos el blob trigger. Añadimos un sufijo para que no nos molest
 Ya tenemos nuestra pipeline en marcha, si subimos un fichero podremos monitorizar como este se envia al ftp.
 
 
-Sin embargo, antes comenté que dependiendo del fichero tenía que usar unas credenciales u otras. Y aquí es donde se complica un poco la cosa.
+Sin embargo, antes comenté que dependiendo del fichero tenía que usar unas credenciales u otras. Y aquí es donde la cosa se complica
 
 Para que entendamos el problema, quiero que el fichero que acabe en **PL_POC.csv.gz** coja las credenciales asociadas a "PL". De tal manera que haya un usuario por país en un modelo internacional.
 
