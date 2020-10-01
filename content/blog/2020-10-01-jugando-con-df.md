@@ -32,7 +32,7 @@ Ahora, tenemos que construir nuestra pipeline de data factory.
 Lo primero que haremos será configurar los linked services, en nuestro caso son tres:
 
 1. El storage del que vamos a extraer los ficheros.
-2. El sftp al que queremos atacar.
+2. El sftp al que queremos atacar. Como curiosidad este servicio requiere de un "Integration Runtime" que actuará de puente para esta tarea. Yo he configurado una máquina en West Europe con los parámetros por defecto.
 3. El key vault del que queremos recuperar la contraseña. (¡No nos olvidemos de dar permisos de acceso a los secretos a la aplicación de data factory en el azure active directory!) y le ponemos los datos por ahora de manera estática.
 
 La configuración de los mismos es muy visual y no requiere nada en especial.
@@ -189,9 +189,11 @@ Ahora podemos añadir un if que se encargue de validar de que haya un resultado,
 
 ![Pipeline Final](/images/data-factory/pipeline-final.png)
 
-Ahora, como último paso me he encontrado con una degradación del rendimiento, en la solución creada en Azure Batch el tiempo estimado para enviar 2GB era de ~20 minutos. En mi primera prueba, he acabado tardando 2 horas aproximadamente.
+Ahora, como último paso me he encontrado con una degradación del rendimiento, en la solución creada en Azure Batch el tiempo estimado para enviar 2GB era de ~30 minutos. En mi primera prueba, he acabado tardando 2 horas aproximadamente.
 
-Hay una sección dedicada a esto en la documentación de microsoft. 
+Hay una sección dedicada a esto en la documentación de microsoft. Básicamente monitorzando la actividad me di cuenta de que el problema estaba en el sink write, y recurriendo a esta guia de microsoft movi el integration runtime de región a East US, donde estaba alojado el sftp de destino.
+
+¿El resultado? Un tiempo de 25 minutos, mejor que en mi solución del batch.
 
 
 

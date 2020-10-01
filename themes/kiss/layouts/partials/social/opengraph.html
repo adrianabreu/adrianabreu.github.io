@@ -11,7 +11,7 @@
 '>
 
 {{- with .Params.image -}}
-    <meta property='og:image' content='{{ . | absURL }}'>
+    <meta property='og:image' content='/avatar.png'>
 {{- else -}}
 {{- with .Site.Params.Social.email -}}
     <meta property='og:image' content='https://www.gravatar.com/avatar/
