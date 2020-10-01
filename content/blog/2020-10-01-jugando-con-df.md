@@ -19,7 +19,7 @@ En un flujo muy sencillo sería esto:
 3. Esta function de gateway se encarga de realizar las llamadas necesarias a la api de Azure para generar una tarea en el batch.
 4. El batch se encarga de comprimir el fichero y enviarlo al sftp del cliente, recuperando las credenciales según el tipo de fichero que se trate. 
 
-Este proceso nos permitía trabajar con dos versiones del proyecto en lo que hacíamos la migranción a la nueva versión. Ahora que esta ya está consolidada y hemos conseguido además que el cliente use la compresión de gzip que podemos escribir directamente desde spark.
+Este proceso nos permitía trabajar con dos versiones del proyecto en lo que hacíamos la migración a la nueva versión. Ahora que la nueva versión ya está consolidada y hemos conseguido además que el cliente utilice un formato de compresión que podemos escribir directamente desde spark sin recurrir al batch, es el momento de cambiar la arquitectura de transferencia de datos.
 
 Pues todas esta arquitectura se ha simplificado en: **Data Factory.**
 
