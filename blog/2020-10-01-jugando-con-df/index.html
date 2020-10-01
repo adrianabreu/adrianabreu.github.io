@@ -1,0 +1,97 @@
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml lang=es-es><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Jugando con Data Factory | Adrián Abreu</title><meta property="og:title" content="Jugando con Data Factory - Adrián Abreu"><meta property="og:description" content="Sorprendentemente, hasta ahora, no había tenido la posibilidad de trabajar con data factory, sólo lo habia usado para algunas migraciones de datos.
+Sin embargo, tras estabilizar un proyecto y consolidar su nueva etapa, necesitabamos simplificar la solución implementada para migrar datos.
+Una representación sencilla de la arquitectura actual sería:
+En un flujo muy sencillo sería esto:
+ La etl escribe un fichero csv con spark en un directorio de un blob storage."><meta property="og:url" content="https://adrianabreu.github.io/blog/2020-10-01-jugando-con-df/"><meta property="og:site_name" content="Adrián Abreu"><meta property="og:type" content="article"><meta property="og:image" content="https://www.gravatar.com/avatar/9fda37f7195de6954a6d4f525eff01ee?s=256"><meta property="article:section" content="Blog"><meta property="article:tag" content="Data Factory"><meta property="article:published_time" content="2020-10-01T10:12:32Z"><meta property="article:modified_time" content="2020-10-01T10:12:32Z"><meta name=twitter:card content="summary"><meta name=twitter:site content="@aabreuglez"><meta name=twitter:creator content="@aabreuglez"><link href=https://adrianabreu.github.io/index.xml rel=alternate type=application/rss+xml title="Adrián Abreu"><link rel=stylesheet href=/css/style.css><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://adrianabreu.github.io/blog/2020-10-01-jugando-con-df/><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"></head><body><section class=section><div class=container><nav id=nav-main class=nav><div id=nav-name class=nav-left><a id=nav-anchor class=nav-item href=https://adrianabreu.github.io><h1 id=nav-heading class="title is-4">Adrián Abreu</h1></a></div><div class=nav-right><nav id=nav-items class="nav-item level is-mobile"><a class=level-item aria-label=github href=https://github.com/adrianabreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77a5.44 5.44.0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></i></span></a><a class=level-item aria-label=twitter href=https://twitter.com/aabreuglez target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></i></span></a><a class=level-item aria-label=email href=mailto:aabreuglez@gmail.com target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></i></span></a><a class=level-item aria-label=linkedin href=https://linkedin.com/in/AdrianAbreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path stroke-width="1.8" d="m5.839218 4.101561c0 1.211972-.974141 2.194011-2.176459 2.194011S1.4863 5.313533 1.4863 4.101561c0-1.211094.974141-2.194011 2.176459-2.194011s2.176459.982917 2.176459 2.194011zm.017552 3.94922h-4.388022v14.04167H5.85677V8.050781zm7.005038.0H8.501869v14.04167h4.360816v-7.370999c0-4.098413 5.291077-4.433657 5.291077.0v7.370999h4.377491v-8.89101c0-6.915523-7.829986-6.66365-9.669445-3.259423V8.050781z"/></svg></i></span></a></nav></div></nav><nav class=nav></nav></div><script src=/js/navicon-shift.js></script></section><section class=section><div class=container><div class="subtitle tags is-6 is-pulled-right"><a class="subtitle is-6" href=/tags/data-factory/>#Data Factory</a></div><h2 class="subtitle is-6">October 1, 2020</h2><h1 class=title>Jugando con Data Factory</h1><div class=content><p>Sorprendentemente, hasta ahora, no había tenido la posibilidad de trabajar con data factory, sólo lo habia usado para algunas migraciones de datos.</p><p>Sin embargo, tras estabilizar un proyecto y consolidar su nueva etapa, necesitabamos simplificar la solución implementada para migrar datos.</p><p>Una representación sencilla de la arquitectura actual sería:</p><p><img src=/images/data-factory/original-architecture.png alt="Arquitectura actual"></p><p>En un flujo muy sencillo sería esto:</p><ol><li>La etl escribe un fichero csv con spark en un directorio de un blob storage.</li><li>La primera function filtra los ficheros de spark que no son part- y se encarga de notificar a una function que actua de gateway para el batch con que fichero queremos enviar, el nombre original, el path y el nombre que queremos darle.</li><li>Esta function de gateway se encarga de realizar las llamadas necesarias a la api de Azure para generar una tarea en el batch.</li><li>El batch se encarga de comprimir el fichero y enviarlo al sftp del cliente, recuperando las credenciales según el tipo de fichero que se trate.</li></ol><p>Este proceso nos permitía trabajar con dos versiones del proyecto en lo que hacíamos la migranción a la nueva versión. Ahora que esta ya está consolidada y hemos conseguido además que el cliente use la compresión de gzip que podemos escribir directamente desde spark.</p><p>Pues todas esta arquitectura se ha simplificado en: <strong>Data Factory.</strong></p><p><img src=/images/data-factory/simplified-architecture.png alt="Arquitectura actual"></p><p>Lo primero que teníamos que resolver era el renombrado del fichero. Al final desde la propia API de hadoop se puede realizar este renombrado sin atacar directamente a la implementación por debajo.</p><p>Ahora, tenemos que construir nuestra pipeline de data factory.</p><p>Lo primero que haremos será configurar los linked services, en nuestro caso son tres:</p><ol><li>El storage del que vamos a extraer los ficheros.</li><li>El sftp al que queremos atacar. Como curiosidad este servicio requiere de un &ldquo;Integration Runtime&rdquo; que actuará de puente para esta tarea. Yo he configurado una máquina en West Europe con los parámetros por defecto.</li><li>El key vault del que queremos recuperar la contraseña. (¡No nos olvidemos de dar permisos de acceso a los secretos a la aplicación de data factory en el azure active directory!) y le ponemos los datos por ahora de manera estática.</li></ol><p>La configuración de los mismos es muy visual y no requiere nada en especial.</p><p>Configuramos dos datasets, uno de origen asociado al storage que reciba dos parámetros y que usaremos para discriminar el path del fichero.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Binary1&#34;</span>,
+    <span style=color:#f92672>&#34;properties&#34;</span>: {
+        <span style=color:#f92672>&#34;linkedServiceName&#34;</span>: {
+            <span style=color:#f92672>&#34;referenceName&#34;</span>: <span style=color:#e6db74>&#34;LinkedServiceAzureBlobStorage&#34;</span>,
+            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;LinkedServiceReference&#34;</span>
+        },
+        <span style=color:#f92672>&#34;parameters&#34;</span>: {
+            <span style=color:#f92672>&#34;FPath&#34;</span>: {
+                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+            },
+            <span style=color:#f92672>&#34;FName&#34;</span>: {
+                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+            }
+        },
+        <span style=color:#f92672>&#34;annotations&#34;</span>: [],
+        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;Binary&#34;</span>,
+        <span style=color:#f92672>&#34;typeProperties&#34;</span>: {
+            <span style=color:#f92672>&#34;location&#34;</span>: {
+                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;AzureBlobStorageLocation&#34;</span>,
+                <span style=color:#f92672>&#34;fileName&#34;</span>: {
+                    <span style=color:#f92672>&#34;value&#34;</span>: <span style=color:#e6db74>&#34;@dataset().FName&#34;</span>,
+                    <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;Expression&#34;</span>
+                },
+                <span style=color:#f92672>&#34;container&#34;</span>: {
+                    <span style=color:#f92672>&#34;value&#34;</span>: <span style=color:#e6db74>&#34;@dataset().FPath&#34;</span>,
+                    <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;Expression&#34;</span>
+                }
+            }
+        }
+    },
+    <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;Microsoft.DataFactory/factories/datasets&#34;</span>
+}
+</code></pre></div><p>Y otro de sink. Sin parámetros.</p><p>Configuramos la acitvity de copy data con ambos y estaría casi todo, nos falta saber que fichero queremos leer. Marcamos la opción en el source de &lsquo;File path in dataset&rsquo; y nos dedicamos a configurar dos parámetros para la pipeline que usaremos aquí.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>        <span style=color:#e6db74>&#34;parameters&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
+            <span style=color:#f92672>&#34;sourcePath&#34;</span>: {
+                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+            },
+            <span style=color:#f92672>&#34;sourceName&#34;</span>: {
+                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+            }
+        }
+</code></pre></div><p>La idea es que esta pipeline la dispare un blob trigger asociado al storage. Este blob trigger presenta dos parametros de folderPath y fileName.</p><pre><code>sourcePath - @trigger().outputs.body.folderPath
+sourceName - @trigger().outputs.body.fileName
+</code></pre><p>Ahora configuraremos el blob trigger. Añadimos un sufijo para que no nos molesten los otros ficheros (incluyendo el primer fichero que escribiremos desde spark previo al renombrado):</p><p><img src=/images/data-factory/trigger-conf.png alt="Arquitectura actual"></p><p>Ya tenemos nuestra pipeline en marcha, si subimos un fichero podremos monitorizar como este se envia al ftp.</p><p>Sin embargo, antes comenté que dependiendo del fichero tenía que usar unas credenciales u otras. Y aquí es donde la cosa se complica</p><p>Para que entendamos el problema, quiero que el fichero que acabe en <strong>PL_POC.csv.gz</strong> coja las credenciales asociadas a &ldquo;PL&rdquo;. De tal manera que haya un usuario por país en un modelo internacional.</p><p>Así que necesitamos hacer dos cosas, primero tenemos que parametrizar el linked service del ftp para que acepte parámetros, y segundo, tenemos que buscar las credenciales que corresponden.</p><p>Para lo primero tenems que hacer uso de las dynamic properties de los linked services, cuyo problema es que solo se puede hacer directamente desde el json, no tiene ayuda visual como el resto. Dejo aquí un json de ejemplo:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;SftpSink&#34;</span>,
+    <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;Microsoft.DataFactory/factories/linkedservices&#34;</span>,
+    <span style=color:#f92672>&#34;properties&#34;</span>: {
+        <span style=color:#f92672>&#34;parameters&#34;</span>: {
+            <span style=color:#f92672>&#34;UserNameParameter&#34;</span>: {
+                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+                <span style=color:#f92672>&#34;defaultValue&#34;</span>: <span style=color:#e6db74>&#34;defaultValue&#34;</span>
+            }
+        },
+        <span style=color:#f92672>&#34;annotations&#34;</span>: [],
+        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;Sftp&#34;</span>,
+        <span style=color:#f92672>&#34;typeProperties&#34;</span>: {
+            <span style=color:#f92672>&#34;host&#34;</span>: <span style=color:#e6db74>&#34;ftp.mydomain.com&#34;</span>,
+            <span style=color:#f92672>&#34;port&#34;</span>: <span style=color:#ae81ff>22</span>,
+            <span style=color:#f92672>&#34;skipHostKeyValidation&#34;</span>: <span style=color:#66d9ef>true</span>,
+            <span style=color:#f92672>&#34;authenticationType&#34;</span>: <span style=color:#e6db74>&#34;Basic&#34;</span>,
+            <span style=color:#f92672>&#34;userName&#34;</span>: <span style=color:#e6db74>&#34;@{linkedService().UserNameParameter}&#34;</span>,
+            <span style=color:#f92672>&#34;password&#34;</span>: {
+                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;AzureKeyVaultSecret&#34;</span>,
+                <span style=color:#f92672>&#34;store&#34;</span>: {
+                    <span style=color:#f92672>&#34;referenceName&#34;</span>: <span style=color:#e6db74>&#34;AzureKeyVault1&#34;</span>,
+                    <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;LinkedServiceReference&#34;</span>
+                },
+                <span style=color:#f92672>&#34;secretName&#34;</span>: <span style=color:#e6db74>&#34;MyLinkedService&#34;</span>
+            }
+        }
+    }
+}
+</code></pre></div><p>Como vemos declaramos un parámetro en la sección de parameters y lo referenciamos usando el <strong>@linkedService()</strong></p><p>Ahora podemos ponerle un parámetro a nuestro dataset de sink y pasarselo al linked service:</p><p><img src=/images/data-factory/linkedservice-param.png alt="Linked Service Param in Sink"></p><p>Ahora viene el momento de extraer la información del nombre del fichero, en este caso tenemos que jugar con las funciones disponibles: length, sub, y substring.</p><pre><code>Ejemplo:  Stock_RU_POC.csv.gz
+
+
+substring(pipeline().parameters.sourceName,sub(length(pipeline().parameters.sourceName),13),2)
+
+Resultado: RU
+</code></pre><p>Ahora tenemos en una cadena el país correspondiente. En mi caso he recurrido a un fichero de configuración y he hecho un lookup sobre el mismo. He utilizado una tarea de filter para discriminar las entradas que no me interesaban, simplemente con un:</p><pre><code>@equals(item().Country,substring(pipeline().parameters.sourceName,sub(length(pipeline().parameters.sourceName),13),2) )
+</code></pre><p>Ahora en el output del filter tenemos solo los elementos que han pasado el criterio:</p><pre><code>{
+    &quot;ItemsCount&quot;: 2,
+    &quot;FilteredItemsCount&quot;: 1,
+    &quot;Value&quot;: [
+        {
+            &quot;Country&quot;: &quot;RU&quot;,
+            &quot;User&quot;: &quot;myRussianUser&quot;
+        }
+    ]
+}
+
+</code></pre><p>Como vemos en el resultado del filtro tenemos acceso a un objeto que tiene un valor númerico con el número de resultados que han pasado el filtro.</p><p>Ahora podemos añadir un if que se encargue de validar de que haya un resultado, quedando así la pipeline:</p><p><img src=/images/data-factory/pipeline-final.png alt="Pipeline Final"></p><p>Ahora, como último paso me he encontrado con una degradación del rendimiento, en la solución creada en Azure Batch el tiempo estimado para enviar 2GB era de ~30 minutos. En mi primera prueba, he acabado tardando 2 horas aproximadamente.</p><p>Hay una sección dedicada a esto en la documentación de microsoft. Básicamente monitorzando la actividad me di cuenta de que el problema estaba en el sink write, y recurriendo a esta guia de microsoft movi el integration runtime de región a East US, donde estaba alojado el sftp de destino.</p><p>¿El resultado? Un tiempo de 25 minutos, mejor que en mi solución del batch.</p><h2 id=referencias>Referencias:</h2><p><a href=https://docs.microsoft.com/en-us/azure/data-factory/control-flow-expression-language-functions>https://docs.microsoft.com/en-us/azure/data-factory/control-flow-expression-language-functions</a>
+<a href=https://docs.microsoft.com/en-us/azure/data-factory/parameterize-linked-services>https://docs.microsoft.com/en-us/azure/data-factory/parameterize-linked-services</a>
+<a href=https://stackoverflow.com/questions/61272370/sftp-connection-customization-parameterization>https://stackoverflow.com/questions/61272370/sftp-connection-customization-parameterization</a></p></div></div></section><section class=section><div class="container has-text-centered"><p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p></div></section></body></html>
