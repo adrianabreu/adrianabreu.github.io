@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2020-01-04T19:00:32Z"
+date = "2021-01-04T19:00:32Z"
 title = "Notas sobre storytelling with data"
 tags = ["Data Visualization"]
 +++
