@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2025-05-06T11:49:36Z"
+date = "2021-05-06T11:49:36Z"
 title = "Exportando los datos de firebase"
 tags = ["Spark", "Analytics", "Firebase"]
 +++
