@@ -1,6 +1,73 @@
-<!doctype html><html xmlns=http://www.w3.org/1999/xhtml lang=es-es><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Auto deployment en gh-pages con Travis | Adrián Abreu</title><meta property="og:title" content="Auto deployment en gh-pages con Travis - Adrián Abreu"><meta property="og:description" content="Una de las mejores características de github sin duda alguna, son las gh-pages.
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml lang=es-es>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Auto deployment en gh-pages con Travis | Adrián Abreu</title>
+<meta property="og:title" content="Auto deployment en gh-pages con Travis - Adrián Abreu">
+<meta property="og:description" content="Una de las mejores características de github sin duda alguna, son las gh-pages.
 Las gh-pages nos permiten desplegar el código de nuestra aplicación frontend a través de esta rama, de tal forma que muchos de nuestros proyectos (por ejemplo este blog) estén disponibles sin tener limitaciones de hosting.
-Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar."><meta property="og:url" content="https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/"><meta property="og:site_name" content="Adrián Abreu"><meta property="og:type" content="article"><meta property="og:image" content="https://www.gravatar.com/avatar/9fda37f7195de6954a6d4f525eff01ee?s=256"><meta property="article:section" content="Blog"><meta property="article:published_time" content="2017-08-04T16:37:11Z"><meta property="article:modified_time" content="2017-08-04T16:37:11Z"><meta name=twitter:card content="summary"><meta name=twitter:site content="@aabreuglez"><meta name=twitter:creator content="@aabreuglez"><link href=https://adrianabreu.github.io/index.xml rel=alternate type=application/rss+xml title="Adrián Abreu"><link rel=stylesheet href=/css/style.css><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"></head><body><section class=section><div class=container><nav id=nav-main class=nav><div id=nav-name class=nav-left><a id=nav-anchor class=nav-item href=https://adrianabreu.github.io><h1 id=nav-heading class="title is-4">Adrián Abreu</h1></a></div><div class=nav-right><nav id=nav-items class="nav-item level is-mobile"><a class=level-item aria-label=github href=https://github.com/adrianabreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></i></span></a><a class=level-item aria-label=twitter href=https://twitter.com/aabreuglez target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></i></span></a><a class=level-item aria-label=email href=mailto:aabreuglez@gmail.com target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></i></span></a><a class=level-item aria-label=linkedin href=https://linkedin.com/in/AdrianAbreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path stroke-width="1.8" d="m5.839218 4.101561c0 1.211972-.974141 2.194011-2.176459 2.194011S1.4863 5.313533 1.4863 4.101561c0-1.211094.974141-2.194011 2.176459-2.194011s2.176459.982917 2.176459 2.194011zm.017552 3.94922H1.468748v14.04167H5.85677V8.050781zm7.005038.0H8.501869v14.04167h4.360816v-7.370999c0-4.098413 5.291077-4.433657 5.291077.0v7.370999h4.377491v-8.89101c0-6.915523-7.829986-6.66365-9.669445-3.259423V8.050781z"/></svg></i></span></a></nav></div></nav><nav class=nav></nav></div><script src=/js/navicon-shift.js></script></section><section class=section><div class=container><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6">August 4, 2017</h2><h1 class=title>Auto deployment en gh-pages con Travis</h1><div class=content><p>Una de las mejores características de github sin duda alguna, son las <a href=https://pages.github.com/>gh-pages</a>.</p><p>Las gh-pages nos permiten desplegar el código de nuestra aplicación frontend a través de esta rama, de tal forma que muchos de nuestros proyectos (por ejemplo este blog) estén disponibles sin tener limitaciones de hosting.</p><p>Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar.</p><p>¡Pero todo esto puede automatizarse mediante el uso de travis! <a href=https://travis-ci.org/>Travis</a> es una herramienta gratuita* que permite hacer integración continua (es la responsable de las famosas notas de la build).</p><p>Como el procedimiento de activación de la cuenta es muy sencillo y hay decenas de tutoriales, voy a centrarme en el aspecto del deploy, que es lo realmente importante. Para ello usaré un script de gist y lo explicaré detalladamente:</p><p><a href=https://gist.github.com/domenic/ec8b0fc8ab45f39403dd>Fuente</a></p><pre><code>#!/bin/bash
+Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar.">
+<meta property="og:url" content="https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/">
+<meta property="og:site_name" content="Adrián Abreu">
+<meta property="og:type" content="article"><meta property="og:image" content="https://www.gravatar.com/avatar/9fda37f7195de6954a6d4f525eff01ee?s=256"><meta property="article:section" content="Blog"><meta property="article:published_time" content="2017-08-04T16:37:11Z"><meta property="article:modified_time" content="2017-08-04T16:37:11Z"><meta name=twitter:card content="summary"><meta name=twitter:site content="@aabreuglez"><meta name=twitter:creator content="@aabreuglez">
+<link href=https://adrianabreu.github.io/index.xml rel=alternate type=application/rss+xml title="Adrián Abreu">
+<link rel=stylesheet href=/css/style.css><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/site.webmanifest>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link rel=canonical href=https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+</head>
+<body>
+<section class=section>
+<div class=container>
+<nav id=nav-main class=nav>
+<div id=nav-name class=nav-left>
+<a id=nav-anchor class=nav-item href=https://adrianabreu.github.io>
+<h1 id=nav-heading class="title is-4">Adrián Abreu</h1>
+</a>
+</div>
+<div class=nav-right>
+<nav id=nav-items class="nav-item level is-mobile"><a class=level-item aria-label=github href=https://github.com/adrianabreu target=_blank rel=noopener>
+<span class=icon>
+<i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></i>
+</span>
+</a><a class=level-item aria-label=twitter href=https://twitter.com/aabreuglez target=_blank rel=noopener>
+<span class=icon>
+<i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></i>
+</span>
+</a><a class=level-item aria-label=email href=mailto:aabreuglez@gmail.com target=_blank rel=noopener>
+<span class=icon>
+<i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></i>
+</span>
+</a><a class=level-item aria-label=linkedin href=https://linkedin.com/in/AdrianAbreu target=_blank rel=noopener>
+<span class=icon>
+<i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path stroke-width="1.8" d="m5.839218 4.101561c0 1.211972-.974141 2.194011-2.176459 2.194011S1.4863 5.313533 1.4863 4.101561c0-1.211094.974141-2.194011 2.176459-2.194011s2.176459.982917 2.176459 2.194011zm.017552 3.94922H1.468748v14.04167H5.85677V8.050781zm7.005038.0H8.501869v14.04167h4.360816v-7.370999c0-4.098413 5.291077-4.433657 5.291077.0v7.370999h4.377491v-8.89101c0-6.915523-7.829986-6.66365-9.669445-3.259423V8.050781z"/></svg></i>
+</span>
+</a></nav>
+</div>
+</nav>
+<nav class=nav>
+</nav>
+</div>
+<script src=/js/navicon-shift.js></script>
+</section>
+<section class=section>
+<div class=container>
+<div class="subtitle tags is-6 is-pulled-right">
+</div>
+<h2 class="subtitle is-6">August 4, 2017</h2>
+<h1 class=title>Auto deployment en gh-pages con Travis</h1>
+<div class=content>
+<p>Una de las mejores características de github sin duda alguna, son las <a href=https://pages.github.com/>gh-pages</a>.</p>
+<p>Las gh-pages nos permiten desplegar el código de nuestra aplicación frontend a través de esta rama, de tal forma que muchos de nuestros proyectos (por ejemplo este blog) estén disponibles sin tener limitaciones de hosting.</p>
+<p>Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar.</p>
+<p>¡Pero todo esto puede automatizarse mediante el uso de travis! <a href=https://travis-ci.org/>Travis</a> es una herramienta gratuita* que permite hacer integración continua (es la responsable de las famosas notas de la build).</p>
+<p>Como el procedimiento de activación de la cuenta es muy sencillo y hay decenas de tutoriales, voy a centrarme en el aspecto del deploy, que es lo realmente importante. Para ello usaré un script de gist y lo explicaré detalladamente:</p>
+<p><a href=https://gist.github.com/domenic/ec8b0fc8ab45f39403dd>Fuente</a></p>
+<pre><code>#!/bin/bash
 set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH=&quot;master&quot;
@@ -63,27 +130,36 @@ ssh-add deploy_key
 
 # Now that we're all set up, we can push.
 git push $SSH_REPO $TARGET_BRANCH
-</code></pre><p>Revisemos poco a poco que hace este script:</p><pre><code>function doCompile {
+</code></pre><p>Revisemos poco a poco que hace este script:</p>
+<pre><code>function doCompile {
   ./compile.sh
 }
-</code></pre><p>Esta función se encargará de compilar nuestro código, para un proyecto tipico quedaría</p><pre><code>function doCompile {
+</code></pre><p>Esta función se encargará de compilar nuestro código, para un proyecto tipico quedaría</p>
+<pre><code>function doCompile {
   npm run build
 }
-</code></pre><p>Saltaré las siguientes comprobaciones por son lo propio que explica el comentario, me centraré en este bloque:</p><pre><code>git clone $REPO out
+</code></pre><p>Saltaré las siguientes comprobaciones por son lo propio que explica el comentario, me centraré en este bloque:</p>
+<pre><code>git clone $REPO out
 cd out
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
-</code></pre><p><strong>out</strong> representa el directorio de salida de la compilación, en mi caso es dist, asi que lo modifico.</p><pre><code>git clone $REPO dist
+</code></pre><p><strong>out</strong> representa el directorio de salida de la compilación, en mi caso es dist, asi que lo modifico.</p>
+<pre><code>git clone $REPO dist
 cd dist
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
-</code></pre><p>¿Qué es lo que hace? Clona nuestro repositorio de nuevo en la carpeta de salida de nuestra build, se mete en ella y cambia de rama, de esta forma nuestra carpeta de salida estará vinculada a nuestra rama de gh-pages. En caso de que la rama no exista utiliza el parámetro <code>--orphan</code>.</p><p>Este parámetro es realmente interesante. Cuando creamos una rama en git normalmente partimos de un commit inicial. Por ejemplo.</p><pre><code>master: A ----- B ----- C
+</code></pre><p>¿Qué es lo que hace? Clona nuestro repositorio de nuevo en la carpeta de salida de nuestra build, se mete en ella y cambia de rama, de esta forma nuestra carpeta de salida estará vinculada a nuestra rama de gh-pages. En caso de que la rama no exista utiliza el parámetro <code>--orphan</code>.</p>
+<p>Este parámetro es realmente interesante. Cuando creamos una rama en git normalmente partimos de un commit inicial. Por ejemplo.</p>
+<pre><code>master: A ----- B ----- C
                  \
 gh-pages:         \----- D 
-</code></pre><p>Sin embargo, cuando le decimos que es de tipo <code>orphan</code> lo que hace es crear una rama totalmente desvinculada que tiene su propio initial commit y sus ficheros no están relacionados.</p><pre><code>master:   A ----- B ----- C
+</code></pre><p>Sin embargo, cuando le decimos que es de tipo <code>orphan</code> lo que hace es crear una rama totalmente desvinculada que tiene su propio initial commit y sus ficheros no están relacionados.</p>
+<pre><code>master:   A ----- B ----- C
 
 gh-pages: D ----- E ----- F 
-</code></pre><p>Esto es precisamente lo que necesitamos para la rama de gh-pages, ya que solo va a incluir los ficheros de la carpeta de salida.</p><p>Bien, el resto en general parece bastante claro, asi que pasemos a la parte final:</p><pre><code># Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
+</code></pre><p>Esto es precisamente lo que necesitamos para la rama de gh-pages, ya que solo va a incluir los ficheros de la carpeta de salida.</p>
+<p>Bien, el resto en general parece bastante claro, asi que pasemos a la parte final:</p>
+<pre><code># Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
 ENCRYPTED_KEY_VAR=&quot;encrypted_${ENCRYPTION_LABEL}_key&quot;
 ENCRYPTED_IV_VAR=&quot;encrypted_${ENCRYPTION_LABEL}_iv&quot;
 ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
@@ -92,12 +168,44 @@ openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../deploy_key.enc -o
 chmod 600 ../deploy_key
 eval `ssh-agent -s`
 ssh-add deploy_key
-</code></pre><p>Con el objetivo de mejorar la seguridad utilizaremos un deploy_key. Lo que vamos a hacer es lo siguiente:</p><ol><li><p>Generar una nueva clave de ssh <code>ssh-keygen -t rsa -b 4096 -C "tu@email.com"</code></p></li><li><p>Añadir la clave pública al repositorio en cuestión en la sección de <strong>&ldquo;Deploy keys&rdquo;</strong>.</p></li><li><p>Ahora es necesario que publiquemos nuestra clave privada en el repositorio, cosa que no es muy segura, asi que vamos a utilizar el <a href=https://github.com/travis-ci/travis.rb>cliente de travis</a>. Nos logueamos utilizando <code>travis login</code> y utilizamos la utilidad <code>travis encrypt-file</code>.</p></li><li><p>La idea es generar el fichero <code>deploy_key.enc</code> que utilizaremos en el script. A la salida nos saldrá un comando ssl que deberemos añadir, pero el script se preocupa de ello por nosotros, asi que solo necesitamos la cadena que sale entre _. Por ejemplo de <code>$encrypted_0a6446eb3ae3_key</code> necesitamos <code>0a6446eb3ae3</code>. Esta variable se irá al fichero .travis.yml.</p></li><li><p>Añadimos un fichero .travis.yml</p></li></ol><pre><code>language: generic # don't install any environment
+</code></pre><p>Con el objetivo de mejorar la seguridad utilizaremos un deploy_key. Lo que vamos a hacer es lo siguiente:</p>
+<ol>
+<li>
+<p>Generar una nueva clave de ssh <code>ssh-keygen -t rsa -b 4096 -C "tu@email.com"</code></p>
+</li>
+<li>
+<p>Añadir la clave pública al repositorio en cuestión en la sección de <strong>&ldquo;Deploy keys&rdquo;</strong>.</p>
+</li>
+<li>
+<p>Ahora es necesario que publiquemos nuestra clave privada en el repositorio, cosa que no es muy segura, asi que vamos a utilizar el <a href=https://github.com/travis-ci/travis.rb>cliente de travis</a>. Nos logueamos utilizando <code>travis login</code> y utilizamos la utilidad <code>travis encrypt-file</code>.</p>
+</li>
+<li>
+<p>La idea es generar el fichero <code>deploy_key.enc</code> que utilizaremos en el script. A la salida nos saldrá un comando ssl que deberemos añadir, pero el script se preocupa de ello por nosotros, asi que solo necesitamos la cadena que sale entre _. Por ejemplo de <code>$encrypted_0a6446eb3ae3_key </code> necesitamos <code>0a6446eb3ae3</code>. Esta variable se irá al fichero .travis.yml.</p>
+</li>
+<li>
+<p>Añadimos un fichero .travis.yml</p>
+</li>
+</ol>
+<pre><code>language: generic # don't install any environment
 
 script: bash ./deploy.sh
 env:
   global:
   - ENCRYPTION_LABEL: &quot;&lt;.... encryption label from previous step ....&gt;&quot;
   - COMMIT_AUTHOR_EMAIL: &quot;you@example.com&quot;
-</code></pre><p>Donde el encription label es la clave que hemos sacado del pasado anterior y el author email nuestro email.</p><p>Con todo esto listo, cuando hagamos el próximo push a master, nuestro proyecto se compilará automáticamente y subirá el resultado a gh-pages.</p><p>Si queréis ver algún ejemplo ahora mismo tengo dos proyectos utilizando esta configuración:
-<a href=https://github.com/etsiiull/SIMDE>SIMDE</a> y <a href=https://github.com/adrianabreu/chuck-norris-angular-client>Chuck Norris Angular Client</a></p><p>Espero que esto fomente la creación de muchísimos proyectos nuevos y que os animéis.</p><p>* Gratuita con limitaciones, ya que no permite hacer la gestión de los repositorios privados si no &ldquo;aflojas pasta&rdquo;.</p></div></div></section><section class=section><div class="container has-text-centered"><p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p></div></section></body></html>
+</code></pre><p>Donde el encription label es la clave que hemos sacado del pasado anterior y el author email nuestro email.</p>
+<p>Con todo esto listo, cuando hagamos el próximo push a master, nuestro proyecto se compilará automáticamente y subirá el resultado a gh-pages.</p>
+<p>Si queréis ver algún ejemplo ahora mismo tengo dos proyectos utilizando esta configuración:
+<a href=https://github.com/etsiiull/SIMDE>SIMDE</a> y <a href=https://github.com/adrianabreu/chuck-norris-angular-client>Chuck Norris Angular Client</a></p>
+<p>Espero que esto fomente la creación de muchísimos proyectos nuevos y que os animéis.</p>
+<p>* Gratuita con limitaciones, ya que no permite hacer la gestión de los repositorios privados si no &ldquo;aflojas pasta&rdquo;.</p>
+</div>
+</div>
+</section>
+<section class=section>
+<div class="container has-text-centered">
+<p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p>
+</div>
+</section>
+</body>
+</html>
