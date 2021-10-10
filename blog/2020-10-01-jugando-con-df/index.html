@@ -132,7 +132,7 @@ En un flujo muy sencillo sería esto:
             }
         }
 </code></pre></div><p>La idea es que esta pipeline la dispare un blob trigger asociado al storage. Este blob trigger presenta dos parametros de folderPath y fileName.</p>
-<pre><code>sourcePath - @trigger().outputs.body.folderPath
+<pre tabindex=0><code>sourcePath - @trigger().outputs.body.folderPath
 sourceName - @trigger().outputs.body.fileName
 </code></pre><p>Ahora configuraremos el blob trigger. Añadimos un sufijo para que no nos molesten los otros ficheros (incluyendo el primer fichero que escribiremos desde spark previo al renombrado):</p>
 <p><img src=/images/data-factory/trigger-conf.png alt="Arquitectura actual"></p>
@@ -174,16 +174,16 @@ sourceName - @trigger().outputs.body.fileName
 <p>Ahora podemos ponerle un parámetro a nuestro dataset de sink y pasarselo al linked service:</p>
 <p><img src=/images/data-factory/linkedservice-param.png alt="Linked Service Param in Sink"></p>
 <p>Ahora viene el momento de extraer la información del nombre del fichero, en este caso tenemos que jugar con las funciones disponibles: length, sub, y substring.</p>
-<pre><code>Ejemplo:  Stock_RU_POC.csv.gz
+<pre tabindex=0><code>Ejemplo:  Stock_RU_POC.csv.gz
 
 
 substring(pipeline().parameters.sourceName,sub(length(pipeline().parameters.sourceName),13),2)
 
 Resultado: RU
 </code></pre><p>Ahora tenemos en una cadena el país correspondiente. En mi caso he recurrido a un fichero de configuración y he hecho un lookup sobre el mismo. He utilizado una tarea de filter para discriminar las entradas que no me interesaban, simplemente con un:</p>
-<pre><code>@equals(item().Country,substring(pipeline().parameters.sourceName,sub(length(pipeline().parameters.sourceName),13),2) )
+<pre tabindex=0><code>@equals(item().Country,substring(pipeline().parameters.sourceName,sub(length(pipeline().parameters.sourceName),13),2) )
 </code></pre><p>Ahora en el output del filter tenemos solo los elementos que han pasado el criterio:</p>
-<pre><code>{
+<pre tabindex=0><code>{
     &quot;ItemsCount&quot;: 2,
     &quot;FilteredItemsCount&quot;: 1,
     &quot;Value&quot;: [

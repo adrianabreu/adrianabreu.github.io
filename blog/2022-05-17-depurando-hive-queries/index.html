@@ -63,7 +63,7 @@ Status: Failed 19/05/21 01:05:30 [main]: ERROR SessionState: Status: Failed Vert
 <div class=content>
 <p>En la última he podido ver qué pasa cuando el volumen de datos aumenta de forma exponencial, una query que funcionaba en un tiempo razonable para un volumen considerable ha empezado a fallar a pesar de los reintentos.</p>
 <p>¿El origen?</p>
-<pre><code>Status: Failed 19/05/21 01:05:30 [main]: ERROR SessionState: Status: Failed Vertex failed, vertexName=Map 10, vertexId=vertex_1558386441915_0035_1_01, diagnostics=[Task failed, taskId=task_1558386441915_0035_1_01_000002, diagnostics=[TaskAttempt 0 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.OutOfMemoryError: Java heap space 
+<pre tabindex=0><code>Status: Failed 19/05/21 01:05:30 [main]: ERROR SessionState: Status: Failed Vertex failed, vertexName=Map 10, vertexId=vertex_1558386441915_0035_1_01, diagnostics=[Task failed, taskId=task_1558386441915_0035_1_01_000002, diagnostics=[TaskAttempt 0 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.OutOfMemoryError: Java heap space 
 </code></pre><p>Esto se traduce en que uno de los vértices, ha tenido que mover demasiados datos y hemos acabado sin memoria.</p>
 <p>Tras hacer muchas pruebas, revisar el plan de ejecución (a través del Dag View, usando el <code>EXPLAIN EXTENDED</code>), etcétera.
 He acabado delante de una frase muy genérica: “Tienes que comprender tus datos”.</p>
@@ -82,7 +82,7 @@ He acabado delante de una frase muy genérica: “Tienes que comprender tus dato
 <h2 id=uniendo-conceptos>Uniendo conceptos</h2>
 <p>Pongamos que tenemos un sistema de datawarehouse para el sector del retail. Donde un usuario registrado puede identificarse en caja para conseguir descuentos.</p>
 <p>Si intentamos unir el volumen de tickets con los usuarios, ¿qué pasará?</p>
-<pre><code>SELECT * 
+<pre tabindex=0><code>SELECT * 
 FROM dbo.tickets t 
 LEFT JOIN usuarios u
 ON t.userid = u.id 
@@ -94,7 +94,7 @@ ON t.userid = u.id
 <h2 id=solución>Solución</h2>
 <p>¿Ahora que tenemos el problema, como solucionamos esto?</p>
 <p>La solución es realmente sencilla si conocemos nuestros datos, basta con unir solo la parte que nos interesa.</p>
-<pre><code>SELECT *  
+<pre tabindex=0><code>SELECT *  
 
 FROM ( 
 

@@ -64,14 +64,14 @@ Empecemos por el componente padre:">
 <p>Hoy me he encontrado con una situación peculiar en un código. Aunque considero que quizás como está realizada la tarea no sea la mejor opción, creo que es un buen ejemplo para entender algunos conceptos de Angular.</p>
 <p>Partiendo de una aplicaicón muy básica donde tenemos dos componentes: <strong>AppComponent</strong> y <strong>ChildComponent</strong>, vamos a renderizar dinámicamente el componente hijo desde el componente padre y ejecutar una serie de acciones.</p>
 <p>Empecemos por el componente padre:</p>
-<pre><code>&lt;h1&gt;
+<pre tabindex=0><code>&lt;h1&gt;
   {{title}}
 &lt;/h1&gt;
 
 &lt;button type=&quot;button&quot; (click)=&quot;renderChildAndDoChildStuff()&quot;&gt;Render the child!&lt;/button&gt;
 &lt;child *ngIf=&quot;timeToRenderChild&quot;&gt;&lt;/child&gt;
 </code></pre><p><strong>app.component.ts</strong></p>
-<pre><code>import { Component, ViewChild } from '@angular/core';
+<pre tabindex=0><code>import { Component, ViewChild } from '@angular/core';
 import { ChildComponent } from './child/child.component';
 
 @Component({
@@ -113,7 +113,7 @@ export class AppComponent {
 ¿Como podemos saber que nuestro componente está listo?</p>
 <p>Aquí entran en juego los <a href=https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html>lifecycle hooks</a>. Si utlizamos OnInit, ya estará nuestro componente resuelto. Pero, y aquí el quid del post, aún falta una cosa. Y es que el componente padre sepa que el hijo ha terminado de instanciarse. En un principio notificar una acción de un componente hijo a un componente padre es tan sencillo como usar un evento.</p>
 <p>Pero esto no es suficiente: Cuando el componente hijo ya esté creado será demasiado tarde como para modificar el componente padre en el mismo ciclo (debido a la estructura en árbol del detector de cambios), por tanto, es necesario esperar un tiempo, y esto se consigue utilizando por ejemplo un setTimeOut.</p>
-<pre><code>setTimeout(() =&gt; this.childComponent.doStuff(), 0);
+<pre tabindex=0><code>setTimeout(() =&gt; this.childComponent.doStuff(), 0);
 </code></pre><p>Para ver el código del post:
 <a href=https://github.com/adrianabreu/angular_viewchild_lifecycle>https://github.com/adrianabreu/angular_viewchild_lifecycle</a></p>
 <p>Para más información:

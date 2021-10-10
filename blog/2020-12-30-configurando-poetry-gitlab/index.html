@@ -71,7 +71,7 @@ Lo primero y que me ha decepcionado bastante es que github no incluye soporte pa
 <p>La documentación ya trae un descriptivo de como hacerlo con pip: <a href=https://docs.gitlab.com/ee/user/packages/pypi_repository/index.html#authenticate-with-a-personal-access-token>https://docs.gitlab.com/ee/user/packages/pypi_repository/index.html#authenticate-with-a-personal-access-token</a></p>
 <p>Lo primero es crearnos un Personal Access Token desde gitlab. Lamentablemente hay alguna confusión en la documentación y con los permisos de read and write de registry solamente no vale (estos son para las imagenes de docker), así que hay que darle permisos de api.</p>
 <p>Ahora configuraremos nuestro repositorio de paquetes con el siguiente comando:</p>
-<pre><code>poetry config repositories.my-awesome-registry https://gitlab.example.com/api/v4/projects/&lt;project_id&gt;/packages/pypi
+<pre tabindex=0><code>poetry config repositories.my-awesome-registry https://gitlab.example.com/api/v4/projects/&lt;project_id&gt;/packages/pypi
 </code></pre><p>(El project id está en la vista general del proyecto de gitlab)</p>
 <p><code>poetry config http-basic.my-awesome-registry username password</code></p>
 <p>Y ahora podremos publicar el paquete con:</p>
@@ -81,7 +81,7 @@ Lo primero y que me ha decepcionado bastante es que github no incluye soporte pa
 <p>Ahora para instalarlo, creamos otro proyecto como <code>poetry new package-demo-install</code>.</p>
 <p>Para indicarle a que repositorio tiene que ir a buscarlo tenemos que modificar el <code>.toml</code>.</p>
 <p>Simplemente añadimos estas líneas:</p>
-<pre><code>[[tool.poetry.source]]
+<pre tabindex=0><code>[[tool.poetry.source]]
 name = &quot;my-awesome-registry&quot;
 url = &quot;https://gitlab.example.com/api/v4/projects/&lt;project_id&gt;/packages/pypi/simple/&quot;
 </code></pre><p><strong>¡OJO</strong> El /simple/ del final es muy importante, ya que si no, poetry no buscará paquetes en ese repositorio.</p>

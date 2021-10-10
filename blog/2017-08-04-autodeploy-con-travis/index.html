@@ -67,7 +67,7 @@ Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nues
 <p>¡Pero todo esto puede automatizarse mediante el uso de travis! <a href=https://travis-ci.org/>Travis</a> es una herramienta gratuita* que permite hacer integración continua (es la responsable de las famosas notas de la build).</p>
 <p>Como el procedimiento de activación de la cuenta es muy sencillo y hay decenas de tutoriales, voy a centrarme en el aspecto del deploy, que es lo realmente importante. Para ello usaré un script de gist y lo explicaré detalladamente:</p>
 <p><a href=https://gist.github.com/domenic/ec8b0fc8ab45f39403dd>Fuente</a></p>
-<pre><code>#!/bin/bash
+<pre tabindex=0><code>#!/bin/bash
 set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH=&quot;master&quot;
@@ -131,35 +131,35 @@ ssh-add deploy_key
 # Now that we're all set up, we can push.
 git push $SSH_REPO $TARGET_BRANCH
 </code></pre><p>Revisemos poco a poco que hace este script:</p>
-<pre><code>function doCompile {
+<pre tabindex=0><code>function doCompile {
   ./compile.sh
 }
 </code></pre><p>Esta función se encargará de compilar nuestro código, para un proyecto tipico quedaría</p>
-<pre><code>function doCompile {
+<pre tabindex=0><code>function doCompile {
   npm run build
 }
 </code></pre><p>Saltaré las siguientes comprobaciones por son lo propio que explica el comentario, me centraré en este bloque:</p>
-<pre><code>git clone $REPO out
+<pre tabindex=0><code>git clone $REPO out
 cd out
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 </code></pre><p><strong>out</strong> representa el directorio de salida de la compilación, en mi caso es dist, asi que lo modifico.</p>
-<pre><code>git clone $REPO dist
+<pre tabindex=0><code>git clone $REPO dist
 cd dist
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 </code></pre><p>¿Qué es lo que hace? Clona nuestro repositorio de nuevo en la carpeta de salida de nuestra build, se mete en ella y cambia de rama, de esta forma nuestra carpeta de salida estará vinculada a nuestra rama de gh-pages. En caso de que la rama no exista utiliza el parámetro <code>--orphan</code>.</p>
 <p>Este parámetro es realmente interesante. Cuando creamos una rama en git normalmente partimos de un commit inicial. Por ejemplo.</p>
-<pre><code>master: A ----- B ----- C
+<pre tabindex=0><code>master: A ----- B ----- C
                  \
 gh-pages:         \----- D 
 </code></pre><p>Sin embargo, cuando le decimos que es de tipo <code>orphan</code> lo que hace es crear una rama totalmente desvinculada que tiene su propio initial commit y sus ficheros no están relacionados.</p>
-<pre><code>master:   A ----- B ----- C
+<pre tabindex=0><code>master:   A ----- B ----- C
 
 gh-pages: D ----- E ----- F 
 </code></pre><p>Esto es precisamente lo que necesitamos para la rama de gh-pages, ya que solo va a incluir los ficheros de la carpeta de salida.</p>
 <p>Bien, el resto en general parece bastante claro, asi que pasemos a la parte final:</p>
-<pre><code># Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
+<pre tabindex=0><code># Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
 ENCRYPTED_KEY_VAR=&quot;encrypted_${ENCRYPTION_LABEL}_key&quot;
 ENCRYPTED_IV_VAR=&quot;encrypted_${ENCRYPTION_LABEL}_iv&quot;
 ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
@@ -186,7 +186,7 @@ ssh-add deploy_key
 <p>Añadimos un fichero .travis.yml</p>
 </li>
 </ol>
-<pre><code>language: generic # don't install any environment
+<pre tabindex=0><code>language: generic # don't install any environment
 
 script: bash ./deploy.sh
 env:

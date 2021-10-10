@@ -80,7 +80,7 @@ Los contenedores hacen uso de la virtualización a nivel de sistema operativo, c
 <p>En mi caso voy a utilizar la versión 9.5 de docker por temas de compatibilidad con la versión de pgAdminIII que utilizo. Recomiendo encarecidamente utilizar la 9.6 para no tener que estar esperando por las actualizaciones.</p>
 <p>Bajamos la carpeta con el dockerfile, nos movemos a la ruta correspondiente, y ejecutamos <code>docker build -t "postgres:9.5" .</code></p>
 <p>El flag -t no es más que un tag.</p>
-<pre><code>adrianabreu@adrianabreu-CX61-2PC:~/docker-images/postgres/9.5$ docker build -t &quot;postgres:9.5&quot; .
+<pre tabindex=0><code>adrianabreu@adrianabreu-CX61-2PC:~/docker-images/postgres/9.5$ docker build -t &quot;postgres:9.5&quot; .
 Sending build context to Docker daemon 19.97 kB
 [...]
 Step 23/23 : CMD postgres
@@ -89,16 +89,16 @@ Step 23/23 : CMD postgres
 Removing intermediate container 635831399de8
 Successfully built e8635acd406b
 </code></pre><p>Ahora, podemos ver que se ha añadido la imagen correspondiente con: <code>docker images</code>.</p>
-<pre><code>adrianabreu@adrianabreu-CX61-2PC:~/docker-images/postgres/9.5$ docker images
+<pre tabindex=0><code>adrianabreu@adrianabreu-CX61-2PC:~/docker-images/postgres/9.5$ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
 postgres            9.5                 e8635acd406b        About a minute ago   265 MB
 debian              jessie              8cedef9d7368        2 weeks ago          123 MB
 hello-world         latest              48b5124b2768        2 months ago         1.84 kB
 </code></pre><p>Vale, lancemos una nueva instancia de postgres:</p>
-<pre><code>docker run --name prueba-postgres -e POSTGRES_PASSWORD=prueba -P -d postgres:9.5
+<pre tabindex=0><code>docker run --name prueba-postgres -e POSTGRES_PASSWORD=prueba -P -d postgres:9.5
 </code></pre><p><strong>Nota: El flag -P es MUY importante, es el que se encarga de publicar el puerto del contenedor al sistema operativo.</strong></p>
 <p>Comprobemos que ha arrancado:</p>
-<pre><code>docker ps
+<pre tabindex=0><code>docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                     NAMES
 111090b29e46        postgres:9.5        &quot;docker-entrypoint...&quot;   13 seconds ago      Up 11 seconds       0.0.0.0:32770-&gt;5432/tcp   prueba-postgres
 </code></pre><p>Como vemos, nuestro docker está escuchando en el puerto 32770. Hagamos a hacer la prueba de fuego:</p>

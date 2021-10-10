@@ -62,7 +62,7 @@ Caused by: org.apache.spark.SparkException: Could not execute broadcast in 300 s
 <div class=content>
 <p>Hace unos días tuve la fortuna (o desgracia) de implementar la lógica más compleja de todo el dominio.
 El resultado, como esperaba, una etl que falaba por recursos constantementes. El problema:</p>
-<pre><code>Caused by: org.apache.spark.SparkException: Could not execute broadcast in 300 secs. You can increase the timeout for broadcasts via spark.sql.broadcastTimeout or disable broadcast join by setting spark.sql.autoBroadcastJoinThreshold to -1
+<pre tabindex=0><code>Caused by: org.apache.spark.SparkException: Could not execute broadcast in 300 secs. You can increase the timeout for broadcasts via spark.sql.broadcastTimeout or disable broadcast join by setting spark.sql.autoBroadcastJoinThreshold to -1
 </code></pre><p>Lo primero fue revisar el plan de ejecución para ver que estaba sucediendo.</p>
 <p>Había que identificar en que parte estaba ocurriendo</p>
 </div>

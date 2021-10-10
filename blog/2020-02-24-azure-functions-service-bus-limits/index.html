@@ -74,7 +74,7 @@ Además había una serie de requisitos extras:
 <p>Una azure function cuyo trigger sería un service bus que viene desde el datawarehouse. Esta function sería la responsable de consumir el mensaje y mandar la query.
 Después, llamaría a otra function que continuaría con el resto de proceso compartido, pero que queda fuera de scope en este artículo.</p>
 <p>Tras hacer una serie de pruebas me encontré con que algunas queries de agregados eran realmente lentas. En principio no debería haber ningún problema, ya que la function era de tipo service plan y el host.json tenía la propiedad de functionTimeout a -1.</p>
-<pre><code>{
+<pre tabindex=0><code>{
     &quot;version&quot;: &quot;2.0&quot;,
     &quot;functionTimeout&quot;: -1
 }

@@ -115,7 +115,7 @@ Investigando esta tarde encontré el nombre de este tipo de operación: <a href=
 Y aquí se explica muy bien, la consulta se evalua <strong>para cada fila</strong> del conjunto resultando y ya se apunta
 a que es una método que puede ser lento aunque yo estaba interesado en como Spark realizaba este cálculo.</p>
 <p>Y me encontré con este pequeño plan de ejecución:</p>
-<pre><code>== Optimized Logical Plan ==
+<pre tabindex=0><code>== Optimized Logical Plan ==
 Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1572, max(sales)#1580L AS sales_14_days_ago#1574L, max(profit)#1582 AS profit_14_days_ago#1576]
 +- Join LeftOuter, (cast(datekey#1509#1584 as date) = datekey_14_ago#1572)
    :- Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1572, max(sales)#1580L]
@@ -142,7 +142,7 @@ f.profit <span style=color:#66d9ef>as</span> profit_14_days_ago
 <span style=color:#66d9ef>left</span> <span style=color:#66d9ef>join</span> fact_table f
 <span style=color:#66d9ef>on</span> historic.datekey_14_ago <span style=color:#f92672>=</span> f.datekey_14_ago</code></pre></div>
 <p>Y esto nos devuelve el siguiente plan de ejecución:</p>
-<pre><code>== Optimized Logical Plan ==
+<pre tabindex=0><code>== Optimized Logical Plan ==
 Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1872, sales#1878L AS sales_14_days_ago#1873L, profit#1879 AS profit_14_days_ago#1874]
 +- Join LeftOuter, (cast(datekey_14_ago#1872 as string) = datekey#1877)
    :- Project [datekey#1509, sales#1510L, profit#1511, date_sub(cast(datekey#1509 as date), 14) AS datekey_14_ago#1872]

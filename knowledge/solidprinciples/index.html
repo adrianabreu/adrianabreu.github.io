@@ -77,7 +77,7 @@ Es importante ver que esta regla aunque es general no implica que tengamos que d
 <h2 id=lsp-liskov-substitution-principle>LSP: Liskov Substitution Principle</h2>
 <p><strong>Una pieza de software que hace referencia a clases base (o interfaces) debe ser capaz de usar objetos de clases derivadas sin saberlo".</strong></p>
 <p>Si hemos cumplido con el principio OCP ahora estaremos dependiendo de una interfaz, sin embargo, si esta regla no se comprende bien puede que violemos otro principio si intentamos averiguar que tipo derivado estamos usando.</p>
-<pre><code>void DrawShape(const Shape&amp; s)
+<pre tabindex=0><code>void DrawShape(const Shape&amp; s)
 {
     if (typeid(s) == typeid(Square))
         DrawSquare(static_cast&lt;Square&amp;&gt;(s)); 
@@ -86,13 +86,13 @@ Es importante ver que esta regla aunque es general no implica que tengamos que d
 }
 </code></pre><p>En este ejemplo de Rob C. Martin, se usa la información en tiempo de ejecución para actuar segun la clase derivada, y esto es una viola el principio de sustitución de Liskov.</p>
 <p>Si hemos de gestionar que tipo hace cada cosa, entonces está claro que no es nuestra responsabilidad dibujar la figura, sino que la figura debería dibujarse a sí misma.</p>
-<pre><code>void DrawShape(const Shape&amp; s)
+<pre tabindex=0><code>void DrawShape(const Shape&amp; s)
 {
     s.Draw();
 }
 </code></pre><p>También se puede violar el principio de substitución de Liskov por crear comportamientos que en un principio parecen razonables pero que desde el punto de vista de los clientes no cumplen con todas las condiciones.</p>
 <p>Para esto es necesario dejar claro un ejemplo, digamos que tengo un método que recibe un pato y hace que el pato parpee.</p>
-<pre><code>public interface IDuck {
+<pre tabindex=0><code>public interface IDuck {
     String Quack();
 }
 
@@ -101,7 +101,7 @@ function MakeDuckQuack(IDuck duck) {
 }
 </code></pre><p>Sin embargo, a la hora de diseñar, decido que mi patito de goma es también un pato, pero obviamente un patito de goma no puede hacer quack,
 asi que como es un pato pero no hace quack, lo más sensato es no dar</p>
-<pre><code>public class RubberDuck implements IDuck {
+<pre tabindex=0><code>public class RubberDuck implements IDuck {
     String Quack() {
         throw  new NotImplementedException();
     }

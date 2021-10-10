@@ -67,7 +67,7 @@ Antes de nada, quiero aclarar que es probable que esta nomenclatura no coincida 
 <p>Un DTO es un objeto que se utiliza en transferencias. Existen varios motivos para utilizar este tipo de objeto:</p>
 <p>El motivo original es que con lo costoso que resulta abrir un canal de comunicación, debería traerse toda la información posible en esta para &ldquo;amortizarla&rdquo;.</p>
 <p>No siempre es necesario mandar al front end todos los campos del backend. Quizás algunos campos sean de control, o quizás no necesitemos transferir todo el objeto.</p>
-<pre><code>public class GreetingDTO {
+<pre tabindex=0><code>public class GreetingDTO {
 
 	private Long id;
 	
@@ -92,7 +92,7 @@ Antes de nada, quiero aclarar que es probable que esta nomenclatura no coincida 
 }
 </code></pre><h2 id=mapper>Mapper</h2>
 <p>Para convertir las entidades en DTO y viceversa, utilizamos un mapper. Aquí un breve ejemplo. Nótese que lo he anotado como un componente de Spring con @Component.</p>
-<pre><code>@Component
+<pre tabindex=0><code>@Component
 public class GreetingMapper {
 
 	public GreetingDTO toDTO(Greeting source) {
@@ -137,7 +137,7 @@ public class GreetingMapper {
 </code></pre><h2 id=resource--controller>Resource / Controller</h2>
 <p>Los controladores (denominados también recursos) van a ser los encargados de relacionar tal acción cuando ejecutemos X método HTTP (GET, POST, PUT, DELETE&mldr;) sobre Y ruta (/users, /greetings).</p>
 <p>Es importante separar la lógica de negocio del controlador. Por lo general, un controlador solo debería llamar a los mapper y a los servicios que correspondan.</p>
-<pre><code>@RequestMapping(&quot;/greetings&quot;)
+<pre tabindex=0><code>@RequestMapping(&quot;/greetings&quot;)
 @RestController
 public class GreetingResource {
 
@@ -180,7 +180,7 @@ public class GreetingResource {
 }
 </code></pre><h2 id=service>Service</h2>
 <p>La capa de servicio es la capa que se encargará de gestionar la lógica de negocio y de &ldquo;enmascarar&rdquo; la capa de acceso a los datos.</p>
-<pre><code>@Service
+<pre tabindex=0><code>@Service
 public class GreetingService {
 	
 	@Autowired
@@ -207,7 +207,7 @@ public class GreetingService {
 }
 </code></pre><h2 id=repository>Repository</h2>
 <p>La capa de repository se encargará de acceder a los datos. Para este ejemplo tan sencillo he utilizado como almacenamiento un HashMap.</p>
-<pre><code>@Repository
+<pre tabindex=0><code>@Repository
 public class GreetingRepository {
 
 	private AtomicInteger idCounter = new AtomicInteger();
