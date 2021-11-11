@@ -148,7 +148,7 @@ campaignDf
 )
 </code></pre><p>Well it does what we want but if we don&rsquo;t cache this, Spark will compute the same dataframe twice and it will dupllicate efforts and perform poorly. And well, we&rsquo;re not doing anything quite special with any of them, so&mldr; Let&rsquo;s rewrite it.</p>
 <p>We want to multiply our current rows, there is an operation that does it and that&rsquo;s the <code>explode</code>.
-So what we need is to add a column with both values and explode it.</p>
+So what we need is to add a column with and array thas has both values and explode it.</p>
 <pre tabindex=0><code class=language-campaignDf.withColumn( type"," data-lang=campaignDf.withColumn( type","></code></pre><p>So now we have duplicated our rows and have something like this:</p>
 <table>
 <thead>
@@ -198,13 +198,13 @@ So what we need is to add a column with both values and explode it.</p>
 </tr>
 </tbody>
 </table>
-<p>And well, now what remains is quite straight forward, we just need to pick one column or another based on the the type we have and we will get with the desired result.</p>
+<p>Now what remains is quite straight forward, we just need to pick one column or another based on the the type we have and we will get with the desired result.</p>
 <pre tabindex=0><code>campaignDf
 .withColumn(&quot;cash&quot;, 
     when( col(&quot;type&quot;) === &quot;Inviter&quot;, col(&quot;inviter_cash&quot;))
 	.when( col(&quot;type&quot;) === &quot;Receiver&quot;, col(&quot;receiver_cash&quot;) )
 ).drop(&quot;inviter_cash&quot;, &quot;receiver_cash&quot;)
-</code></pre><p>And we end with the desired result, computed in one single dataframe :)</p>
+</code></pre><p>And we end with the desired result, computed in one single operation without need for caching or anything like that.</p>
 </div>
 </div>
 </section>
