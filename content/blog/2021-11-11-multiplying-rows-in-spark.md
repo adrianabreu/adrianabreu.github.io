@@ -46,7 +46,7 @@ campaignDf
 Well it does what we want but if we don't cache this, Spark will compute the same dataframe twice and it will dupllicate efforts and perform poorly. And well, we're not doing anything quite special with any of them, so... Let's rewrite it.
 
 We want to multiply our current rows, there is an operation that does it and that's the `explode`. 
-So what we need is to add a column with both values and explode it.
+So what we need is to add a column with and array thas has both values and explode it.
 
 ```campaignDf.withColumn("type", explode(array(lit("inviter"), lit("receiver"))))
 ```
@@ -62,7 +62,7 @@ So now we have duplicated our rows and have something like this:
 | FakeBank003 | inviter | 30 | 20 |
 | FakeBank003 | receiver | 30 | 20 |
 
-And well, now what remains is quite straight forward, we just need to pick one column or another based on the the type we have and we will get with the desired result. 
+Now what remains is quite straight forward, we just need to pick one column or another based on the the type we have and we will get with the desired result. 
 
 ```
 campaignDf
@@ -72,4 +72,4 @@ campaignDf
 ).drop("inviter_cash", "receiver_cash")
 ```
 
-And we end with the desired result, computed in one single dataframe :) 
+And we end with the desired result, computed in one single operation without need for caching or anything like that.
