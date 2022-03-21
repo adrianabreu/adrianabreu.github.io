@@ -6462,7 +6462,7 @@ html {
 .content h5:not(:first-child),
 .content h6:not(:first-child),
 article+article {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
 .content {
