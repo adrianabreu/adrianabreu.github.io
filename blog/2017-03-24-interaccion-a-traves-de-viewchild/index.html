@@ -1,86 +1,21 @@
-<!doctype html><html xmlns=http://www.w3.org/1999/xhtml lang=es-es>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Interacción a través de ViewChild en Angular | Adrián Abreu</title>
-<meta property="og:title" content="Interacción a través de ViewChild en Angular - Adrián Abreu">
-<meta property="og:description" content="Hoy me he encontrado con una situación peculiar en un código. Aunque considero que quizás como está realizada la tarea no sea la mejor opción, creo que es un buen ejemplo para entender algunos conceptos de Angular.
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml lang=es-es><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Interacción a través de ViewChild en Angular | Adrián Abreu</title><meta property="og:title" content="Interacción a través de ViewChild en Angular - Adrián Abreu"><meta property="og:description" content="Hoy me he encontrado con una situación peculiar en un código. Aunque considero que quizás como está realizada la tarea no sea la mejor opción, creo que es un buen ejemplo para entender algunos conceptos de Angular.
 Partiendo de una aplicaicón muy básica donde tenemos dos componentes: AppComponent y ChildComponent, vamos a renderizar dinámicamente el componente hijo desde el componente padre y ejecutar una serie de acciones.
-Empecemos por el componente padre:">
-<meta property="og:url" content="https://adrianabreu.github.io/blog/2017-03-24-interaccion-a-traves-de-viewchild/">
-<meta property="og:site_name" content="Adrián Abreu">
-<meta property="og:type" content="article"><meta property="og:image" content="https://www.gravatar.com/avatar/9fda37f7195de6954a6d4f525eff01ee?s=256"><meta property="article:section" content="Blog"><meta property="article:published_time" content="2017-03-24T23:11:22Z"><meta property="article:modified_time" content="2017-03-24T23:11:22Z"><meta name=twitter:card content="summary"><meta name=twitter:site content="@aabreuglez"><meta name=twitter:creator content="@aabreuglez">
-<link href=https://adrianabreu.github.io/index.xml rel=alternate type=application/rss+xml title="Adrián Abreu">
-<link rel=stylesheet href=/css/style.css><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=manifest href=/site.webmanifest>
-<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
-<link rel=canonical href=https://adrianabreu.github.io/blog/2017-03-24-interaccion-a-traves-de-viewchild/>
-<meta name=msapplication-TileColor content="#da532c">
-<meta name=theme-color content="#ffffff">
-</head>
-<body>
-<section class=section>
-<div class=container>
-<nav id=nav-main class=nav>
-<div id=nav-name class=nav-left>
-<a id=nav-anchor class=nav-item href=https://adrianabreu.github.io>
-<h1 id=nav-heading class="title is-4">Adrián Abreu</h1>
-</a>
-</div>
-<div class=nav-right>
-<nav id=nav-items class="nav-item level is-mobile"><a class=level-item aria-label=github href=https://github.com/adrianabreu target=_blank rel=noopener>
-<span class=icon>
-<i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></i>
-</span>
-</a><a class=level-item aria-label=twitter href=https://twitter.com/aabreuglez target=_blank rel=noopener>
-<span class=icon>
-<i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></i>
-</span>
-</a><a class=level-item aria-label=email href=mailto:aabreuglez@gmail.com target=_blank rel=noopener>
-<span class=icon>
-<i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></i>
-</span>
-</a><a class=level-item aria-label=linkedin href=https://linkedin.com/in/AdrianAbreu target=_blank rel=noopener>
-<span class=icon>
-<i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path stroke-width="1.8" d="m5.839218 4.101561c0 1.211972-.974141 2.194011-2.176459 2.194011S1.4863 5.313533 1.4863 4.101561c0-1.211094.974141-2.194011 2.176459-2.194011s2.176459.982917 2.176459 2.194011zm.017552 3.94922H1.468748v14.04167H5.85677V8.050781zm7.005038.0H8.501869v14.04167h4.360816v-7.370999c0-4.098413 5.291077-4.433657 5.291077.0v7.370999h4.377491v-8.89101c0-6.915523-7.829986-6.66365-9.669445-3.259423V8.050781z"/></svg></i>
-</span>
-</a></nav>
-</div>
-</nav>
-<nav class=nav>
-</nav>
-</div>
-<script src=/js/navicon-shift.js></script>
-</section>
-<section class=section>
-<div class=container>
-<div class="subtitle tags is-6 is-pulled-right">
-</div>
-<h2 class="subtitle is-6">March 24, 2017</h2>
-<h1 class=title>Interacción a través de ViewChild en Angular</h1>
-<div class=content>
-<p>Hoy me he encontrado con una situación peculiar en un código. Aunque considero que quizás como está realizada la tarea no sea la mejor opción, creo que es un buen ejemplo para entender algunos conceptos de Angular.</p>
-<p>Partiendo de una aplicaicón muy básica donde tenemos dos componentes: <strong>AppComponent</strong> y <strong>ChildComponent</strong>, vamos a renderizar dinámicamente el componente hijo desde el componente padre y ejecutar una serie de acciones.</p>
-<p>Empecemos por el componente padre:</p>
-<pre tabindex=0><code>&lt;h1&gt;
+Empecemos por el componente padre:"><meta property="og:url" content="https://adrianabreu.github.io/blog/2017-03-24-interaccion-a-traves-de-viewchild/"><meta property="og:site_name" content="Adrián Abreu"><meta property="og:type" content="article"><meta property="og:image" content="https://www.gravatar.com/avatar/9fda37f7195de6954a6d4f525eff01ee?s=256"><meta property="article:section" content="Blog"><meta property="article:published_time" content="2017-03-24T23:11:22Z"><meta property="article:modified_time" content="2017-03-24T23:11:22Z"><meta name=twitter:card content="summary"><meta name=twitter:site content="@aabreuglez"><meta name=twitter:creator content="@aabreuglez"><link href=https://adrianabreu.github.io/index.xml rel=alternate type=application/rss+xml title="Adrián Abreu"><link rel=stylesheet href=/css/style.css><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://adrianabreu.github.io/blog/2017-03-24-interaccion-a-traves-de-viewchild/><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"></head><body><section class=section><div class=container><nav id=nav-main class=nav><div id=nav-name class=nav-left><a id=nav-anchor class=nav-item href=https://adrianabreu.github.io><h1 id=nav-heading class="title is-4">Adrián Abreu</h1></a></div><div class=nav-right><nav id=nav-items class="nav-item level is-mobile"><a class=level-item aria-label=github href=https://github.com/adrianabreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></i></span></a><a class=level-item aria-label=twitter href=https://twitter.com/aabreuglez target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></i></span></a><a class=level-item aria-label=email href=mailto:aabreuglez@gmail.com target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></i></span></a><a class=level-item aria-label=linkedin href=https://linkedin.com/in/AdrianAbreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path stroke-width="1.8" d="m5.839218 4.101561c0 1.211972-.974141 2.194011-2.176459 2.194011S1.4863 5.313533 1.4863 4.101561c0-1.211094.974141-2.194011 2.176459-2.194011s2.176459.982917 2.176459 2.194011zm.017552 3.94922H1.468748v14.04167H5.85677V8.050781zm7.005038.0H8.501869v14.04167h4.360816v-7.370999c0-4.098413 5.291077-4.433657 5.291077.0v7.370999h4.377491v-8.89101c0-6.915523-7.829986-6.66365-9.669445-3.259423V8.050781z"/></svg></i></span></a></nav></div></nav><nav class=nav></nav></div><script src=/js/navicon-shift.js></script></section><section class=section><div class=container><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6">March 24, 2017</h2><h1 class=title>Interacción a través de ViewChild en Angular</h1><div class=content><p>Hoy me he encontrado con una situación peculiar en un código. Aunque considero que quizás como está realizada la tarea no sea la mejor opción, creo que es un buen ejemplo para entender algunos conceptos de Angular.</p><p>Partiendo de una aplicaicón muy básica donde tenemos dos componentes: <strong>AppComponent</strong> y <strong>ChildComponent</strong>, vamos a renderizar dinámicamente el componente hijo desde el componente padre y ejecutar una serie de acciones.</p><p>Empecemos por el componente padre:</p><pre tabindex=0><code>&lt;h1&gt;
   {{title}}
 &lt;/h1&gt;
 
-&lt;button type=&quot;button&quot; (click)=&quot;renderChildAndDoChildStuff()&quot;&gt;Render the child!&lt;/button&gt;
-&lt;child *ngIf=&quot;timeToRenderChild&quot;&gt;&lt;/child&gt;
-</code></pre><p><strong>app.component.ts</strong></p>
-<pre tabindex=0><code>import { Component, ViewChild } from '@angular/core';
-import { ChildComponent } from './child/child.component';
+&lt;button type=&#34;button&#34; (click)=&#34;renderChildAndDoChildStuff()&#34;&gt;Render the child!&lt;/button&gt;
+&lt;child *ngIf=&#34;timeToRenderChild&#34;&gt;&lt;/child&gt;
+</code></pre><p><strong>app.component.ts</strong></p><pre tabindex=0><code>import { Component, ViewChild } from &#39;@angular/core&#39;;
+import { ChildComponent } from &#39;./child/child.component&#39;;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: &#39;app-root&#39;,
+  templateUrl: &#39;./app.component.html&#39;,
+  styleUrls: [&#39;./app.component.css&#39;]
 })
 export class AppComponent {
-  title = 'app works!';
+  title = &#39;app works!&#39;;
 
   @ViewChild(ChildComponent)
   private childComponent: ChildComponent;
@@ -96,35 +31,8 @@ export class AppComponent {
     this.childComponent.doStuff();
   }
 }
-
-</code></pre><p><strong>app.component.html</strong></p>
-<p>Varios detalles:</p>
-<ol>
-<li>
-<p>La directiva ngIf hace que hasta que no se cumpla la condición no empiece el renderizado del componente hijo.</p>
-</li>
-<li>
-<p>El decorator @ViewChild permite que un componente padre acceda a las propiedades de un componente hijo.</p>
-</li>
-</ol>
-<p>La funcion doStuff no hace más que modificar un valor de texto en el componente hijo. ¿Que pasa cuando hacemos click en el botón?</p>
-<img src=/images/error-viewchild-lifecycle.png class=img-responsive>
-<p>Tenemos un error, que nos dice que nuestro componente aún está en estado undefined.
-¿Como podemos saber que nuestro componente está listo?</p>
-<p>Aquí entran en juego los <a href=https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html>lifecycle hooks</a>. Si utlizamos OnInit, ya estará nuestro componente resuelto. Pero, y aquí el quid del post, aún falta una cosa. Y es que el componente padre sepa que el hijo ha terminado de instanciarse. En un principio notificar una acción de un componente hijo a un componente padre es tan sencillo como usar un evento.</p>
-<p>Pero esto no es suficiente: Cuando el componente hijo ya esté creado será demasiado tarde como para modificar el componente padre en el mismo ciclo (debido a la estructura en árbol del detector de cambios), por tanto, es necesario esperar un tiempo, y esto se consigue utilizando por ejemplo un setTimeOut.</p>
-<pre tabindex=0><code>setTimeout(() =&gt; this.childComponent.doStuff(), 0);
+</code></pre><p><strong>app.component.html</strong></p><p>Varios detalles:</p><ol><li><p>La directiva ngIf hace que hasta que no se cumpla la condición no empiece el renderizado del componente hijo.</p></li><li><p>El decorator @ViewChild permite que un componente padre acceda a las propiedades de un componente hijo.</p></li></ol><p>La funcion doStuff no hace más que modificar un valor de texto en el componente hijo. ¿Que pasa cuando hacemos click en el botón?</p><img src=/images/error-viewchild-lifecycle.png class=img-responsive><p>Tenemos un error, que nos dice que nuestro componente aún está en estado undefined.
+¿Como podemos saber que nuestro componente está listo?</p><p>Aquí entran en juego los <a href=https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html>lifecycle hooks</a>. Si utlizamos OnInit, ya estará nuestro componente resuelto. Pero, y aquí el quid del post, aún falta una cosa. Y es que el componente padre sepa que el hijo ha terminado de instanciarse. En un principio notificar una acción de un componente hijo a un componente padre es tan sencillo como usar un evento.</p><p>Pero esto no es suficiente: Cuando el componente hijo ya esté creado será demasiado tarde como para modificar el componente padre en el mismo ciclo (debido a la estructura en árbol del detector de cambios), por tanto, es necesario esperar un tiempo, y esto se consigue utilizando por ejemplo un setTimeOut.</p><pre tabindex=0><code>setTimeout(() =&gt; this.childComponent.doStuff(), 0);
 </code></pre><p>Para ver el código del post:
-<a href=https://github.com/adrianabreu/angular_viewchild_lifecycle>https://github.com/adrianabreu/angular_viewchild_lifecycle</a></p>
-<p>Para más información:
-<a href=https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html#smarter-change-detection>https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html#smarter-change-detection</a></p>
-</div>
-</div>
-</section>
-<section class=section>
-<div class="container has-text-centered">
-<p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p>
-</div>
-</section>
-</body>
-</html>
+<a href=https://github.com/adrianabreu/angular_viewchild_lifecycle>https://github.com/adrianabreu/angular_viewchild_lifecycle</a></p><p>Para más información:
+<a href=https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html#smarter-change-detection>https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html#smarter-change-detection</a></p></div></div></section><section class=section><div class="container has-text-centered"><p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p></div></section></body></html>
