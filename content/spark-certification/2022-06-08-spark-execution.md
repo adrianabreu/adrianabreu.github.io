@@ -2,6 +2,7 @@
 Description = ""
 date = "2022-06-08T17:02:32Z"
 title = "Spark Execution"
+tags = ["Spark", "Certification", "Data Engineer"]
 +++
 
 Spark provides an api and an engine, that engine is responsible for analyzing the code and performing several optimizations. But how does this work?

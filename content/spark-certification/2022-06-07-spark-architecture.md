@@ -2,6 +2,7 @@
 Description = ""
 date = "2022-06-07T17:02:32Z"
 title = "Spark Architecture"
+tags = ["Spark", "Certification", "Data Engineer"]
 +++
 
 Spark works on top of a cluster that will be managed by a cluster manager. One node will act as a Driver and the rest will be Workers.
@@ -37,4 +38,4 @@ Jobs
 
 ```
 
-So we will have **Tasks** running in our Executors **Cores** (alias **slots**). We can now the number of cores with `sc.defaultParallelism`
+So we will have **Tasks** running in our Executors **Cores** (alias **slots** alias **threads** -it is quite confusing that they are called  cores as they are not related to phsyical cores). We can now the number of cores with `sc.defaultParallelism`
