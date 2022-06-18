@@ -20,10 +20,10 @@ enableSocial = true # Adds OpenGraph and Twitter cards
 homeTitle = "Adrian Abreu Data Engineer Blog" # Title for home page
 
 [params.social]
-twitter = "aabreuglez"
+twitter = "adrianabreudev"
 github = "adrianabreu"
 linkedin = "AdrianAbreu"
-Email = "aabreuglez@gmail.com"
+Email = "adrianabreugonzalez@outlook.com"
  
 [permalinks]
 post = "/:year/:month/:day/:slug"
