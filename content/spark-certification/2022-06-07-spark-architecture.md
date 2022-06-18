@@ -5,7 +5,23 @@ title = "Spark Architecture"
 tags = ["Spark", "Certification", "Data Engineer"]
 +++
 
-Spark works on top of a cluster that will be managed by a cluster manager. One node will act as a Driver and the rest will be Workers.
+Spark works on top of a cluster that will be managed by a cluster manager. The cluster manager is responsible of: 
+1. tracks resource allocation across all applications running on the cluster.
+2. monitor the health of all the nodes.
+
+Inside each node there is a node manager which is responsible to track each node health and resources and inform the cluster manager.
+
+```goat
+
++----------------+    +---+ Node Manager
+|Cluster Manager +----+   
++----------------+    +---+ Node Manager
+                      +
+                      +---+ Node Manager
+``` 
+
+In spark one node will act as a Driver and the rest will be Workers. Notice that the Driver is the **heart** of the application, if it fails, the application will fail too. The driver is responsible of distributing and scheduling all the job across executors.
+
 
 ```goat
         Spark  
@@ -16,7 +32,7 @@ Spark works on top of a cluster that will be managed by a cluster manager. One n
 
 ```
 
-Who are that Driver and those Workers? That depends on the **Execution Mode**.
+Who are that Driver and those Workers? That depends on the **Execution Mode** selected during the application submission.
 
 There 3 kinds:
 
