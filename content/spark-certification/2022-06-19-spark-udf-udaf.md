@@ -110,13 +110,9 @@ Now we can use our udf:
 input.toDF("id","tickets").selectExpr("elementWiseSum(tickets)")
 ```
 
-```goat
-+-----------------------+
 |elementwisesum(tickets)|
-+-----------------------+
+| --------------------- |
 |        [7, 10, 13, 16]|
-+-----------------------+
-```
 
 And even use it in our aggregations!
 
@@ -125,11 +121,7 @@ import org.apache.spark.sql.functions.expr
 input.toDF("id","tickets").groupBy("id").agg(expr("elementWiseSum(tickets)")).show
 ```
 
-```goat
-+---+-----------------------+
 | id|elementWiseSum(tickets)|
-+---+-----------------------+
+| - | --------------------- |
 |  1|         [6, 8, 10, 12]|
 |  2|           [1, 2, 3, 4]|
-+---+-----------------------+
-```
