@@ -31,5 +31,8 @@ post = "/:year/:month/:day/:slug"
 [taxonomies]
 tag ="tags"
 
+[minify]
+disableHTML = true
+
 [params.social.config]
 platforms = ["github","twitter","email","linkedin"]
