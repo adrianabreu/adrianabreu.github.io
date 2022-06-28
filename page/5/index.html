@@ -1,24 +1,283 @@
-<!doctype html><html xmlns=http://www.w3.org/1999/xhtml lang=es-es><head><meta name=generator content="Hugo 0.101.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Adrian Abreu Data Engineering Blog</title><meta property="og:title" content="Adrián Abreu"><meta property="og:description" content><meta property="og:url" content="https://adrianabreu.github.io/"><meta property="og:site_name" content="Adrián Abreu"><meta property="og:type" content="website"><meta property="og:image" content="https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256"><meta property="article:section" content><meta property="og:updated_time" content="2022-06-19T14:43:22Z"><meta name=twitter:card content="summary"><meta name=twitter:site content="@adrianabreudev"><meta name=twitter:creator content="@adrianabreudev"><link href=https://adrianabreu.github.io/index.xml rel=alternate type=application/rss+xml title="Adrián Abreu"><link rel=stylesheet href=/css/style.css><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://adrianabreu.github.io/><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"></head><body><section class=section><div class=container><nav id=nav-main class=nav><div id=nav-name class=nav-left><a id=nav-anchor class=nav-item href=https://adrianabreu.github.io><h1 id=nav-heading class="title is-4">Adrián Abreu</h1></a></div><div class=nav-right><nav id=nav-items class="nav-item level is-mobile"><a class=level-item aria-label=github href=https://github.com/adrianabreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></i></span></a><a class=level-item aria-label=twitter href=https://twitter.com/adrianabreudev target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></i></span></a><a class=level-item aria-label=email href=mailto:adrianabreugonzalez@outlook.com target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></i></span></a><a class=level-item aria-label=linkedin href=https://linkedin.com/in/AdrianAbreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path stroke-width="1.8" d="m5.839218 4.101561c0 1.211972-.974141 2.194011-2.176459 2.194011S1.4863 5.313533 1.4863 4.101561c0-1.211094.974141-2.194011 2.176459-2.194011s2.176459.982917 2.176459 2.194011zm.017552 3.94922H1.468748v14.04167H5.85677V8.050781zm7.005038.0H8.501869v14.04167h4.360816v-7.370999c0-4.098413 5.291077-4.433657 5.291077.0v7.370999h4.377491v-8.89101c0-6.915523-7.829986-6.66365-9.669445-3.259423V8.050781z"/></svg></i></span></a></nav></div></nav><nav class=nav></nav></div><script src=/js/navicon-shift.js></script></section><section class=section><div class=container><article><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6 date">November 18, 2017</h2><h1 class=title><a href=https://adrianabreu.github.io/blog/2017-11-18-angular-series-ii-templating/>Angular Series II - Templating</a></h1><div class=content>Continuando con el artículo del otro día sobre proyección de contenido aquí pretendo mostrar otra forma de pasar contenido: las templates. ¿Qué es una template? Es un pedazo de html envuelto entre entre etiquetas ng-template tal que así:
-&lt;ng-template> &lt;div class=”as-template”> I won’t be rendered &lt;/div> &lt;/ng-template> Si esto lo ponemos en un componente, tal como en el siguiente ejemplo en el navegador aparecerá: NADA.
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+	<meta name="generator" content="Hugo 0.101.0" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Adrian Abreu Data Engineering Blog</title>
+
+<meta property='og:title' content='Adrián Abreu'>
+<meta property='og:description' content=''>
+<meta property='og:url' content='https://adrianabreu.github.io/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content=''><meta property='og:updated_time' content='2022-06-28T13:43:22Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+
+<link href="https://adrianabreu.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Adrián Abreu" />
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.github.io/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.io">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+      </div>
+      <h2 class="subtitle is-6 date">December 17, 2017</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2017-12-17-angular-series-iii-dynamic-components/">Angular Series III - Dynamic components</a></h1>
+      <div class="content">
+        Antes de terminar repasando el tema de templating, quiero hacer un inciso. Existen ciertos casos donde el templating es insuficiente y lo que necesitamos es simplemente escoger dinámicamente que componente vamos a renderizar.
+Esto está documentado en la documentación de angular bajo el nombre de Dynamic Components.
+¿Cómo funcionan estos dynamics components? Explicado mal y pronto, la idea es: Escoger un elemento de la vista que actue de contenedor e inyectar el componente debe ir ahí.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/blog/2017-12-17-angular-series-iii-dynamic-components/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+      </div>
+      <h2 class="subtitle is-6 date">November 18, 2017</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2017-11-18-angular-series-ii-templating/">Angular Series II - Templating</a></h1>
+      <div class="content">
+        Continuando con el artículo del otro día sobre proyección de contenido aquí pretendo mostrar otra forma de pasar contenido: las templates. ¿Qué es una template? Es un pedazo de html envuelto entre entre etiquetas ng-template tal que así:
+&lt;ng-template&gt; &lt;div class=”as-template”&gt; I won’t be rendered &lt;/div&gt; &lt;/ng-template&gt; Si esto lo ponemos en un componente, tal como en el siguiente ejemplo en el navegador aparecerá: NADA.
 ¿Por qué? Porque las plantillas de angular no se renderizan al ser evaluadas.
-<a class="button is-link" href=https://adrianabreu.github.io/blog/2017-11-18-angular-series-ii-templating/ style=height:28px>Read more</a></div></article><article><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6 date">November 6, 2017</h2><h1 class=title><a href=https://adrianabreu.github.io/blog/2017-11-06-experimentando-con-redux/>Experimentando con Redux</a></h1><div class=content>Con el objetivo de mejorar el simulador SIMDE me decidí a probar un sistema de gestión de estados y concentrar el funcionamiento de la aplicación. ¿El motivo? Era la única forma sensata que tenía de poder gestionar la UI cuando entrara la máquina VLIW sin que todo fuera un caos.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/blog/2017-11-18-angular-series-ii-templating/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+      </div>
+      <h2 class="subtitle is-6 date">November 6, 2017</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2017-11-06-experimentando-con-redux/">Experimentando con Redux</a></h1>
+      <div class="content">
+        Con el objetivo de mejorar el simulador SIMDE me decidí a probar un sistema de gestión de estados y concentrar el funcionamiento de la aplicación. ¿El motivo? Era la única forma sensata que tenía de poder gestionar la UI cuando entrara la máquina VLIW sin que todo fuera un caos.
 Para ello he recurrido a mi aplicación favorita: Chuck Norris client app. (Ya la he hecho en AngularJS y Angular previamente).
-<a class="button is-link" href=https://adrianabreu.github.io/blog/2017-11-06-experimentando-con-redux/ style=height:28px>Read more</a></div></article><article><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6 date">October 8, 2017</h2><h1 class=title><a href=https://adrianabreu.github.io/blog/2017-10-08-breve-sumario/>Un breve sumario</a></h1><div class=content>El mes de septiembre ha sido un poco caótico, pero ya creo que me he adaptado a la rutina. Por lo pronto he empezado con el blog, ahora el auto despliegue va mucho mejor, estoy utilizando CircleCI en vez de Wecker.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/blog/2017-11-06-experimentando-con-redux/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+      </div>
+      <h2 class="subtitle is-6 date">October 8, 2017</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2017-10-08-breve-sumario/">Un breve sumario</a></h1>
+      <div class="content">
+        El mes de septiembre ha sido un poco caótico, pero ya creo que me he adaptado a la rutina. Por lo pronto he empezado con el blog, ahora el auto despliegue va mucho mejor, estoy utilizando CircleCI en vez de Wecker.
 Por otra parte, el diseño del blog se ha separado por mucho del tema original, y no contento con esto he mejorado el desarrollo del tema permitiendo el uso de Sass.
-<a class="button is-link" href=https://adrianabreu.github.io/blog/2017-10-08-breve-sumario/ style=height:28px>Read more</a></div></article><article><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6 date">October 8, 2017</h2><h1 class=title><a href=https://adrianabreu.github.io/knowledge/solidprinciples/>SOLID Principles</a></h1><div class=content>SRP: Single Responsability Principle Una pieza de software debería tener una única razón para cambiar.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/blog/2017-10-08-breve-sumario/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+      </div>
+      <h2 class="subtitle is-6 date">October 8, 2017</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/knowledge/solidprinciples/">SOLID Principles</a></h1>
+      <div class="content">
+        SRP: Single Responsability Principle Una pieza de software debería tener una única razón para cambiar.
 Si una clase tiene más de una &ldquo;responsabilidad&rdquo; (razón de cambio), un cambio en algún requisito podría ser muy difícil de modelar. Ya que al cumplir con esta responsabilidad podríamos estar incumpliendo otras.
 Esto hace que el diseño sea realmente frágil y esté acoplado: es decir, se va a romper de formas inesperadas.
 Es importante ver que esta regla aunque es general no implica que tengamos que desgranar siempre todas las clases.
-<a class="button is-link" href=https://adrianabreu.github.io/knowledge/solidprinciples/ style=height:28px>Read more</a></div></article><article><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6 date">August 14, 2017</h2><h1 class=title><a href=https://adrianabreu.github.io/blog/2017-08-14-angular-series-i-transclusion/>Angular series I - Proyección de contenido (Content projection)</a></h1><div class=content>Cuando creé este blog tenía bastante claro que uno de los objetivos principales era que me sirviera de utilidad para interiorizar lo que voy aprendiendo. Y aunque he escrito ciertas cosas útiles para mi día a día no estoy registrando ni una centésima parte de la información que mi mente ha ido procesando estos meses.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/knowledge/solidprinciples/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+      </div>
+      <h2 class="subtitle is-6 date">August 14, 2017</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2017-08-14-angular-series-i-transclusion/">Angular series I - Proyección de contenido (Content projection)</a></h1>
+      <div class="content">
+        Cuando creé este blog tenía bastante claro que uno de los objetivos principales era que me sirviera de utilidad para interiorizar lo que voy aprendiendo. Y aunque he escrito ciertas cosas útiles para mi día a día no estoy registrando ni una centésima parte de la información que mi mente ha ido procesando estos meses.
 Así que voy a dedicarme a escribir un artículo semanal sobre un tema con el que llevo ya casi un año: Angular.
-<a class="button is-link" href=https://adrianabreu.github.io/blog/2017-08-14-angular-series-i-transclusion/ style=height:28px>Read more</a></div></article><article><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6 date">August 4, 2017</h2><h1 class=title><a href=https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/>Auto deployment en gh-pages con Travis</a></h1><div class=content>Una de las mejores características de github sin duda alguna, son las gh-pages.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/blog/2017-08-14-angular-series-i-transclusion/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+      </div>
+      <h2 class="subtitle is-6 date">August 4, 2017</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/">Auto deployment en gh-pages con Travis</a></h1>
+      <div class="content">
+        Una de las mejores características de github sin duda alguna, son las gh-pages.
 Las gh-pages nos permiten desplegar el código de nuestra aplicación frontend a través de esta rama, de tal forma que muchos de nuestros proyectos (por ejemplo este blog) estén disponibles sin tener limitaciones de hosting.
 Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar.
-<a class="button is-link" href=https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/ style=height:28px>Read more</a></div></article><article><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6 date">July 28, 2017</h2><h1 class=title><a href=https://adrianabreu.github.io/blog/2017-07-28-mi-experiencia-con-react/>Mi experiencia con React</a></h1><div class=content>Hoy se cumple un mes desde que entregué mi trabajo de fin de grado. (Modestia aparte, conseguí un 10). Han pasado muchas cosas desde entonces, como que por ejemplo ahora mismo estoy viviendo en Barcelona y que trabajo para nada más y nada menos que Plain Concepts. Pero al margen de eso, vamos a centrarnos en mi trabajo de fin de grado.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+      </div>
+      <h2 class="subtitle is-6 date">July 28, 2017</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2017-07-28-mi-experiencia-con-react/">Mi experiencia con React</a></h1>
+      <div class="content">
+        Hoy se cumple un mes desde que entregué mi trabajo de fin de grado. (Modestia aparte, conseguí un 10). Han pasado muchas cosas desde entonces, como que por ejemplo ahora mismo estoy viviendo en Barcelona y que trabajo para nada más y nada menos que Plain Concepts. Pero al margen de eso, vamos a centrarnos en mi trabajo de fin de grado.
 En tercero de grado de ingeniería informática es posible escoger una especialidad.
-<a class="button is-link" href=https://adrianabreu.github.io/blog/2017-07-28-mi-experiencia-con-react/ style=height:28px>Read more</a></div></article><article><div class="subtitle tags is-6 is-pulled-right"></div><h2 class="subtitle is-6 date">June 4, 2017</h2><h1 class=title><a href=https://adrianabreu.github.io/blog/2017-06-04-empezar-a-programar/>Empezar a programar</a></h1><div class=content>Creo que me he visto en más de una decena de ocasiones aconsejando a gente como empezar en el mundo de la programación, así que esta entrada viene dedicada a todos ellos.
-Por supuesto se trata de una guía basada en mi opinión y solo mi opinión.
-¿DAW o DAM? Realmente mi respuesta es bastante clara: DAW.
-El mundo web cada vez va tomando más y más fuerza. Ya se pueden desarrollar aplicaciones de escritorio utilizando como base aplicaciones web con tecnologías como electron (un buen ejemplo de este tipo de aplicaciones Visual Studio Code).
-<a class="button is-link" href=https://adrianabreu.github.io/blog/2017-06-04-empezar-a-programar/ style=height:28px>Read more</a></div></article></div></section><section class=section><div class=container><nav class="level is-mobile"><div class=level-left><div class=level-item><a class=button href=/page/4/><span class="icon is-small is-marginless"><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></span>Newer</a></div></div><div class="level-right is-marginless"><div class=level-item><a class=button href=/page/6/>Older
-<span class="icon is-small is-marginless"><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><polyline points="14 6 20 12 14 18"/></svg></span></a></div></div></nav></div></section><section class=section><div class="container has-text-centered"><p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p></div></section></body></html>
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/blog/2017-07-28-mi-experiencia-con-react/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          
+          <a class="button" href="/page/4/">
+            <span class="icon is-small is-marginless">
+              <svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <polyline points="15 18 9 12 15 6"/>
+    
+  </svg>
+            </span>
+            Newer
+          </a>
+          
+        </div>
+      </div>
+      <div class="level-right is-marginless">
+        <div class="level-item">
+          
+          <a class="button" href="/page/6/">
+            Older
+            <span class="icon is-small is-marginless">
+              <svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <polyline points="14 6 20 12 14 18"/>
+    
+  </svg>
+            </span>
+          </a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+
+
+
+</body>
+</html>

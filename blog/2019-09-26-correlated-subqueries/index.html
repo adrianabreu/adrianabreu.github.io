@@ -1,17 +1,165 @@
-<!doctype html><html xmlns=http://www.w3.org/1999/xhtml lang=es-es><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Correlated subqueries | Adrián Abreu</title><meta property="og:title" content="Correlated subqueries - Adrián Abreu"><meta property="og:description" content="Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había &ldquo;endemoniado&rdquo; al join considerarlo perjudicial.
-Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &ldquo;colapsen&rdquo; los datos de hace 14 días."><meta property="og:url" content="https://adrianabreu.github.io/blog/2019-09-26-correlated-subqueries/"><meta property="og:site_name" content="Adrián Abreu"><meta property="og:type" content="article"><meta property="og:image" content="https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256"><meta property="article:section" content="Blog"><meta property="article:tag" content="Spark"><meta property="article:tag" content="Analytics"><meta property="article:tag" content="SQL"><meta property="article:published_time" content="2019-09-26T20:43:32Z"><meta property="article:modified_time" content="2019-09-26T20:43:32Z"><meta name=twitter:card content="summary"><meta name=twitter:site content="@adrianabreudev"><meta name=twitter:creator content="@adrianabreudev"><link href=https://adrianabreu.github.io/index.xml rel=alternate type=application/rss+xml title="Adrián Abreu"><link rel=stylesheet href=/css/style.css><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://adrianabreu.github.io/blog/2019-09-26-correlated-subqueries/><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"></head><body><section class=section><div class=container><nav id=nav-main class=nav><div id=nav-name class=nav-left><a id=nav-anchor class=nav-item href=https://adrianabreu.github.io><h1 id=nav-heading class="title is-4">Adrián Abreu</h1></a></div><div class=nav-right><nav id=nav-items class="nav-item level is-mobile"><a class=level-item aria-label=github href=https://github.com/adrianabreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></i></span></a><a class=level-item aria-label=twitter href=https://twitter.com/adrianabreudev target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></i></span></a><a class=level-item aria-label=email href=mailto:adrianabreugonzalez@outlook.com target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></i></span></a><a class=level-item aria-label=linkedin href=https://linkedin.com/in/AdrianAbreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path stroke-width="1.8" d="m5.839218 4.101561c0 1.211972-.974141 2.194011-2.176459 2.194011S1.4863 5.313533 1.4863 4.101561c0-1.211094.974141-2.194011 2.176459-2.194011s2.176459.982917 2.176459 2.194011zm.017552 3.94922H1.468748v14.04167H5.85677V8.050781zm7.005038.0H8.501869v14.04167h4.360816v-7.370999c0-4.098413 5.291077-4.433657 5.291077.0v7.370999h4.377491v-8.89101c0-6.915523-7.829986-6.66365-9.669445-3.259423V8.050781z"/></svg></i></span></a></nav></div></nav><nav class=nav></nav></div><script src=/js/navicon-shift.js></script></section><section class=section><div class=container><div class="subtitle tags is-6 is-pulled-right"><a class="subtitle is-6" href=/tags/spark/>#Spark</a>
-| <a class="subtitle is-6" href=/tags/analytics/>#Analytics</a>
-| <a class="subtitle is-6" href=/tags/sql/>#SQL</a></div><h2 class="subtitle is-6">September 26, 2019</h2><h1 class=title>Correlated subqueries</h1><div class=content><p>Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había &ldquo;endemoniado&rdquo; al join considerarlo perjudicial.</p><p>Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &ldquo;colapsen&rdquo; los datos de hace 14 días. Será mejor con un ejemplo:</p><p>Si para la tabla actual tenemos los siguientes datos</p><table><thead><tr><th>datekey</th><th>sales</th><th>profit</th></tr></thead><tbody><tr><td>2019-09-01</td><td>12</td><td>38.10</td></tr><tr><td>2019-09-15</td><td>10</td><td>27.05</td></tr><tr><td>2019-09-29</td><td>5</td><td>16</td></tr></tbody></table><p>Y aplicamos el cálculo obtendríamos:</p><div class=table-responsive><table><th>datekey</th><th>sales</th><th>profit</th><th>datekey_14_ago</th><th>sales_14_days_ago</th><th>profit_14_days_ago</th><tr><td>2019-09-01</td><td>12</td><td>38.10</td><td>2019-08-18</td><td>null</td><td>null</td></tr><tr><td>2019-09-15</td><td>10</td><td>27.05</td><td>2019-09-01</td><td>12</td><td>38.10</td></tr><tr><td>2019-09-29</td><td>5</td><td>16</td><td>2019-09-15</td><td>10</td><td>27.05</td></tr></table></div><p>En un primer momento, el código que se usó para resolver el problema fue tal que este:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#66d9ef>select</span> <span style=color:#f92672>*</span>,
-</span></span><span style=display:flex><span>(<span style=color:#66d9ef>select</span> <span style=color:#66d9ef>max</span>(sales) <span style=color:#66d9ef>from</span> fact_table f <span style=color:#66d9ef>where</span> f.datekey <span style=color:#f92672>=</span> historic.datekey_14_ago) <span style=color:#66d9ef>as</span> sales_14_days_ago,
-</span></span><span style=display:flex><span>(<span style=color:#66d9ef>select</span> <span style=color:#66d9ef>max</span>(profit) <span style=color:#66d9ef>from</span> fact_table f <span style=color:#66d9ef>where</span> f.datekey <span style=color:#f92672>=</span> historic.datekey_14_ago) <span style=color:#66d9ef>as</span> profit_14_days_ago
-</span></span><span style=display:flex><span><span style=color:#66d9ef>from</span> (
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>select</span> <span style=color:#f92672>*</span>,
-</span></span><span style=display:flex><span>    date_sub(<span style=color:#66d9ef>cast</span>(datekey  <span style=color:#66d9ef>as</span> date), <span style=color:#ae81ff>14</span>) <span style=color:#66d9ef>as</span> datekey_14_ago
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>from</span> fact_table
-</span></span><span style=display:flex><span>) historic</span></span></code></pre></div><p>Esto me rompió absolutamente todos los esquemas. Algunos compañeros lo veían absolutamente normal y otros estaban igual que yo.
-Investigando esta tarde encontré el nombre de este tipo de operación: <a href=https://en.wikipedia.org/wiki/Correlated_subquery>correlated subqueries</a>.
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Correlated subqueries | Adrián Abreu</title>
+
+<meta property='og:title' content='Correlated subqueries - Adrián Abreu'>
+<meta property='og:description' content='Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había &ldquo;endemoniado&rdquo; al join considerarlo perjudicial.
+Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &ldquo;colapsen&rdquo; los datos de hace 14 días.'>
+<meta property='og:url' content='https://adrianabreu.github.io/blog/2019-09-26-correlated-subqueries/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Spark'><meta property='article:tag' content='Analytics'><meta property='article:tag' content='SQL'><meta property='article:published_time' content='2019-09-26T20:43:32Z'/><meta property='article:modified_time' content='2019-09-26T20:43:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+
+<link href="https://adrianabreu.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Adrián Abreu" />
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.github.io/blog/2019-09-26-correlated-subqueries/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.io">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/analytics/">#Analytics</a>
+  
+  | <a class="subtitle is-6" href="/tags/sql/">#SQL</a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">September 26, 2019</h2>
+    <h1 class="title">Correlated subqueries</h1>
+    
+    <div class="content">
+      <p>Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había &ldquo;endemoniado&rdquo; al join considerarlo perjudicial.</p>
+<p>Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &ldquo;colapsen&rdquo; los datos de hace 14 días. Será mejor con un ejemplo:</p>
+<p>Si para la tabla actual tenemos los siguientes datos</p>
+<table>
+<thead>
+<tr>
+<th>datekey</th>
+<th>sales</th>
+<th>profit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019-09-01</td>
+<td>12</td>
+<td>38.10</td>
+</tr>
+<tr>
+<td>2019-09-15</td>
+<td>10</td>
+<td>27.05</td>
+</tr>
+<tr>
+<td>2019-09-29</td>
+<td>5</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+<p>Y aplicamos el cálculo obtendríamos:</p>
+<div class="table-responsive">
+<table>
+    <th>datekey</th><th> sales</th><th> profit</th><th>datekey_14_ago</th><th>sales_14_days_ago</th><th>profit_14_days_ago</th>
+    <tr><td>2019-09-01</td><td>12</td><td>38.10</td><td>2019-08-18</td><td>null</td><td> null  </td></tr>
+    <tr><td>2019-09-15</td><td>10</td><td>27.05</td><td>2019-09-01</td><td>12  </td><td> 38.10 </td></tr>
+    <tr><td>2019-09-29</td><td>5 </td><td>16   </td><td>2019-09-15</td><td>10  </td><td> 27.05 </td></tr>
+</table>
+</div>
+<p>En un primer momento, el código que se usó para resolver el problema fue tal que este:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>,
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(sales) <span style="color:#66d9ef">from</span> fact_table f <span style="color:#66d9ef">where</span> f.datekey <span style="color:#f92672">=</span> historic.datekey_14_ago) <span style="color:#66d9ef">as</span> sales_14_days_ago,
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(profit) <span style="color:#66d9ef">from</span> fact_table f <span style="color:#66d9ef">where</span> f.datekey <span style="color:#f92672">=</span> historic.datekey_14_ago) <span style="color:#66d9ef">as</span> profit_14_days_ago
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>,
+</span></span><span style="display:flex;"><span>    date_sub(<span style="color:#66d9ef">cast</span>(datekey  <span style="color:#66d9ef">as</span> date), <span style="color:#ae81ff">14</span>) <span style="color:#66d9ef">as</span> datekey_14_ago
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">from</span> fact_table
+</span></span><span style="display:flex;"><span>) historic</span></span></code></pre></div>
+<p>Esto me rompió absolutamente todos los esquemas. Algunos compañeros lo veían absolutamente normal y otros estaban igual que yo.
+Investigando esta tarde encontré el nombre de este tipo de operación: <a href="https://en.wikipedia.org/wiki/Correlated_subquery">correlated subqueries</a>.
 Y aquí se explica muy bien, la consulta se evalua <strong>para cada fila</strong> del conjunto resultando y ya se apunta
-a que es una método que puede ser lento aunque yo estaba interesado en como Spark realizaba este cálculo.</p><p>Y me encontré con este pequeño plan de ejecución:</p><pre tabindex=0><code>== Optimized Logical Plan ==
+a que es una método que puede ser lento aunque yo estaba interesado en como Spark realizaba este cálculo.</p>
+<p>Y me encontré con este pequeño plan de ejecución:</p>
+<pre tabindex="0"><code>== Optimized Logical Plan ==
 Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1572, max(sales)#1580L AS sales_14_days_ago#1574L, max(profit)#1582 AS profit_14_days_ago#1576]
 +- Join LeftOuter, (cast(datekey#1509#1584 as date) = datekey_14_ago#1572)
    :- Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1572, max(sales)#1580L]
@@ -26,20 +174,45 @@ Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1572, max(sales)
       +- Project [datekey#1509, profit#1511]
          +- Filter isnotnull(datekey#1509)
             +- Relation[datekey#1509,sales#1510L,profit#1511] orc
-</code></pre><p>Y en el optimized logical plan al final lo que tenemos un <strong>join por columna</strong> y una <strong>función de agrupacion por columna</strong>. Como vemos que se usa la misma condición para unir vamos a reescribir la query con un join:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#66d9ef>select</span> historic.<span style=color:#f92672>*</span>,
-</span></span><span style=display:flex><span>f.sales <span style=color:#66d9ef>as</span> sales_14_days_ago,
-</span></span><span style=display:flex><span>f.profit <span style=color:#66d9ef>as</span> profit_14_days_ago
-</span></span><span style=display:flex><span><span style=color:#66d9ef>from</span> (
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>select</span> <span style=color:#f92672>*</span>,
-</span></span><span style=display:flex><span>    date_sub(<span style=color:#66d9ef>cast</span>(datekey  <span style=color:#66d9ef>as</span> date), <span style=color:#ae81ff>14</span>) <span style=color:#66d9ef>as</span> datekey_14_ago
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>from</span> fact_table
-</span></span><span style=display:flex><span>) historic
-</span></span><span style=display:flex><span><span style=color:#66d9ef>left</span> <span style=color:#66d9ef>join</span> fact_table f
-</span></span><span style=display:flex><span><span style=color:#66d9ef>on</span> historic.datekey_14_ago <span style=color:#f92672>=</span> f.datekey_14_ago</span></span></code></pre></div><p>Y esto nos devuelve el siguiente plan de ejecución:</p><pre tabindex=0><code>== Optimized Logical Plan ==
+</code></pre><p>Y en el optimized logical plan al final lo que tenemos un <strong>join por columna</strong> y una <strong>función de agrupacion por columna</strong>. Como vemos que se usa la misma condición para unir vamos a reescribir la query con un join:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> historic.<span style="color:#f92672">*</span>,
+</span></span><span style="display:flex;"><span>f.sales <span style="color:#66d9ef">as</span> sales_14_days_ago,
+</span></span><span style="display:flex;"><span>f.profit <span style="color:#66d9ef">as</span> profit_14_days_ago
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>,
+</span></span><span style="display:flex;"><span>    date_sub(<span style="color:#66d9ef">cast</span>(datekey  <span style="color:#66d9ef">as</span> date), <span style="color:#ae81ff">14</span>) <span style="color:#66d9ef">as</span> datekey_14_ago
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">from</span> fact_table
+</span></span><span style="display:flex;"><span>) historic
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">left</span> <span style="color:#66d9ef">join</span> fact_table f
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> historic.datekey_14_ago <span style="color:#f92672">=</span> f.datekey_14_ago</span></span></code></pre></div>
+<p>Y esto nos devuelve el siguiente plan de ejecución:</p>
+<pre tabindex="0"><code>== Optimized Logical Plan ==
 Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1872, sales#1878L AS sales_14_days_ago#1873L, profit#1879 AS profit_14_days_ago#1874]
 +- Join LeftOuter, (cast(datekey_14_ago#1872 as string) = datekey#1877)
    :- Project [datekey#1509, sales#1510L, profit#1511, date_sub(cast(datekey#1509 as date), 14) AS datekey_14_ago#1872]
    :  +- Relation[datekey#1509,sales#1510L,profit#1511] orc
    +- Filter isnotnull(datekey#1877)
       +- Relation[datekey#1877,sales#1878L,profit#1879] orc
-</code></pre><p>Como vemos aquí solo se produce un único join y se evita todo tipo de funciones de agrupación que son realmente costosas obteniendo el mismo resultado.</p><p>En definitiva, las correlated subqueries acaban transformandose en joins y su rendimiento puede ser bastante inferior al de realizar la operación de join directamente.</p></div></div></section><section class=section><div class="container has-text-centered"><p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p></div></section></body></html>
+</code></pre><p>Como vemos aquí solo se produce un único join y se evita todo tipo de funciones de agrupación que son realmente costosas obteniendo el mismo resultado.</p>
+<p>En definitiva, las correlated subqueries acaban transformandose en joins y su rendimiento puede ser bastante inferior al de realizar la operación de join directamente.</p>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+
+
+
+</body>
+</html>
+

@@ -1,5 +1,110 @@
-<!doctype html><html xmlns=http://www.w3.org/1999/xhtml lang=es-es><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Sbt Intro I | Adrián Abreu</title><meta property="og:title" content="Sbt Intro I - Adrián Abreu"><meta property="og:description" content="El mes pasado cambié a otro trabajo :) y por casualidades he vuelto a acabar con proyectos de scala. Este proyecto está bastante avanzado y hace un uso intensivo de los plugins de sbt. De hecho, una tarea que tengo próximamente es hacer una plantilla para proyectos. Así que quería repasar los conceptos básicos de sbt en una serie de posts.
-¿Qué es sbt scala build tool? Es una herramienta para gestionar proyectos en scala."><meta property="og:url" content="https://adrianabreu.github.io/blog/2021-10-10-sbt-intro-i/"><meta property="og:site_name" content="Adrián Abreu"><meta property="og:type" content="article"><meta property="og:image" content="https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256"><meta property="article:section" content="Blog"><meta property="article:tag" content="Scala"><meta property="article:published_time" content="2021-10-10T14:47:32Z"><meta property="article:modified_time" content="2021-10-10T14:47:32Z"><meta name=twitter:card content="summary"><meta name=twitter:site content="@adrianabreudev"><meta name=twitter:creator content="@adrianabreudev"><link href=https://adrianabreu.github.io/index.xml rel=alternate type=application/rss+xml title="Adrián Abreu"><link rel=stylesheet href=/css/style.css><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://adrianabreu.github.io/blog/2021-10-10-sbt-intro-i/><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"></head><body><section class=section><div class=container><nav id=nav-main class=nav><div id=nav-name class=nav-left><a id=nav-anchor class=nav-item href=https://adrianabreu.github.io><h1 id=nav-heading class="title is-4">Adrián Abreu</h1></a></div><div class=nav-right><nav id=nav-items class="nav-item level is-mobile"><a class=level-item aria-label=github href=https://github.com/adrianabreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></i></span></a><a class=level-item aria-label=twitter href=https://twitter.com/adrianabreudev target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></i></span></a><a class=level-item aria-label=email href=mailto:adrianabreugonzalez@outlook.com target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></i></span></a><a class=level-item aria-label=linkedin href=https://linkedin.com/in/AdrianAbreu target=_blank rel=noopener><span class=icon><i><svg viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path stroke-width="1.8" d="m5.839218 4.101561c0 1.211972-.974141 2.194011-2.176459 2.194011S1.4863 5.313533 1.4863 4.101561c0-1.211094.974141-2.194011 2.176459-2.194011s2.176459.982917 2.176459 2.194011zm.017552 3.94922H1.468748v14.04167H5.85677V8.050781zm7.005038.0H8.501869v14.04167h4.360816v-7.370999c0-4.098413 5.291077-4.433657 5.291077.0v7.370999h4.377491v-8.89101c0-6.915523-7.829986-6.66365-9.669445-3.259423V8.050781z"/></svg></i></span></a></nav></div></nav><nav class=nav></nav></div><script src=/js/navicon-shift.js></script></section><section class=section><div class=container><div class="subtitle tags is-6 is-pulled-right"><a class="subtitle is-6" href=/tags/scala/>#Scala</a></div><h2 class="subtitle is-6">October 10, 2021</h2><h1 class=title>Sbt Intro I</h1><div class=content><p>El mes pasado cambié a otro trabajo :) y por casualidades he vuelto a acabar con proyectos de scala. Este proyecto está bastante avanzado y hace un uso intensivo de los plugins de sbt. De hecho, una tarea que tengo próximamente es hacer una plantilla para proyectos. Así que quería repasar los conceptos básicos de sbt en una serie de posts.</p><p>¿Qué es sbt <strong>scala build tool</strong>? Es una herramienta para gestionar proyectos en scala. Es la más utilizada (casi el 95% de los proyectos se hacen en sbt) y uno de sus puntos fuertes es que permite trabajar con múltiples versiones de scala haciendo cross-compilation.</p><p>¿Qué es un proyecto en sbt? Es un directorio que contiene ficheros <strong>.sbt</strong> (el fichero por defecto es el <em>build.sbt</em>) y una estructura de carpetas al estilo de maven.</p><pre tabindex=0><code>src/
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Sbt Intro I | Adrián Abreu</title>
+
+<meta property='og:title' content='Sbt Intro I - Adrián Abreu'>
+<meta property='og:description' content='El mes pasado cambié a otro trabajo :) y por casualidades he vuelto a acabar con proyectos de scala. Este proyecto está bastante avanzado y hace un uso intensivo de los plugins de sbt. De hecho, una tarea que tengo próximamente es hacer una plantilla para proyectos. Así que quería repasar los conceptos básicos de sbt en una serie de posts.
+¿Qué es sbt scala build tool? Es una herramienta para gestionar proyectos en scala.'>
+<meta property='og:url' content='https://adrianabreu.github.io/blog/2021-10-10-sbt-intro-i/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Scala'><meta property='article:published_time' content='2021-10-10T14:47:32Z'/><meta property='article:modified_time' content='2021-10-10T14:47:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+
+<link href="https://adrianabreu.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Adrián Abreu" />
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.github.io/blog/2021-10-10-sbt-intro-i/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.io">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/scala/">#Scala</a>
+
+
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">October 10, 2021</h2>
+    <h1 class="title">Sbt Intro I</h1>
+    
+    <div class="content">
+      <p>El mes pasado cambié a otro trabajo :) y por casualidades he vuelto a acabar con proyectos de scala. Este proyecto está bastante avanzado y hace un uso intensivo de los plugins de sbt. De hecho, una tarea que tengo próximamente es hacer una plantilla para proyectos. Así que quería repasar los conceptos básicos de sbt en una serie de posts.</p>
+<p>¿Qué es sbt <strong>scala build tool</strong>? Es una herramienta para gestionar proyectos en scala. Es la más utilizada (casi el 95% de los proyectos se hacen en sbt) y uno de sus puntos fuertes es que permite trabajar con múltiples versiones de scala haciendo cross-compilation.</p>
+<p>¿Qué es un proyecto en sbt? Es un directorio que contiene ficheros <strong>.sbt</strong> (el fichero por defecto es el <em>build.sbt</em>) y una estructura de carpetas al estilo de maven.</p>
+<pre tabindex="0"><code>src/
   main/
     resources/
        &lt;files to include in main jar here&gt;
@@ -18,36 +123,53 @@
        &lt;test Scala 2.12 specific sources&gt;
     java/
        &lt;test Java sources&gt;
-</code></pre><p>(Sacado de <a href=https://www.scala-sbt.org/1.x/docs/Directories.html>https://www.scala-sbt.org/1.x/docs/Directories.html</a>)</p><p>Además de src tenemos la carpeta <strong>project</strong> esta carpeta contendrá información sobre la build.</p><p>Veamos un pequeño ejemplo de los ficheros que afectan al proyecto antes de entrar en detalle:</p><pre tabindex=0><code>src/
+</code></pre><p>(Sacado de <a href="https://www.scala-sbt.org/1.x/docs/Directories.html">https://www.scala-sbt.org/1.x/docs/Directories.html</a>)</p>
+<p>Además de src tenemos la carpeta <strong>project</strong> esta carpeta contendrá información sobre la build.</p>
+<p>Veamos un pequeño ejemplo de los ficheros que afectan al proyecto antes de entrar en detalle:</p>
+<pre tabindex="0"><code>src/
 project/
     build.properties -&gt; sbt.version = &#34;1.5.5&#34;
     Dependencies.scala
     ...
 build.sbt
-</code></pre><p>En el fichero <strong>build.properties</strong> podemos definir a nivel de proyecto que versión de sbt usar.</p><p>El fichero <strong>build.sbt</strong> contiene definiciones de proyectos. Los proyectos están definidos por el tipo <a href=https://github.com/sbt/sbt/blob/develop/main/src/main/scala/sbt/Project.scala>Project</a> y se configura mediante un dsl de sbt para las settings del estilo clave-valor.</p><pre tabindex=0><code>lazy val root = (project in file(&#34;.&#34;))
+</code></pre><p>En el fichero <strong>build.properties</strong> podemos definir a nivel de proyecto que versión de sbt usar.</p>
+<p>El fichero <strong>build.sbt</strong> contiene definiciones de proyectos. Los proyectos están definidos por el tipo <a href="https://github.com/sbt/sbt/blob/develop/main/src/main/scala/sbt/Project.scala">Project</a> y se configura mediante un dsl de sbt para las settings del estilo clave-valor.</p>
+<pre tabindex="0"><code>lazy val root = (project in file(&#34;.&#34;))
   .settings(
     name := &#34;Hello&#34;,
     scalaVersion := &#34;2.12.7&#34;
   )
-</code></pre><p>Y en el fichero <strong>Dependencies.scala</strong> podemos definir todas las dependencias. Este fichero a veces se omite y se pone todo en el build.sbt, pero se recomienda tener un fichero dedicado exclusivamente a esto y así gestionar todas las dependencias en un único sitio. (<a href=https://www.scala-sbt.org/1.x/docs/Organizing-Build.html#Tracking+dependencies+in+one+place>https://www.scala-sbt.org/1.x/docs/Organizing-Build.html#Tracking+dependencies+in+one+place</a>)</p><p>Las dependencias se definen así:</p><p><strong>groupID % artifactID % revision</strong></p><p>En este caso el artifact id debe especificar la versión de scala.</p><p>Por ejemplo:
-&ldquo;org.scalatest&rdquo; % &ldquo;scalatest_2.11&rdquo; % &ldquo;3.2.4&rdquo;</p><p>Si nuestro proyecto está en scala 2.11 es equivalente a:
-&ldquo;org.scalatest&rdquo; %% &ldquo;scalatest&rdquo; % &ldquo;3.2.4&rdquo;</p><p>(Nótese que hay un % extra antes del artifactID)</p><p>Lo que hacen estos porcentajes es construir objetos del tipo ModuleId para especificar las dependencias.</p><p>Y para poder importarlas tenemos una key específica en el proyecto de settings, <strong>libraryDependencies</strong>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-scala data-lang=scala><span style=display:flex><span><span style=color:#66d9ef>object</span> <span style=color:#a6e22e>Dependencies</span> <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>object</span> <span style=color:#a6e22e>scalatest</span> <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> scalatest<span style=color:#f92672>(</span>version<span style=color:#66d9ef>:</span> <span style=color:#66d9ef>String</span><span style=color:#f92672>)</span> <span style=color:#66d9ef>=</span> <span style=color:#e6db74>&#34;org.scalatest&#34;</span> <span style=color:#f92672>%%</span> <span style=color:#e6db74>&#34;scalatest&#34;</span> <span style=color:#f92672>%</span> version
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> Dependencies._
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>lazy</span> <span style=color:#66d9ef>val</span> root <span style=color:#66d9ef>=</span> <span style=color:#f92672>(</span>project in file<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;.&#34;</span><span style=color:#f92672>))</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>.</span>settings<span style=color:#f92672>(</span>
-</span></span><span style=display:flex><span>    name <span style=color:#66d9ef>:</span><span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Hello&#34;</span><span style=color:#f92672>,</span>
-</span></span><span style=display:flex><span>    scalaVersion <span style=color:#66d9ef>:</span><span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;2.12.7&#34;</span>
-</span></span><span style=display:flex><span>    libraryDependencies <span style=color:#f92672>+=</span> <span style=color:#a6e22e>Seq</span><span style=color:#f92672>(</span>
-</span></span><span style=display:flex><span>        scalatest<span style=color:#f92672>.</span>scalatest<span style=color:#f92672>(</span>scalaTest32Version<span style=color:#f92672>)</span> <span style=color:#f92672>%</span> <span style=color:#a6e22e>Test</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>)</span></span></span></code></pre></div><p>Las dependencias pueden tener varios modos: &ldquo;Compile&rdquo;, &ldquo;Provided&rdquo;, &ldquo;Test&rdquo;. Esta parte de la documentación refleja las implicaciones que tiene. Las dependencias compile se incoporarán a la build del proyecto, las provided se asumen que están en el entorno, etcétera. Recomiendo <a href=https://www.scala-sbt.org/1.x/docs/Scopes.html#Scoping+by+the+configuration+axis>esta parte de la documentación</a> sobre ello.</p><p>A la hora de descargar las librerías es probable que querramos utilizar algún repositorio privado (gitlab por ejemplo). En este caso para añadir un repositorio de tipo maven, basta con añadir un elemento a la key resolvers.</p><pre tabindex=0><code>lazy val root = (project in file(&#34;.&#34;))
+</code></pre><p>Y en el fichero <strong>Dependencies.scala</strong> podemos definir todas las dependencias. Este fichero a veces se omite y se pone todo en el build.sbt, pero se recomienda tener un fichero dedicado exclusivamente a esto y así gestionar todas las dependencias en un único sitio. (<a href="https://www.scala-sbt.org/1.x/docs/Organizing-Build.html#Tracking+dependencies+in+one+place">https://www.scala-sbt.org/1.x/docs/Organizing-Build.html#Tracking+dependencies+in+one+place</a>)</p>
+<p>Las dependencias se definen así:</p>
+<p><strong>groupID % artifactID % revision</strong></p>
+<p>En este caso el artifact id debe especificar la versión de scala.</p>
+<p>Por ejemplo:
+&ldquo;org.scalatest&rdquo; % &ldquo;scalatest_2.11&rdquo; % &ldquo;3.2.4&rdquo;</p>
+<p>Si nuestro proyecto está en scala 2.11 es equivalente a:
+&ldquo;org.scalatest&rdquo; %% &ldquo;scalatest&rdquo; % &ldquo;3.2.4&rdquo;</p>
+<p>(Nótese que hay un % extra antes del artifactID)</p>
+<p>Lo que hacen estos porcentajes es construir objetos del tipo ModuleId para especificar las dependencias.</p>
+<p>Y para poder importarlas tenemos una key específica en el proyecto de settings, <strong>libraryDependencies</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">Dependencies</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">scalatest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> scalatest<span style="color:#f92672">(</span>version<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;org.scalatest&#34;</span> <span style="color:#f92672">%%</span> <span style="color:#e6db74">&#34;scalatest&#34;</span> <span style="color:#f92672">%</span> version
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> Dependencies._
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">lazy</span> <span style="color:#66d9ef">val</span> root <span style="color:#66d9ef">=</span> <span style="color:#f92672">(</span>project in file<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;.&#34;</span><span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">.</span>settings<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>    name <span style="color:#66d9ef">:</span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello&#34;</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>    scalaVersion <span style="color:#66d9ef">:</span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2.12.7&#34;</span>
+</span></span><span style="display:flex;"><span>    libraryDependencies <span style="color:#f92672">+=</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>        scalatest<span style="color:#f92672">.</span>scalatest<span style="color:#f92672">(</span>scalaTest32Version<span style="color:#f92672">)</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">)</span></span></span></code></pre></div>
+<p>Las dependencias pueden tener varios modos: &ldquo;Compile&rdquo;, &ldquo;Provided&rdquo;, &ldquo;Test&rdquo;. Esta parte de la documentación refleja las implicaciones que tiene. Las dependencias compile se incoporarán a la build del proyecto, las provided se asumen que están en el entorno, etcétera. Recomiendo <a href="https://www.scala-sbt.org/1.x/docs/Scopes.html#Scoping+by+the+configuration+axis">esta parte de la documentación</a> sobre ello.</p>
+<p>A la hora de descargar las librerías es probable que querramos utilizar algún repositorio privado (gitlab por ejemplo). En este caso para añadir un repositorio de tipo maven, basta con añadir un elemento a la key resolvers.</p>
+<pre tabindex="0"><code>lazy val root = (project in file(&#34;.&#34;))
   .settings(
     name := &#34;Hello&#34;,
     scalaVersion := &#34;2.12.7&#34;
@@ -56,8 +178,10 @@ build.sbt
     )
     resolvers += &#34;Sonatype OSS Snapshots&#34; at &#34;https://oss.sonatype.org/content/repositories/snapshots&#34;
   )
-</code></pre><p>Al igual que con las dependencias, el operador at es el encargado de traducir las strings al tipo Resolver.</p><p>Y por último y para terminar este bombardeo inicial, se pueden definir varios proyectos en un repositorio.
-Para ello solo tenemos que definir varios proyectos en el fichero .sbt</p><pre tabindex=0><code>val version = &#34;2.12.7&#34;
+</code></pre><p>Al igual que con las dependencias, el operador at es el encargado de traducir las strings al tipo Resolver.</p>
+<p>Y por último y para terminar este bombardeo inicial, se pueden definir varios proyectos en un repositorio.
+Para ello solo tenemos que definir varios proyectos en el fichero .sbt</p>
+<pre tabindex="0"><code>val version = &#34;2.12.7&#34;
 lazy val schema = (project in file(schema))
   .settings(
     name := &#34;schema&#34;,
@@ -77,4 +201,26 @@ lazy val etl = (project in file(&#34;etl&#34;))
     )
   )
   .dependsOn(schema)
-</code></pre><p>Un proyecto puede depender de otro, por ejemplo, la etl depende del schema, simplemente añadiendo el dependsOn ya tenemos los proyectos vinculados entre sí.</p><p>Los proyectos se vinculan automáticamente, ya que el sbt al no detectar ningún proyecto en el directorio raiz ("."), lo que hace es generar un proyecto root que se encarga de agregar los subproyectos entre sí.</p></div></div></section><section class=section><div class="container has-text-centered"><p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p></div></section></body></html>
+</code></pre><p>Un proyecto puede depender de otro, por ejemplo, la etl depende del schema, simplemente añadiendo el dependsOn ya tenemos los proyectos vinculados entre sí.</p>
+<p>Los proyectos se vinculan automáticamente, ya que el sbt al no detectar ningún proyecto en el directorio raiz (&quot;.&quot;), lo que hace es generar un proyecto root que se encarga de agregar los subproyectos entre sí.</p>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+
+
+
+</body>
+</html>
+
