@@ -11,7 +11,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://adrianabreu.github.io/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content=''><meta property='og:updated_time' content='2022-06-29T15:43:22Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content=''><meta property='og:updated_time' content='2022-06-30T07:28:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 
 <link href="https://adrianabreu.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Adrián Abreu" />
@@ -89,6 +89,24 @@
 </section>
 <section class="section">
   <div class="container">
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+      </div>
+      <h2 class="subtitle is-6 date">May 17, 2019</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2023-05-17-depurando-hive-queries/">Depurando queries en hive</a></h1>
+      <div class="content">
+        En la última he podido ver qué pasa cuando el volumen de datos aumenta de forma exponencial, una query que funcionaba en un tiempo razonable para un volumen considerable ha empezado a fallar a pesar de los reintentos.
+¿El origen?
+Status: Failed 19/05/21 01:05:30 [main]: ERROR SessionState: Status: Failed Vertex failed, vertexName=Map 10, vertexId=vertex_1558386441915_0035_1_01, diagnostics=[Task failed, taskId=task_1558386441915_0035_1_01_000002, diagnostics=[TaskAttempt 0 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.OutOfMemoryError: Java heap space Esto se traduce en que uno de los vértices, ha tenido que mover demasiados datos y hemos acabado sin memoria.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/blog/2023-05-17-depurando-hive-queries/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
     
     <article>
       <div class="subtitle tags is-6 is-pulled-right">
@@ -218,24 +236,6 @@ Es importante ver que esta regla aunque es general no implica que tengamos que d
 Así que voy a dedicarme a escribir un artículo semanal sobre un tema con el que llevo ya casi un año: Angular.
         
         <a class="button is-link" href="https://adrianabreu.github.io/blog/2017-08-14-angular-series-i-transclusion/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-      </div>
-      <h2 class="subtitle is-6 date">August 4, 2017</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/">Auto deployment en gh-pages con Travis</a></h1>
-      <div class="content">
-        Una de las mejores características de github sin duda alguna, son las gh-pages.
-Las gh-pages nos permiten desplegar el código de nuestra aplicación frontend a través de esta rama, de tal forma que muchos de nuestros proyectos (por ejemplo este blog) estén disponibles sin tener limitaciones de hosting.
-Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar.
-        
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2017-08-04-autodeploy-con-travis/" style="height:28px">
           Read more
         </a>
         
