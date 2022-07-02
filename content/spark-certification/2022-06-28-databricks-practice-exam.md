@@ -114,7 +114,7 @@ shuffle_questions: false
 
 ## Which of the following cluster configurations will ensure the completion of a Spark application in light of a worker node failure? Note: each configuration has roughly the same compute power using 100GB of RAM and 200 cores. 
 
-{{< resp-image "/images/databricks-cert/q12.png" >}}
+![]("/images/databricks-cert/q12.png")
 
 - [ ] Scenario #1
 - [X] They should all ensure completion because worker nodes are fault-tolerant.
@@ -170,7 +170,7 @@ shuffle_questions: false
 - [ ] `storesDF.select(storeId).select(division)`
 
 ## Which of the following code blocks returns a DataFrame containing all columns from DataFrame storesDF except for column sqft and column customerSatisfaction?  A sample of DataFrame storesDF is below:
-{{< resp-image "/images/databricks-cert/q19.png" >}}
+![]("/images/databricks-cert/q19.png")
 
 - [X] `storesDF.drop("sqft", "customerSatisfaction")`
 - [ ] `storesDF.select("storeId", "open", "openDate", "division")`
@@ -252,7 +252,7 @@ shuffle_questions: false
   )
 )
 ```
-{{< resp-image "/images/spark-certification/q25.png" >}}
+![]("/images/spark-certification/q25.png")
 
 - [ ] The split() operation comes from the imported functions object. It accepts a string column name and split character as arguments. It is not a method of a Column object.
 - [X] The split() operation comes from the imported functions object. It accepts a Column object and split character as arguments. It is not a method of a Column object.
@@ -535,7 +535,7 @@ date_format(col("openDate"), SimpleDateFormat()))`
 - [ ] 6, 1
 
 ## Which of the following code blocks returns a DataFrame containing a column month, an integer representation of the month from column openDate from DataFrame storesDF? Note that column openDate is of type integer and represents a date in the UNIX epoch format — the number of seconds since midnight on January 1st, 1970. A sample of storesDF is displayed below:
-{{< resp-image "/images/databricks-cert/q50.png" >}}
+![]("/images/databricks-cert/q50.png")
 
 - [ ] `storesDF.withColumn("month", getMonth(col("openDate")))`
 - [X] `storesDF.withColumn("openTimestamp", col("openDate").cast("Timestamp")).withColumn("month", month(col("openTimestamp")))`
@@ -642,7 +642,7 @@ existing files.
 - [ ] spark.read().parquet(filePath)
 - [ ] spark.read().path(filePath, source = "parquet")
 - [ ] spark.read.path(filePath, source = "parquet")
-[x] spark.read.parquet(filePath)
+- [x] spark.read.parquet(filePath)
 - [ ] spark.read().path(filePath)
 
 
