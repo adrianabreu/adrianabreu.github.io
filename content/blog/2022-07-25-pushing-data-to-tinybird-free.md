@@ -84,4 +84,4 @@ Then we can use the inbuilt zipapp for generating that .py
 
 With this, we have provided all the dependencies so we won't lose any time installing them.
 
-{{< resp-image "/images/workflows-script.png)" >}}
+{{< resp-image "/images/workflows-script.png" >}}
