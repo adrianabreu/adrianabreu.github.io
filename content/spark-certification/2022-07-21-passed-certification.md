@@ -31,4 +31,4 @@ If you are used to working with the spark API you should be able to pass it too.
 
 And if you want to take the practice exam interactively [here it is](/spark-certification/2022-06-28-databricks-practice-exam)
 
-I would like to add two entries, one for the Garbage Collector and one for the Structured Streaming, but those were mainly not needed for the certification :)
+I would like to add an entry for the Garbage Collector but I ended up reading the official docs and found it enough.
