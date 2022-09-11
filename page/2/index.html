@@ -99,7 +99,7 @@
 
 
   
-  | <a class="subtitle is-6" href="/tags/databricks/">#Databricks</a>
+  | <a class="subtitle is-6" href="/tags/certification/">#Certification</a>
   
   | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
   
@@ -107,139 +107,14 @@
 
         
       </div>
-      <h2 class="subtitle is-6 date">August 15, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2023-08-12-15-optimizing-spark-i/">Optimizing Spark</a></h1>
+      <h2 class="subtitle is-6 date">June 29, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/spark-certification/2022-06-29-spark-dates/">Spark Dates</a></h1>
       <div class="content">
-        Últimamente me he centrado en mejorar mis habilidades con Spark y he aprovechado para hacer algunos trainings de databricks. (Que por cierto ha sacado Beacons, un programa de reconocimiento para sus colaboradores y ha mencionado algunos nombres muy grandes por ahí).
-Y en estos cursos está optimizing spark, que simplifica y explica de una forma bastante sencilla los problemas de rendimientos que ocurren en el mundo de big data. A estos problemas se les denomina las 5s:
+        I can perfectly describe this as the scariest part of the exam. I&rsquo;m used to working with dates but I&rsquo;m especially used to suffering from the typical UTC / not UTC / summer time hours difference.
+I will try to make some simple exercises for this, the idea would be:
+We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL.
         
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2023-08-12-15-optimizing-spark-i/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/databricks/">#Databricks</a>
-  
-  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">August 15, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2023-08-12-16-optimizing-spark-ii/">Optimizing Spark II</a></h1>
-      <div class="content">
-        Continuando con la lista de optimizaciones en spark tneemos el spill.
-Hacer spill no es más que persistir un rdd en disco, ya que, sus datos no caben en memoria.
-Existen varias causas, la más sencilla de pensar es hacer un explode un array donde nuestras columnas crecen de forma exponencial.
-Cuando el spill ocurre se puede identificar por dos valores que siempre van de la mano:
-Spill (Memory) Spill (Disk) (Estas columnas solo aparecen en la spark ui si hay spill).
-        
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2023-08-12-16-optimizing-spark-ii/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/databricks/">#Databricks</a>
-  
-  | <a class="subtitle is-6" href="/tags/photon/">#Photon</a>
-  
-  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">August 12, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2022-08-12-testing-photon-engine/">Testing Databricks Photon</a></h1>
-      <div class="content">
-        I was a bit skeptical about photon since I realized that it cost about double the amount of DBU, required specifically optimized machines and did not support UDFs (it was my main target).
-From the Databricks Official Docs:
-Limitations Does not support Spark Structured Streaming. Does not support UDFs. Does not support RDD APIs. Not expected to improve short-running queries (&lt;2 seconds), for example, queries against small amounts of data. Photon runtime
-        
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2022-08-12-testing-photon-engine/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/databricks/">#DataBricks</a>
-  
-  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 30, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2022-07-30-databricks-cluster-management/">Databricks Cluster Management</a></h1>
-      <div class="content">
-        For the last few months, I&rsquo;ve been into ETL optimization. Most of the changes were as dramatic as moving tables from ORC to delta revamping the partition strategy to some as simple as upgrading the runtime version to 10.4 so the ETL starts using low-shuffle merge.
-But at my job, we have a lot of jobs. Each ETL can be easily launched at *30 with different parameters so I wanted to dig into the most effective strategy for it.
-        
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2022-07-30-databricks-cluster-management/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/github/">#Github</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/streaming/">#Streaming</a>
-  
-  | <a class="subtitle is-6" href="/tags/tinybird/">#Tinybird</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 25, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2022-07-25-pushing-data-to-tinybird-free/">Pusing data to tinybird for free</a></h1>
-      <div class="content">
-        So my azure subscription expired and I ended up losing the function I was using to feed my real-time data on analytics (part of the Transportes Insulares de Tenerife SA analysis I was making).
-And after some struggle, I decided to move it to a GitHub action. Why? Because the free mins per month were more than enough and because I just needed some script to run on a cron and that script just makes a quest and a post.
-        
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2022-07-25-pushing-data-to-tinybird-free/" style="height:28px">
+        <a class="button is-link" href="https://adrianabreu.github.io/spark-certification/2022-06-29-spark-dates/" style="height:28px">
           Read more
         </a>
         
@@ -263,14 +138,12 @@ And after some struggle, I decided to move it to a GitHub action. Why? Because t
 
         
       </div>
-      <h2 class="subtitle is-6 date">July 21, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/spark-certification/2022-07-21-passed-certification/">Associate Spark Developer Certification</a></h1>
+      <h2 class="subtitle is-6 date">June 28, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/spark-certification/2022-06-28-databricks-practice-exam/">Spark Cert Exam Practice</a></h1>
       <div class="content">
-        Yesterday I took (and passed with more than 90% yay!) the Associate Spark Developer Certificaton. And before I forget I want to share my experience:
-In general:
-First of all, I needed to install Windows as there was no Linux support for the control software used during the exam. Secondly, you need to disable both the antivirus and the firewall before joining. I didn&rsquo;t disable the antivirus and the technician contacted me as there was a problem with the webcam despite I was able to see myself.
+        --- primary_color: orange secondary_color: lightgray text_color: black shuffle_questions: false --- ## Which of the following statements about the Spark driver is incorrect? - [ ] The Spark driver is the node in which the Spark application's main method runs to ordinate the Spark application. - [X] The Spark driver is horizontally scaled to increase overall processing throughput. - [ ] The Spark driver contains the SparkContext object. - [ ] The Spark driver is responsible for scheduling the execution of data by various worker nodes in cluster mode.
         
-        <a class="button is-link" href="https://adrianabreu.github.io/spark-certification/2022-07-21-passed-certification/" style="height:28px">
+        <a class="button is-link" href="https://adrianabreu.github.io/spark-certification/2022-06-28-databricks-practice-exam/" style="height:28px">
           Read more
         </a>
         
@@ -286,24 +159,21 @@ First of all, I needed to install Windows as there was no Linux support for the 
 
 
   
-  | <a class="subtitle is-6" href="/tags/databricks/">#DataBricks</a>
+  | <a class="subtitle is-6" href="/tags/certification/">#Certification</a>
   
-  | <a class="subtitle is-6" href="/tags/firebase/">#Firebase</a>
-  
-  | <a class="subtitle is-6" href="/tags/bigquery/">#BigQuery</a>
+  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
   
 
 
         
       </div>
-      <h2 class="subtitle is-6 date">July 1, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2022-07-01-reading-firebase-data/">Reading firebase data</a></h1>
+      <h2 class="subtitle is-6 date">June 19, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/spark-certification/2022-06-19-spark-udf-udaf/">Spark User Defined Functions</a></h1>
       <div class="content">
-        Firebase is a common component nowadays for most mobile apps. And it can provide some useful insights, for example in my previous company we use it to detect where the people left at the initial app wizard. (We could measure it).
-It is quite simple to export your data to BigQuery: https://firebase.google.com/docs/projects/bigquery-export
-But maybe your lake is in AWS or Azure. In the next lines, I will try to explain how to load the data in your lake and some improvements we have applied.
+        Sometimes we need to execute arbitrary Scala code on Spark. We may need to use an external library or so on. For that, we have the UDF, which accepts and return one or more columns.
+When we have a function we need to register it on Spark so we can use it on our worker machines. If you are using Scala or Java, the udf can run inside the Java Virtual Machine so there&rsquo;s a little extra penalty.
         
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2022-07-01-reading-firebase-data/" style="height:28px">
+        <a class="button is-link" href="https://adrianabreu.github.io/spark-certification/2022-06-19-spark-udf-udaf/" style="height:28px">
           Read more
         </a>
         
@@ -318,17 +188,139 @@ But maybe your lake is in AWS or Azure. In the next lines, I will try to explain
 
 
 
+  
+  | <a class="subtitle is-6" href="/tags/certification/">#Certification</a>
+  
+  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
+  
+
 
         
       </div>
-      <h2 class="subtitle is-6 date">June 30, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2022-06-30-qbeast/">Qbeast</a></h1>
+      <h2 class="subtitle is-6 date">June 11, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/spark-certification/2022-06-11-spark-data-sources/">Spark DataSources</a></h1>
       <div class="content">
-        A few days ago I ran into Qbeast which is an open-source project on top of delta lake I needed to dig into.
-This introductory post explains it quite well: https://qbeast.io/qbeast-format-enhanced-data-lakehouse/
-The project is quite good and it seems helpful if you need to write your custom data source as everything is documented. And well as I&rsquo;m in love with note-taking I want to dig into the following three topics:
+        As estated in the structured api section, Spark supports a lot of sources with a lot of options. There is no other goal for this post than to clarify how the most common ones work and how they will be converted to DataFrames.
+First, all the supported sources are listed here: https://spark.apache.org/docs/latest/sql-data-sources.html
+And we can focus on the typical ones: JSON, CSV and Parquet (as those are the typical format on open-source data).
         
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2022-06-30-qbeast/" style="height:28px">
+        <a class="button is-link" href="https://adrianabreu.github.io/spark-certification/2022-06-11-spark-data-sources/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/certification/">#Certification</a>
+  
+  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
+  
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">June 10, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/spark-certification/2022-06-10-spark-structured-api/">Spark Dataframes</a></h1>
+      <div class="content">
+        Spark was initially released for dealing with a particular type of data called RDD. Nowadays we work with abstract structures on top of it, and the following tables summarize them.
+Type Description Advantages Datasets Structured composed of a list of where you can specify your custom class (only Scala) Type-safe operations, support for operations that cannot be expressed otherwise. Dataframes Datasets of type Row (a generic spark type) Allow optimizations and are more flexible SQL tables and views Same as Dataframes but in the scope of databases instead of programming languages Let&rsquo;s dig into the Dataframes.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/spark-certification/2022-06-10-spark-structured-api/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/certification/">#Certification</a>
+  
+  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
+  
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">June 8, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/spark-certification/2022-06-08-spark-execution/">Spark Execution</a></h1>
+      <div class="content">
+        Spark provides an api and an engine, that engine is responsible for analyzing the code and performing several optimizations. But how does this work? We can do two kinds of operations with Spark, transformations and actions.
+Transformations are operations on top of the data that modify the data but do not yield a result directly, that is because they all are lazily evaluated so, you can add new columns, filter rows, or perform some computations that won&rsquo;t be executed immediately.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/spark-certification/2022-06-08-spark-execution/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/certification/">#Certification</a>
+  
+  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
+  
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">June 7, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/spark-certification/2022-06-07-spark-architecture/">Spark Architecture</a></h1>
+      <div class="content">
+        Spark works on top of a cluster supervised by a cluster manager. The later is responsible of:
+Tracking resource allocation across all applications running on the cluster. Monitoring the health of all the nodes. Inside each node there is a node manager which is responsible to track each node health and resources and inform the cluster manager.
+C l u s t e r M a n a g e r N N N o o o d d d e e e M M M a a a n n n a a a g g g e e e r r r When we run a Spark application we generate processes inside the cluster where one node will act as a Driver and the rest will be Workers.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/spark-certification/2022-06-07-spark-architecture/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/pyspark/">#PySpark</a>
+
+
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">May 31, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2022-05-31-faker-pyspark/">Faker with PySpark</a></h1>
+      <div class="content">
+        I’m preparing a small blog post about some tweakings I’ve done for a delta table, but I want to dig into the Spark UI differences before this. As this was done as part of my work I’m reproducing the problem with some generated data.
+I didn’t know about Faker and boy it is really simple and easy.
+In this case, I want to generate a small dataset for a dimension product table including its id, category and price.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/blog/2022-05-31-faker-pyspark/" style="height:28px">
           Read more
         </a>
         
@@ -343,12 +335,23 @@ The project is quite good and it seems helpful if you need to write your custom 
       <div class="level-left">
         <div class="level-item">
           
+          <a class="button" href="/">
+            <span class="icon is-small is-marginless">
+              <svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <polyline points="15 18 9 12 15 6"/>
+    
+  </svg>
+            </span>
+            Newer
+          </a>
+          
         </div>
       </div>
       <div class="level-right is-marginless">
         <div class="level-item">
           
-          <a class="button" href="/page/2/">
+          <a class="button" href="/page/3/">
             Older
             <span class="icon is-small is-marginless">
               <svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Datos I - Introducción al Datawarehousing | Adrián Abreu</title>
+
+<meta property='og:title' content='Datos I - Introducción al Datawarehousing - Adrián Abreu'>
+<meta property='og:description' content='En los últimos meses mi trabajo ha pivotado del mundo de la web al mundo de los datos. He entrado a participar en un proyecto de Data Warehouse y he acabado muy contento en él. Hace unos días mi cambio se oficializó completamente y ahora me he dado cuenta de que no solo tengo un mundo técnico ante mí, sino que además necesito consolidar algunas bases teóricas.
+Investigando la bibliografía, me han recomendado en Reddit: The Data Warehouse Toolkit, The Complete Guide to Dimensional Modeling 2nd Edition.'>
+<meta property='og:url' content='https://adrianabreu.github.io/blog/2019-02-05-data-i-introduccion-al-datawarehouse/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Analytics'><meta property='article:tag' content='SQL'><meta property='article:published_time' content='2019-02-05T14:43:32Z'/><meta property='article:modified_time' content='2019-02-05T14:43:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+
+<link href="https://adrianabreu.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Adrián Abreu" />
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.github.io/blog/2019-02-05-data-i-introduccion-al-datawarehouse/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:image" content="/preview.png" />
+<meta name="twitter:image" content="/preview.png" />
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.io">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/analytics/">#Analytics</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/sql/">#SQL</a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">February 5, 2019</h2>
+    <h1 class="title">Datos I - Introducción al Datawarehousing</h1>
+    
+    <div class="content">
+      <p>En los últimos meses mi trabajo ha pivotado del mundo de la web al mundo de los datos. He entrado a participar en un proyecto de Data Warehouse y he acabado muy contento en él. Hace unos días mi cambio se oficializó completamente y ahora me he dado cuenta de que no solo tengo un mundo técnico ante mí, sino que además necesito consolidar algunas bases teóricas.</p>
+<p>Investigando la bibliografía, me han recomendado en Reddit: <em>The Data Warehouse Toolkit, The Complete Guide to Dimensional Modeling 2nd Edition.</em>
+Y el libro parece encajar perfectamente en el conocimiento que busco. Aun así, como todo, por necesidad, intentaré resumir en unas cuantas entradas el conocimiento que se puede obtener de este libro. El cual recomiendo encarecidamente.</p>
+<h2 id="representación-de-la-información">Representación de la información</h2>
+<p>Existen varias formas de visualizar la información. Pero nos vamos a centrar en dos partes relacionadas con el negocio:</p>
+<ol>
+<li>Desde un punto de vista <strong>operacional</strong> nos encontramos con una información disgregada, preparada normalmente en un modelo relacional que elimina redundancias y que se centra en gestionar una o pocas filas de tablas.</li>
+<li>Otra perspectiva sería desde un punto de vista <strong>analítico</strong>, donde nos interesa trabajar con agrupaciones y grandes volúmenes de datos.</li>
+</ol>
+<p>Para traducir este primer mundo al segundo, podemos hacer uso de un Data Warehouse. El objetivo del Data Warehouse es hacer que la información de la empresa sea fácilmente accesible, consistente y permitir que esta información aporte el valor al negocio, haciéndola versátil y adaptada a las decisiones.</p>
+<h2 id="componentes-del-data-warehouse">Componentes del Data Warehouse:</h2>
+<h3 id="operational-source-systems">Operational Source Systems:</h3>
+<p>Estos son los sistemas que capturan las transacciones del negocio. Están fuera de los límites de gestión del Data Warehouse porque es posible que tengamos escaso o ningún control sobre estos sistemas. Estos sistemas están preparados para tener alto rendimiento y disponibilidad, suelen almacenar poco histórico y un buen <em>Data Warehouse</em> no dependería de ellos para representar el pasado.</p>
+<h3 id="data-staging-area">Data Staging Area:</h3>
+<p>Esta zona sirve tanto de almacenamiento como de <em>host</em> para un conjunto de procesos denominados comúnmente <strong>ETL (extract-transformation-load).</strong></p>
+<p>Un buen símil que hace aquí es que debería ser como la cocina de un restaurante, transforma el producto crudo en comida preparada para el usuario y además no se debe dejar al usuario final entrar aquí por la cantidad de peligros (fuegos, cuchillos) que podrían hacerle daño.</p>
+<p>En los procesos de etl la parte de extracción consiste en <strong>leer los datos del origen, comprenderlos, y traer la información necesaria al área de staging de datawarehouse</strong> para manipularlas.</p>
+<p>Estos datos deben ser limpiados (quizás haya que corregir fallos de nombres, arreglar datos, rellenar datos perdidos). En un conjunto de procesos que se denominan transformación.</p>
+<p>El resultado de esta transformación puede estar en tablas, pero no tiene por qué. No hace falta que haya una tecnología relacional, pueden ser simplemente conjuntos de archivos. De hecho, es un error intentar normalizar los datos si no lo están porque requieren una gran inversión de esfuerzo que debería usarse en el área de presentación.</p>
+<p>Por último, hay que cargar estos datos en las tablas dimensionales de cada data mart (en el siguiente apartado se explica lo que es un data mart).</p>
+<h3 id="data-presentation">Data Presentation:</h3>
+<p>En esta zona los datos se organizan, se almacenan y se hacen accesibles los usuarios para que los consulten, escriban informes o accedan aplicaciones de análisis.</p>
+<p>Normalmente nos referimos a la zona de presentación como una serie de data marts. Un data mart representa los datos de un proceso del negocio.</p>
+<p>Los datos en esta zona deben estar en esquemas dimensionales. Ahora explicaremos en que consiste esto.</p>
+<h2 id="conceptos-adicionales">Conceptos adicionales:</h2>
+<h3 id="metadata">Metadata:</h3>
+<p>Los metadatos son toda la información del entorno de <em>Data Warehouse</em> que no son los datos en sí mismos. Aparecen en diversas formas y tienen que encajar en la estructura del <em>Data Warehouse</em>. El objetivo no es más que integrar y catalogar todas estas variedades de metadatos como si se tratase de una librería.</p>
+<h3 id="operational-data-store">Operational Data Store:</h3>
+<p>Este concepto hace referencia a un proceso especializado en hacer reportes relacionados campo operacional. Suelen ser un conjunto de consultas predefinidas en aplicaciones de reporte y se suelen utilizar en decisiones tácticas.</p>
+<p>A veces este sistema se alimenta de la información del <em>Data Warehouse</em> para hacer algún tipo de consulta. En cualquier caso, se puede considerar a este sistema como un tercer sistema físico entre los sistemas operacionales y el <em>Data Warehouse</em>.</p>
+<h2 id="vocabulario-del-modelado-dimensional">Vocabulario del modelado dimensional:</h2>
+<p>Se trata de una técnica utilizada en los 70 para representar la información. La idea no está tanto en eliminar la redundancia de información como simplificar la representación de la información para el entendimiento humano. La idea es empaquetar los datos de tal forma que sean fáciles de consultar en grandes volúmenes.</p>
+<p>Si este modelado dimensional se hace en una base de datos, entonces las tablas modeladas con esto se refieren como esquemas en estrella. Si se utiliza una base de datos multidimensional u <strong>OLAP</strong> <em>(online analytic processing)</em>, entonces los datos se almacenan en cubos.</p>
+<h3 id="fact-table-tabla-de-hechos">Fact Table (Tabla de hechos):</h3>
+<p>Esta es la tabla primaria de un modelo dimensional. Aquí se almacenan las medidas del negocio. Si ponemos un ejemplo como el del libro, en el sector de ventas, podríamos definir la tabla de hecho de ventas como:</p>
+<table>
+<thead>
+<tr>
+<th>Daily Sales Fact Table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Date Key FK</td>
+</tr>
+<tr>
+<td>Product Key FK</td>
+</tr>
+<tr>
+<td>Store Key FK</td>
+</tr>
+<tr>
+<td>Quantity Sold</td>
+</tr>
+<tr>
+<td>Dollar Sales Amount</td>
+</tr>
+</tbody>
+</table>
+<p>Y lo que vemos en cada fila es una medida de un producto vendiéndose en una tienda. Cada una de las medidas que componen la tabla es una <strong>dimensión</strong>.</p>
+<p>Como nota, los <strong>hechos</strong> más útiles son numéricos y sumables, como la cantidad de dólares de una venta. Los que no son sumables tienen que ser convertidos en conteos o medias y los semiaditivos no encajaran en algunas dimensiones.</p>
+<p>Todas las tablas de hechos tienen dos o más claves foráneas (Foreign Key), actuando como relaciones muchos a muchos. La tabla en sí misma normalmente tiene una clave primaria formada por un subconjunto de sus claves foráneas, que se suele denominar clave compuesta.</p>
+<p><em>&ldquo;Toda tabla de hechos en un modelo dimensional tiene una clave compuesta, y toda tabla con una clave compuesta es una tabla de hechos en un modelo dimensional&rdquo;</em>.
+Para las claves primarias no debería hacer falta añadir un ROWID, aunque es posible, que por el tipo de negocio si que puedan entrar dos filas idénticas en la tabla de hecho y por tanto ahí tiene sentido añadirlo.</p>
+<h3 id="dimension-table-tabla-de-dimensiones">Dimension Table (Tabla de dimensiones):</h3>
+<p>Las tablas de dimensiones contienen los descriptores del negocio. Una buena tabla de dimensiones tiene varias columnas que actúan como atributos y que son descripciones textuales. Por ejemplo, en el caso anterior, para un producto, podemos tener:</p>
+<table>
+<thead>
+<tr>
+<th>Product Dimension Table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product Key</td>
+</tr>
+<tr>
+<td>Product Description</td>
+</tr>
+<tr>
+<td>Brand Description</td>
+</tr>
+<tr>
+<td>Category Description</td>
+</tr>
+<tr>
+<td>Weight</td>
+</tr>
+<tr>
+<td>Storage</td>
+</tr>
+<tr>
+<td>&hellip;.</td>
+</tr>
+</tbody>
+</table>
+<p>Los mejores atributos son textutales y discretos. Deberían ser palabras reales y no criptogramas, o códigos. La idea es facilitar de cara al usuario del negocio el entendimiento del modelo.</p>
+<p>Las tablas de dimensiones, además, están altamente desnormalizadas y a veces representan información de forma redundante. Por ejemplo en la tabla anterior para cada producto almacenamos su categoría y marca, pero lo hacemos en pos de mejorar la facilidad de uso y el rendimiento.</p>
+<h3 id="star-schema-modelo-en-estrella">Star Schema (Modelo en estrella)</h3>
+<p>Cuando unimos las tablas de hechos con las tablas de dimensiones, formamos una estructura característica denominada <em>star join schema</em>. Entre sus mejoras encontramos su simplicidad de cara al usuario donde pueden reconocer su negocio y además donde la escasa cantidad de joins hace que sean altamente escalables.</p>
+<h3 id="snowflake-model-modelo-de-copo-de-nieve">Snowflake Model (Modelo de copo de nieve)</h3>
+<p>Si en vez de mantener las tablas de dimensiones denormalizadas nos encargamos de crear una pequeña jerarquía normalizada donde eliminados redudancia acabamos disgregando el modelo en estrella en un modelo en snowflake que, ya que las tablas de dimensiones son mucho más pequeñas que las de hechos, no representan un gran beneficio en el tamaño total de la base de datos.</p>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+
+
+
+</body>
+</html>
+

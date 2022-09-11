@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Angular Series III - Dynamic components | Adrián Abreu</title>
+
+<meta property='og:title' content='Angular Series III - Dynamic components - Adrián Abreu'>
+<meta property='og:description' content='Antes de terminar repasando el tema de templating, quiero hacer un inciso. Existen ciertos casos donde el templating es insuficiente y lo que necesitamos es simplemente escoger dinámicamente que componente vamos a renderizar.
+Esto está documentado en la documentación de angular bajo el nombre de Dynamic Components.
+¿Cómo funcionan estos dynamics components? Explicado mal y pronto, la idea es: Escoger un elemento de la vista que actue de contenedor e inyectar el componente debe ir ahí.'>
+<meta property='og:url' content='https://adrianabreu.github.io/blog/2017-12-17-angular-series-iii-dynamic-components/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:published_time' content='2017-12-17T14:43:32Z'/><meta property='article:modified_time' content='2017-12-17T14:43:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+
+<link href="https://adrianabreu.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Adrián Abreu" />
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.github.io/blog/2017-12-17-angular-series-iii-dynamic-components/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:image" content="/preview.png" />
+<meta name="twitter:image" content="/preview.png" />
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.io">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+    </div>
+    <h2 class="subtitle is-6">December 17, 2017</h2>
+    <h1 class="title">Angular Series III - Dynamic components</h1>
+    
+    <div class="content">
+      <p>Antes de terminar repasando el tema de <em>templating</em>, quiero hacer un inciso. Existen ciertos casos donde el templating es insuficiente y lo que necesitamos es simplemente escoger dinámicamente que componente vamos a renderizar.</p>
+<p>Esto está documentado en la documentación de angular bajo el nombre de <a href="https://angular.io/guide/dynamic-component-loader">Dynamic Components</a>.</p>
+<h3 id="cómo-funcionan-estos-dynamics-components">¿Cómo funcionan estos dynamics components?</h3>
+<p>Explicado mal y pronto, la idea es: Escoger un elemento de la vista que actue de contenedor e inyectar el componente debe ir ahí.</p>
+<p><strong>¿Cómo se puede hacer esto?</strong></p>
+<p>Antes de empezar he de aclarar que los componentes dinámicos que queramos crear deben ser declarados como <a href="https://angular.io/guide/ngmodule-faq#what-is-an-entry-component">Entry Components</a>.</p>
+<p>Un entry component es un un componente que no se usa de forma directa en ninguna plantilla. Por ejemplo un componente dinámico como este será eliminado por el compilador. Al declararlo como entry components el compilador no lo eliminará y podremos utilizarlo.</p>
+<p>Ahora que ya tenemos esto claro, veamos lo que necesitamos: El <a href="https://angular.io/api/core/ComponentFactoryResolver">compontentFactoryResolver</a> y el <a href="https://angular.io/api/core/ViewContainerRef">ViewContainerRef</a>.</p>
+<h3 id="component-factory">Component Factory</h3>
+<p>Normalmente en nuestra aplicación instanciamos múltiples veces cada componente, por tanto existe una factoría responsable de su creación.</p>
+<p>Esta factoría se puede crear a través de un servicio llamado <a href="https://angular.io/api/core/ComponentFactoryResolver">Component Factory Resolver</a>.</p>
+<p>Un ejemplo muy sencillo donde inyectamos conseguimos la factoría necesaria para un determinado componente.</p>
+<iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-dynamic-components-i?ctl=1&embed=1&file=app/app.component.html&view=preview"></iframe>
+<p>Hemos:</p>
+<ul>
+<li>Creado un componente dinámico de tipo &ldquo;entry component&rdquo;.</li>
+<li>Cargado la factoría del componente a través de su tipo.</li>
+</ul>
+<h3 id="viewcontainerref">ViewContainerRef</h3>
+<p>Una vez que tenemos la factoría del componente necesitamos inyectarlo en algún sitio.</p>
+<p>Aquí entra en juego el ViewContainerRef.</p>
+<p>Primero hemos de declarar un elemento con un nombre, por ejemplo:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">ng-template</span> <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">dynamiccomponent</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ng-template</span>&gt;</span></span></code></pre></div>
+<p>Ahora hemos de hacer una query a este elemento de la plantilla en el ts e inyectar el ViewContainerRef, ambos están en el paquete <strong>@angular/core</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>  <span style="color:#66d9ef">@ViewChild</span>(<span style="color:#e6db74">&#39;dynamiccomponent&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">viewRef</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">_cfr</span>: <span style="color:#66d9ef">ComponentFactoryResolver</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">_vcr</span>: <span style="color:#66d9ef">ViewContainerRef</span>) {
+</span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
+<p>Y lo que haremos será inyectar nuestro componente a través del método <strong>createComponent</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>  <span style="color:#a6e22e">onClick() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">componentFactory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_cfr</span>.<span style="color:#a6e22e">resolveComponentFactory</span>(<span style="color:#a6e22e">DynamicComponent</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_vcr</span>.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">viewRef</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_vcr</span>.<span style="color:#a6e22e">createComponent</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">componentFactory</span>);
+</span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
+<p>Aquí un pequeño ejemplo funcional.</p>
+<iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-dynamic-components-ii?ctl=1&embed=1&file=app/app.component.ts&view=preview"></iframe>
+<p>Et voilá! Ya tenemos un componente que podemos generar dinámicamente cada vez que pulsamos un botón.</p>
+<h3 id="actualizar-los-inputs-del-componente">Actualizar los inputs del componente</h3>
+<p>Ahora que ya hemos renderizado el componente nos quedaría gestionar la interacción con el componente. Empecemos por los inputs. Obviamente necesitariamos mostrar algo más que una plantilla aquí, pero es un problema con fácil solucion.</p>
+<p>Una vez que hemos creado el componente, tenemos una referencia a su instancia. Hagamos que nuestro dynamic component acepte un input llamado &ldquo;test&rdquo; que contiene una string a mostrar en la vista.</p>
+<p>Si cogemos el compRef que hemos creado previamente podemos acceder a su instancia y modificar las propiedades directamente:</p>
+<p><code>(&lt;any&gt;compRef.instance).greeting = 'Salutations!'</code></p>
+<iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-dynamic-components-iii?ctl=1&embed=1&file=app/app.component.ts&view=preview"></iframe>
+<p>Como vemos, setear el input de nuestro componente ha sido increíblemente sencillo. :)</p>
+<h3 id="actualizar-los-outputs-del-componente">Actualizar los outputs del componente</h3>
+<p>De la misma forma que podemos acceder a los inputs también podemos suscribirnos a los outputs. (Sí, a fin de cuentas, los event emitters no son más que observables).</p>
+<p>Vamos a emitir un pequeño evento con un mensaje desde el hijo al pulsar un botón y a renderizar este mensaje en la plantilla del componente padre.</p>
+<p>Para ello, añadimos un evento en el hijo:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>  <span style="color:#66d9ef">@Output</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">farewell</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">EventEmitter</span>&lt;<span style="color:#f92672">string</span>&gt;();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sayGoodBye() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">farewell</span>.<span style="color:#a6e22e">emit</span>(<span style="color:#e6db74">&#39;Bye bye Alabama...&#39;</span>);
+</span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
+<p>Y lo que tenemos que hacer es suscribirnos en el padre, para mostrar el mensaje:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>    (&lt;<span style="color:#f92672">any</span>&gt;<span style="color:#a6e22e">compRef</span>.<span style="color:#a6e22e">instance</span>).<span style="color:#a6e22e">farewell</span>.<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">farewellMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">x</span>);</span></span></code></pre></div>
+<iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-dynamic-components-iv?ctl=1&embed=1&file=app/app.component.ts&view=preview"></iframe>
+<h3 id="un-componente-versátil">Un componente versátil</h3>
+<p>Ahora que hemos ido punto por punto revisando los pasos necesarios para gestionar un componente dinámic, hagamos un pequeño sumario:</p>
+<ul>
+<li>Necesitamos un lugar donde inyectar el componente.</li>
+<li>Necesitamos que el servicio nos provea de una factoría responsable de crear el componente.</li>
+<li>Tenemos que crear una instancia del componente en la vista.</li>
+<li>Tenemos que colocar los inputs del componente.</li>
+<li>Tenemos que subscribirnos a los outputs del componente.</li>
+</ul>
+<p>¿Por qué no encapsulamos todo este comportamiento en un componente?</p>
+<p>Vamos a darle más sentido a nuestro <strong>Dynamic Component</strong> y vamos a hacerle responsable de manejar estas tareas.</p>
+<p>Lo primero será encargarnos de recibir el tipo de componente por input y de crearlo en la vista correspondiente.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">ViewChild</span>, <span style="color:#a6e22e">ViewContainerRef</span>, <span style="color:#a6e22e">ComponentFactoryResolver</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Component</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dynamic-component&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">   &lt;ng-template #dynamiccomponent&gt;&lt;/ng-template&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  `</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DynamicComponent</span>  {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">compType</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@ViewChild</span>(<span style="color:#e6db74">&#39;dynamiccomponent&#39;</span>, {<span style="color:#a6e22e">read</span>: <span style="color:#66d9ef">ViewContainerRef</span> })
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">compRef</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">_cfr</span>: <span style="color:#66d9ef">ComponentFactoryResolver</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ngOnChanges() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compRef</span>.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">compFactory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_cfr</span>.<span style="color:#a6e22e">resolveComponentFactory</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compType</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compRef</span>.<span style="color:#a6e22e">createComponent</span>(<span style="color:#a6e22e">compFactory</span>);   
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Como vemos, han habido unos pequeños cambios. Por ejemplo la sección de <strong>ViewChild</strong> se ha simplificado utilizando la propiedad read.</p>
+<p>Ahora tenemos que gestionar los inputs y outputs. ¿Como podemos hacerlo?</p>
+<p>Para ambos casos lo mejor seria pasar un objeto que represente el nombre del input / output y el valor (o método) correspondiente.</p>
+<p>Empecemos por los inputs, que son el caso más sencillo. La idea es muy simple, iterar el objeto nombre / valor y setearlo en la instancia, quedaría un código tal que:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">ViewChild</span>, <span style="color:#a6e22e">ViewContainerRef</span>, <span style="color:#a6e22e">ComponentFactoryResolver</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Component</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dynamic-component&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">   &lt;ng-template #dynamiccomponent&gt;&lt;/ng-template&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  `</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DynamicComponent</span>  {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">compType</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">params</span>: <span style="color:#66d9ef">Param</span>[];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@ViewChild</span>(<span style="color:#e6db74">&#39;dynamiccomponent&#39;</span>, {<span style="color:#a6e22e">read</span>: <span style="color:#66d9ef">ViewContainerRef</span> })
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">compRef</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">_cfr</span>: <span style="color:#66d9ef">ComponentFactoryResolver</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ngOnChanges() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compRef</span>.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">compFactory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_cfr</span>.<span style="color:#a6e22e">resolveComponentFactory</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compType</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">component</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compRef</span>.<span style="color:#a6e22e">createComponent</span>(<span style="color:#a6e22e">compFactory</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">params</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">param</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">component</span>.<span style="color:#a6e22e">instance</span>[<span style="color:#a6e22e">param</span>.<span style="color:#a6e22e">name</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">param</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El tipo param solo indica la clave nombre / valor que hemos indicado antes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>  <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Param</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
+<p>Ahora que ya tenemos los inputs, pasaremos al tema de los outputs. Como necesitamos emitir un valor hacia el padre me he inspirado en el &ldquo;eventBus&rdquo; para solucionar la problemática. Condensaremos n outputs en un único output con un objeto nombre / valor.</p>
+<p>Al componente le pasaremos un array de nombres de eventos como estos:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>  <span style="color:#a6e22e">outputs</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;sayHi&#39;</span>];</span></span></code></pre></div>
+<p>Y además nos hará falta una función en el padre que gestione este evento.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>  (<span style="color:#a6e22e">outputBus</span>)<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;onEventEmitted($event)&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onEventEmitted</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Gotcha!, I received&#39;</span>, <span style="color:#a6e22e">event</span>);
+</span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
+<p>Y ahora nos suscribiriemos y relazanremos a través del <em>eventBus</em> que hemos creado:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">ViewChild</span>, <span style="color:#a6e22e">ViewContainerRef</span>, <span style="color:#a6e22e">ComponentFactoryResolver</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Component</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dynamic-component&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">   &lt;ng-template #dynamiccomponent&gt;&lt;/ng-template&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  `</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DynamicComponent</span>  {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">compType</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">params</span>: <span style="color:#66d9ef">Param</span>[];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">outputs</span>: <span style="color:#66d9ef">any</span>[];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Output</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">outputBus</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">EventEmitter</span>&lt;<span style="color:#f92672">any</span>&gt;();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@ViewChild</span>(<span style="color:#e6db74">&#39;dynamiccomponent&#39;</span>, { <span style="color:#a6e22e">read</span>: <span style="color:#66d9ef">ViewContainerRef</span> })
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">compRef</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">_cfr</span>: <span style="color:#66d9ef">ComponentFactoryResolver</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ngOnChanges() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compRef</span>.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">compFactory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_cfr</span>.<span style="color:#a6e22e">resolveComponentFactory</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compType</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">component</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compRef</span>.<span style="color:#a6e22e">createComponent</span>(<span style="color:#a6e22e">compFactory</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">params</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">param</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">component</span>.<span style="color:#a6e22e">instance</span>[<span style="color:#a6e22e">param</span>.<span style="color:#a6e22e">name</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">param</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">outputs</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">outputs</span>.<span style="color:#a6e22e">map</span>( <span style="color:#a6e22e">output</span> <span style="color:#f92672">=&gt;</span> 
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">component</span>.<span style="color:#a6e22e">instance</span>[<span style="color:#a6e22e">output</span>].<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">outputBus</span>.<span style="color:#a6e22e">emit</span>({ <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">output</span>, <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">v</span>})));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Y como vemos, ¡ahora podemos ver en la consola ambos eventos lanzados por los distintos componentes!</p>
+<iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-dynamic-components-v?ctl=1&embed=1&file=app/app.component.ts&view=preview"></iframe>
+<p>Aunque en principio quería parar el artículo aquí, aún queda algo muy importante: Gestionar los cambios. Hemos de actualizar los inputs cuando corresponda y hemos de gestionar todas estas suscripciones que estamos creando.</p>
+<p>Distinguimos tres pasos:</p>
+<ol>
+<li>Conseguir la instancia del componente.</li>
+<li>Setear los inputs.</li>
+<li>Suscribir / desuscribir los outputs.</li>
+</ol>
+<p>Como son pasos muy simples y quiero que queden claros, he pasado directamente a poner el código como si fueran un conjunto de pasos que se repiten.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DynamicComponent</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">compType</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">params</span>: <span style="color:#66d9ef">Param</span>[];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">outputs</span>: <span style="color:#66d9ef">any</span>[];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Output</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">outputBus</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">EventEmitter</span>&lt;<span style="color:#f92672">any</span>&gt;();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@ViewChild</span>(<span style="color:#e6db74">&#39;dynamiccomponent&#39;</span>, { <span style="color:#a6e22e">read</span>: <span style="color:#66d9ef">ViewContainerRef</span> })
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">compRef</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subscriptions</span>: <span style="color:#66d9ef">Subscription</span>[] <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">_cfr</span>: <span style="color:#66d9ef">ComponentFactoryResolver</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ngOnChanges</span>(<span style="color:#a6e22e">changes</span>: <span style="color:#66d9ef">SimpleChanges</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">changes</span>[<span style="color:#e6db74">&#39;compType&#39;</span>]) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">clearSubscriptions</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createComponent</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateInputs</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">component</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">params</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateOutputs</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">component</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">changes</span>[<span style="color:#e6db74">&#39;params&#39;</span>]) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateInputs</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">component</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">params</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">changes</span>[<span style="color:#e6db74">&#39;outputs&#39;</span>]) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateOutputs</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">component</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createComponent() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compRef</span>.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">compFactory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_cfr</span>.<span style="color:#a6e22e">resolveComponentFactory</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compType</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">component</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">compRef</span>.<span style="color:#a6e22e">createComponent</span>(<span style="color:#a6e22e">compFactory</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">updateInputs</span>(<span style="color:#a6e22e">component</span>, <span style="color:#a6e22e">params</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">param</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">component</span>.<span style="color:#a6e22e">instance</span>[<span style="color:#a6e22e">param</span>.<span style="color:#a6e22e">name</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">param</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">clearSubscriptions() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">subscriptions</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">subscriptions</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">subscription</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">subscription</span>.<span style="color:#a6e22e">unsubscribe</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">updateOutputs</span>(<span style="color:#a6e22e">component</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">clearSubscriptions</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">outputs</span>.<span style="color:#a6e22e">map</span>( <span style="color:#a6e22e">output</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">subscription</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">component</span>.<span style="color:#a6e22e">instance</span>[<span style="color:#a6e22e">output</span>].<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">outputBus</span>.<span style="color:#a6e22e">emit</span>({ <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">output</span>, <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">v</span>}));
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">subscriptions</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">subscription</span>)
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-dynamic-components-vi?ctl=1&embed=1&file=app/app.component.ts&view=preview"></iframe>
+<p>¡Con esto ya estamos listos para crear componentes dinámicos!</p>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+
+
+
+</body>
+</html>
+
