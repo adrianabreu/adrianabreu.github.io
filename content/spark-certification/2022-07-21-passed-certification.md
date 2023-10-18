@@ -26,7 +26,7 @@ If you are used to working with the spark API you should be able to pass it too.
 2. [Spark Execution](/spark-certification/2022-06-08-spark-execution)
 3. [Spark Structured Api](/spark-certification/2022-06-10-spark-structured-api)
 4. [Spark Data Sources](/spark-certification/2022-06-11-spark-data-sources)
-5. [Spark Udf-Udaf](/spark-certification/2022-06-19-udf-udaf) 
+5. [Spark Udf-Udaf](/spark-certification/2022-06-19-spark-udf-udaf/)
 6. [Spark Dates](/spark-certification/2022-06-29-spark-dates) 
 
 And if you want to take the practice exam interactively [here it is](/spark-certification/2022-06-28-databricks-practice-exam)
