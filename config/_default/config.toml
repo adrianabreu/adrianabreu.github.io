@@ -21,7 +21,7 @@ homeTitle = "Adrian Abreu Data Engineering Blog" # Title for home page
 
 [params.social]
 twitter = "adrianabreudev"
-github = "adrianabreu"
+gitlab = "adrianabreu"
 linkedin = "AdrianAbreu"
 Email = "adrianabreugonzalez@outlook.com"
  
@@ -35,4 +35,4 @@ tag ="tags"
 disableHTML = true
 
 [params.social.config]
-platforms = ["github","twitter","email","linkedin"]
+platforms = ["gitlab","twitter","email","linkedin"]
