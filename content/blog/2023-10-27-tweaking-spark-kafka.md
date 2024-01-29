@@ -15,7 +15,7 @@ So we need to set up a multiple of the number of cores we have, lets say that we
 
 Now what are we interesting is to set up a proper processing pace. If we had a trigger of 5 seconds, all our batches should took at most 5 seconds, or we will be end up lagging behind.
 
-{{< resp-image "/images/capas-backend/batch_times.png" >}}
+{{< resp-image "/images/batch_times.png" >}}
 
 How can we ensure that we keep a good pace with our batches? By limiting the amount of offsets we process. That's done with another property! `maxOffsetsPerTrigger`. We need to look for a number (that will be shared between all partitions) that allows us to process more data that we need on a normal basis but still keep the batch duration under the proper amount.
 
