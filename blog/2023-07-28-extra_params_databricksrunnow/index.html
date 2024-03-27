@@ -9,7 +9,7 @@
 <meta property='og:title' content='Adding extra params on DatabricksRunNowOperator - Adrián Abreu'>
 <meta property='og:description' content='With the new Databricks jobs API 2.1 you have different parameters depending on the kind of tasks you have in your workflow. Like: jar_params, sql_params, python_params, notebook_params&hellip;
 And not always the airflow operator is ready to handle all of the. If we check the current release of the DatabricksRunNowOperator, we can see that there is only support for: notebook_params python_params python_named_parameters jar_params spark_submit_params And not the query_params mentioned earlier. But there is a way of combining both, there is a param called jsob that allows you to write the payload of a databricksrunnow and it will also merge the content of the JSON with your named_params!'>
-<meta property='og:url' content='https://adrianabreu.gitlab.io/blog/2023-07-28-extra_params_databricksrunnow/'>
+<meta property='og:url' content='https://adrianabreu.github.io/blog/2023-07-28-extra_params_databricksrunnow/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Databricks'><meta property='article:tag' content='Workflows'><meta property='article:tag' content='Airflow'><meta property='article:published_time' content='2023-07-28T16:00:32Z'/><meta property='article:modified_time' content='2023-07-28T16:00:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
@@ -18,7 +18,7 @@ And not always the airflow operator is ready to handle all of the. If we check t
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="canonical" href="https://adrianabreu.gitlab.io/blog/2023-07-28-extra_params_databricksrunnow/">
+<link rel="canonical" href="https://adrianabreu.github.io/blog/2023-07-28-extra_params_databricksrunnow/">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:image" content="/preview.png" />
@@ -34,7 +34,7 @@ And not always the airflow operator is ready to handle all of the. If we check t
   <div class="container">
     <nav id="nav-main" class="nav">
       <div id="nav-name" class="nav-left">
-        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.gitlab.io/">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.io/">
           <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
         </a>
       </div>
