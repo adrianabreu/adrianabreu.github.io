@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Spark Dates | Adrián Abreu</title>
+
+<meta property='og:title' content='Spark Dates - Adrián Abreu'>
+<meta property='og:description' content='I can perfectly describe this as the scariest part of the exam. I&rsquo;m used to working with dates but I&rsquo;m especially used to suffering from the typical UTC / not UTC / summer time hours difference.
+I will try to make some simple exercises for this, the idea would be:
+We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL.'>
+<meta property='og:url' content='https://adrianabreu.github.com/spark-certification/2022-06-29-spark-dates/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Spark-Certification'><meta property='article:tag' content='Spark'><meta property='article:tag' content='Certification'><meta property='article:tag' content='Data Engineer'><meta property='article:published_time' content='2022-06-29T15:43:22Z'/><meta property='article:modified_time' content='2022-06-29T15:43:22Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.github.com/spark-certification/2022-06-29-spark-dates/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:image" content="/preview.png" />
+<meta name="twitter:image" content="/preview.png" />
+<script
+    defer
+    src="https://unpkg.com/@tinybirdco/flock.js"
+    data-token="p.eyJ1IjogImUzY2IxNjA4LThmYjEtNDBjNC04NzNlLTFmNjE3ZmI2NGMzMCIsICJpZCI6ICI1NzQ5MDAyMC02Yjg1LTQ2YjEtYWVmOS1lNzMwMjYwYmM1YmQiLCAiaG9zdCI6ICJldV9zaGFyZWQifQ.bcYOUv9CsZ5Fg6UoqxSZk-SYZ6Z_mdrzjbEiE4TPcAA">
+</script>
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.com/">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="gitlab" href='https://gitlab.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"></path>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/certification/">#Certification</a>
+  
+  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">June 29, 2022</h2>
+    <h1 class="title">Spark Dates</h1>
+    
+    <div class="content">
+      <p>I can perfectly describe this as the scariest part of the exam. I&rsquo;m used to working with dates but I&rsquo;m especially used to suffering from the typical UTC / not UTC / summer time hours difference.</p>
+<p>I will try to make some simple exercises for this, the idea would be:</p>
+<ul>
+<li>We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL. So we decided to aggregate at different levels the same KPI, our sales per store. Considering some data as:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>  (<span style="color:#ae81ff">1656520076</span>, <span style="color:#ae81ff">1001</span>, <span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>  (<span style="color:#ae81ff">1656520321</span>, <span style="color:#ae81ff">1001</span>, <span style="color:#ae81ff">8</span>),
+</span></span><span style="display:flex;"><span>  (<span style="color:#ae81ff">1656509025</span>, <span style="color:#ae81ff">1002</span>, <span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>  (<span style="color:#ae81ff">1656510826</span>, <span style="color:#ae81ff">1002</span>, <span style="color:#ae81ff">3</span>),
+</span></span><span style="display:flex;"><span>  (<span style="color:#ae81ff">1656510056</span>, <span style="color:#ae81ff">1001</span>, <span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>  (<span style="color:#ae81ff">1656514076</span>, <span style="color:#ae81ff">1001</span>, <span style="color:#ae81ff">8</span>),
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ts&#34;</span>
+</span></span><span style="display:flex;"><span>store_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;store_id&#34;</span>
+</span></span><span style="display:flex;"><span>amount <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;amount&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>createDataFrame(data, [ts, store_id, amount])
+</span></span></code></pre></div><p>We need to parse that data into a readable date as the first number is an epoch or <em>unix_time</em>. Using the function from_unixttime this is quite simple:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> (from_unixtime, col)
+</span></span><span style="display:flex;"><span>display(df<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#34;date_parsed&#34;</span>, from_unixtime(col(ts))))
+</span></span></code></pre></div><p>Not we need to perform different aggregations, we want the sum of the amount per store on:</p>
+<ul>
+<li>Quarter of the year</li>
+<li>Month</li>
+<li>Week of the year</li>
+<li>Day of the year</li>
+</ul>
+<p>All those aggregations can be done with Spark, and not only that but Spark has first-level functions for those, making the transformations direct:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> reduce
+</span></span><span style="display:flex;"><span>functions <span style="color:#f92672">=</span> [quarter, month, weekofyear, dayofyear]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dfs <span style="color:#f92672">=</span> [parsed_df<span style="color:#f92672">.</span>groupBy(f(col(parsed_date)), col(store_id))<span style="color:#f92672">.</span>agg(sum(col(amount))) <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> functions]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>display(reduce(<span style="color:#66d9ef">lambda</span> x,y: x<span style="color:#f92672">.</span>union(y), dfs))
+</span></span></code></pre></div><table>
+<thead>
+<tr>
+<th>period</th>
+<th>store_id</th>
+<th>sum(amount)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>1001</td>
+<td>31</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1002</td>
+<td>8</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1001</td>
+<td>31</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1002</td>
+<td>8</td>
+</tr>
+<tr>
+<td>26</td>
+<td>1001</td>
+<td>31</td>
+</tr>
+<tr>
+<td>26</td>
+<td>1002</td>
+<td>8</td>
+</tr>
+<tr>
+<td>180</td>
+<td>1001</td>
+<td>31</td>
+</tr>
+<tr>
+<td>180</td>
+<td>1002</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>As we can see this part is straightforward, but there is a dark non-mentioned part, which is formatting timestamp and parsing those formats.</p>
+<p>The timestamp has an extended variety of formats, the UTC standard is as:</p>
+<p><code>2022-06-29T19:22:55Z</code></p>
+<p>This can be translated to:</p>
+<p><code>YYYY-MM-DDTHH:mm:SS[.f]'Z'</code></p>
+<p>If we want to parse that kind of ts with spark we have the function <em>from_utc_timestamp</em> which accepts both the column and the format (the format could also be another column).</p>
+<p>Spark provides an alias for the default format so I can avoid writing all the stuff above and just type &ldquo;Z&rdquo; as the UTC format.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark.sql.types <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data_ts <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>  (<span style="color:#e6db74">&#39;2022-06-29T19:22:55Z&#39;</span>,),
+</span></span><span style="display:flex;"><span>  (<span style="color:#e6db74">&#39;2022-06-29T19:22:55Z&#39;</span>,)
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df_ts <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>createDataFrame(data_ts, StructType([
+</span></span><span style="display:flex;"><span>  StructField(<span style="color:#e6db74">&#34;ts&#34;</span>, StringType())
+</span></span><span style="display:flex;"><span>]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>display(df_ts<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#34;parsed&#34;</span>, from_utc_timestamp(col(ts), <span style="color:#e6db74">&#34;Z&#34;</span>)))
+</span></span></code></pre></div><table>
+<thead>
+<tr>
+<th>ts</th>
+<th>parsed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022-06-29T19:22:55Z</td>
+<td>2022-06-29T19:22:55.000+0000</td>
+</tr>
+<tr>
+<td>2022-06-29T19:22:55Z</td>
+<td>2022-06-29T19:22:55.000+0000</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017-2022 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+
+
+
+</body>
+</html>
+

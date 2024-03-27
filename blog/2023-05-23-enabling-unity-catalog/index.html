@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Enabling Unity Catalog | Adrián Abreu</title>
+
+<meta property='og:title' content='Enabling Unity Catalog - Adrián Abreu'>
+<meta property='og:description' content='I&rsquo;ve spent the last few weeks setting up the unity catalog for my company. It&rsquo;s been an extremely tiring process. And there are several concepts to bring here. My main point is to have a clear view of the requirements.
+Disclaimer: as of today with https://github.com/databricks/terraform-provider-databricks release 1.17.0, some steps should be done in an &ldquo;awkward way&rdquo; that is, the account API does not expose the catalog&rsquo;s endpoint and should be done through a workspace.'>
+<meta property='og:url' content='https://adrianabreu.github.com/blog/2023-05-23-enabling-unity-catalog/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Databricks'><meta property='article:tag' content='Terraform'><meta property='article:tag' content='Unity Catalog'><meta property='article:published_time' content='2023-05-23T07:48:32Z'/><meta property='article:modified_time' content='2023-05-23T07:48:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.github.com/blog/2023-05-23-enabling-unity-catalog/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:image" content="/preview.png" />
+<meta name="twitter:image" content="/preview.png" />
+<script
+    defer
+    src="https://unpkg.com/@tinybirdco/flock.js"
+    data-token="p.eyJ1IjogImUzY2IxNjA4LThmYjEtNDBjNC04NzNlLTFmNjE3ZmI2NGMzMCIsICJpZCI6ICI1NzQ5MDAyMC02Yjg1LTQ2YjEtYWVmOS1lNzMwMjYwYmM1YmQiLCAiaG9zdCI6ICJldV9zaGFyZWQifQ.bcYOUv9CsZ5Fg6UoqxSZk-SYZ6Z_mdrzjbEiE4TPcAA">
+</script>
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.com/">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="gitlab" href='https://gitlab.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"></path>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/databricks/">#Databricks</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/terraform/">#Terraform</a>
+  
+  | <a class="subtitle is-6" href="/tags/unity-catalog/">#Unity Catalog</a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">May 23, 2023</h2>
+    <h1 class="title">Enabling Unity Catalog</h1>
+    
+    <div class="content">
+      <p>I&rsquo;ve spent the last few weeks setting up the unity catalog for my company. It&rsquo;s been an extremely tiring process. And there are several concepts to bring here. My main point is to have a clear view of the requirements.</p>
+<p>Disclaimer: as of today with <a href="https://github.com/databricks/terraform-provider-databricks">https://github.com/databricks/terraform-provider-databricks</a> release 1.17.0, some steps should be done in an &ldquo;awkward way&rdquo; that is, the account API does not expose the catalog&rsquo;s endpoint and should be done through a workspace.</p>
+<h2 id="concepts-to-interiorize">Concepts to interiorize:</h2>
+<ol>
+<li>There is one catalog per databricks account/region. If you have several workspaces (release environments and such) they will share the same metastore. That&rsquo;s it.</li>
+<li>You will need a bucket for it. That means it should be on your prod account containing dev / pre data.</li>
+<li>Unity catalog works with account users, groups, and service principals, no with &ldquo;local&rdquo; identities. You must &ldquo;import&rdquo; your groups to give permissions. They should have different names from the local ones.</li>
+<li>Unity catalog needs to be able to access all your buckets so it can create managed tables. You will need a role that can manage all your buckets.</li>
+<li>You can keep everything working as is despite enabling Unity Catalog by assigning the default catalog to &ldquo;hive_metastore&rdquo;.</li>
+<li>Managed tables must be copied over to the new catalog</li>
+<li>You need to create some new concepts for an external table. Locations would need to be encapsulated in &ldquo;storage credentials&rdquo; (representing a role to the bucket) and an external location within that bucker. We did use one bucket per layer, ending up with 4 storage credentials.</li>
+<li>You can restrict one catalog for being accessed from other workspaces with a new feature called &ldquo;catalog workspace bindings&rdquo;. That is only available through the UI. (At least for me the API didn&rsquo;t work).</li>
+<li>You need to update all your jobs to have an &ldquo;access_mode&rdquo;. Shared mode for interactive cluster does not yet support scala, only sql and python.</li>
+</ol>
+<h2 id="steps">Steps</h2>
+<h3 id="account-level">Account level</h3>
+<p>(You will also need to configure a workspace as the account api isn&rsquo;t available so you will access the metastore through the workspace).</p>
+<ul>
+<li>Create the groups and add the users.</li>
+<li>Using the environment provider (workspace) create the metastore.</li>
+<li>Set up the data access, that means link the role for accessing the s3 bucket to your metastore. In my case I needed to assign the metastore to a workspace first, as the API complained. My debug results in that there is an object, the storage credentials, being created and there is some dependency with the workspace. I did that on dev environment.</li>
+<li>Assign the metastore owner to a group of admins that can manage permissions on it.</li>
+</ul>
+<h3 id="per-environment-project--step">Per environment project / step:</h3>
+<ul>
+<li>You will need to assign your groups and service principals to your workspace by running <code>databricks_permission_assignment</code>. Note: importing the groups may take several minutes, in my case even more than 5 minutes, that&rsquo;s because databricks internally is merging the existing users with the one added for the groups.</li>
+<li>In order to access data an storage credential for each of the buckets and an external location for the path are needed.</li>
+<li>I would create the catalog of the environment as well as the schemas. Why? For assigning permissions afterwards.</li>
+<li>Now is time to start assigning permissions: you need to give permissions to both the external location and the table. (You may read files on a path and can&rsquo;t be able to select a table). Remember that permissions are inherited, so if you give select and use in a catalog the users will be able to query all the schemas and tables.</li>
+<li>After everything is set up, assign the metastore to your workspace.</li>
+</ul>
+<h3 id="restrict-a-catalog">Restrict a catalog</h3>
+<img src="/images/unity-catalog/1.png" class="img-responsive">
+<h3 id="final-steps">Final steps</h3>
+<p>In order to use Unity Catalog you will need to:</p>
+<ol>
+<li>Upgrade your tables (<a href="https://docs.databricks.com/data-governance/unity-catalog/migrate.html">https://docs.databricks.com/data-governance/unity-catalog/migrate.html</a>)</li>
+<li>Make sure that every cluster has an access_mode configure.</li>
+<li>Make sure they point to the right catalog, you can do by cli or a spark property: <a href="https://docs.databricks.com/data-governance/unity-catalog/hive-metastore.html#default-catalog">https://docs.databricks.com/data-governance/unity-catalog/hive-metastore.html#default-catalog</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017-2022 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+
+
+
+</body>
+</html>
+
