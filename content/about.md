@@ -7,7 +7,7 @@ layout = "about"
 
 If you want to reach me you can do through:
 
-**[Gitlab](http://gitlab.io/adrianabreu)**
+**[Gitlab](http://github.com/adrianabreu)**
 
 **[Twitter](https://twitter.com/adrianabreudev)**
 
