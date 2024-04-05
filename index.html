@@ -204,7 +204,8 @@ When reading from Kafka you usually get 1 task per partition, so if you have 6 p
       <h2 class="subtitle is-6 date">October 21, 2023</h2>
       <h1 class="title"><a href="https://adrianabreu.github.io/blog/2023-10-22-ksql-a-horror-tale/">KSQL, a horror tale</a></h1>
       <div class="content">
-        I&rsquo;ve been working in the past weeks on a ksql solution that would filter billions of events and decide where they should land in one topic or another. Sadly, it didn&rsquo;t meet my expectations. I thought it was a much more robust product that would fit our scenario. We were doing a similar filter in Spark, where we were paying traffic costs for both Confluent and AWS. So with kSQL at least we wouldn&rsquo;t pay for our AWS traffic.
+        After spending several weeks working on a ksql solution to filter billions of events and determine their destination topic, I was disappointed to find that it did not live up to my expectations.
+I had hoped for a more robust product that would align with our needs. Previously, we utilized a similar filter in Spark, incurring traffic costs for both Confluent and AWS. With kSQL, the advantage was that we could avoid paying for AWS traffic.
         
         <a class="button is-link" href="https://adrianabreu.github.io/blog/2023-10-22-ksql-a-horror-tale/" style="height:28px">
           Read more
