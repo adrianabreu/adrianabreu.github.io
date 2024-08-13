@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
 <head>
-	<meta name="generator" content="Hugo 0.124.1">
+	<meta name="generator" content="Hugo 0.132.0">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -11,7 +11,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://adrianabreu.github.io/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content=''><meta property='og:updated_time' content='2024-03-22T18:06:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content=''><meta property='og:updated_time' content='2024-08-13T07:00:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -91,6 +91,37 @@
 </section>
 <section class="section">
   <div class="container">
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/certification/">#Certification</a>
+  
+  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
+  
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">June 7, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.github.io/spark-certification/2022-06-07-spark-architecture/">Spark Architecture</a></h1>
+      <div class="content">
+        Spark works on top of a cluster supervised by a cluster manager. The later is responsible of:
+Tracking resource allocation across all applications running on the cluster. Monitoring the health of all the nodes. Inside each node there is a node manager which is responsible to track each node health and resources and inform the cluster manager.
+C l u s t e r M a n a g e r N N N o o o d d d e e e M M M a a a n n n a a a g g g e e e r r r When we run a Spark application we generate processes inside the cluster where one node will act as a Driver and the rest will be Workers.
+        
+        <a class="button is-link" href="https://adrianabreu.github.io/spark-certification/2022-06-07-spark-architecture/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
     
     <article>
       <div class="subtitle tags is-6 is-pulled-right">
@@ -280,37 +311,6 @@ product attributes 1 (SIZE-36) 2 (COLOR-RED) 3 (SIZE-38, COLOR-BLUE) 4 (COLOR-GR
       </div>
     </article>
     
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/c/">#C#</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/analytics/">#Analytics</a>
-  
-  | <a class="subtitle is-6" href="/tags/sql/">#SQL</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 21, 2021</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2021-07-21-funny-bug/">A funny bug</a></h1>
-      <div class="content">
-        Ayer mismo estaba intentando analizar unos data_types para completar una exportación al backend. La idea era sencilla, buscar para cada usuario la ultima información disponible en una tabla que representaba actualizaciones sobre su perfil.
-Como a su perfil podías &ldquo;añadir&rdquo;, &ldquo;actualizar&rdquo; y &ldquo;eliminar&rdquo; cosas, pues existian los tres tipos en la tabla. Para que la imaginemos mejor sería tal que así:
-user_id favorite_stuff operation metadata A Chocolate Add &hellip; A Chocolate Update &hellip; B Milk Remove &hellip; B Cornflakes Add &hellip; De tal manera que habría que combinar todos los eventos para saber cual es el perfil actual del usuario y aplicar cierta lógica.
-        
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2021-07-21-funny-bug/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
   </div>
 </section>
 <section class="section">
@@ -358,8 +358,5 @@ user_id favorite_stuff operation metadata A Chocolate Add &hellip; A Chocolate U
     
   </div>
 </section>
-
-
-
 </body>
 </html>
