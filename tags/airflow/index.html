@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -8,7 +8,7 @@
 
 <meta property='og:title' content='Airflow - Adrián Abreu'>
 <meta property='og:description' content=''>
-<meta property='og:url' content='https://adrianabreu.github.io/tags/airflow/'>
+<meta property='og:url' content='https://adrianabreu.com/tags/airflow/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Tags'><meta property='og:updated_time' content='2024-08-13T07:00:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
@@ -17,7 +17,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="canonical" href="https://adrianabreu.github.io/tags/airflow/">
+<link rel="canonical" href="https://adrianabreu.com/tags/airflow/">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:image" content="/preview.png" />
@@ -33,7 +33,7 @@
   <div class="container">
     <nav id="nav-main" class="nav">
       <div id="nav-name" class="nav-left">
-        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.io/">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.com/">
           <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
         </a>
       </div>
@@ -110,12 +110,12 @@
         
       </div>
       <h2 class="subtitle is-6 date">July 28, 2023</h2>
-      <h1 class="title"><a href="https://adrianabreu.github.io/blog/2023-07-28-extra_params_databricksrunnow/">Adding extra params on DatabricksRunNowOperator</a></h1>
+      <h1 class="title"><a href="https://adrianabreu.com/blog/2023-07-28-extra_params_databricksrunnow/">Adding extra params on DatabricksRunNowOperator</a></h1>
       <div class="content">
         With the new Databricks jobs API 2.1 you have different parameters depending on the kind of tasks you have in your workflow. Like: jar_params, sql_params, python_params, notebook_params&hellip;
 And not always the airflow operator is ready to handle all of the. If we check the current release of the DatabricksRunNowOperator, we can see that there is only support for: notebook_params python_params python_named_parameters jar_params spark_submit_params And not the query_params mentioned earlier. But there is a way of combining both, there is a param called jsob that allows you to write the payload of a databricksrunnow and it will also merge the content of the JSON with your named_params!
         
-        <a class="button is-link" href="https://adrianabreu.github.io/blog/2023-07-28-extra_params_databricksrunnow/" style="height:28px">
+        <a class="button is-link" href="https://adrianabreu.com/blog/2023-07-28-extra_params_databricksrunnow/" style="height:28px">
           Read more
         </a>
         

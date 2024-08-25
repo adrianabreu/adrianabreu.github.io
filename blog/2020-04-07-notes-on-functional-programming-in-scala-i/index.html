@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -9,7 +9,7 @@
 <meta property='og:title' content='Notas sobre programación funcional en Scala I - Adrián Abreu'>
 <meta property='og:description' content='Hace unos días pude comprarme el libro de Paul Chiusano y Rúnar Bjarnason: Functional Programming in scala y no puedo estar más contento con él.
 Como ya es costumbre, aprovecho para dejar mis notas sobre el libro en el blog. No se trata de un resumen del mismo sino curiosidades que sé que volveré a consultar en un futuro. Intentaré que no queden post excesivamente largos haciendo un por capítulo. Igualmente, recomiendo a todo el mundo adquirir &ldquo;el libro rojo de Scala&rdquo; y echarle un vistazo.'>
-<meta property='og:url' content='https://adrianabreu.github.io/blog/2020-04-07-notes-on-functional-programming-in-scala-i/'>
+<meta property='og:url' content='https://adrianabreu.com/blog/2020-04-07-notes-on-functional-programming-in-scala-i/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Scala'><meta property='article:tag' content='FP'><meta property='article:published_time' content='2020-04-06T18:22:32Z'/><meta property='article:modified_time' content='2020-04-06T18:22:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
@@ -18,7 +18,7 @@ Como ya es costumbre, aprovecho para dejar mis notas sobre el libro en el blog. 
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="canonical" href="https://adrianabreu.github.io/blog/2020-04-07-notes-on-functional-programming-in-scala-i/">
+<link rel="canonical" href="https://adrianabreu.com/blog/2020-04-07-notes-on-functional-programming-in-scala-i/">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:image" content="/preview.png" />
@@ -34,7 +34,7 @@ Como ya es costumbre, aprovecho para dejar mis notas sobre el libro en el blog. 
   <div class="container">
     <nav id="nav-main" class="nav">
       <div id="nav-name" class="nav-left">
-        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.io/">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.com/">
           <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
         </a>
       </div>
@@ -130,7 +130,7 @@ Como ya es costumbre, aprovecho para dejar mis notas sobre el libro en el blog. 
 <p>Como vemos, la función de loop interna se asemeja mucho a un bucle normal. Y la diferencia
 con el factorial normal es, que el factorial normal necesita llegar hasta final para resolver la cascada de llamadas mientras que loop se resuelve sus parámetros en cada iteración.</p>
 <p><strong>Tail call optimisation</strong>: Uno de los mayores problemas de la recursividad es que al ser necesario mantener el stack de llamadas de la función para valores muy grandes podemos acabar en un stackoverflow error.
-Cuando el compilador detecta que las llamadas recursivas se hacen al final, es capaz de convertirlo en bucles iterativos que no requieren mantener el stack. Si queremos forzar una función como recursiva y que el compilador falle si no lo es podemos usar la anotación <em>tailrec</em>. La verdad es que detectar esto en casos complejos, es realmente dificil y un post muy interesante sobre eso es <a href="http://blog.richdougherty.com/2009/04/tail-calls-tailrec-and-trampolines.html">este</a>.</p>
+Cuando el compilador detecta que las llamadas recursivas se hacen al final, es capaz de convertirlo en bucles iterativos que no requieren mantener el stack. Si queremos forzar una función como recursiva y que el compilador falle si no lo es podemos usar la anotación <em>tailrec</em>. La verdad es que detectar esto en casos complejos, es realmente dificil y un post muy interesante sobre eso es <a href="https://blog.richdougherty.com/2009/04/tail-calls-tailrec-and-trampolines.html">este</a>.</p>
 <h3 id="higher-order-functions">Higher-order Functions</h3>
 <p>Este concepto siempre me había resultado difícil de entender en el mundo de Redux, pero la verdad es que en Scala es muy intuitivo. Las HoF son functiones que aceptan funciones como parámetros. En Scala es muy intuitivo declarar una función como párametro. Por ejemplo pongamos que queremos validar un &ldquo;predicado&rdquo; para numeros enteros, el tipo del predicado sería Int =&gt; Boolean. Y una función de comprobación podría ser:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> check<span style="color:#f92672">(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> p<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Boolean</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</span> <span style="color:#f92672">=</span> p<span style="color:#f92672">(</span>n<span style="color:#f92672">)</span></span></span></code></pre></div>

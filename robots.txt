@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: https://adrianabreu.github.io//sitemap.xml
+Sitemap: https://adrianabreu.com//sitemap.xml

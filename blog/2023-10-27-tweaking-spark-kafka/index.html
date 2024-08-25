@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  lang="es-ES">
+<html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -10,7 +10,7 @@
 <meta property='og:description' content='Well, I&rsquo;m facing a huge interesting case. I&rsquo;m working at Wallbox where we need to deal with billions of rows every day. Now we need to use Spark for some Kafka filtering and publish the results into different topics according to some rules.
 I won&rsquo;t dig deep into the logic except for performance-related stuff, let&rsquo;s try to increase the processing speed.
 When reading from Kafka you usually get 1 task per partition, so if you have 6 partitions and 48 cores you are not using 87.'>
-<meta property='og:url' content='https://adrianabreu.github.io/blog/2023-10-27-tweaking-spark-kafka/'>
+<meta property='og:url' content='https://adrianabreu.com/blog/2023-10-27-tweaking-spark-kafka/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Spark'><meta property='article:tag' content='Databricks'><meta property='article:tag' content='Structured Streaming'><meta property='article:published_time' content='2023-10-27T12:06:32Z'/><meta property='article:modified_time' content='2023-10-27T12:06:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
@@ -19,7 +19,7 @@ When reading from Kafka you usually get 1 task per partition, so if you have 6 p
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="canonical" href="https://adrianabreu.github.io/blog/2023-10-27-tweaking-spark-kafka/">
+<link rel="canonical" href="https://adrianabreu.com/blog/2023-10-27-tweaking-spark-kafka/">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:image" content="/preview.png" />
@@ -35,7 +35,7 @@ When reading from Kafka you usually get 1 task per partition, so if you have 6 p
   <div class="container">
     <nav id="nav-main" class="nav">
       <div id="nav-name" class="nav-left">
-        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.github.io/">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.com/">
           <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
         </a>
       </div>
