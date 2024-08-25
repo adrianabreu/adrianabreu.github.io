@@ -3,7 +3,7 @@ languageCode = "es-ES"
 title = "Adrián Abreu"
 theme = "kiss"
 Paginate = 8
-copyright = "2017-2022 Adrián Abreu powered by Hugo and Kiss Theme"
+copyright = "2017-2024 Adrián Abreu powered by Hugo and Kiss Theme"
 enableRobotsTXT = true
 
 [markup.goldmark.renderer]
