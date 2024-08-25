@@ -124,9 +124,9 @@ Y obtenemos el resultado anteriormente comentado.
 
 ## Bibliografia: 
 
-[1] http://vldb.org/pvldb/vol5/p1244_yucao_vldb2012.pdf 
+[1] https://vldb.org/pvldb/vol5/p1244_yucao_vldb2012.pdf 
 
-[2] http://www.vldb.org/pvldb/vol8/p1058-leis.pdf 
+[2] https://www.vldb.org/pvldb/vol8/p1058-leis.pdf 
 
 [3] https://www.sqlpassion.at/archive/2015/01/22/sql-server-windowing-functions-rows-vs-range/ 
 

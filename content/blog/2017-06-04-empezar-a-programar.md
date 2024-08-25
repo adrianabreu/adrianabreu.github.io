@@ -16,7 +16,7 @@ Realmente mi respuesta es bastante clara: **DAW**.
 El mundo web cada vez va tomando más y más fuerza.
 Ya se pueden desarrollar aplicaciones de escritorio utilizando como base aplicaciones web con tecnologías
 como [electron](https://electron.atom.io/) (un buen ejemplo de este tipo de aplicaciones [Visual Studio Code](https://code.visualstudio.com/)). Y además también
-se pueden desarrollar aplicaciones móviles con [React Native](https://facebook.github.io/react-native/) e [Ionic](http://ionicframework.com/).
+se pueden desarrollar aplicaciones móviles con [React Native](https://facebook.github.io/react-native/) e [Ionic](https://ionicframework.com/).
 
 ### ¿Como empezar?
 
@@ -39,9 +39,9 @@ años. Puede que no sea "cool", que no esté en el top de *trending languages*, 
 Para aprender Java recomiendo utilizar los dos *MOOC* (Masive Open Online Course) de la universidad
 de Helsinki. Yo mismo los he utilizado y sé que resultarán muy útiles.
 
-http://mooc.fi/courses/2013/programming-part-1/
+https://mooc.fi/courses/2013/programming-part-1/
 
-http://mooc.fi/courses/2013/programming-part-2/
+https://mooc.fi/courses/2013/programming-part-2/
 
 Eso sí, en perfecto inglés. Es lo que hay y cuanto antes empieces a adaptarte al inglés, mejor. Existen
 algunos libros muy importantes de Java, yo suelo citar este:
@@ -66,7 +66,7 @@ aprenderlo.
 
 Para ello recomiendo hacer los cursos de [freecodecamp](https://www.freecodecamp.com/).
 
-Para dudas, un libro bastante interesante a consultar es: [Eloquent Javascript](http://eloquentjavascript.net/)
+Para dudas, un libro bastante interesante a consultar es: [Eloquent Javascript](https://eloquentjavascript.net/)
 
 
 ### ¿Qué debo aprender?
@@ -88,5 +88,5 @@ Y ya con eso tenemos las bases para empezar a hacer lo que realmente nos importa
 ### Ya tengo las bases, quiero más.
 
 En un principio iba a extender este tutorial, pero creo que es mejor dejarlo para otra entrada.
-Por lo pronto diré que al menos es necesario que conozcas como usar SQL, qué es una [API Rest](http://www.restapitutorial.com/) 
+Por lo pronto diré que al menos es necesario que conozcas como usar SQL, qué es una [API Rest](https://www.restapitutorial.com/) 
 y como hacer peticiones [HTTP con Javascript](https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp).

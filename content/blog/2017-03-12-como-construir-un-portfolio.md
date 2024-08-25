@@ -48,7 +48,7 @@ Aplica tu creatividad y si eres bueno en tema de diseño quizás quieras demostr
 
 También, al igual que yo puedes hacer utilizar algún generador estático, como por ejemplo: [Jekyll](https://jekyllrb.com/) (Ruby), [Hexo](https://hexo.io/) (Node) o [Hugo](https://gohugo.io/) (Go).
 
-[Hace unas entradas](http://adrianabreu.com/post/2017-03-04-Why-you-should-start-a-blog/) argumenté las ventajas de tener un blog y de escribir las cosas que se van aprendiendo.
+[Hace unas entradas](https://adrianabreu.com/post/2017-03-04-Why-you-should-start-a-blog/) argumenté las ventajas de tener un blog y de escribir las cosas que se van aprendiendo.
 
 
 ## 4. ¿Qué podría usar para rellenar el portfolio? 
@@ -75,10 +75,10 @@ Así que no necesitas invertir en host ni en vps para poder alojar tus aplicacio
 
 Ya que ahora mismo mi blog no es un gran ejemplo. (**Excusa**: No he parado de irme de un sitio a otro para decidir que iba a utilizar como generador hasta decidirme por hugo). Voy a aprovechar para dejar algunos buenos ejemplos de portfolio:
 
-* http://zertukis.com/
-* http://jordancarney.com/
+* https://zertukis.com/
+* https://jordancarney.com/
 * https://chrisgreg.github.io/Portfolio/index.html
-* http://jamesiv.es/
+* https://jamesiv.es/
 
 ## 7. Conclusiones:
 

@@ -41,7 +41,7 @@ Como vemos, la función de loop interna se asemeja mucho a un bucle normal. Y la
 con el factorial normal es, que el factorial normal necesita llegar hasta final para resolver la cascada de llamadas mientras que loop se resuelve sus parámetros en cada iteración.
 
 **Tail call optimisation**: Uno de los mayores problemas de la recursividad es que al ser necesario mantener el stack de llamadas de la función para valores muy grandes podemos acabar en un stackoverflow error.
-Cuando el compilador detecta que las llamadas recursivas se hacen al final, es capaz de convertirlo en bucles iterativos que no requieren mantener el stack. Si queremos forzar una función como recursiva y que el compilador falle si no lo es podemos usar la anotación *tailrec*. La verdad es que detectar esto en casos complejos, es realmente dificil y un post muy interesante sobre eso es [este](http://blog.richdougherty.com/2009/04/tail-calls-tailrec-and-trampolines.html).
+Cuando el compilador detecta que las llamadas recursivas se hacen al final, es capaz de convertirlo en bucles iterativos que no requieren mantener el stack. Si queremos forzar una función como recursiva y que el compilador falle si no lo es podemos usar la anotación *tailrec*. La verdad es que detectar esto en casos complejos, es realmente dificil y un post muy interesante sobre eso es [este](https://blog.richdougherty.com/2009/04/tail-calls-tailrec-and-trampolines.html).
 
 ### Higher-order Functions
 
