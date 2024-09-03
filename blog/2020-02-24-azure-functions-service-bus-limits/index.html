@@ -9,7 +9,12 @@
 <meta property='og:title' content='Límites en azure functions para procesos de larga duración - Adrián Abreu'>
 <meta property='og:description' content='Estas últimas semanas he tenido que implementar ciertas mejoras en un proyecto. El objetivo era muy simple, conectar el proyecto a una aplicación de datawarehousing existente, y de forma externa, realizar agregados y luego aplicar cierto procesamiento para un servicio en particular.
 Además había una serie de requisitos extras:
-El procesamiento iba a ser reutilizado por otro proyecto. Y requería comprimir y cifrar archivos grandes. La primera parte tenía que simplemente, Había una deadline muy cercana para este proyecto.'>
+
+El procesamiento iba a ser reutilizado por otro proyecto. Y requería comprimir y cifrar archivos grandes.
+La primera parte tenía que simplemente,
+Había una deadline muy cercana para este proyecto.
+
+Con todas estas limitaciones, la solución propuesta fue esta:'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2020-02-24-azure-functions-service-bus-limits/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Azure'><meta property='article:published_time' content='2020-02-24T19:22:32Z'/><meta property='article:modified_time' content='2020-02-24T19:22:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>

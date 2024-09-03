@@ -114,7 +114,8 @@
       <div class="content">
         Well, I&rsquo;m facing a huge interesting case. I&rsquo;m working at Wallbox where we need to deal with billions of rows every day. Now we need to use Spark for some Kafka filtering and publish the results into different topics according to some rules.
 I won&rsquo;t dig deep into the logic except for performance-related stuff, let&rsquo;s try to increase the processing speed.
-When reading from Kafka you usually get 1 task per partition, so if you have 6 partitions and 48 cores you are not using 87.
+When reading from Kafka you usually get 1 task per partition, so if you have 6 partitions and 48 cores you are not using 87.5 percent of your cluster. That could be adjusted with the following property **minPartitions.**
+
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2023-10-27-tweaking-spark-kafka/" style="height:28px">
           Read more

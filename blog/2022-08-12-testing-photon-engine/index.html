@@ -9,7 +9,14 @@
 <meta property='og:title' content='Testing Databricks Photon - Adrián Abreu'>
 <meta property='og:description' content='I was a bit skeptical about photon since I realized that it cost about double the amount of DBU, required specifically optimized machines and did not support UDFs (it was my main target).
 From the Databricks Official Docs:
-Limitations Does not support Spark Structured Streaming. Does not support UDFs. Does not support RDD APIs. Not expected to improve short-running queries (&lt;2 seconds), for example, queries against small amounts of data. Photon runtime'>
+Limitations
+
+Does not support Spark Structured Streaming.
+Does not support UDFs.
+Does not support RDD APIs.
+Not expected to improve short-running queries (&lt;2 seconds), for example, queries against small amounts of data.
+
+Photon runtime'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Spark'><meta property='article:tag' content='Databricks'><meta property='article:tag' content='Photon'><meta property='article:tag' content='Data Engineer'><meta property='article:published_time' content='2022-08-12T09:52:32Z'/><meta property='article:modified_time' content='2022-08-12T09:52:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
@@ -130,79 +137,79 @@ Limitations Does not support Spark Structured Streaming. Does not support UDFs. 
 1 Driver 64 GB Memory, 8 Cores
 Runtime 10.4.x-scala2.12</p>
 <table>
-<thead>
-<tr>
-<th>Run</th>
-<th>Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>July</td>
-<td>11m 50s</td>
-</tr>
-<tr>
-<td>June</td>
-<td>12m 12s</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Run</th>
+          <th style="text-align: left">Time</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">July</td>
+          <td style="text-align: left">11m 50s</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">June</td>
+          <td style="text-align: left">12m 12s</td>
+      </tr>
+  </tbody>
 </table>
 <p>With a cost of 20 DBU/h (<strong>$0.10 /</strong> DBU is the price por premium jobs workloads)</p>
 <p>I did a launch for 3 months. The process is extremely simple, read some partitions, filter on some value, group by and count. About the volume, 1 month of data has this amount of rows</p>
 <table>
-<thead>
-<tr>
-<th>number of output batches</th>
-<th>2,774,302</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cumulative time total (min, med, max)</td>
-<td>41.3 m (685 ms, 962 ms, 7.0 s)</td>
-</tr>
-<tr>
-<td>rows output</td>
-<td>11,200,056,905</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">number of output batches</th>
+          <th style="text-align: left">2,774,302</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">cumulative time total (min, med, max)</td>
+          <td style="text-align: left">41.3 m (685 ms, 962 ms, 7.0 s)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">rows output</td>
+          <td style="text-align: left">11,200,056,905</td>
+      </tr>
+  </tbody>
 </table>
 <p>And it is aggregated as:</p>
 <table>
-<thead>
-<tr>
-<th>num batches aggregated in sparse mode</th>
-<th>898,423</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>rows output</td>
-<td>1,243,774,432</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">num batches aggregated in sparse mode</th>
+          <th style="text-align: left">898,423</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">rows output</td>
+          <td style="text-align: left">1,243,774,432</td>
+      </tr>
+  </tbody>
 </table>
 <p>I didn’t feel happy about this, twice the cost, and forced me to use a kind of machine that didn’t appeal to me as necessary. Maybe it wasn’t enough data. So I did a 3-month calculation with photons and without.</p>
 <table>
-<thead>
-<tr>
-<th>Run</th>
-<th>Time</th>
-<th>Photon</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>December-October</td>
-<td>23m 53s</td>
-<td>YES</td>
-</tr>
-<tr>
-<td>September - June</td>
-<td></td>
-<td>NO</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Run</th>
+          <th style="text-align: left">Time</th>
+          <th style="text-align: left">Photon</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">December-October</td>
+          <td style="text-align: left">23m 53s</td>
+          <td style="text-align: left">YES</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">September - June</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">NO</td>
+      </tr>
+  </tbody>
 </table>
 <p>Damn, that was unexpected. The computation time didn’t increase that much for Photon and went wild on non-photon workload. We are talking about 3x speed as they stated in their slogan. We are talking about (24 / 60) hour * 20 DBU / hour * 0.15 $/DBU =  1.2$ vs (86 / 60) hour * 10 DBU / hour * 0,15$/DBU = 2.15$</p>
 <p>Well as far as I can tell photon works smoothly but only under a heavy workload. I’d mainly use it for specific KPIs or repopulate tables after changes, but it will be the defacto for those tasks.</p>

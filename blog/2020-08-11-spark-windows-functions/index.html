@@ -117,71 +117,71 @@ Y lo que queremos dar es una visión de cómo cada día evoluciona el programa, 
 <p>Y lo que queremos dar es una visión de cómo cada día evoluciona el programa, para ello se quiere que cada día estén tanto las ventas acumuladas como los registros acumulados.</p>
 <p>Asumamos que no hay ninguna dimensión de fecha y que solo contamos con estos datos, no es necesario mostrar datos en fechas en los que no ha ocurrido nada.</p>
 <table>
-<thead>
-<tr>
-<th>DateKey</th>
-<th>Users</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr>
-<td>3</td>
-<td>1</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">DateKey</th>
+          <th style="text-align: left">Users</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">1</td>
+      </tr>
+  </tbody>
 </table>
 <table>
-<thead>
-<tr>
-<th>DateKey</th>
-<th>Sales</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr>
-<td>2</td>
-<td>3</td>
-</tr>
-<tr>
-<td>3</td>
-<td>5</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">DateKey</th>
+          <th style="text-align: left">Sales</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">3</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">5</td>
+      </tr>
+  </tbody>
 </table>
 <p>Y lo que queremos obtener sería algo como esto:</p>
 <table>
-<thead>
-<tr>
-<th>DateKey</th>
-<th>AccumulatedSales</th>
-<th>AccumulatedUsers</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>2</td>
-<td>2</td>
-</tr>
-<tr>
-<td>2</td>
-<td>5</td>
-<td>2</td>
-</tr>
-<tr>
-<td>3</td>
-<td>10</td>
-<td>3</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">DateKey</th>
+          <th style="text-align: left">AccumulatedSales</th>
+          <th style="text-align: left">AccumulatedUsers</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left">2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">10</td>
+          <td style="text-align: left">3</td>
+      </tr>
+  </tbody>
 </table>
 <p>Para este problema con las herramientas habituales acababa generando un “monstruo” de tabla temporal que superaba con creces el tamaño de la tabla final, solo para tener acceso a otras filas mientras trabajaba con ellas.</p>
 <p>Y aquí es donde entran las funciones de ventana.  Pero dada la complejidad del concepto, voy a intentar profundizar en ello lo mejor posible.</p>
@@ -205,30 +205,30 @@ Y lo que queremos dar es una visión de cómo cada día evoluciona el programa, 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> df <span style="color:#66d9ef">=</span> sales<span style="color:#f92672">.</span>join<span style="color:#f92672">(</span>users<span style="color:#f92672">,</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">“</span><span style="color:#a6e22e">DateKey</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">),</span> <span style="color:#960050;background-color:#1e0010">“</span>left<span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">)</span>
 </span></span></code></pre></div><p>Ahora, tendriamos todos los datos tal que así:</p>
 <table>
-<thead>
-<tr>
-<th>DateKey</th>
-<th>Sales</th>
-<th>Users</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>2</td>
-<td>2</td>
-</tr>
-<tr>
-<td>2</td>
-<td>3</td>
-<td>null</td>
-</tr>
-<tr>
-<td>3</td>
-<td>5</td>
-<td>1</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">DateKey</th>
+          <th style="text-align: left">Sales</th>
+          <th style="text-align: left">Users</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">null</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left">1</td>
+      </tr>
+  </tbody>
 </table>
 <p>Para poder general una función de ventana, tenemos que importar el paquete: <code>org.apache.spark.sql.expressions.Window</code></p>
 <p>Nos interesa una ventana en la que cuya partición englobe a todas las filas, es decir, que no haya particionado.</p>

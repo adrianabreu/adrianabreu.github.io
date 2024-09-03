@@ -114,7 +114,8 @@
       <div class="content">
         Ayer mismo estaba intentando analizar unos data_types para completar una exportación al backend. La idea era sencilla, buscar para cada usuario la ultima información disponible en una tabla que representaba actualizaciones sobre su perfil.
 Como a su perfil podías &ldquo;añadir&rdquo;, &ldquo;actualizar&rdquo; y &ldquo;eliminar&rdquo; cosas, pues existian los tres tipos en la tabla. Para que la imaginemos mejor sería tal que así:
-user_id favorite_stuff operation metadata A Chocolate Add &hellip; A Chocolate Update &hellip; B Milk Remove &hellip; B Cornflakes Add &hellip; De tal manera que habría que combinar todos los eventos para saber cual es el perfil actual del usuario y aplicar cierta lógica.
+user_id favorite_stuff operation metadata A Chocolate Add &hellip; A Chocolate Update &hellip; B Milk Remove &hellip; B Cornflakes Add &hellip; De tal manera que habría que combinar todos los eventos para saber cual es el perfil actual del usuario y aplicar cierta lógica. Sin embargo los eventos que habían llegado realmente eran así:
+
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2021-07-21-funny-bug/" style="height:28px">
           Read more

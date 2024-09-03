@@ -111,7 +111,8 @@
       <h1 class="title"><a href="https://adrianabreu.com/blog/2020-05-31-acceso-keyvault-certificados/">Acceso al keyvault mediante certificados</a></h1>
       <div class="content">
         En el proceso de migración de una aplicación de webjob a azure batch, nos encontramos con la problemática de gestionar los secretos. El servicio de batch se encarga de recoger una aplicación de un storage y hacer ejecuciones de ellas (tasks) en unas máquinas concretas (pool).
-Para poder gestionar los secretos de la aplicación, estos estaban guardados en keyvault. Y teníamos que acceder de forma segura a ello. Por eso optamos por utilizar la autenticación via certificado.
+Para poder gestionar los secretos de la aplicación, estos estaban guardados en keyvault. Y teníamos que acceder de forma segura a ello. Por eso optamos por utilizar la autenticación via certificado. La idea de este tutorial es reproducir los mismos pasos que he usado yo para poder usar este certificado.
+
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2020-05-31-acceso-keyvault-certificados/" style="height:28px">
           Read more
@@ -136,7 +137,8 @@ Para poder gestionar los secretos de la aplicación, estos estaban guardados en 
       <div class="content">
         Estas últimas semanas he tenido que implementar ciertas mejoras en un proyecto. El objetivo era muy simple, conectar el proyecto a una aplicación de datawarehousing existente, y de forma externa, realizar agregados y luego aplicar cierto procesamiento para un servicio en particular.
 Además había una serie de requisitos extras:
-El procesamiento iba a ser reutilizado por otro proyecto. Y requería comprimir y cifrar archivos grandes. La primera parte tenía que simplemente, Había una deadline muy cercana para este proyecto.
+El procesamiento iba a ser reutilizado por otro proyecto. Y requería comprimir y cifrar archivos grandes. La primera parte tenía que simplemente, Había una deadline muy cercana para este proyecto. Con todas estas limitaciones, la solución propuesta fue esta:
+
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2020-02-24-azure-functions-service-bus-limits/" style="height:28px">
           Read more

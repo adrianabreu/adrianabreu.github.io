@@ -114,6 +114,7 @@
       <div class="content">
         With the new Databricks jobs API 2.1 you have different parameters depending on the kind of tasks you have in your workflow. Like: jar_params, sql_params, python_params, notebook_params&hellip;
 And not always the airflow operator is ready to handle all of the. If we check the current release of the DatabricksRunNowOperator, we can see that there is only support for: notebook_params python_params python_named_parameters jar_params spark_submit_params And not the query_params mentioned earlier. But there is a way of combining both, there is a param called jsob that allows you to write the payload of a databricksrunnow and it will also merge the content of the JSON with your named_params!
+
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2023-07-28-extra_params_databricksrunnow/" style="height:28px">
           Read more

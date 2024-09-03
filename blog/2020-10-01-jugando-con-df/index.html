@@ -10,8 +10,15 @@
 <meta property='og:description' content='Sorprendentemente, hasta ahora, no había tenido la posibilidad de trabajar con data factory, sólo lo habia usado para algunas migraciones de datos.
 Sin embargo, tras estabilizar un proyecto y consolidar su nueva etapa, necesitabamos simplificar la solución implementada para migrar datos.
 Una representación sencilla de la arquitectura actual sería:
+
 En un flujo muy sencillo sería esto:
-La etl escribe un fichero csv con spark en un directorio de un blob storage.'>
+
+La etl escribe un fichero csv con spark en un directorio de un blob storage.
+La primera function filtra los ficheros de spark que no son part- y se encarga de notificar a una function que actua de gateway para el batch con que fichero queremos enviar, el nombre original, el path y el nombre que queremos darle.
+Esta function de gateway se encarga de realizar las llamadas necesarias a la api de Azure para generar una tarea en el batch.
+El batch se encarga de comprimir el fichero y enviarlo al sftp del cliente, recuperando las credenciales según el tipo de fichero que se trate.
+
+Este proceso nos permitía trabajar con dos versiones del proyecto en lo que hacíamos la migración a la nueva versión. Ahora que la nueva versión ya está consolidada y hemos conseguido además que el cliente utilice un formato de compresión que podemos escribir directamente desde spark sin recurrir al batch, es el momento de cambiar la arquitectura de transferencia de datos.'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2020-10-01-jugando-con-df/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Data Factory'><meta property='article:published_time' content='2020-10-01T10:12:32Z'/><meta property='article:modified_time' content='2020-10-01T10:12:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>

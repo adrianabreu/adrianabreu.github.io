@@ -8,7 +8,7 @@
 
 <meta property='og:title' content='Correlated subqueries - Adrián Abreu'>
 <meta property='og:description' content='Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había &ldquo;endemoniado&rdquo; al join considerarlo perjudicial.
-Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &ldquo;colapsen&rdquo; los datos de hace 14 días.'>
+Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &ldquo;colapsen&rdquo; los datos de hace 14 días. Será mejor con un ejemplo:'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2019-09-26-correlated-subqueries/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Spark'><meta property='article:tag' content='Analytics'><meta property='article:tag' content='SQL'><meta property='article:published_time' content='2019-09-26T20:43:32Z'/><meta property='article:modified_time' content='2019-09-26T20:43:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
@@ -115,30 +115,30 @@ Tanto es así que llevo un par de días peleando con una pieza de código que me
 <p>Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &ldquo;colapsen&rdquo; los datos de hace 14 días. Será mejor con un ejemplo:</p>
 <p>Si para la tabla actual tenemos los siguientes datos</p>
 <table>
-<thead>
-<tr>
-<th>datekey</th>
-<th>sales</th>
-<th>profit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2019-09-01</td>
-<td>12</td>
-<td>38.10</td>
-</tr>
-<tr>
-<td>2019-09-15</td>
-<td>10</td>
-<td>27.05</td>
-</tr>
-<tr>
-<td>2019-09-29</td>
-<td>5</td>
-<td>16</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">datekey</th>
+          <th style="text-align: left">sales</th>
+          <th style="text-align: left">profit</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">2019-09-01</td>
+          <td style="text-align: left">12</td>
+          <td style="text-align: left">38.10</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2019-09-15</td>
+          <td style="text-align: left">10</td>
+          <td style="text-align: left">27.05</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2019-09-29</td>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left">16</td>
+      </tr>
+  </tbody>
 </table>
 <p>Y aplicamos el cálculo obtendríamos:</p>
 <div class="table-responsive">

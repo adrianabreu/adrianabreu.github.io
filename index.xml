@@ -1,118 +1,966 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Adrián Abreu</title><link>https://adrianabreu.com/</link><description>Recent content on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Tue, 13 Aug 2024 07:00:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Finding pet projects</title><link>https://adrianabreu.com/blog/2024-08-13-finding-pet-projects/</link><pubDate>Tue, 13 Aug 2024 07:00:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-08-13-finding-pet-projects/</guid><description>As my company undergoes layoffs, I&amp;rsquo;m back on the job hunt. While I&amp;rsquo;m in the field of data, I often find myself missing the hands-on experience that comes from personal projects. I realized that I&amp;rsquo;m not practicing all the skills I need.
-During a recent interview, I was asked about my experience with sending reports via email—something I hadn’t done in a few years. That got me thinking: could I turn this into a pet project?</description></item><item><title>Testing deletion vectors</title><link>https://adrianabreu.com/blog/2024-04-15-testing-deletion-vectors/</link><pubDate>Mon, 15 Apr 2024 09:06:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-04-15-testing-deletion-vectors/</guid><description>At my current job I need to delta with multibillion data files. I process the telemetry from over 200,000 chargers that send telemetry over</description></item><item><title>Developing on windows</title><link>https://adrianabreu.com/blog/2024-03-22-developing-on-windows/</link><pubDate>Fri, 22 Mar 2024 18:06:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-03-22-developing-on-windows/</guid><description>Over the years, I&amp;rsquo;ve been using MacOS at work and Ubuntu at home for my development tasks. However, my Lenovo P1 Gen 3 laptop didn&amp;rsquo;t work well with Linux, leading to frequent issues with the camera and graphics (screen flickering, I&amp;rsquo;m looking at you, and it hurts).
-I&amp;rsquo;ve triend Windows Subsystem for Linux (WSL) but it was quite bad to be honest. But as I&amp;rsquo;ve heard of WSL2 and WSLg, I decided to give it another shot.</description></item><item><title>Querying the databricks api</title><link>https://adrianabreu.com/blog/2024-01-26-querying-the-databricks-api/</link><pubDate>Fri, 26 Jan 2024 09:06:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-01-26-querying-the-databricks-api/</guid><description>Exploring databricks SQL usage
-At my company, we adopted databricks SQL for most of our users. Some users have developed applications that use the JDBC connector, some users have built their dashboards, and some users write plain ad-hoc queries.
-We wanted to know what they queried, so we tried to use Unity Catalog&amp;rsquo;s insights, but it wasn&amp;rsquo;t enough for our case. We work with IOT and we are interested in what filters they apply within our tables.</description></item><item><title>Tweaking Spark Kafka</title><link>https://adrianabreu.com/blog/2023-10-27-tweaking-spark-kafka/</link><pubDate>Fri, 27 Oct 2023 12:06:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-10-27-tweaking-spark-kafka/</guid><description>Well, I&amp;rsquo;m facing a huge interesting case. I&amp;rsquo;m working at Wallbox where we need to deal with billions of rows every day. Now we need to use Spark for some Kafka filtering and publish the results into different topics according to some rules.
-I won&amp;rsquo;t dig deep into the logic except for performance-related stuff, let&amp;rsquo;s try to increase the processing speed.
-When reading from Kafka you usually get 1 task per partition, so if you have 6 partitions and 48 cores you are not using 87.</description></item><item><title>KSQL, a horror tale</title><link>https://adrianabreu.com/blog/2023-10-22-ksql-a-horror-tale/</link><pubDate>Sat, 21 Oct 2023 22:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-10-22-ksql-a-horror-tale/</guid><description>After spending several weeks working on a ksql solution to filter billions of events and determine their destination topic, I was disappointed to find that it did not live up to my expectations.
-I had hoped for a more robust product that would align with our needs. Previously, we utilized a similar filter in Spark, incurring traffic costs for both Confluent and AWS. With kSQL, the advantage was that we could avoid paying for AWS traffic.</description></item><item><title>Implementing Confluent Wire Format In Scala</title><link>https://adrianabreu.com/blog/2024-11-04-wire-format-scala/</link><pubDate>Wed, 04 Oct 2023 17:49:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-11-04-wire-format-scala/</guid><description>I&amp;rsquo;ve been working with Confluent for the last few months. I&amp;rsquo;ve been mainly configuring the Terraform project and querying the API for some kSQL setup and tuning. When we had ready our sandbox environment, I wanted to test the throughput.
-If you follow the docs is straightforward, you need to use the serializer from the Confluent library. In fact if you use Spark you can use some nice wrapper as ABRiS.</description></item><item><title>Repairing metadata unity catalog</title><link>https://adrianabreu.com/blog/2023-10-02-repairing-metadata-unity-catalog/</link><pubDate>Mon, 02 Oct 2023 13:25:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-10-02-repairing-metadata-unity-catalog/</guid><description>I&amp;rsquo;ve been subscribed to https://www.dataengineeringweekly.com/p/data-engineering-weekly-148 for years. This last number included several on-call posts on Medium. I found these quite useful.
-Today, I got an alert from Metaplane that a cost monitor dashboard was out of date. I checked the processes, and everything was fine. I ran a query to check the freshness of the data and it was ok too.
-Metaplane checks our delta table freshness by querying the table information available in the Unity Catalog.</description></item><item><title>Adding extra params on DatabricksRunNowOperator</title><link>https://adrianabreu.com/blog/2023-07-28-extra_params_databricksrunnow/</link><pubDate>Fri, 28 Jul 2023 16:00:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-07-28-extra_params_databricksrunnow/</guid><description>With the new Databricks jobs API 2.1 you have different parameters depending on the kind of tasks you have in your workflow. Like: jar_params, sql_params, python_params, notebook_params&amp;hellip;
-And not always the airflow operator is ready to handle all of the. If we check the current release of the DatabricksRunNowOperator, we can see that there is only support for: notebook_params python_params python_named_parameters jar_params spark_submit_params And not the query_params mentioned earlier. But there is a way of combining both, there is a param called jsob that allows you to write the payload of a databricksrunnow and it will also merge the content of the JSON with your named_params!</description></item><item><title>Enabling Unity Catalog</title><link>https://adrianabreu.com/blog/2023-05-23-enabling-unity-catalog/</link><pubDate>Tue, 23 May 2023 07:48:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-05-23-enabling-unity-catalog/</guid><description>I&amp;rsquo;ve spent the last few weeks setting up the unity catalog for my company. It&amp;rsquo;s been an extremely tiring process. And there are several concepts to bring here. My main point is to have a clear view of the requirements.
-Disclaimer: as of today with https://github.com/databricks/terraform-provider-databricks release 1.17.0, some steps should be done in an &amp;ldquo;awkward way&amp;rdquo; that is, the account API does not expose the catalog&amp;rsquo;s endpoint and should be done through a workspace.</description></item><item><title>Duplicates with delta, how can it be?</title><link>https://adrianabreu.com/blog/2023-03-20-delta-duplicates/</link><pubDate>Mon, 20 Mar 2023 09:50:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-03-20-delta-duplicates/</guid><description>Long time without writing! On highlights: I left my job at Schwarz It in December last year, and now I&amp;rsquo;m a full-time employee at Wallbox! I&amp;rsquo;m really happy with my new job, and I&amp;rsquo;ve experienced interesting stuff. This one was just one of these strange cases where you start doubting the compiler.
-Context One of my main tables represents sensor measures from our chargers with millisecond precision. The numbers are quite high, we are talking over 2 billion rows per day.</description></item><item><title>Optimizing Spark</title><link>https://adrianabreu.com/blog/2024-12-12-15-optimizing-spark-i/</link><pubDate>Mon, 15 Aug 2022 09:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-12-12-15-optimizing-spark-i/</guid><description>Últimamente me he centrado en mejorar mis habilidades con Spark y he aprovechado para hacer algunos trainings de databricks. (Que por cierto ha sacado Beacons, un programa de reconocimiento para sus colaboradores y ha mencionado algunos nombres muy grandes por ahí).
-Y en estos cursos está optimizing spark, que simplifica y explica de una forma bastante sencilla los problemas de rendimientos que ocurren en el mundo de big data. A estos problemas se les denomina las 5s:</description></item><item><title>Optimizing Spark II</title><link>https://adrianabreu.com/blog/2024-12-12-16-optimizing-spark-ii/</link><pubDate>Mon, 15 Aug 2022 09:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-12-12-16-optimizing-spark-ii/</guid><description>Continuando con la lista de optimizaciones en spark tneemos el spill.
-Hacer spill no es más que persistir un rdd en disco, ya que, sus datos no caben en memoria.
-Existen varias causas, la más sencilla de pensar es hacer un explode un array donde nuestras columnas crecen de forma exponencial.
-Cuando el spill ocurre se puede identificar por dos valores que siempre van de la mano:
-Spill (Memory) Spill (Disk) (Estas columnas solo aparecen en la spark ui si hay spill).</description></item><item><title>Testing Databricks Photon</title><link>https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/</link><pubDate>Fri, 12 Aug 2022 09:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/</guid><description>I was a bit skeptical about photon since I realized that it cost about double the amount of DBU, required specifically optimized machines and did not support UDFs (it was my main target).
-From the Databricks Official Docs:
-Limitations Does not support Spark Structured Streaming. Does not support UDFs. Does not support RDD APIs. Not expected to improve short-running queries (&amp;lt;2 seconds), for example, queries against small amounts of data. Photon runtime</description></item><item><title>Databricks Cluster Management</title><link>https://adrianabreu.com/blog/2022-07-30-databricks-cluster-management/</link><pubDate>Sat, 30 Jul 2022 13:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-07-30-databricks-cluster-management/</guid><description>For the last few months, I&amp;rsquo;ve been into ETL optimization. Most of the changes were as dramatic as moving tables from ORC to delta revamping the partition strategy to some as simple as upgrading the runtime version to 10.4 so the ETL starts using low-shuffle merge.
-But at my job, we have a lot of jobs. Each ETL can be easily launched at *30 with different parameters so I wanted to dig into the most effective strategy for it.</description></item><item><title>Pusing data to tinybird for free</title><link>https://adrianabreu.com/blog/2022-07-25-pushing-data-to-tinybird-free/</link><pubDate>Mon, 25 Jul 2022 07:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-07-25-pushing-data-to-tinybird-free/</guid><description>So my azure subscription expired and I ended up losing the function I was using to feed my real-time data on analytics (part of the Transportes Insulares de Tenerife SA analysis I was making).
-And after some struggle, I decided to move it to a GitHub action. Why? Because the free mins per month were more than enough and because I just needed some script to run on a cron and that script just makes a quest and a post.</description></item><item><title>Associate Spark Developer Certification</title><link>https://adrianabreu.com/spark-certification/2022-07-21-passed-certification/</link><pubDate>Thu, 21 Jul 2022 12:16:32 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-07-21-passed-certification/</guid><description>Yesterday I took (and passed with more than 90% yay!) the Associate Spark Developer Certificaton. And before I forget I want to share my experience:
-In general:
-First of all, I needed to install Windows as there was no Linux support for the control software used during the exam. Secondly, you need to disable both the antivirus and the firewall before joining. I didn&amp;rsquo;t disable the antivirus and the technician contacted me as there was a problem with the webcam despite I was able to see myself.</description></item><item><title>Reading firebase data</title><link>https://adrianabreu.com/blog/2022-07-01-reading-firebase-data/</link><pubDate>Fri, 01 Jul 2022 07:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-07-01-reading-firebase-data/</guid><description>Firebase is a common component nowadays for most mobile apps. And it can provide some useful insights, for example in my previous company we use it to detect where the people left at the initial app wizard. (We could measure it).
-It is quite simple to export your data to BigQuery: https://firebase.google.com/docs/projects/bigquery-export
-But maybe your lake is in AWS or Azure. In the next lines, I will try to explain how to load the data in your lake and some improvements we have applied.</description></item><item><title>Qbeast</title><link>https://adrianabreu.com/blog/2022-06-30-qbeast/</link><pubDate>Thu, 30 Jun 2022 07:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-06-30-qbeast/</guid><description>A few days ago I ran into Qbeast which is an open-source project on top of delta lake I needed to dig into.
-This introductory post explains it quite well: https://qbeast.io/qbeast-format-enhanced-data-lakehouse/
-The project is quite good and it seems helpful if you need to write your custom data source as everything is documented. And well as I&amp;rsquo;m in love with note-taking I want to dig into the following three topics:</description></item><item><title>Spark Dates</title><link>https://adrianabreu.com/spark-certification/2022-06-29-spark-dates/</link><pubDate>Wed, 29 Jun 2022 15:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-29-spark-dates/</guid><description>I can perfectly describe this as the scariest part of the exam. I&amp;rsquo;m used to working with dates but I&amp;rsquo;m especially used to suffering from the typical UTC / not UTC / summer time hours difference.
-I will try to make some simple exercises for this, the idea would be:
-We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL.</description></item><item><title>Spark Cert Exam Practice</title><link>https://adrianabreu.com/spark-certification/2022-06-28-databricks-practice-exam/</link><pubDate>Tue, 28 Jun 2022 13:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-28-databricks-practice-exam/</guid><description>--- primary_color: orange secondary_color: lightgray text_color: black shuffle_questions: false --- ## Which of the following statements about the Spark driver is incorrect? - [ ] The Spark driver is the node in which the Spark application's main method runs to ordinate the Spark application. - [X] The Spark driver is horizontally scaled to increase overall processing throughput. - [ ] The Spark driver contains the SparkContext object. - [ ] The Spark driver is responsible for scheduling the execution of data by various worker nodes in cluster mode.</description></item><item><title>Spark User Defined Functions</title><link>https://adrianabreu.com/spark-certification/2022-06-19-spark-udf-udaf/</link><pubDate>Sun, 19 Jun 2022 14:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-19-spark-udf-udaf/</guid><description>Sometimes we need to execute arbitrary Scala code on Spark. We may need to use an external library or so on. For that, we have the UDF, which accepts and return one or more columns.
-When we have a function we need to register it on Spark so we can use it on our worker machines. If you are using Scala or Java, the udf can run inside the Java Virtual Machine so there&amp;rsquo;s a little extra penalty.</description></item><item><title>Spark DataSources</title><link>https://adrianabreu.com/spark-certification/2022-06-11-spark-data-sources/</link><pubDate>Sat, 11 Jun 2022 16:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-11-spark-data-sources/</guid><description>As estated in the structured api section, Spark supports a lot of sources with a lot of options. There is no other goal for this post than to clarify how the most common ones work and how they will be converted to DataFrames.
-First, all the supported sources are listed here: https://spark.apache.org/docs/latest/sql-data-sources.html
-And we can focus on the typical ones: JSON, CSV and Parquet (as those are the typical format on open-source data).</description></item><item><title>Spark Dataframes</title><link>https://adrianabreu.com/spark-certification/2022-06-10-spark-structured-api/</link><pubDate>Fri, 10 Jun 2022 17:02:32 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-10-spark-structured-api/</guid><description>Spark was initially released for dealing with a particular type of data called RDD. Nowadays we work with abstract structures on top of it, and the following tables summarize them.
-Type Description Advantages Datasets Structured composed of a list of where you can specify your custom class (only Scala) Type-safe operations, support for operations that cannot be expressed otherwise. Dataframes Datasets of type Row (a generic spark type) Allow optimizations and are more flexible SQL tables and views Same as Dataframes but in the scope of databases instead of programming languages Let&amp;rsquo;s dig into the Dataframes.</description></item><item><title>Spark Execution</title><link>https://adrianabreu.com/spark-certification/2022-06-08-spark-execution/</link><pubDate>Wed, 08 Jun 2022 17:02:32 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-08-spark-execution/</guid><description>Spark provides an api and an engine, that engine is responsible for analyzing the code and performing several optimizations. But how does this work? We can do two kinds of operations with Spark, transformations and actions.
-Transformations are operations on top of the data that modify the data but do not yield a result directly, that is because they all are lazily evaluated so, you can add new columns, filter rows, or perform some computations that won&amp;rsquo;t be executed immediately.</description></item><item><title>Spark Architecture</title><link>https://adrianabreu.com/spark-certification/2022-06-07-spark-architecture/</link><pubDate>Tue, 07 Jun 2022 17:02:32 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-07-spark-architecture/</guid><description>Spark works on top of a cluster supervised by a cluster manager. The later is responsible of:
-Tracking resource allocation across all applications running on the cluster. Monitoring the health of all the nodes. Inside each node there is a node manager which is responsible to track each node health and resources and inform the cluster manager.
-C l u s t e r M a n a g e r N N N o o o d d d e e e M M M a a a n n n a a a g g g e e e r r r When we run a Spark application we generate processes inside the cluster where one node will act as a Driver and the rest will be Workers.</description></item><item><title>Faker with PySpark</title><link>https://adrianabreu.com/blog/2022-05-31-faker-pyspark/</link><pubDate>Tue, 31 May 2022 09:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-05-31-faker-pyspark/</guid><description>I’m preparing a small blog post about some tweakings I’ve done for a delta table, but I want to dig into the Spark UI differences before this. As this was done as part of my work I’m reproducing the problem with some generated data.
-I didn’t know about Faker and boy it is really simple and easy.
-In this case, I want to generate a small dataset for a dimension product table including its id, category and price.</description></item><item><title>Git 101</title><link>https://adrianabreu.com/blog/2022-03-21-git-intro/</link><pubDate>Mon, 21 Mar 2022 22:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-03-21-git-intro/</guid><description>From time to time I get to the same place, telling some people about git, what it solves and some basic usage.
-Since I&amp;rsquo;ve done it a lot recenly I wanted to write down a post and enjoy it.
-What is git? Git is a gift from the gods for the following use cases:
-My laptop is broke! I need the data there is a whole month of work there!</description></item><item><title>Sbt tests</title><link>https://adrianabreu.com/blog/2022-02-07-sbt-tests/</link><pubDate>Mon, 07 Feb 2022 19:53:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-02-07-sbt-tests/</guid><description>Últimamente en el trabajo estoy usando mucho delta para algunas tablas de dimensiones y estas tablas realizan actualizaciones parciales de las filas para replicar la lógica de negocio.
-Esto, nos lleva a varios tests que replican un estado de la tabla y realizan las actualizaciones pertinentes para comprobar todos los flujos y por ende un sobrecoste de ejecución de ese tipo de tests que acaba siendo agotador.
-Una de las soluciones planteadas fue incluir en las builds un parámetro para saltarse el step de ejecución de los tests.</description></item><item><title>Multiplying rows in Spark</title><link>https://adrianabreu.com/blog/2021-11-11-multiplying-rows-in-spark/</link><pubDate>Thu, 11 Nov 2021 18:32:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-11-11-multiplying-rows-in-spark/</guid><description>Earlier this week I checked on a Pull Request that bothered me since I saw it from the first time. Let&amp;rsquo;s say we work for a bank and we are going to give cash to our clients if they get some people to join our bank.
-And we have an advertising campaign definition like this:
-campaign_id inviter_cash receiver_cash FakeBank001 50 30 FakeBank002 40 20 FakeBank003 30 20 And then our BI teams defines the schema they want for their dashboards.</description></item><item><title>The horrible azure devops ui</title><link>https://adrianabreu.com/blog/2021-11-07-the-horrible-azure-devops-pipeline-ui/</link><pubDate>Sun, 07 Nov 2021 16:32:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-11-07-the-horrible-azure-devops-pipeline-ui/</guid><description>Disclaimer: I read the docs, I know this is just complaining and not giving feedback, but man, this UI stills is horrible.
-So&amp;hellip; Let&amp;rsquo;s put into situation, there was a connection update between devops and bitbucket and suddenly most of our pipelines stopped working. They told me to change the connection in the yaml file and that didn&amp;rsquo;t work.
-I know that there are three parts involving in a pipeline for sure:</description></item><item><title>Regex 101</title><link>https://adrianabreu.com/blog/2021-11-01-regex-101/</link><pubDate>Fri, 05 Nov 2021 16:39:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-11-01-regex-101/</guid><description>-You will spent your whole life relearning regex, there is a beginning, but never and end.
-Last year I participated in some small code problems and practised some regex. I got used to it and feel quite good at it.
-And today I had to use it again. I had the following dataframe:
-product attributes 1 (SIZE-36) 2 (COLOR-RED) 3 (SIZE-38, COLOR-BLUE) 4 (COLOR-GREEN, SIZE-39) A wonderful set of string merged with properties that could vary.</description></item><item><title>Sbt Intro I</title><link>https://adrianabreu.com/blog/2021-10-10-sbt-intro-i/</link><pubDate>Sun, 10 Oct 2021 14:47:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-10-10-sbt-intro-i/</guid><description>El mes pasado cambié a otro trabajo :) y por casualidades he vuelto a acabar con proyectos de scala. Este proyecto está bastante avanzado y hace un uso intensivo de los plugins de sbt. De hecho, una tarea que tengo próximamente es hacer una plantilla para proyectos. Así que quería repasar los conceptos básicos de sbt en una serie de posts.
-¿Qué es sbt scala build tool? Es una herramienta para gestionar proyectos en scala.</description></item><item><title>A funny bug</title><link>https://adrianabreu.com/blog/2021-07-21-funny-bug/</link><pubDate>Wed, 21 Jul 2021 18:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-07-21-funny-bug/</guid><description>Ayer mismo estaba intentando analizar unos data_types para completar una exportación al backend. La idea era sencilla, buscar para cada usuario la ultima información disponible en una tabla que representaba actualizaciones sobre su perfil.
-Como a su perfil podías &amp;ldquo;añadir&amp;rdquo;, &amp;ldquo;actualizar&amp;rdquo; y &amp;ldquo;eliminar&amp;rdquo; cosas, pues existian los tres tipos en la tabla. Para que la imaginemos mejor sería tal que así:
-user_id favorite_stuff operation metadata A Chocolate Add &amp;hellip; A Chocolate Update &amp;hellip; B Milk Remove &amp;hellip; B Cornflakes Add &amp;hellip; De tal manera que habría que combinar todos los eventos para saber cual es el perfil actual del usuario y aplicar cierta lógica.</description></item><item><title>Exportando los datos de firebase</title><link>https://adrianabreu.com/blog/2021-05-06-exporting-firebase-data/</link><pubDate>Thu, 06 May 2021 11:49:36 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-05-06-exporting-firebase-data/</guid><description>Si trabajamos analizando los datos de una aplicación móvil es muy probable que esté integrado algún sistema para trackear los eventos de la app. Y entre ellos, uno de los más conocidos es Firebase.
-Estos eventos contienen mucha información útil y nos permiten por ejemplo saber, un usuario que se ha ido cuanto tiempo ha usado la aplicación o cuantos dias han pasado.
-O si realmente ha seguido el flujo de acciones que esperabamos (con un diagrama de sankey podríamos ver donde se han ido los usuarios).</description></item><item><title>Notas sobre storytelling with data</title><link>https://adrianabreu.com/blog/2021-01-04-notes-storytelling-with-data-/</link><pubDate>Mon, 04 Jan 2021 19:00:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-01-04-notes-storytelling-with-data-/</guid><description>Como uno de los objetivos antes de cambiar de año quería empezar a dar visibilidad sobre el producto en el que estoy trabajando con un dashboard. Tras probar varias opciones, hemos optado por utilizar Quicksight para simplificar los procesos en aws y reducir nuestra infraestructura.
-Aún así, empezando un dashboard de cero, es muy difícil transmitir la información de forma clara. Es importante evitar que los usuarios vengan simplemente a expotar sus datos a csv para luego cargarlos en excel.</description></item><item><title>Configurando poetry y gitlab</title><link>https://adrianabreu.com/blog/2020-12-30-configurando-poetry-gitlab/</link><pubDate>Wed, 30 Dec 2020 15:42:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-12-30-configurando-poetry-gitlab/</guid><description>Hace poco más de un mes cambié de trabajo y me encontré además con un cambio de stack considerable. Ahora estoy trabajando con aws + github + python. Y bueno, al margen de los cambios de conceptos y demás, me ha llevado bastante encontrar un flujo de trabajo que no me pareciera &amp;ldquo;frágil&amp;rdquo;.
-Lo primero y que me ha decepcionado bastante es que github no incluye soporte para hostear paquetes de python.</description></item><item><title>Jugando con Data Factory</title><link>https://adrianabreu.com/blog/2020-10-01-jugando-con-df/</link><pubDate>Thu, 01 Oct 2020 10:12:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-10-01-jugando-con-df/</guid><description>Sorprendentemente, hasta ahora, no había tenido la posibilidad de trabajar con data factory, sólo lo habia usado para algunas migraciones de datos.
-Sin embargo, tras estabilizar un proyecto y consolidar su nueva etapa, necesitabamos simplificar la solución implementada para migrar datos.
-Una representación sencilla de la arquitectura actual sería:
-En un flujo muy sencillo sería esto:
-La etl escribe un fichero csv con spark en un directorio de un blob storage.</description></item><item><title>Tipos de join en spark</title><link>https://adrianabreu.com/blog/2020-12-29-spark-joins/</link><pubDate>Tue, 29 Sep 2020 18:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-12-29-spark-joins/</guid><description>Hace unos días tuve la fortuna (o desgracia) de implementar la lógica más compleja de todo el dominio. El resultado, como esperaba, una etl que falaba por recursos constantementes. El problema:
-Caused by: org.apache.spark.SparkException: Could not execute broadcast in 300 secs. You can increase the timeout for broadcasts via spark.sql.broadcastTimeout or disable broadcast join by setting spark.sql.autoBroadcastJoinThreshold to -1 Lo primero fue revisar el plan de ejecución para ver que estaba sucediendo.</description></item><item><title>Calcular el domingo de la semana</title><link>https://adrianabreu.com/blog/2020-09-02-calcular-el-domingo-correspondiente/</link><pubDate>Wed, 02 Sep 2020 10:12:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-09-02-calcular-el-domingo-correspondiente/</guid><description>A la hora de publicar reportes es común agrupar los datos por semanas. Otro motivo es alinearse con el negocio donde los cierres pueden producirse en días concretos, por ejemplo, un domingo.
-En esos casos si tenemos los datos particionados por días nos interesa saber a que domingo correspondería cada uno de los datos.
-Los que venimos de otros entornos tendemos a pensar en esas complicadas librerías de fechas (moment.js, jodatime, etc).</description></item><item><title>Detectando ficheros pequenos Spark</title><link>https://adrianabreu.com/blog/2020-08-25-detectando-ficheros-pequenos/</link><pubDate>Tue, 25 Aug 2020 17:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-08-25-detectando-ficheros-pequenos/</guid><description>Uno de los mayores problemas de rendimiento que podemos encontrar en los datalake es tener que mover una enorme cantidad de ficheros pequeños, por el overhead que eso representa en las transacciones. Este post de databricks recomendada https://forums.databricks.com/questions/101/what-is-an-optimal-size-for-file-partitions-using.html que se crearan ficheros de 1GB parquet.
-Sin embargo mucha gente no sabe como detectar esto. Hace poco estuve jugando con un notebook y usando simplemente las herramientas del dbutils pude clasificar los ficheros que tenia en las entidades del datalake en múltiples categorías, así podría estimar cuantos ficheros había en un rango de tiempo.</description></item><item><title>Spark windows functions (I)</title><link>https://adrianabreu.com/blog/2020-08-11-spark-windows-functions/</link><pubDate>Tue, 11 Aug 2020 18:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-08-11-spark-windows-functions/</guid><description>En analítica, es muy común hacer uso de las funciones de ventana para distintos cálculos. Hace poco me encontré con un pequeño problema cuya solución mejoró muchísimo al usar las funciones de ventana, demos un poco de contexto.
-Tenemos una dimensión de usuarios donde los usuarios se van registrando con una fecha y tenemos una tabla de ventas donde tenemos las ventas globales para cada día
-Y lo que queremos dar es una visión de cómo cada día evoluciona el programa, para ello se quiere que cada día estén tanto las ventas acumuladas como los registros acumulados.</description></item><item><title>Spark windows functions (II)</title><link>https://adrianabreu.com/blog/2025-01-01-spark-windows-functions-ii/</link><pubDate>Tue, 11 Aug 2020 18:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2025-01-01-spark-windows-functions-ii/</guid><description>En el post anterior pudimos utilizar las funciones de ventanas para realizar agregados de sumas sobre ventanas temporales. Ahora, me gustaría utilizar otro ejemplo de analítica: Comparar con datos previos.
-Pongamos que queremos analizar las ventas de un producto en diversos periodos de tiempo. Es decir, nos interesa saber si ahora vende más o menos que antes.
-Para ello partiremos de una tabla de ventas:
-DateKey ProductId Sales Ahora que tenemos esto nos interesaría agrupar para cada producto sus ventas</description></item><item><title>Acceso al keyvault mediante certificados</title><link>https://adrianabreu.com/blog/2020-05-31-acceso-keyvault-certificados/</link><pubDate>Sat, 30 May 2020 19:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-05-31-acceso-keyvault-certificados/</guid><description>En el proceso de migración de una aplicación de webjob a azure batch, nos encontramos con la problemática de gestionar los secretos. El servicio de batch se encarga de recoger una aplicación de un storage y hacer ejecuciones de ellas (tasks) en unas máquinas concretas (pool).
-Para poder gestionar los secretos de la aplicación, estos estaban guardados en keyvault. Y teníamos que acceder de forma segura a ello. Por eso optamos por utilizar la autenticación via certificado.</description></item><item><title>Scala best practices notes</title><link>https://adrianabreu.com/blog/2020-04-27-scala-best-practices-nicolas-rinaudo/</link><pubDate>Mon, 27 Apr 2020 20:55:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-04-27-scala-best-practices-nicolas-rinaudo/</guid><description>He aprovechado estos días de cuarentena para revisar algunos de los &amp;ldquo;huecos&amp;rdquo; de conocimiento que tenía en Scala. Una de las charlas que he podido ver es esta: Scala best practices I wish someone&amp;rsquo;d told me about - Nicolas Rinaudo
-Por supuesto siempre recomiendo ver la charla, pero he querido condensar (aún más) ese conocimiento en este post, insisto, es amena y muy interesante, muchos de los puntos que se definen en la charla no se han explicado porque la mayoría se resuelven en dotty y aunque</description></item><item><title>Notas sobre programación funcional en Scala I</title><link>https://adrianabreu.com/blog/2020-04-07-notes-on-functional-programming-in-scala-i/</link><pubDate>Mon, 06 Apr 2020 18:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-04-07-notes-on-functional-programming-in-scala-i/</guid><description>Hace unos días pude comprarme el libro de Paul Chiusano y Rúnar Bjarnason: Functional Programming in scala y no puedo estar más contento con él.
-Como ya es costumbre, aprovecho para dejar mis notas sobre el libro en el blog. No se trata de un resumen del mismo sino curiosidades que sé que volveré a consultar en un futuro. Intentaré que no queden post excesivamente largos haciendo un por capítulo. Igualmente, recomiendo a todo el mundo adquirir &amp;ldquo;el libro rojo de Scala&amp;rdquo; y echarle un vistazo.</description></item><item><title>Límites en azure functions para procesos de larga duración</title><link>https://adrianabreu.com/blog/2020-02-24-azure-functions-service-bus-limits/</link><pubDate>Mon, 24 Feb 2020 19:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-02-24-azure-functions-service-bus-limits/</guid><description>Estas últimas semanas he tenido que implementar ciertas mejoras en un proyecto. El objetivo era muy simple, conectar el proyecto a una aplicación de datawarehousing existente, y de forma externa, realizar agregados y luego aplicar cierto procesamiento para un servicio en particular.
-Además había una serie de requisitos extras:
-El procesamiento iba a ser reutilizado por otro proyecto. Y requería comprimir y cifrar archivos grandes. La primera parte tenía que simplemente, Había una deadline muy cercana para este proyecto.</description></item><item><title>Conceptos básicos de Spark</title><link>https://adrianabreu.com/blog/2019-11-09-spark-concepts-basicos/</link><pubDate>Sat, 09 Nov 2019 19:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2019-11-09-spark-concepts-basicos/</guid><description>Nota del autor: Todos los contenidos de este artículo son extractos del libro &amp;ldquo;The Data Engineer&amp;rsquo;s Guide to Apache Spark&amp;rdquo; que puedes descargar desde la pagina de databricks: https://databricks.com/lp/ebook/data-engineer-spark-guide
-Preludio: Cluster: Un cluster no es más que un conjunto de máquinas trabajando de forma coordinada. Un cluster de Spark se compone de nodos. Uno actúa como DRIVER y es el punto de entrada para el código del usuario. Los otros actúan como EXECUTOR que seran los encargados de realizar las operaciones.</description></item><item><title>Empezando en Spark con Docker</title><link>https://adrianabreu.com/blog/2019-11-10-empezando-en-spark-con-docker/</link><pubDate>Sat, 09 Nov 2019 19:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2019-11-10-empezando-en-spark-con-docker/</guid><description>A pesar de haber leído guías tan buenas como:
-https://medium.com/@bogdan.cojocar/how-to-run-scala-and-spark-in-the-jupyter-notebook-328a80090b3b
-https://medium.com/@singhpraveen2010/install-apache-spark-and-configure-with-jupyter-notebook-in-10-minutes-ae120ebca597
-Se me ha hecho cuesta arriba el poder conectar un notebook de jupyter y utilizar Scala. Entre configurar el apache toree para poder usar scala en los notebooks y algún error luego en spark al usarlo desde IntelliJ, me he acabado rindiendo.
-Nota del autor: Como disclaimer esto ocurre probablemente porque estoy en Manjaro y mi version de Scala es incompatible.</description></item><item><title>Correlated subqueries</title><link>https://adrianabreu.com/blog/2019-09-26-correlated-subqueries/</link><pubDate>Thu, 26 Sep 2019 20:43:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2019-09-26-correlated-subqueries/</guid><description>Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había &amp;ldquo;endemoniado&amp;rdquo; al join considerarlo perjudicial.
-Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &amp;ldquo;colapsen&amp;rdquo; los datos de hace 14 días.</description></item><item><title>Datos I - Introducción al Datawarehousing</title><link>https://adrianabreu.com/blog/2019-02-05-data-i-introduccion-al-datawarehouse/</link><pubDate>Tue, 05 Feb 2019 14:43:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2019-02-05-data-i-introduccion-al-datawarehouse/</guid><description>En los últimos meses mi trabajo ha pivotado del mundo de la web al mundo de los datos. He entrado a participar en un proyecto de Data Warehouse y he acabado muy contento en él. Hace unos días mi cambio se oficializó completamente y ahora me he dado cuenta de que no solo tengo un mundo técnico ante mí, sino que además necesito consolidar algunas bases teóricas.
-Investigando la bibliografía, me han recomendado en Reddit: The Data Warehouse Toolkit, The Complete Guide to Dimensional Modeling 2nd Edition.</description></item><item><title>Angular Series III - Dynamic components</title><link>https://adrianabreu.com/blog/2017-12-17-angular-series-iii-dynamic-components/</link><pubDate>Sun, 17 Dec 2017 14:43:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-12-17-angular-series-iii-dynamic-components/</guid><description>Antes de terminar repasando el tema de templating, quiero hacer un inciso. Existen ciertos casos donde el templating es insuficiente y lo que necesitamos es simplemente escoger dinámicamente que componente vamos a renderizar.
-Esto está documentado en la documentación de angular bajo el nombre de Dynamic Components.
-¿Cómo funcionan estos dynamics components? Explicado mal y pronto, la idea es: Escoger un elemento de la vista que actue de contenedor e inyectar el componente debe ir ahí.</description></item><item><title>Angular Series II - Templating</title><link>https://adrianabreu.com/blog/2017-11-18-angular-series-ii-templating/</link><pubDate>Sat, 18 Nov 2017 18:53:17 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-11-18-angular-series-ii-templating/</guid><description>Continuando con el artículo del otro día sobre proyección de contenido aquí pretendo mostrar otra forma de pasar contenido: las templates. ¿Qué es una template? Es un pedazo de html envuelto entre entre etiquetas ng-template tal que así:
-&amp;lt;ng-template&amp;gt; &amp;lt;div class=”as-template”&amp;gt; I won’t be rendered &amp;lt;/div&amp;gt; &amp;lt;/ng-template&amp;gt; Si esto lo ponemos en un componente, tal como en el siguiente ejemplo en el navegador aparecerá: NADA.
-¿Por qué? Porque las plantillas de angular no se renderizan al ser evaluadas.</description></item><item><title>Experimentando con Redux</title><link>https://adrianabreu.com/blog/2017-11-06-experimentando-con-redux/</link><pubDate>Mon, 06 Nov 2017 23:18:17 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-11-06-experimentando-con-redux/</guid><description>Con el objetivo de mejorar el simulador SIMDE me decidí a probar un sistema de gestión de estados y concentrar el funcionamiento de la aplicación. ¿El motivo? Era la única forma sensata que tenía de poder gestionar la UI cuando entrara la máquina VLIW sin que todo fuera un caos.
-Para ello he recurrido a mi aplicación favorita: Chuck Norris client app. (Ya la he hecho en AngularJS y Angular previamente).</description></item><item><title>Un breve sumario</title><link>https://adrianabreu.com/blog/2017-10-08-breve-sumario/</link><pubDate>Sun, 08 Oct 2017 18:28:17 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-10-08-breve-sumario/</guid><description>El mes de septiembre ha sido un poco caótico, pero ya creo que me he adaptado a la rutina. Por lo pronto he empezado con el blog, ahora el auto despliegue va mucho mejor, estoy utilizando CircleCI en vez de Wecker.
-Por otra parte, el diseño del blog se ha separado por mucho del tema original, y no contento con esto he mejorado el desarrollo del tema permitiendo el uso de Sass.</description></item><item><title>SOLID Principles</title><link>https://adrianabreu.com/knowledge/solidprinciples/</link><pubDate>Sun, 08 Oct 2017 18:04:42 +0000</pubDate><guid>https://adrianabreu.com/knowledge/solidprinciples/</guid><description>SRP: Single Responsability Principle Una pieza de software debería tener una única razón para cambiar.
-Si una clase tiene más de una &amp;ldquo;responsabilidad&amp;rdquo; (razón de cambio), un cambio en algún requisito podría ser muy difícil de modelar. Ya que al cumplir con esta responsabilidad podríamos estar incumpliendo otras.
-Esto hace que el diseño sea realmente frágil y esté acoplado: es decir, se va a romper de formas inesperadas.
-Es importante ver que esta regla aunque es general no implica que tengamos que desgranar siempre todas las clases.</description></item><item><title>Angular series I - Proyección de contenido (Content projection)</title><link>https://adrianabreu.com/blog/2017-08-14-angular-series-i-transclusion/</link><pubDate>Mon, 14 Aug 2017 17:32:37 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-08-14-angular-series-i-transclusion/</guid><description>Cuando creé este blog tenía bastante claro que uno de los objetivos principales era que me sirviera de utilidad para interiorizar lo que voy aprendiendo. Y aunque he escrito ciertas cosas útiles para mi día a día no estoy registrando ni una centésima parte de la información que mi mente ha ido procesando estos meses.
-Así que voy a dedicarme a escribir un artículo semanal sobre un tema con el que llevo ya casi un año: Angular.</description></item><item><title>Auto deployment en gh-pages con Travis</title><link>https://adrianabreu.com/blog/2017-08-04-autodeploy-con-travis/</link><pubDate>Fri, 04 Aug 2017 16:37:11 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-08-04-autodeploy-con-travis/</guid><description>Una de las mejores características de github sin duda alguna, son las gh-pages.
-Las gh-pages nos permiten desplegar el código de nuestra aplicación frontend a través de esta rama, de tal forma que muchos de nuestros proyectos (por ejemplo este blog) estén disponibles sin tener limitaciones de hosting.
-Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar.</description></item><item><title>Mi experiencia con React</title><link>https://adrianabreu.com/blog/2017-07-28-mi-experiencia-con-react/</link><pubDate>Fri, 28 Jul 2017 17:11:10 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-07-28-mi-experiencia-con-react/</guid><description>Hoy se cumple un mes desde que entregué mi trabajo de fin de grado. (Modestia aparte, conseguí un 10). Han pasado muchas cosas desde entonces, como que por ejemplo ahora mismo estoy viviendo en Barcelona y que trabajo para nada más y nada menos que Plain Concepts. Pero al margen de eso, vamos a centrarnos en mi trabajo de fin de grado.
-En tercero de grado de ingeniería informática es posible escoger una especialidad.</description></item><item><title>Empezar a programar</title><link>https://adrianabreu.com/blog/2017-06-04-empezar-a-programar/</link><pubDate>Sun, 04 Jun 2017 13:07:30 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-06-04-empezar-a-programar/</guid><description>Creo que me he visto en más de una decena de ocasiones aconsejando a gente como empezar en el mundo de la programación, así que esta entrada viene dedicada a todos ellos.
-Por supuesto se trata de una guía basada en mi opinión y solo mi opinión.
-¿DAW o DAM? Realmente mi respuesta es bastante clara: DAW.
-El mundo web cada vez va tomando más y más fuerza. Ya se pueden desarrollar aplicaciones de escritorio utilizando como base aplicaciones web con tecnologías como electron (un buen ejemplo de este tipo de aplicaciones Visual Studio Code).</description></item><item><title>Docker</title><link>https://adrianabreu.com/blog/2017-04-09-docker/</link><pubDate>Sun, 09 Apr 2017 15:20:44 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-04-09-docker/</guid><description>¿Qué es docker? Docker es un software que permite automatizar el despliegue de aplicaciones utilizando contenedores.
-Los contenedores hacen uso de la virtualización a nivel de sistema operativo, con lo cual son mucho más ligeros y rápidos que las máquinas virtuales.
-¿Para qué lo puedo necesitar? En el día a día, una de las cosas para las que Docker me resulta más útil sin duda es para desplegar las bases de datos en desarrollo.</description></item><item><title>Capas en el backend</title><link>https://adrianabreu.com/blog/2017-04-08-capas-en-el-backend/</link><pubDate>Sat, 08 Apr 2017 17:33:10 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-04-08-capas-en-el-backend/</guid><description>Una de las cosas más difíciles cuando ves un proyecto de backend por primera vez es discernir la funcionalidad y responsabilidad de las distintas capas. Así que me he planteado dar una visión general.
-Antes de nada, quiero aclarar que es probable que esta nomenclatura no coincida con otra que veais por ahí, existen muchos sinónimos para los mismos conceptos, yo por mi parte, voy a explicar cual utilizo actualmente.</description></item><item><title>Interacción a través de ViewChild en Angular</title><link>https://adrianabreu.com/blog/2017-03-24-interaccion-a-traves-de-viewchild/</link><pubDate>Fri, 24 Mar 2017 23:11:22 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-03-24-interaccion-a-traves-de-viewchild/</guid><description>Hoy me he encontrado con una situación peculiar en un código. Aunque considero que quizás como está realizada la tarea no sea la mejor opción, creo que es un buen ejemplo para entender algunos conceptos de Angular.
-Partiendo de una aplicaicón muy básica donde tenemos dos componentes: AppComponent y ChildComponent, vamos a renderizar dinámicamente el componente hijo desde el componente padre y ejecutar una serie de acciones.
-Empecemos por el componente padre:</description></item><item><title>Como construir un portfolio</title><link>https://adrianabreu.com/blog/2017-03-12-como-construir-un-portfolio/</link><pubDate>Sun, 12 Mar 2017 10:39:22 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-03-12-como-construir-un-portfolio/</guid><description>Desde hace un tiempo en los países anglosajones los desarrolladores tienen una herramienta más importante que su CV, el portfolio.
-Un portfolio no es más que una muestra de tus trabajos y una justificación de las habilidades escritas en tu CV. A día de hoy, es increíblemente fácil tener un portfolio. Pero ya que voy a hablar de eso, aprovecharé para hablar también de qué debería contener un portfolio, y como enfocar el portfolio de un desarrollador junior proporcionando algunas ideas básicas.</description></item><item><title>Sin componentes a componentes</title><link>https://adrianabreu.com/blog/2017-03-11-sin-componentes-a-componentes/</link><pubDate>Sat, 11 Mar 2017 17:44:11 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-03-11-sin-componentes-a-componentes/</guid><description>Hace unos meses mientras me formaba en Angular 1 hice con un amigo un cliente para una api que proporcionaba frases de Chuck Norris.
-Fue un desarrollo divertido donde almacenábamos las frases descargadas en localStorage y permítiamos filtrar las frases por categorías.
-El diseño era modular y me quedé contento con lo que aprendí. Pero entonces entré en prácticas en la empresa y me puse a formarme en Angular 2.</description></item><item><title>Quizás deberías empezar un blog</title><link>https://adrianabreu.com/blog/2017-03-04-quizas-deberias-empezara-un-blog/</link><pubDate>Sat, 04 Mar 2017 19:46:22 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-03-04-quizas-deberias-empezara-un-blog/</guid><description>Me encanta leer artículos de programación y de tecnología. Leo muchísimos artículos.
-Es más, considero que paso al menos de media, 2 horas diarias leyendo esta clase de artículos.
-Pero soy otro lector invisible más, no devuelvo lo que aprendo a la comunidad (aunque ahora me he ido animando con los comentarios) y lo peor, no lo almaceno.
-Un blog puede ser una parte más de tu portfolio, puede recoger tus dudas y tu avance.</description></item><item><title>Probando Hugo</title><link>https://adrianabreu.com/blog/2017-02-05-probando-hugo/</link><pubDate>Sun, 05 Feb 2017 17:31:42 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-02-05-probando-hugo/</guid><description>La verdad es que estoy asombrado. Hexo me tenía muy contento, pero aún así el rendimiento no me convencía tanto como esperaba. Y me pasaba los días dando largas hasta ponerme a postear. Aprovechando que quería hacer una pequeña limpieza antes de ponerme con el trabajo de fin de grado, he estado mirando este generador, Hugo.
-Este generador basado en el lenguaje Go, es increíblemente potente, portable, y sencillo de instalar.</description></item><item><title>Contact me</title><link>https://adrianabreu.com/about/</link><pubDate>Sun, 05 Feb 2017 16:28:10 +0000</pubDate><guid>https://adrianabreu.com/about/</guid><description>If you want to reach me you can do through:
-Github
-Twitter
-Linkedin
-O incluso a través de mi correo electrónico: adrianabreugonzalez@outlook.com</description></item><item><title>Nuevos comienzos</title><link>https://adrianabreu.com/blog/2017-01-08-nuevos-comienzos/</link><pubDate>Sun, 08 Jan 2017 10:22:36 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-01-08-nuevos-comienzos/</guid><description>No creía que fuera a estar escribiendo esto tan pronto, pero hace poco terminé de realizar las prácticas externas y ya tengo un trabajo en esa misma empresa.
-Mis labores, al igual que en las prácticas, consiste en desarrollar utilizando Angular 2 y Java.
-He ido aprendiendo (y sigo, y seguiré) muchísimo. Y es por eso que necesito este blog. Un lugar donde compartir toda la información que voy absorbiendo sobre esta tecnología que cada día me gusta más.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Adrián Abreu</title><link>https://adrianabreu.com/</link><description>Recent content on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Tue, 13 Aug 2024 07:00:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Finding pet projects</title><link>https://adrianabreu.com/blog/2024-08-13-finding-pet-projects/</link><pubDate>Tue, 13 Aug 2024 07:00:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-08-13-finding-pet-projects/</guid><description>&lt;p>As my company undergoes layoffs, I&amp;rsquo;m back on the job hunt. While I&amp;rsquo;m in the field of data, I often find myself missing the hands-on experience that comes from personal projects. I realized that I&amp;rsquo;m not practicing all the skills I need.&lt;/p>
+&lt;p>During a recent interview, I was asked about my experience with sending reports via email—something I hadn’t done in a few years. That got me thinking: could I turn this into a pet project?&lt;/p></description></item><item><title>Developing on windows</title><link>https://adrianabreu.com/blog/2024-03-22-developing-on-windows/</link><pubDate>Fri, 22 Mar 2024 18:06:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-03-22-developing-on-windows/</guid><description>&lt;p>Over the years, I&amp;rsquo;ve been using MacOS at work and Ubuntu at home for my development tasks. However, my Lenovo P1 Gen 3 laptop didn&amp;rsquo;t work well with Linux, leading to frequent issues with the camera and graphics (screen flickering, I&amp;rsquo;m looking at you, and it hurts).&lt;/p>
+&lt;p>I&amp;rsquo;ve triend Windows Subsystem for Linux (WSL) but it was quite bad to be honest. But as I&amp;rsquo;ve heard of WSL2 and WSLg, I decided to give it another shot.&lt;/p></description></item><item><title>Querying the databricks api</title><link>https://adrianabreu.com/blog/2024-01-26-querying-the-databricks-api/</link><pubDate>Fri, 26 Jan 2024 09:06:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-01-26-querying-the-databricks-api/</guid><description>&lt;p>Exploring databricks SQL usage&lt;/p>
+&lt;p>At my company, we adopted databricks SQL for most of our users. Some users have developed applications that use the JDBC connector, some users have built their dashboards, and some users write plain ad-hoc queries.&lt;/p>
+&lt;p>We wanted to know what they queried, so we tried to use Unity Catalog&amp;rsquo;s insights, but it wasn&amp;rsquo;t enough for our case. We work with IOT and we are interested in what filters they apply within our tables.&lt;/p></description></item><item><title>Tweaking Spark Kafka</title><link>https://adrianabreu.com/blog/2023-10-27-tweaking-spark-kafka/</link><pubDate>Fri, 27 Oct 2023 12:06:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-10-27-tweaking-spark-kafka/</guid><description>&lt;p>Well, I&amp;rsquo;m facing a huge interesting case. I&amp;rsquo;m working at Wallbox where we need to deal with billions of rows every day. Now we need to use Spark for some Kafka filtering and publish the results into different topics according to some rules.&lt;/p>
+&lt;p>I won&amp;rsquo;t dig deep into the logic except for performance-related stuff, let&amp;rsquo;s try to increase the processing speed.&lt;/p>
+&lt;p>When reading from Kafka you usually get 1 task per partition, so if you have 6 partitions and 48 cores you are not using 87.5 percent of your cluster. That could be adjusted with the following property &lt;code>**minPartitions&lt;/code>.**&lt;/p></description></item><item><title>KSQL, a horror tale</title><link>https://adrianabreu.com/blog/2023-10-22-ksql-a-horror-tale/</link><pubDate>Sat, 21 Oct 2023 22:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-10-22-ksql-a-horror-tale/</guid><description>&lt;p>After spending several weeks working on a ksql solution to filter billions of events and determine their destination topic, I was disappointed to find that it did not live up to my expectations.&lt;/p>
+&lt;p>I had hoped for a more robust product that would align with our needs. Previously, we utilized a similar filter in Spark, incurring traffic costs for both Confluent and AWS. With kSQL, the advantage was that we could avoid paying for AWS traffic.&lt;/p></description></item><item><title>Repairing metadata unity catalog</title><link>https://adrianabreu.com/blog/2023-10-02-repairing-metadata-unity-catalog/</link><pubDate>Mon, 02 Oct 2023 13:25:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-10-02-repairing-metadata-unity-catalog/</guid><description>&lt;p>I&amp;rsquo;ve been subscribed to &lt;a href="https://www.dataengineeringweekly.com/p/data-engineering-weekly-148">https://www.dataengineeringweekly.com/p/data-engineering-weekly-148&lt;/a> for years. This last number included several on-call posts on Medium. I found these quite useful.&lt;/p>
+&lt;p>Today, I got an alert from Metaplane that a cost monitor dashboard was out of date. I checked the processes, and everything was fine. I ran a query to check the freshness of the data and it was ok too.&lt;/p>
+&lt;p>Metaplane checks our delta table freshness by querying the table information available in the Unity Catalog. For some unknown reason that metadata didn&amp;rsquo;t receive any update. I ran an optimization operation (the table tiny) and the metadata didn&amp;rsquo;t update either.&lt;/p></description></item><item><title>Adding extra params on DatabricksRunNowOperator</title><link>https://adrianabreu.com/blog/2023-07-28-extra_params_databricksrunnow/</link><pubDate>Fri, 28 Jul 2023 16:00:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-07-28-extra_params_databricksrunnow/</guid><description>&lt;p>With the &lt;a href="https://docs.databricks.com/api/workspace/jobs/runnow">new Databricks jobs API 2.1&lt;/a> you have different parameters depending on the kind of tasks you have in your workflow. Like: jar_params, sql_params, python_params, notebook_params&amp;hellip;&lt;/p>
+&lt;p>And not always the airflow operator is ready to handle all of the. If we check the &lt;a href="https://airflow.apache.org/docs/apache-airflow-providers-databricks/stable/operators/run_now.html">current release of the DatabricksRunNowOperator&lt;/a>, we can see that there is only support for:
+notebook_params
+python_params
+python_named_parameters
+jar_params
+spark_submit_params
+And not the query_params mentioned earlier. But there is a way of combining both, there is a param called &lt;em>jsob&lt;/em> that allows you to write the payload of a databricksrunnow and it will also merge the content of the JSON with your named_params!&lt;/p></description></item><item><title>Enabling Unity Catalog</title><link>https://adrianabreu.com/blog/2023-05-23-enabling-unity-catalog/</link><pubDate>Tue, 23 May 2023 07:48:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-05-23-enabling-unity-catalog/</guid><description>&lt;p>I&amp;rsquo;ve spent the last few weeks setting up the unity catalog for my company. It&amp;rsquo;s been an extremely tiring process. And there are several concepts to bring here. My main point is to have a clear view of the requirements.&lt;/p>
+&lt;p>Disclaimer: as of today with &lt;a href="https://github.com/databricks/terraform-provider-databricks">https://github.com/databricks/terraform-provider-databricks&lt;/a> release 1.17.0, some steps should be done in an &amp;ldquo;awkward way&amp;rdquo; that is, the account API does not expose the catalog&amp;rsquo;s endpoint and should be done through a workspace.&lt;/p></description></item><item><title>Duplicates with delta, how can it be?</title><link>https://adrianabreu.com/blog/2023-03-20-delta-duplicates/</link><pubDate>Mon, 20 Mar 2023 09:50:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2023-03-20-delta-duplicates/</guid><description>&lt;p>Long time without writing!
+On highlights: I left my job at &lt;strong>Schwarz It&lt;/strong> in December last year, and now I&amp;rsquo;m a full-time employee at Wallbox! I&amp;rsquo;m really happy with my new job, and I&amp;rsquo;ve experienced interesting stuff. This one was just one of these strange cases where you start doubting the compiler.&lt;/p>
+&lt;h2 id="context">Context&lt;/h2>
+&lt;p>One of my main tables represents sensor measures from our chargers with millisecond precision. The numbers are quite high, we are talking over 2 billion rows per day. So the analytic model doesn&amp;rsquo;t handle that level of granularity.
+The analyst created a table that will make a window of 5 minutes, select some specific sensors and write there those values as a column. To keep the data consistent they were generating fake rows between sessions, so if a value was missing a synthetic value would be put in place.&lt;/p></description></item><item><title>Testing Databricks Photon</title><link>https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/</link><pubDate>Fri, 12 Aug 2022 09:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/</guid><description>&lt;p>I was a bit skeptical about photon since I realized that it cost about double the amount of DBU, required specifically optimized machines and did not support UDFs (it was my main target).&lt;/p>
+&lt;p>From the Databricks Official Docs:&lt;/p>
+&lt;h1 id="limitations">&lt;strong>Limitations&lt;/strong>&lt;/h1>
+&lt;ul>
+&lt;li>Does not support Spark Structured Streaming.&lt;/li>
+&lt;li>Does not support UDFs.&lt;/li>
+&lt;li>Does not support RDD APIs.&lt;/li>
+&lt;li>Not expected to improve short-running queries (&amp;lt;2 seconds), for example, queries against small amounts of data.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="https://docs.databricks.com/runtime/photon.html">Photon runtime&lt;/a>&lt;/p></description></item><item><title>Databricks Cluster Management</title><link>https://adrianabreu.com/blog/2022-07-30-databricks-cluster-management/</link><pubDate>Sat, 30 Jul 2022 13:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-07-30-databricks-cluster-management/</guid><description>&lt;p>For the last few months, I&amp;rsquo;ve been into ETL optimization. Most of the changes were as dramatic as moving tables from ORC to delta revamping the partition strategy to some as simple as upgrading the runtime version to 10.4 so the ETL starts using low-shuffle merge.&lt;/p>
+&lt;p>But at my job, we have a &lt;em>lot&lt;/em> of jobs. Each ETL can be easily launched at *30 with different parameters so I wanted to dig into the most effective strategy for it.&lt;/p></description></item><item><title>Pusing data to tinybird for free</title><link>https://adrianabreu.com/blog/2022-07-25-pushing-data-to-tinybird-free/</link><pubDate>Mon, 25 Jul 2022 07:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-07-25-pushing-data-to-tinybird-free/</guid><description>&lt;p>So my azure subscription expired and I ended up losing the function I was using to feed my real-time data on analytics (part of the &lt;a href="https://github.com/adrianabreu/titsa-gtfs-api">Transportes Insulares de Tenerife SA&lt;/a> analysis I was making).&lt;/p>
+&lt;p>And after some struggle, I decided to move it to a GitHub action. Why? Because the free mins per month were more than enough and because I just needed some script to run on a cron and that script just makes a quest and a post. So, it was quite straightforward.&lt;/p></description></item><item><title>Associate Spark Developer Certification</title><link>https://adrianabreu.com/spark-certification/2022-07-21-passed-certification/</link><pubDate>Thu, 21 Jul 2022 12:16:32 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-07-21-passed-certification/</guid><description>&lt;p>Yesterday I took (and passed with more than 90% yay!) the &lt;a href="https://databricks.com/learn/certification/apache-spark-developer-associate">Associate Spark Developer Certificaton&lt;/a>. And before I forget I want to share my experience:&lt;/p>
+&lt;p>In general:&lt;/p>
+&lt;ul>
+&lt;li>First of all, I needed to install Windows as there was no Linux support for the control software used during the exam.&lt;/li>
+&lt;li>Secondly, you need to disable both the antivirus and the firewall before joining. I didn&amp;rsquo;t disable the antivirus and the technician contacted me as there was a problem with the webcam despite I was able to see myself.&lt;/li>
+&lt;li>It is a controlled window started by the software, not a browser page (I had a good zoom on the example docs they provide, and well not the same on the software window).&lt;/li>
+&lt;li>You can mark the questions for reviewing them later.&lt;/li>
+&lt;/ul>
+&lt;p>About the exam:&lt;/p></description></item><item><title>Reading firebase data</title><link>https://adrianabreu.com/blog/2022-07-01-reading-firebase-data/</link><pubDate>Fri, 01 Jul 2022 07:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-07-01-reading-firebase-data/</guid><description>&lt;p>Firebase is a common component nowadays for most mobile apps. And it can provide some useful insights, for example in my previous company we use it to detect where the people left at the initial app wizard. (We could measure it).&lt;/p>
+&lt;p>It is quite simple to export your data to BigQuery: &lt;a href="https://firebase.google.com/docs/projects/bigquery-export">https://firebase.google.com/docs/projects/bigquery-export&lt;/a>&lt;/p>
+&lt;p>But maybe your lake is in AWS or Azure. In the next lines, I will try to explain how to load the data in your lake and some improvements we have applied.&lt;/p></description></item><item><title>Qbeast</title><link>https://adrianabreu.com/blog/2022-06-30-qbeast/</link><pubDate>Thu, 30 Jun 2022 07:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-06-30-qbeast/</guid><description>&lt;p>A few days ago I ran into &lt;a href="https://twitter.com/Qbeast_io">Qbeast&lt;/a> which is an open-source project on top of delta lake I needed to dig into.&lt;/p>
+&lt;p>This introductory post explains it quite well: &lt;a href="https://qbeast.io/qbeast-format-enhanced-data-lakehouse/">https://qbeast.io/qbeast-format-enhanced-data-lakehouse/&lt;/a>&lt;/p>
+&lt;p>The project is quite good and it seems helpful if you need to write your custom data source as everything is documented. And well as I&amp;rsquo;m in love with note-taking I want to dig into the following three topics:&lt;/p></description></item><item><title>Spark Dates</title><link>https://adrianabreu.com/spark-certification/2022-06-29-spark-dates/</link><pubDate>Wed, 29 Jun 2022 15:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-29-spark-dates/</guid><description>&lt;p>I can perfectly describe this as the scariest part of the exam. I&amp;rsquo;m used to working with dates but I&amp;rsquo;m especially used to suffering from the typical UTC / not UTC / summer time hours difference.&lt;/p>
+&lt;p>I will try to make some simple exercises for this, the idea would be:&lt;/p>
+&lt;ul>
+&lt;li>We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL. So we decided to aggregate at different levels the same KPI, our sales per store. Considering some data as:&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>data &lt;span style="color:#f92672">=&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#ae81ff">1656520076&lt;/span>, &lt;span style="color:#ae81ff">1001&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#ae81ff">1656520321&lt;/span>, &lt;span style="color:#ae81ff">1001&lt;/span>, &lt;span style="color:#ae81ff">8&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#ae81ff">1656509025&lt;/span>, &lt;span style="color:#ae81ff">1002&lt;/span>, &lt;span style="color:#ae81ff">5&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#ae81ff">1656510826&lt;/span>, &lt;span style="color:#ae81ff">1002&lt;/span>, &lt;span style="color:#ae81ff">3&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#ae81ff">1656510056&lt;/span>, &lt;span style="color:#ae81ff">1001&lt;/span>, &lt;span style="color:#ae81ff">5&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#ae81ff">1656514076&lt;/span>, &lt;span style="color:#ae81ff">1001&lt;/span>, &lt;span style="color:#ae81ff">8&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ts &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;ts&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>store_id &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;store_id&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>amount &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;amount&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>df &lt;span style="color:#f92672">=&lt;/span> spark&lt;span style="color:#f92672">.&lt;/span>createDataFrame(data, [ts, store_id, amount])
+&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item><item><title>Spark Cert Exam Practice</title><link>https://adrianabreu.com/spark-certification/2022-06-28-databricks-practice-exam/</link><pubDate>Tue, 28 Jun 2022 13:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-28-databricks-practice-exam/</guid><description>&lt;script 
+src="https://cdn.jsdelivr.net/npm/quizdown@latest/public/build/quizdown.js">
+&lt;/script>
+&lt;script 
+ src="https://cdn.jsdelivr.net/npm/quizdown@latest/public/build/extensions/quizdownKatex.js">
+&lt;/script>
+&lt;script 
+ src="https://cdn.jsdelivr.net/npm/quizdown@latest/public/build/extensions/quizdownHighlight.js">
+&lt;/script>
+&lt;script>quizdown.register(quizdownHighlight).register(quizdownKatex).init()&lt;/script> 
+
+&lt;div class='quizdown'>
+ 
+
+---
+primary_color: orange
+secondary_color: lightgray
+text_color: black
+shuffle_questions: false
+---
+
+## Which of the following statements about the Spark driver is incorrect?
+
+- [ ] The Spark driver is the node in which the Spark application's main method runs to ordinate the Spark application.
+- [X] The Spark driver is horizontally scaled to increase overall processing throughput.
+- [ ] The Spark driver contains the SparkContext object.
+- [ ] The Spark driver is responsible for scheduling the execution of data by various worker nodes in cluster mode.
+- [ ] The Spark driver should be as close as possible to worker nodes for optimal performance.
+
+## Which of the following describes nodes in cluster-mode Spark?
+
+- [ ] Nodes are the most granular level of execution in the Spark execution hierarchy.
+- [ ] There is only one node and it hosts both the driver and executors.
+- [ ] Nodes are another term for executors, so they are processing engine instances for performing computations.
+- [ ] There are driver nodes and worker nodes, both of which can scale horizontally.
+- [X] Worker nodes are machines that host the executors responsible for the execution of tasks
+
+## Which of the following statements about slots is true?
+
+- [ ] There must be more slots than executors.
+- [ ] There must be more tasks than slots.
+- [ ] Slots are the most granular level of execution in the Spark execution hierarchy.
+- [ ] Slots are not used in cluster mode.
+- [X] Slots are resources for parallelization within a Spark application.
+
+## Which of the following is a combination of a block of data and a set of transformers that will run on a single executor?
+
+- [ ] Executor
+- [ ] Node
+- [ ] Job
+- [X] Task
+- [ ] Slot
+
+## Which of the following is a group of tasks that can be executed in parallel to compute the same set of operations on potentially multiple machines?
+
+- [ ] Job
+- [ ] Slot
+- [ ] Executor
+- [ ] Task
+- [X] Stage
+
+## Which of the following describes a shuffle?
+- [X] A shuffle is the process by which data is compared across partitions.
+- [ ] A shuffle is the process by which data is compared across executors.
+- [ ] A shuffle is the process by which partitions are allocated to tasks.
+- [ ] A shuffle is the process by which partitions are ordered for write.
+- [ ] A shuffle is the process by which tasks are ordered for execution.
+
+## DataFrame df is very large with a large number of partitions, more than there are executors in the cluster. Based on this situation, which of the following is incorrect? Assume there is one core per executor.
+
+- [X] Performance will be suboptimal because not all executors will be utilized at the same time.
+- [ ] Performance will be suboptimal because not all data can be processed at the same time.
+- [ ] There will be a large number of shuffle connections performed on DataFrame df when operations inducing a shuffle are called.
+- [ ] There will be a lot of overhead associated with managing resources for data processing within each task.
+- [ ] There might be risk of out-of-memory errors depending on the size of the executors in the cluster.
+
+## Which of the following operations will trigger evaluation?
+- [ ] DataFrame.filter()
+- [ ] DataFrame.distinct()
+- [ ] DataFrame.intersect()
+- [ ] DataFrame.join()
+- [X] DataFrame.count()
+
+## Which of the following describes the difference between transformations and actions?
+
+- [ ] Transformations work on DataFrames/Datasets while actions are reserved for native language objects.
+- [ ] There is no difference between actions and transformations.
+- [ ] Actions are business logic operations that do not induce execution while transformations are execution triggers focused on returning results.
+- [ ] Actions work on DataFrames/Datasets while transformations are reserved for native language objects.
+- [X] Transformations are business logic operations that do not induce execution while actions are execution triggers focused on returning results.
+
+## Which of the following DataFrame operations is always classified as a narrow transformation?
+- [ ] DataFrame.sort()
+- [ ] DataFrame.distinct()
+- [ ] DataFrame.repartition()
+- [X] DataFrame.select()
+- [ ] DataFrame.join()
+
+## Spark has a few different execution/deployment modes: cluster, client, and local. Which of the following describes Spark's execution/deployment mode? 
+
+- [X] Spark's execution/deployment mode determines where the driver and executors are physically located when a Spark application is run
+- [ ] Spark's execution/deployment mode determines which tasks are allocated to which executors in a cluster
+- [ ] Spark's execution/deployment mode determines which node in a cluster of nodes is responsible for running the driver program
+- [ ] Spark's execution/deployment mode determines exactly how many nodes the driver will connect to when a Spark application is run
+- [ ] Spark's execution/deployment mode determines whether results are run interactively in a notebook environment or in batch
+
+## Which of the following cluster configurations will ensure the completion of a Spark application in light of a worker node failure? Note: each configuration has roughly the same compute power using 100GB of RAM and 200 cores. 
+
+![]("/images/databricks-cert/q12.png")
+
+- [ ] Scenario #1
+- [X] They should all ensure completion because worker nodes are fault-tolerant.
+- [ ] Scenario #4
+- [ ] Scenario #5
+- [ ] Scenario #6
+
+## Which of the following describes out-of-memory errors in Spark?
+
+- [X] An out-of-memory error occurs when either the driver or an executor does not have enough memory to collect or process the data allocated to it.
+- [ ] An out-of-memory error occurs when Spark's storage level is too lenient and allows data objects to be cached to both memory and disk.
+- [ ] An out-of-memory error occurs when there are more tasks than are executors regardless of the number of worker nodes.
+- [ ] An out-of-memory error occurs when the Spark application calls too many transformations in a row without calling an action regardless of the size of the data object on which the transformations are operating.
+- [ ] An out-of-memory error occurs when too much data is allocated to the driver for computational purposes.
+
+## Which of the following is the default storage level for persist() for a non-streaming DataFrame/Dataset?
+
+- [X] MEMORY_AND_DISK
+- [ ] MEMORY_AND_DISK_SER
+- [ ] DISK_ONLY
+- [ ] MEMORY_ONLY_SER
+- [ ] MEMORY_ONLY
+
+## Which of the following describes a broadcast variable?
+
+- [ ] A broadcast variable is a Spark object that needs to be partitioned onto multiple worker nodes because it's too large to fit on a single worker node.
+- [ ] A broadcast variable can only be created by an explicit call to the broadcast() operation.
+- [ ] A broadcast variable is entirely cached on the driver node so it doesn't need to be present on any worker nodes.
+- [X] A broadcast variable is entirely cached on each worker node so it doesn't need to be shipped or shuffled between nodes with each stage.
+- [ ] A broadcast variable is saved to the disk of each worker node to be easily read into memory when needed.
+
+## Which of the following operations is most likely to induce a skew in the size of your data's partitions?
+
+- [ ] DataFrame.collect()
+- [ ] DataFrame.cache()
+- [ ] DataFrame.repartition(n)
+- [X] DataFrame.coalesce(n)
+- [ ] DataFrame.persist()
+
+## Which of the following data structures are Spark DataFrames built on top of?
+- [ ] Arrays
+- [ ] Strings
+- [X] RDDs
+- [ ] Vectors
+- [ ] SQL Tables
+
+### Which of the following code blocks returns a DataFrame containing only column storeId and column **division** from DataFrame **storesDF?**
+
+- [ ] `storesDF.select("storeId").select("division")`
+- [ ] `storesDF.select(storeId, division)`
+- [X] `storesDF.select("storeId", "division")`
+- [ ] `storesDF.select(col("storeId", "division"))`
+- [ ] `storesDF.select(storeId).select(division)`
+
+## Which of the following code blocks returns a DataFrame containing all columns from DataFrame storesDF except for column sqft and column customerSatisfaction? A sample of DataFrame storesDF is below:
+![]("/images/databricks-cert/q19.png")
+
+- [X] `storesDF.drop("sqft", "customerSatisfaction")`
+- [ ] `storesDF.select("storeId", "open", "openDate", "division")`
+- [ ] `storesDF.select(-col(sqft), -col(customerSatisfaction))`
+- [ ] `storesDF.drop(sqft, customerSatisfaction)`
+- [ ] `storesDF.drop(col(sqft), col(customerSatisfaction))`
+
+## The below code shown block contains an error. The code block is intended to return a DataFrame containing only the rows from DataFrame storesDF where the value in DataFrame storesDF's "sqft" column is less than or equal to 25,000. Assume DataFrame storesDF is the only defined language variable. Identify the error. Code block: `storesDF.filter(sqft &lt;= 25000)`
+
+- [ ] The column name **sqft** needs to be quoted like s**toresDF.filter("sqft" &lt;=000).**
+- [X] The column name sqft needs to be quoted and wrapped in the **col()** function like **storesDF.filter(col("sqft") &lt;= 25000).**
+- [ ] The sign in the logical condition inside **filter()** needs to be changed from &lt;= to >.
+- [ ] The sign in the logical condition inside **filter()** needs to be changed from &lt;= to >=.
+- [ ] The column name sqft needs to be wrapped in the **col()** function like **storesDF.filter(col(sqft) &lt;= 25000).**
+
+## The code block shown below should return a DataFrame containing only the rows from DataFrame storesDF where the value in column sqft is less than or equal to 25,000 OR the value in column customerSatisfaction is greater than or equal to 30. Choose the response that correctly fills in the numbered blanks within the code block to complete this task. Code block: storesDF.__**1__**(__**2**__ __3__ __4__)
+
+- [X] ```
+ 1. filter
+ 2. (col("sqft") &lt;= 25000)
+ 3. |
+ 4. (col("customerSatisfaction") >= 30)
+ ```
+- [ ] ```
+ 1. drop
+ 2. (col(sqft) &lt;= 25000)
+ 3. |
+ 4. (col(customerSatisfaction) >= 30)
+```
+- [ ] ```
+ 1. filter
+ 2. col("sqft") &lt;= 25000
+ 3. |
+ 4. col("customerSatisfaction") >= 30
+```
+- [ ] ```
+ 1. filter
+ 2. col("sqft") &lt;= 25000
+ 3. or
+ 4. col("customerSatisfaction") >= 30
+```
+- [ ] ```
+ 1. filter
+ 2. (col("sqft") &lt;= 25000)
+ 3. or
+ 4. (col("customerSatisfaction") >= 30)
+```
+
+## Which of the following operations can be used to convert a DataFrame column from one type to another type?
+
+- [X] col().cast()
+- [ ] convert()
+- [ ] castAs()
+- [ ] col().coerce()
+- [ ] col()
+
+## Which of the following code blocks returns a new DataFrame with a new column sqft100 that is 1/100th of column sqft in DataFrame storesDF? Note that column sqft100 is not in the original DataFrame storesDF.
+
+- [ ] `storesDF.withColumn("sqft100", col("sqft") * 100)`
+- [ ] `storesDF.withColumn("sqft100", sqft / 100)`
+- [ ] `storesDF.withColumn(col("sqft100"), col("sqft") / 100)`
+- [X] `storesDF.withColumn("sqft100", col("sqft") / 100)`
+- [ ] `storesDF.newColumn("sqft100", sqft / 100)`
+
+## Which of the following code blocks returns a new DataFrame from DataFrame storesDF where column numberOfManagers is the constant integer 1?
+
+- [ ] `storesDF.withColumn("numberOfManagers", col(1))`
+- [ ] `storesDF.withColumn("numberOfManagers", 1)`
+- [X] `storesDF.withColumn("numberOfManagers", lit(1))`
+- [ ] `storesDF.withColumn("numberOfManagers", lit("1"))`
+- [ ] `storesDF.withColumn("numberOfManagers", IntegerType(1))`
+
+## The code block shown below contains an error. The code block intends to return a new DataFrame where column storeCategory from DataFrame storesDF is split at the underscore character into column storeValueCategory and column storeSizeCategory. Identify the error. A sample of DataFrame storesDF is displayed below: Code block:
+```
+(storesDF.withColumn(
+ "storeValueCategory", col("storeCategory").split("*")[0]
+ ).withColumn(
+ "storeSizeCategory", col("storeCategory").split("*")[1]
+ )
+)
+```
+![]("/images/spark-certification/q25.png")
+
+- [ ] The split() operation comes from the imported functions object. It accepts a string column name and split character as arguments. It is not a method of a Column object.
+- [X] The split() operation comes from the imported functions object. It accepts a Column object and split character as arguments. It is not a method of a Column object.
+- [ ] The index values of 0 and 1 should be provided as second arguments to the split() operation rather than indexing the result.
+- [ ] The index values of 0 and 1 are not correct — they should be 1 and 2, respectively.
+- [ ] The withColumn() operation cannot be called twice in a row.
+
+
+## Which of the following operations can be used to split an array column into an individual DataFrame row for each element in the array?
+- [ ] extract()
+- [ ] split()
+- [X] explode()
+- [ ] arrays_zip()
+- [ ] unpack()
+
+## Which of the following code blocks returns a new DataFrame where column storeCategory is an all-lowercase version of column storeCategory in DataFrame storesDF? Assume DataFrame storesDF is the only defined language variable.
+
+- [X] `storesDF.withColumn("storeCategory", lower(col("storeCategory")))`
+- [ ] `storesDF.withColumn("storeCategory", coll("storeCategory").lower())`
+- [ ] `storesDF.withColumn("storeCategory", tolower(col("storeCategory")))`
+- [ ] `storesDF.withColumn("storeCategory", lower("storeCategory"))`
+- [ ] `storesDF.withColumn("storeCategory", lower(storeCategory))`
+
+## The code block shown below contains an error. The code block is intended to return a new DataFrame where column division from DataFrame storesDF has been renamed to column state and column managerName from DataFrame storesDF has been renamed to column managerFullName. Identify the error. Code block:
+```
+(storesDF.withColumnRenamed("state", "division")
+.withColumnRenamed("managerFullName", "managerName"))
+```
+
+- [ ] Both arguments to operation withColumnRenamed() should be wrapped in the col() operation.
+- [ ] The operations withColumnRenamed() should not be called twice, and the first argument should be ["state", "division"] and the second argument should be["managerFullName", "managerName"].
+- [ ] The old columns need to be explicitly dropped.
+- [X] The first argument to operation withColumnRenamed() should be the old column name and the second argument should be the new column name.
+- [ ] The operation withColumnRenamed() should be replaced with withColumn().
+
+## Which of the following code blocks returns a DataFrame where rows in DataFrame storesDF containing missing values in every column have been dropped?
+
+- [ ] storesDF.nadrop("all")
+- [ ] storesDF.na.drop("all", subset = "sqft")
+- [ ] storesDF.dropna()
+- [ ] storesDF.na.drop()
+- [X] storesDF.na.drop("all")
+
+## Which of the following operations fails to return a DataFrame where every row is unique?
+
+- [ ] DataFrame.distinct()
+- [ ] DataFrame.drop_duplicates(subset = None)
+- [ ] DataFrame.drop_duplicates()
+- [ ] DataFrame.dropDuplicates()
+- [X] DataFrame.drop_duplicates(subset = "all")
+
+## Which of the following code blocks will not always return the exact number of distinct values in column division?
+
+- [X] `storesDF.agg(approx_count_distinct(col("division")).alias("divisionDistinct"))`
+- [ ] `storesDF.agg(approx_count_distinct(col("division"), 0).alias("divisionDistinct"))`
+- [ ] `storesDF.agg(countDistinct(col("division")).alias("divisionDistinct"))`
+- [ ] `storesDF.select("division").dropDuplicates().count()`
+- [ ] `storesDF.select("division").distinct().count()`
+
+## The code block shown below should return a new DataFrame with the mean of column sqft from DataFrame storesDF in column sqftMean. Choose the response that correctly fills in the numbered blanks within the code block to complete this task. Code block:
+`storesDF.__**1__**(__2__(__**3**__).alias("sqftMean"))`
+
+- [X] ```
+ 1. agg
+ 2. mean
+ 3. col("sqft")
+```
+- [ ] ```
+ 1. mean
+ 2. col
+ 3. "sqft"
+```
+- [ ] ```
+ 1. withColumn
+ 2. mean
+ 3. col("sqft")
+```
+- [ ] ```
+ 1. agg
+ 2. mean
+ 3. "sqft"
+```
+- [ ] ```
+ 1. agg
+ 2. average
+ 3. col("sqft")
+```
+
+## Which of the following code blocks returns the number of rows in DataFrame storesDF?
+
+- [ ] storesDF.withColumn("numberOfRows", count())
+- [ ] storesDF.withColumn(count().alias("numberOfRows"))
+- [ ] storesDF.countDistinct()
+- [X] storesDF.count()
+- [ ] storesDF.agg(count())
+
+## Which of the following code blocks returns the sum of the values in column sqft in DataFrame storesDF grouped by distinct value in column division?
+
+- [ ] storesDF.groupBy.agg(sum(col("sqft")))
+- [ ] storesDF.groupBy("division").agg(sum())
+- [ ] storesDF.agg(groupBy("division").sum(col("sqft")))
+- [ ] storesDF.groupby.agg(sum(col("sqft")))
+- [X] storesDF.groupBy("division").agg(sum(col("sqft")))
+
+## Which of the following code blocks returns a DataFrame containing summary statistics only for column sqft in DataFrame storesDF?
+
+- [ ] storesDF.summary("mean")
+- [X] storesDF.describe("sqft")
+- [ ] storesDF.summary(col("sqft"))
+- [ ] storesDF.describeColumn("sqft")
+- [ ] storesDF.summary()
+
+## Which of the following operations can be used to sort the rows of a DataFrame?
+
+- [X] sort() and orderBy()
+- [ ] orderby()
+- [ ] sort() and orderby()
+- [ ] orderBy()
+- [ ] sort()
+
+## The code block shown below contains an error. The code block is intended to return a 15 percent sample of rows from DataFrame storesDF without replacement. Identify the error. Code block: storesDF.sample(True, fraction = 0.15)
+
+- [ ] There is no argument specified to the seed parameter.
+- [ ] There is no argument specified to the withReplacement parameter.
+- [ ] The sample() operation does not sample without replacement — sampleby() should be used instead.
+- [ ] The sample() operation is not reproducible.
+- [X] The first argument True sets the sampling to be with replacement.
+
+## Which of the following operations can be used to return the top n rows from a DataFrame?
+
+- [ ] DataFrame.n()
+- [X] DataFrame.take(n)
+- [ ] DataFrame.head
+- [ ] DataFrame.show(n)
+- [ ] DataFrame.collect(n)
+
+## The code block shown below should extract the value for column sqft from the first row of DataFrame storesDF. Choose the response that correctly fills in the numbered blanks within the code block to complete this task.
+Code block:
+`__**1__.__2 __.__3 __**`
+
+- [ ] ```
+ 1. storesDF
+ 2. first
+ 3. col("sqft")
+```
+- [ ] ```
+ 1. storesDF
+ 2. first
+ 3. sqft
+```
+- [ ] ```
+ 1. storesDF
+ 2. first
+ 3. ["sqft"]
+```
+- [X] ```
+ 1. storesDF
+ 2. first()
+ 3. sqft
+```
+- [ ] ```
+ 1. storesDF
+ 2. first()
+ 3. col("sqft")
+```
+
+## Which of the following lines of code prints the schema of a DataFrame?
+
+- [ ] print(storesDF)
+- [ ] storesDF.schema
+- [ ] print(storesDF.schema())
+- [X] DataFrame.printSchema()
+- [ ] DataFrame.schema()
+
+## In what order should the below lines of code be run in order to create and register a SQL UDF named "ASSESS_PERFORMANCE" using the Python function assessPerformance and apply it to column customerSatistfaction in table stores?
+```
+Lines of code:
+1.`spark.udf.register("ASSESS_PERFORMANCE", assessPerformance)`
+2.`spark.sql("SELECT customerSatisfaction, assessPerformance(customerSatisfaction) AS result FROM stores")`
+3.`spark.udf.register(assessPerformance, "ASSESS_PERFORMANCE")`
+4. `spark.sql("SELECT customerSatisfaction, ASSESS_PERFORMANCE(customerSatisfaction) AS result FROM
+stores")`
+```
+
+- [ ] 3, 4
+- [X] 1, 4
+- [ ] 3, 2
+- [ ] 2
+- [ ] 1, 2
+
+## In what order should the below lines of code be run in order to create a Python UDF assessPerformanceUDF() using the integer-returning Python function assessPerformance and apply it to column customerSatisfaction in DataFrame storesDF?
+```
+Lines of code:
+1. assessPerformanceUDF = udf(assessPerformance, IntegerType)
+2. assessPerformanceUDF = spark.register.udf("ASSESS_PERFORMANCE",
+assessPerformance)
+3. assessPerformanceUDF = udf(assessPerformance, IntegerType())
+4. storesDF.withColumn("result",
+assessPerformanceUDF(col("customerSatisfaction")))
+5. storesDF.withColumn("result",
+assessPerformance(col("customerSatisfaction")))
+6. storesDF.withColumn("result",
+ASSESS_PERFORMANCE(col("customerSatisfaction")))
+```
+
+- [X] 3, 4
+- [ ] 2, 6
+- [ ] 3, 5
+- [ ] 1, 4
+- [ ] 2, 5
+
+## Which of the following operations can execute a SQL query on a table?
+
+- [ ] spark.query()
+- [ ] DataFrame.sql()
+- [X] spark.sql()
+- [ ] DataFrame.createOrReplaceTempView()
+- [ ] DataFrame.createTempView()
+
+## Which of the following code blocks creates a single-column DataFrame from Python list years which is made up of integers?
+
+- [ ] `spark.createDataFrame([years], IntegerType())`
+- [X] `spark.createDataFrame(years, IntegerType())`
+- [ ] `spark.DataFrame(years, IntegerType())`
+- [ ] `spark.createDataFrame(years)`
+- [ ] `spark.createDataFrame(years, IntegerType)`
+
+
+## Which of the following operations can be used to cache a DataFrame only in Spark’s memory assuming the default arguments can be updated?
+
+- [ ] DataFrame.clearCache()
+- [ ] DataFrame.storageLevel
+- [ ] StorageLevel
+- [X] DataFrame.persist()
+- [ ] DataFrame.cache()
+
+## The code block shown below contains an error. The code block is intended to return a new 4-partition DataFrame from the 8-partition DataFrame storesDF without inducing a shuffle. Identify the error. Code block: storesDF.repartition(4)
+
+- [ ] The repartition operation will only work if the DataFrame has been cached to memory. 
+- [ ] The repartition operation requires a column on which to partition rather than a number of partitions.
+- [ ] The number of resulting partitions, 4, is not achievable for an 8-partition DataFrame.
+- [X] The repartition operation induced a full shuffle. The coalesce operation should be used instead.
+- [ ] The repartition operation cannot guarantee the number of result partitions.
+
+## Which of the following code blocks will always return a new 12-partition DataFrame from the 8-partition DataFrame storesDF?
+
+- [ ] storesDF.coalesce(12)
+- [ ] storesDF.repartition()
+- [X] storesDF.repartition(12)
+- [ ] storesDF.coalesce()
+- [ ] storesDF.coalesce(12, "storeId")
+
+## Which of the following Spark config properties represents the number of partitions used in wide transformations like join()?
+
+- [x] `spark.sql.shuffle.partitions`
+- [ ] `spark.shuffle.partitions`
+- [ ] `spark.shuffle.io.maxRetries`
+- [ ] `spark.shuffle.file.buffer`
+- [ ] `spark.default.parallelism`
+
+### In what order should the below lines of code be run in order to return a DataFrame containing a column openDateString, a string representation of Java’s SimpleDateFormat? Note that column openDate is of type integer and represents a date in the UNIX epoch format — the number of seconds since midnight on January 1st, 1970. An example of Java's SimpleDateFormat is "Sunday, Dec 4, 2008 1:05 PM". A sample of storesDF is displayed below:
+```
+Lines of code:
+1. `storesDF.withColumn("openDateString",
+from_unixtime(col("openDate"), simpleDateFormat))`
+2. `simpleDateFormat = "EEEE, MMM d, yyyy h:mm a"`
+3. `storesDF.withColumn("openDateString",
+from_unixtime(col("openDate"), SimpleDateFormat()))`
+4.`storesDF.withColumn("openDateString",
+date_format(col("openDate"), simpleDateFormat))`
+5.`storesDF.withColumn("openDateString",
+date_format(col("openDate"), SimpleDateFormat()))`
+6.`simpleDateFormat = "wd, MMM d, yyyy h:mm a"`
+```
+
+- [ ] 2, 3
+- [X] 2, 1
+- [ ] 6, 5
+- [ ] 2, 4
+- [ ] 6, 1
+
+## Which of the following code blocks returns a DataFrame containing a column month, an integer representation of the month from column openDate from DataFrame storesDF? Note that column openDate is of type integer and represents a date in the UNIX epoch format — the number of seconds since midnight on January 1st, 1970. A sample of storesDF is displayed below:
+![]("/images/databricks-cert/q50.png")
+
+- [ ] `storesDF.withColumn("month", getMonth(col("openDate")))`
+- [X] `storesDF.withColumn("openTimestamp", col("openDate").cast("Timestamp")).withColumn("month", month(col("openTimestamp")))`
+- [ ] `storesDF.withColumn("openDateFormat", col("openDate").cast("Date")).withColumn("month", month(col("openDateFormat")))`
+- [ ] `storesDF.withColumn("month", substr(col("openDate"), 4, 2))`
+- [ ] `storesDF.withColumn("month", month(col("openDate")))`
+
+
+## Which of the following operations performs an inner join on two DataFrames?
+
+- [ ] DataFrame.innerJoin()
+- [X] DataFrame.join()
+- [ ] Standalone join() function
+- [ ] DataFrame.merge()
+- [ ] DataFrame.crossJoin()
+
+## Which of the following code blocks returns a new DataFrame that is the result of an outer join between DataFrame storesDF and DataFrame employeesDF on column storeId?
+
+- [X] storesDF.join(employeesDF, "storeId", "outer")
+- [ ] storesDF.join(employeesDF, "storeId")
+- [ ] storesDF.join(employeesDF, "outer", col("storeId"))
+- [ ] storesDF.join(employeesDF, "outer", storesDF.storeId == employeesDF.storeId)
+- [ ] storesDF.merge(employeesDF, "outer", col("storeId"))
+
+## The below code block contains an error. The code block is intended to return a new DataFrame that is the result of an inner join between DataFrame storesDF and DataFrame employeesDF on column storeId and column employeeId which are in both DataFrames. Identify the error.
+Code block:
+`storesDF.join(employeesDF, [col("storeId"), col("employeeId")])`
+
+- [ ] The join() operation is a standalone function rather than a method of DataFrame — the join() operation should be called where its first two arguments are storesDF and employeesDF.
+- [ ] There must be a third argument to join() because the default to the how parameter is not "inner".
+- [ ] The col("storeId") and col("employeeId") arguments should not be separate elements of a list — they should be tested to see if they're equal to one another like col("storeId") == col("employeeId").
+- [ ] There is no DataFrame.join() operation — DataFrame.merge() should be used instead.
+- [X] The references to "storeId" and "employeeId" should not be inside the col() function — removing the col() function should result in a successful join.
+
+## Which of the following Spark properties is used to configure the broadcasting of a DataFrame without the use of the broadcast() operation?
+
+- [X] spark.sql.autoBroadcastJoinThreshold
+- [ ] spark.sql.broadcastTimeout
+- [ ] spark.broadcast.blockSize
+- [ ] spark.broadcast.compress
+- [ ] spark.executor.memoryOverhead
+
+
+## The code block shown below should return a new DataFrame that is the result of a cross join between DataFrame storesDF and DataFrame employeesDF. Choose the response that correctly fills in the numbered blanks within the code block to complete this task. Code block:
+
+__***1*__**.__**2__**(__3__)
+
+- [ ] ```
+ 1. storesDF
+ 2. crossJoin
+ 3. employeesDF, "storeId"
+```
+- [ ] ```
+ 1. storesDF
+ 2. join
+ 3. employeesDF, "cross"
+```
+- [ ] ```
+ 1. storesDF
+ 2. crossJoin
+ 3. employeesDF, "storeId"
+```
+- [ ] ```
+ 1. storesDF
+ 2. join
+ 3. employeesDF, "storeId", "cross"
+```
+- [X] ```
+ 1. storesDF
+ 2. crossJoin
+ 3. employeesDF
+```
+
+## Which of the following operations performs a position-wise union on two DataFrames?
+
+- [ ] The standalone concat() function
+- [ ] The standalone unionAll() function
+- [ ] The standalone union() function
+- [ ] DataFrame.unionByName()
+- [X] DataFrame.union()
+
+## Which of the following code blocks writes DataFrame storesDF to file path filePath as parquet?
+
+- [ ] storesDF.write.option("parquet").path(filePath)
+- [ ] storesDF.write.path(filePath)
+- [ ] storesDF.write().parquet(filePath)
+- [ ] storesDF.write(filePath)
+- [X] storesDF.write.parquet(filePath)
+
+## The code block shown below contains an error. The code block is intended to write DataFrame storesDF to file path filePath as parquet and partition by values in column division. Identify the error. Code block:
+
+`storesDF.write.repartition("division").parquet(filePath)`
+
+- [ ] The argument division to operation repartition() should be wrapped in the col() function to return a Column object.
+- [ ] There is no parquet() operation for DataFrameWriter — the save() operation should be used instead.
+- [X] There is no repartition() operation for DataFrameWriter — the partitionBy() operation should be used instead.
+- [ ] DataFrame.write is an operation — it should be followed by parentheses to return a
+DataFrameWriter.
+- [ ] The mode() operation must be called to specify that this write should not overwrite
+existing files.
+
+## Which of the following code blocks reads a parquet at the file path filePath into a DataFrame?
+
+- [ ] spark.read().parquet(filePath)
+- [ ] spark.read().path(filePath, source = "parquet")
+- [ ] spark.read.path(filePath, source = "parquet")
+- [x] spark.read.parquet(filePath)
+- [ ] spark.read().path(filePath)
+
+
+## Which of the following code blocks reads JSON at the file path filePath into a DataFrame with the specified schema schema?
+
+- [ ] spark.read().schema(schema).format(json).load(filePath)
+- [ ] spark.read().schema(schema).format("json").load(filePath)
+- [ ] spark.read.schema("schema").format("json").load(filePath)
+- [ ] spark.read.schema("schema").format("json").load(filePath)
+- [x] spark.read.schema(schema).format("json").load(filePath)
+
+
+
+&lt;/div></description></item><item><title>Spark User Defined Functions</title><link>https://adrianabreu.com/spark-certification/2022-06-19-spark-udf-udaf/</link><pubDate>Sun, 19 Jun 2022 14:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-19-spark-udf-udaf/</guid><description>&lt;p>Sometimes we need to execute arbitrary Scala code on Spark. We may need to use an external library or so on. For that, we have the UDF, which accepts and return one or more columns.&lt;/p>
+&lt;p>When we have a function we need to register it on Spark so we can use it on our worker machines. If you are using Scala or Java, the udf can run inside the Java Virtual Machine so there&amp;rsquo;s a little extra penalty. But from Python, there is an extra penalty as Spark needs to start a Python process on the worker, serialize the data from JVM to Python, run the function and then serialize the result to the JVM.&lt;/p></description></item><item><title>Spark DataSources</title><link>https://adrianabreu.com/spark-certification/2022-06-11-spark-data-sources/</link><pubDate>Sat, 11 Jun 2022 16:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-11-spark-data-sources/</guid><description>&lt;p>As estated in the &lt;a href="https://adrianabreu.com/spark-certification/2022-06-10-spark-structured-api">structured api section&lt;/a>, Spark supports a lot of sources with a lot of options. There is no other goal for this post than to clarify how the most common ones work and how they will be converted to &lt;strong>DataFrames&lt;/strong>.&lt;/p>
+&lt;p>First, all the supported sources are listed here: &lt;a href="https://spark.apache.org/docs/latest/sql-data-sources.html">https://spark.apache.org/docs/latest/sql-data-sources.html&lt;/a>&lt;/p>
+&lt;p>And we can focus on the typical ones: JSON, CSV and Parquet (as those are the typical format on open-source data).&lt;/p></description></item><item><title>Spark Dataframes</title><link>https://adrianabreu.com/spark-certification/2022-06-10-spark-structured-api/</link><pubDate>Fri, 10 Jun 2022 17:02:32 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-10-spark-structured-api/</guid><description>&lt;p>Spark was initially released for dealing with a particular type of data called &lt;strong>RDD&lt;/strong>. Nowadays we work with abstract structures on top of it, and the following tables summarize them.&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">Type&lt;/th>
+ &lt;th style="text-align: left">Description&lt;/th>
+ &lt;th style="text-align: left">Advantages&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">Datasets&lt;/td>
+ &lt;td style="text-align: left">Structured composed of a list of &lt;T> where you can specify your custom class (only Scala)&lt;/td>
+ &lt;td style="text-align: left">Type-safe operations, support for operations that cannot be expressed otherwise.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">Dataframes&lt;/td>
+ &lt;td style="text-align: left">Datasets of type Row (a generic spark type)&lt;/td>
+ &lt;td style="text-align: left">Allow optimizations and are more flexible&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">SQL tables and views&lt;/td>
+ &lt;td style="text-align: left">Same as Dataframes but in the scope of databases instead of programming languages&lt;/td>
+ &lt;td style="text-align: left">&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>Let&amp;rsquo;s dig into the Dataframes.
+They are a data abstraction for interacting with name columns, those names are defined in a &lt;strong>schema&lt;/strong>.&lt;/p></description></item><item><title>Spark Execution</title><link>https://adrianabreu.com/spark-certification/2022-06-08-spark-execution/</link><pubDate>Wed, 08 Jun 2022 17:02:32 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-08-spark-execution/</guid><description>&lt;p>Spark provides an api and an engine, that engine is responsible for analyzing the code and performing several optimizations. But how does this work?
+We can do two kinds of operations with Spark, transformations and actions.&lt;/p>
+&lt;p>Transformations are operations on top of the data that modify the data but do not yield a result directly, that is because they all are lazily evaluated so, you can add new columns, filter rows, or perform some computations that won&amp;rsquo;t be executed immediately.&lt;/p></description></item><item><title>Spark Architecture</title><link>https://adrianabreu.com/spark-certification/2022-06-07-spark-architecture/</link><pubDate>Tue, 07 Jun 2022 17:02:32 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-07-spark-architecture/</guid><description>&lt;p>Spark works on top of a cluster supervised by a cluster manager. The later is responsible of:&lt;/p>
+&lt;ol>
+&lt;li>Tracking resource allocation across all applications running on the cluster.&lt;/li>
+&lt;li>Monitoring the health of all the nodes.&lt;/li>
+&lt;/ol>
+&lt;p>Inside each node there is a node manager which is responsible to track each node health and resources and inform the cluster manager.&lt;/p>
+
+
+
+&lt;div class="goat svg-container ">
+ 
+ &lt;svg
+ xmlns="http://www.w3.org/2000/svg"
+ font-family="Menlo,Lucida Console,monospace"
+ 
+ viewBox="0 0 328 105"
+ >
+ &lt;g transform='translate(8,16)'>
+&lt;path d='M 0,16 L 136,16' fill='none' stroke='currentColor'>&lt;/pa</description></item><item><title>Faker with PySpark</title><link>https://adrianabreu.com/blog/2022-05-31-faker-pyspark/</link><pubDate>Tue, 31 May 2022 09:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-05-31-faker-pyspark/</guid><description>&lt;p>I’m preparing a small blog post about some tweakings I’ve done for a delta table, but I want to dig into the Spark UI differences before this. As this was done as part of my work I’m reproducing the problem with some generated data.&lt;/p>
+&lt;p>I didn’t know about &lt;a href="https://faker.readthedocs.io/en/master/">Faker&lt;/a> and &lt;em>boy&lt;/em> it is really simple and easy.&lt;/p>
+&lt;p>In this case, I want to generate a small dataset for a dimension product table including its id, category and price.&lt;/p></description></item><item><title>Git 101</title><link>https://adrianabreu.com/blog/2022-03-21-git-intro/</link><pubDate>Mon, 21 Mar 2022 22:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-03-21-git-intro/</guid><description>&lt;p>From time to time I get to the same place, telling some people about git, what it solves and some basic usage.&lt;/p>
+&lt;p>Since I&amp;rsquo;ve done it a lot recenly I wanted to write down a post and enjoy it.&lt;/p>
+&lt;h1 id="what-is-git">What is git?&lt;/h1>
+&lt;p>Git is a gift from the gods for the following use cases:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>My laptop is broke! I need the data there is a whole month of work there!&lt;/p></description></item><item><title>Sbt tests</title><link>https://adrianabreu.com/blog/2022-02-07-sbt-tests/</link><pubDate>Mon, 07 Feb 2022 19:53:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-02-07-sbt-tests/</guid><description>&lt;p>Últimamente en el trabajo estoy usando mucho delta para algunas tablas de dimensiones y estas tablas realizan actualizaciones parciales de las filas para replicar la lógica de negocio.&lt;/p>
+&lt;p>Esto, nos lleva a varios tests que replican un estado de la tabla y realizan las actualizaciones pertinentes para comprobar todos los flujos y por ende un sobrecoste de ejecución de ese tipo de tests que acaba siendo agotador.&lt;/p>
+&lt;p>Una de las soluciones planteadas fue incluir en las builds un parámetro para saltarse el step de ejecución de los tests. Lo cual es legítimo pero al menos para mí, resulta algo arbitrario. Buscando otro concens llegamos a: en las pull request se ejecutarán todos los tests y en el resto de builds (manuales o automáticas de rama) se excluirán estos tests, para que al hacer pruebas o durante las integraciones de las ramas no estemos acumulando tiempo en tests ya validados.&lt;/p></description></item><item><title>Multiplying rows in Spark</title><link>https://adrianabreu.com/blog/2021-11-11-multiplying-rows-in-spark/</link><pubDate>Thu, 11 Nov 2021 18:32:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-11-11-multiplying-rows-in-spark/</guid><description>&lt;p>Earlier this week I checked on a Pull Request that bothered me since I saw it from the first time. Let&amp;rsquo;s say we work for a bank and we are going to give cash to our clients if they get some people to join our bank.&lt;/p>
+&lt;p>And we have an advertising campaign definition like this:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">campaign_id&lt;/th>
+ &lt;th style="text-align: left">inviter_cash&lt;/th>
+ &lt;th style="text-align: left">receiver_cash&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">FakeBank001&lt;/td>
+ &lt;td style="text-align: left">50&lt;/td>
+ &lt;td style="text-align: left">30&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">FakeBank002&lt;/td>
+ &lt;td style="text-align: left">40&lt;/td>
+ &lt;td style="text-align: left">20&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">FakeBank003&lt;/td>
+ &lt;td style="text-align: left">30&lt;/td>
+ &lt;td style="text-align: left">20&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>And then our BI teams defines the schema they want for their dashboards.&lt;/p></description></item><item><title>The horrible azure devops ui</title><link>https://adrianabreu.com/blog/2021-11-07-the-horrible-azure-devops-pipeline-ui/</link><pubDate>Sun, 07 Nov 2021 16:32:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-11-07-the-horrible-azure-devops-pipeline-ui/</guid><description>&lt;p>&lt;strong>Disclaimer: I read the docs, I know this is just complaining and not giving feedback, but man, this UI stills is horrible&lt;/strong>.&lt;/p>
+&lt;p>So&amp;hellip; Let&amp;rsquo;s put into situation, there was a connection update between devops and bitbucket and suddenly most of our pipelines stopped working. They told me to change the connection in the yaml file and that didn&amp;rsquo;t work.&lt;/p>
+&lt;p>I know that there are three parts involving in a pipeline for sure:&lt;/p></description></item><item><title>Regex 101</title><link>https://adrianabreu.com/blog/2021-11-01-regex-101/</link><pubDate>Fri, 05 Nov 2021 16:39:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-11-01-regex-101/</guid><description>&lt;p>&lt;em>-You will spent your whole life relearning regex, there is a beginning, but never and end.&lt;/em>&lt;/p>
+&lt;p>Last year I participated in some small code problems and practised some regex. I got used to it and feel quite good at it.&lt;/p>
+&lt;p>And today I had to use it again. I had the following dataframe:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">product&lt;/th>
+ &lt;th style="text-align: left">attributes&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">1&lt;/td>
+ &lt;td style="text-align: left">(SIZE-36)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">2&lt;/td>
+ &lt;td style="text-align: left">(COLOR-RED)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">3&lt;/td>
+ &lt;td style="text-align: left">(SIZE-38, COLOR-BLUE)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">4&lt;/td>
+ &lt;td style="text-align: left">(COLOR-GREEN, SIZE-39)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>A wonderful set of string merged with properties that could vary. And we wanted one column for each:&lt;/p></description></item><item><title>Sbt Intro I</title><link>https://adrianabreu.com/blog/2021-10-10-sbt-intro-i/</link><pubDate>Sun, 10 Oct 2021 14:47:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-10-10-sbt-intro-i/</guid><description>&lt;p>El mes pasado cambié a otro trabajo :) y por casualidades he vuelto a acabar con proyectos de scala. Este proyecto está bastante avanzado y hace un uso intensivo de los plugins de sbt. De hecho, una tarea que tengo próximamente es hacer una plantilla para proyectos. Así que quería repasar los conceptos básicos de sbt en una serie de posts.&lt;/p>
+&lt;p>¿Qué es sbt &lt;strong>scala build tool&lt;/strong>? Es una herramienta para gestionar proyectos en scala. Es la más utilizada (casi el 95% de los proyectos se hacen en sbt) y uno de sus puntos fuertes es que permite trabajar con múltiples versiones de scala haciendo cross-compilation.&lt;/p></description></item><item><title>A funny bug</title><link>https://adrianabreu.com/blog/2021-07-21-funny-bug/</link><pubDate>Wed, 21 Jul 2021 18:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-07-21-funny-bug/</guid><description>&lt;p>Ayer mismo estaba intentando analizar unos data_types para completar una exportación al backend. La idea era sencilla, buscar para cada usuario la ultima información disponible en una tabla que representaba actualizaciones sobre su perfil.&lt;/p>
+&lt;p>Como a su perfil podías &amp;ldquo;añadir&amp;rdquo;, &amp;ldquo;actualizar&amp;rdquo; y &amp;ldquo;eliminar&amp;rdquo; cosas, pues existian los tres tipos en la tabla. Para que la imaginemos mejor sería tal que así:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">user_id&lt;/th>
+ &lt;th style="text-align: left">favorite_stuff&lt;/th>
+ &lt;th style="text-align: left">operation&lt;/th>
+ &lt;th style="text-align: left">metadata&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">A&lt;/td>
+ &lt;td style="text-align: left">Chocolate&lt;/td>
+ &lt;td style="text-align: left">Add&lt;/td>
+ &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">A&lt;/td>
+ &lt;td style="text-align: left">Chocolate&lt;/td>
+ &lt;td style="text-align: left">Update&lt;/td>
+ &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">B&lt;/td>
+ &lt;td style="text-align: left">Milk&lt;/td>
+ &lt;td style="text-align: left">Remove&lt;/td>
+ &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">B&lt;/td>
+ &lt;td style="text-align: left">Cornflakes&lt;/td>
+ &lt;td style="text-align: left">Add&lt;/td>
+ &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>De tal manera que habría que combinar todos los eventos para saber cual es el perfil actual del usuario y aplicar cierta lógica. Sin embargo los eventos que habían llegado realmente eran así:&lt;/p></description></item><item><title>Exportando los datos de firebase</title><link>https://adrianabreu.com/blog/2021-05-06-exporting-firebase-data/</link><pubDate>Thu, 06 May 2021 11:49:36 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-05-06-exporting-firebase-data/</guid><description>&lt;p>Si trabajamos analizando los datos de una aplicación móvil es muy probable que esté integrado algún sistema para trackear los eventos de la app. Y entre ellos, uno de los más conocidos es Firebase.&lt;/p>
+&lt;p>Estos eventos contienen mucha información útil y nos permiten por ejemplo saber, un usuario que se ha ido cuanto tiempo ha usado la aplicación o cuantos dias han pasado.&lt;/p>
+&lt;p>O si realmente ha seguido el flujo de acciones que esperabamos (con un diagrama de sankey podríamos ver donde se han ido los usuarios).&lt;/p></description></item><item><title>Notas sobre storytelling with data</title><link>https://adrianabreu.com/blog/2021-01-04-notes-storytelling-with-data-/</link><pubDate>Mon, 04 Jan 2021 19:00:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-01-04-notes-storytelling-with-data-/</guid><description>&lt;p>Como uno de los objetivos antes de cambiar de año quería empezar a dar visibilidad sobre el producto en el que estoy trabajando con un dashboard. Tras probar varias opciones, hemos optado por utilizar &lt;a href="https://aws.amazon.com/es/quicksight/">Quicksight&lt;/a> para simplificar los procesos en aws y reducir nuestra infraestructura.&lt;/p>
+&lt;p>Aún así, empezando un dashboard de cero, es muy difícil transmitir la información de forma clara. Es importante evitar que los usuarios vengan simplemente a expotar sus datos a csv para luego cargarlos en excel.&lt;/p></description></item><item><title>Configurando poetry y gitlab</title><link>https://adrianabreu.com/blog/2020-12-30-configurando-poetry-gitlab/</link><pubDate>Wed, 30 Dec 2020 15:42:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-12-30-configurando-poetry-gitlab/</guid><description>&lt;p>Hace poco más de un mes cambié de trabajo y me encontré además con un cambio de stack considerable. Ahora estoy trabajando con aws + github + python. Y bueno, al margen de los cambios de conceptos y demás, me ha llevado bastante encontrar un flujo de trabajo que no me pareciera &amp;ldquo;frágil&amp;rdquo;.&lt;/p>
+&lt;p>Lo primero y que me ha decepcionado bastante es que github no incluye soporte para hostear paquetes de python. Lo tendrá sí, pero sin fecha clara y &lt;a href="https://github.com/github/roadmap/projects/1?card_filter_query=label%3Apackages">por lo pronto parece que será despues de Junio de 2021&lt;/a>.&lt;/p></description></item><item><title>Jugando con Data Factory</title><link>https://adrianabreu.com/blog/2020-10-01-jugando-con-df/</link><pubDate>Thu, 01 Oct 2020 10:12:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-10-01-jugando-con-df/</guid><description>&lt;p>Sorprendentemente, hasta ahora, no había tenido la posibilidad de trabajar con data factory, sólo lo habia usado para algunas migraciones de datos.&lt;/p>
+&lt;p>Sin embargo, tras estabilizar un proyecto y consolidar su nueva etapa, necesitabamos simplificar la solución implementada para migrar datos.&lt;/p>
+&lt;p>Una representación sencilla de la arquitectura actual sería:&lt;/p>
+&lt;p>&lt;img src="https://adrianabreu.com/images/data-factory/original-architecture.png" alt="Arquitectura actual">&lt;/p>
+&lt;p>En un flujo muy sencillo sería esto:&lt;/p>
+&lt;ol>
+&lt;li>La etl escribe un fichero csv con spark en un directorio de un blob storage.&lt;/li>
+&lt;li>La primera function filtra los ficheros de spark que no son part- y se encarga de notificar a una function que actua de gateway para el batch con que fichero queremos enviar, el nombre original, el path y el nombre que queremos darle.&lt;/li>
+&lt;li>Esta function de gateway se encarga de realizar las llamadas necesarias a la api de Azure para generar una tarea en el batch.&lt;/li>
+&lt;li>El batch se encarga de comprimir el fichero y enviarlo al sftp del cliente, recuperando las credenciales según el tipo de fichero que se trate.&lt;/li>
+&lt;/ol>
+&lt;p>Este proceso nos permitía trabajar con dos versiones del proyecto en lo que hacíamos la migración a la nueva versión. Ahora que la nueva versión ya está consolidada y hemos conseguido además que el cliente utilice un formato de compresión que podemos escribir directamente desde spark sin recurrir al batch, es el momento de cambiar la arquitectura de transferencia de datos.&lt;/p></description></item><item><title>Tipos de join en spark</title><link>https://adrianabreu.com/blog/2020-12-29-spark-joins/</link><pubDate>Tue, 29 Sep 2020 18:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-12-29-spark-joins/</guid><description>&lt;p>Hace unos días tuve la fortuna (o desgracia) de implementar la lógica más compleja de todo el dominio.
+El resultado, como esperaba, una etl que falaba por recursos constantementes. El problema:&lt;/p>
+&lt;pre tabindex="0">&lt;code>Caused by: org.apache.spark.SparkException: Could not execute broadcast in 300 secs. You can increase the timeout for broadcasts via spark.sql.broadcastTimeout or disable broadcast join by setting spark.sql.autoBroadcastJoinThreshold to -1
+&lt;/code>&lt;/pre>&lt;p>Lo primero fue revisar el plan de ejecución para ver que estaba sucediendo.&lt;/p></description></item><item><title>Calcular el domingo de la semana</title><link>https://adrianabreu.com/blog/2020-09-02-calcular-el-domingo-correspondiente/</link><pubDate>Wed, 02 Sep 2020 10:12:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-09-02-calcular-el-domingo-correspondiente/</guid><description>&lt;p>A la hora de publicar reportes es común agrupar los datos por semanas. Otro motivo es alinearse con el negocio donde los cierres pueden producirse en días concretos, por ejemplo, un domingo.&lt;/p>
+&lt;p>En esos casos si tenemos los datos particionados por días nos interesa saber a que domingo correspondería cada uno de los datos.&lt;/p>
+&lt;p>Los que venimos de otros entornos tendemos a pensar en esas complicadas librerías de fechas (moment.js, jodatime, etc). Incluso alguien podría pensar en extraer los datos del dataframe y procesarlo en local.&lt;/p></description></item><item><title>Detectando ficheros pequenos Spark</title><link>https://adrianabreu.com/blog/2020-08-25-detectando-ficheros-pequenos/</link><pubDate>Tue, 25 Aug 2020 17:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-08-25-detectando-ficheros-pequenos/</guid><description>&lt;p>Uno de los mayores problemas de rendimiento que podemos encontrar en los datalake es tener que mover una enorme cantidad de ficheros pequeños, por el overhead que eso representa en las transacciones.
+Este post de databricks recomendada &lt;a href="https://forums.databricks.com/questions/101/what-is-an-optimal-size-for-file-partitions-using.html">https://forums.databricks.com/questions/101/what-is-an-optimal-size-for-file-partitions-using.html&lt;/a> que se crearan ficheros de 1GB parquet.&lt;/p>
+&lt;p>Sin embargo mucha gente no sabe como detectar esto. Hace poco estuve jugando con un notebook y usando simplemente las herramientas del dbutils pude clasificar los ficheros que tenia en las entidades del datalake en múltiples categorías, así podría estimar cuantos ficheros había en un rango de tiempo.&lt;/p></description></item><item><title>Spark windows functions (I)</title><link>https://adrianabreu.com/blog/2020-08-11-spark-windows-functions/</link><pubDate>Tue, 11 Aug 2020 18:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-08-11-spark-windows-functions/</guid><description>&lt;p>En analítica, es muy común hacer uso de las funciones de ventana para distintos cálculos. Hace poco me encontré con un pequeño problema cuya solución mejoró muchísimo al usar las funciones de ventana, demos un poco de contexto.&lt;/p>
+&lt;p>Tenemos una dimensión de usuarios donde los usuarios se van registrando con una fecha y tenemos una tabla de ventas donde tenemos las ventas globales para cada día&lt;/p>
+&lt;p>Y lo que queremos dar es una visión de cómo cada día evoluciona el programa, para ello se quiere que cada día estén tanto las ventas acumuladas como los registros acumulados.&lt;/p></description></item><item><title>Acceso al keyvault mediante certificados</title><link>https://adrianabreu.com/blog/2020-05-31-acceso-keyvault-certificados/</link><pubDate>Sat, 30 May 2020 19:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-05-31-acceso-keyvault-certificados/</guid><description>&lt;p>En el proceso de migración de una aplicación de webjob a azure batch, nos encontramos con la problemática de gestionar los secretos. El servicio de batch se encarga de recoger una aplicación de un storage y hacer ejecuciones de ellas (tasks) en unas máquinas concretas (pool).&lt;/p>
+&lt;p>Para poder gestionar los secretos de la aplicación, estos estaban guardados en keyvault. Y teníamos que acceder de forma segura a ello. Por eso optamos por utilizar la autenticación via certificado. La idea de este tutorial es reproducir los mismos pasos que he usado yo para poder usar este certificado.&lt;/p></description></item><item><title>Scala best practices notes</title><link>https://adrianabreu.com/blog/2020-04-27-scala-best-practices-nicolas-rinaudo/</link><pubDate>Mon, 27 Apr 2020 20:55:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-04-27-scala-best-practices-nicolas-rinaudo/</guid><description>&lt;p>He aprovechado estos días de cuarentena para revisar algunos de los &amp;ldquo;huecos&amp;rdquo; de conocimiento que tenía en Scala. Una de las charlas que he podido ver es esta: &lt;a href="https://www.youtube.com/watch?v=DGa58FfiMqc">Scala best practices I wish someone&amp;rsquo;d told me about - Nicolas Rinaudo&lt;/a>&lt;/p>
+&lt;p>Por supuesto siempre recomiendo ver la charla, pero he querido condensar (aún más) ese conocimiento en este post, insisto, es amena y muy interesante, muchos de los puntos que se definen en la charla no se han explicado porque la mayoría se resuelven en dotty y aunque&lt;/p></description></item><item><title>Notas sobre programación funcional en Scala I</title><link>https://adrianabreu.com/blog/2020-04-07-notes-on-functional-programming-in-scala-i/</link><pubDate>Mon, 06 Apr 2020 18:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-04-07-notes-on-functional-programming-in-scala-i/</guid><description>&lt;p>Hace unos días pude comprarme el &lt;a href="https://www.amazon.es/Functional-Programming-Scala-Paul-Chiusano/dp/1617290653">libro de Paul Chiusano y Rúnar Bjarnason: Functional Programming in scala&lt;/a> y no puedo estar más contento con él.&lt;/p>
+&lt;p>Como ya es costumbre, aprovecho para dejar mis notas sobre el libro en el blog. No se trata de un resumen del mismo sino curiosidades que sé que volveré a consultar en un futuro. Intentaré que no queden post excesivamente largos haciendo un por capítulo. Igualmente, recomiendo a todo el mundo adquirir &amp;ldquo;el libro rojo de Scala&amp;rdquo; y echarle un vistazo.&lt;/p></description></item><item><title>Límites en azure functions para procesos de larga duración</title><link>https://adrianabreu.com/blog/2020-02-24-azure-functions-service-bus-limits/</link><pubDate>Mon, 24 Feb 2020 19:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2020-02-24-azure-functions-service-bus-limits/</guid><description>&lt;p>Estas últimas semanas he tenido que implementar ciertas mejoras en un proyecto. El objetivo era muy simple, conectar el proyecto a una aplicación de datawarehousing existente, y de forma externa, realizar agregados y luego aplicar cierto procesamiento para un servicio en particular.&lt;/p>
+&lt;p>Además había una serie de requisitos extras:&lt;/p>
+&lt;ol>
+&lt;li>El procesamiento iba a ser reutilizado por otro proyecto. Y requería comprimir y cifrar archivos grandes.&lt;/li>
+&lt;li>La primera parte tenía que simplemente,&lt;/li>
+&lt;li>Había una deadline muy cercana para este proyecto.&lt;/li>
+&lt;/ol>
+&lt;p>Con todas estas limitaciones, la solución propuesta fue esta:&lt;/p></description></item><item><title>Conceptos básicos de Spark</title><link>https://adrianabreu.com/blog/2019-11-09-spark-concepts-basicos/</link><pubDate>Sat, 09 Nov 2019 19:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2019-11-09-spark-concepts-basicos/</guid><description>&lt;p>&lt;strong>Nota del autor&lt;/strong>: Todos los contenidos de este artículo son extractos del libro &amp;ldquo;The Data Engineer&amp;rsquo;s Guide to Apache Spark&amp;rdquo; que puedes descargar desde la pagina de databricks: &lt;a href="https://databricks.com/lp/ebook/data-engineer-spark-guide">https://databricks.com/lp/ebook/data-engineer-spark-guide&lt;/a>&lt;/p>
+&lt;h2 id="preludio">Preludio:&lt;/h2>
+&lt;h3 id="cluster">Cluster:&lt;/h3>
+&lt;p>Un cluster no es más que un conjunto de máquinas trabajando de forma coordinada. Un cluster de Spark se compone de nodos. Uno actúa como DRIVER y es el punto de entrada para el código del usuario. Los otros actúan como EXECUTOR que seran los encargados de realizar las operaciones.&lt;/p></description></item><item><title>Empezando en Spark con Docker</title><link>https://adrianabreu.com/blog/2019-11-10-empezando-en-spark-con-docker/</link><pubDate>Sat, 09 Nov 2019 19:22:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2019-11-10-empezando-en-spark-con-docker/</guid><description>&lt;p>A pesar de haber leído guías tan buenas como:&lt;/p>
+&lt;p>&lt;a href="https://medium.com/@bogdan.cojocar/how-to-run-scala-and-spark-in-the-jupyter-notebook-328a80090b3b">https://medium.com/@bogdan.cojocar/how-to-run-scala-and-spark-in-the-jupyter-notebook-328a80090b3b&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://medium.com/@singhpraveen2010/install-apache-spark-and-configure-with-jupyter-notebook-in-10-minutes-ae120ebca597">https://medium.com/@singhpraveen2010/install-apache-spark-and-configure-with-jupyter-notebook-in-10-minutes-ae120ebca597&lt;/a>&lt;/p>
+&lt;p>Se me ha hecho cuesta arriba el poder conectar un notebook de jupyter y utilizar Scala. Entre configurar el apache toree para poder usar scala en los notebooks y algún error luego en spark al usarlo desde IntelliJ, me he acabado rindiendo.&lt;/p>
+&lt;p>&lt;em>Nota del autor:&lt;/em> Como disclaimer esto ocurre probablemente porque estoy en Manjaro y mi version de Scala es incompatible. Esta clase de problemas en su día las solucionaba fijando una versión, sin embargo, creo que teniendo una herramienta tan potente como es Docker estoy reinventando la rueda par un problema ya resuelto. Además de que voy a probarlo también en un windows para ver que es una solución agnóstical SO.&lt;/p></description></item><item><title>Correlated subqueries</title><link>https://adrianabreu.com/blog/2019-09-26-correlated-subqueries/</link><pubDate>Thu, 26 Sep 2019 20:43:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2019-09-26-correlated-subqueries/</guid><description>&lt;p>Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había &amp;ldquo;endemoniado&amp;rdquo; al join considerarlo perjudicial.&lt;/p>
+&lt;p>Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &amp;ldquo;colapsen&amp;rdquo; los datos de hace 14 días. Será mejor con un ejemplo:&lt;/p></description></item><item><title>Datos I - Introducción al Datawarehousing</title><link>https://adrianabreu.com/blog/2019-02-05-data-i-introduccion-al-datawarehouse/</link><pubDate>Tue, 05 Feb 2019 14:43:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2019-02-05-data-i-introduccion-al-datawarehouse/</guid><description>&lt;p>En los últimos meses mi trabajo ha pivotado del mundo de la web al mundo de los datos. He entrado a participar en un proyecto de Data Warehouse y he acabado muy contento en él. Hace unos días mi cambio se oficializó completamente y ahora me he dado cuenta de que no solo tengo un mundo técnico ante mí, sino que además necesito consolidar algunas bases teóricas.&lt;/p>
+&lt;p>Investigando la bibliografía, me han recomendado en Reddit: &lt;em>The Data Warehouse Toolkit, The Complete Guide to Dimensional Modeling 2nd Edition.&lt;/em>
+Y el libro parece encajar perfectamente en el conocimiento que busco. Aun así, como todo, por necesidad, intentaré resumir en unas cuantas entradas el conocimiento que se puede obtener de este libro. El cual recomiendo encarecidamente.&lt;/p></description></item><item><title>Angular Series III - Dynamic components</title><link>https://adrianabreu.com/blog/2017-12-17-angular-series-iii-dynamic-components/</link><pubDate>Sun, 17 Dec 2017 14:43:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-12-17-angular-series-iii-dynamic-components/</guid><description>&lt;p>Antes de terminar repasando el tema de &lt;em>templating&lt;/em>, quiero hacer un inciso. Existen ciertos casos donde el templating es insuficiente y lo que necesitamos es simplemente escoger dinámicamente que componente vamos a renderizar.&lt;/p>
+&lt;p>Esto está documentado en la documentación de angular bajo el nombre de &lt;a href="https://angular.io/guide/dynamic-component-loader">Dynamic Components&lt;/a>.&lt;/p>
+&lt;h3 id="cómo-funcionan-estos-dynamics-components">¿Cómo funcionan estos dynamics components?&lt;/h3>
+&lt;p>Explicado mal y pronto, la idea es: Escoger un elemento de la vista que actue de contenedor e inyectar el componente debe ir ahí.&lt;/p></description></item><item><title>Angular Series II - Templating</title><link>https://adrianabreu.com/blog/2017-11-18-angular-series-ii-templating/</link><pubDate>Sat, 18 Nov 2017 18:53:17 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-11-18-angular-series-ii-templating/</guid><description>&lt;p>Continuando con el &lt;a href="https://adrianabreu.com/blog/2017-08-14-angular-series-i-transclusion/">artículo del otro día sobre proyección de contenido&lt;/a> aquí pretendo mostrar otra forma de pasar contenido: las templates.
+¿Qué es una template? Es un pedazo de html envuelto entre entre etiquetas ng-template tal que así:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">ng-template&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">”as-template”&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> I won’t be rendered
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">ng-template&lt;/span>&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item><item><title>Experimentando con Redux</title><link>https://adrianabreu.com/blog/2017-11-06-experimentando-con-redux/</link><pubDate>Mon, 06 Nov 2017 23:18:17 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-11-06-experimentando-con-redux/</guid><description>&lt;p>Con el objetivo de mejorar el &lt;a href="https://github.com/etsiiull/SIMDE">simulador SIMDE&lt;/a> me decidí a probar un sistema de gestión de estados y concentrar el funcionamiento de la aplicación. ¿El motivo? Era la única forma sensata que tenía de poder gestionar la UI cuando entrara la máquina VLIW sin que todo fuera un caos.&lt;/p>
+&lt;p>Para ello he recurrido a mi aplicación favorita: Chuck Norris client app. (Ya la he hecho en AngularJS y Angular previamente). Como boilerplate he utilizado el template de visual studio, ya que quería tener compatibilidad con typescript.&lt;/p></description></item><item><title>Un breve sumario</title><link>https://adrianabreu.com/blog/2017-10-08-breve-sumario/</link><pubDate>Sun, 08 Oct 2017 18:28:17 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-10-08-breve-sumario/</guid><description>&lt;p>El mes de septiembre ha sido un poco caótico, pero ya creo que me he adaptado a la rutina. Por lo pronto he empezado con el blog, ahora el auto despliegue va mucho mejor, estoy utilizando CircleCI en vez de Wecker.&lt;/p>
+&lt;p>Por otra parte, el diseño del blog se ha separado por mucho del tema original, y no contento con esto he mejorado el desarrollo del tema permitiendo el uso de Sass.&lt;/p></description></item><item><title>SOLID Principles</title><link>https://adrianabreu.com/knowledge/solidprinciples/</link><pubDate>Sun, 08 Oct 2017 18:04:42 +0000</pubDate><guid>https://adrianabreu.com/knowledge/solidprinciples/</guid><description>&lt;h2 id="srp-single-responsability-principle">SRP: Single Responsability Principle&lt;/h2>
+&lt;p>&lt;strong>Una pieza de software debería tener una única razón para cambiar.&lt;/strong>&lt;/p>
+&lt;p>Si una clase tiene más de una &amp;ldquo;responsabilidad&amp;rdquo; (razón de cambio), un cambio en algún requisito podría ser muy difícil de modelar. Ya que al cumplir con esta responsabilidad podríamos estar incumpliendo otras.&lt;/p>
+&lt;p>Esto hace que el diseño sea realmente frágil y esté acoplado: es decir, se va a romper de formas inesperadas.&lt;/p></description></item><item><title>Angular series I - Proyección de contenido (Content projection)</title><link>https://adrianabreu.com/blog/2017-08-14-angular-series-i-transclusion/</link><pubDate>Mon, 14 Aug 2017 17:32:37 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-08-14-angular-series-i-transclusion/</guid><description>&lt;p>Cuando creé este blog tenía bastante claro que uno de los objetivos principales era que me sirviera de utilidad para interiorizar lo que voy aprendiendo.
+Y aunque he escrito ciertas cosas útiles para mi día a día no estoy registrando ni una centésima parte de la información que mi mente ha ido procesando estos
+meses.&lt;/p>
+&lt;p>Así que voy a dedicarme a escribir un artículo semanal sobre un tema con el que llevo ya casi un año: &lt;strong>Angular&lt;/strong>.&lt;/p></description></item><item><title>Auto deployment en gh-pages con Travis</title><link>https://adrianabreu.com/blog/2017-08-04-autodeploy-con-travis/</link><pubDate>Fri, 04 Aug 2017 16:37:11 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-08-04-autodeploy-con-travis/</guid><description>&lt;p>Una de las mejores características de github sin duda alguna, son las &lt;a href="https://pages.github.com/">gh-pages&lt;/a>.&lt;/p>
+&lt;p>Las gh-pages nos permiten desplegar el código de nuestra aplicación frontend a través de esta rama, de tal forma que muchos de nuestros proyectos (por ejemplo este blog) estén disponibles sin tener limitaciones de hosting.&lt;/p>
+&lt;p>Pero sin duda una desventaja es el hecho de tener que mantener el deploy de nuestras revisiones: cambiar de rama, eliminar el contenido, hacer una build y desplegar.&lt;/p></description></item><item><title>Mi experiencia con React</title><link>https://adrianabreu.com/blog/2017-07-28-mi-experiencia-con-react/</link><pubDate>Fri, 28 Jul 2017 17:11:10 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-07-28-mi-experiencia-con-react/</guid><description>&lt;p>Hoy se cumple un mes desde que entregué mi trabajo de fin de grado. &lt;em>(Modestia aparte, conseguí un 10)&lt;/em>. Han pasado muchas cosas desde entonces, como que por ejemplo ahora mismo estoy viviendo en Barcelona y que trabajo para nada más y nada menos que &lt;strong>Plain Concepts&lt;/strong>. Pero al margen de eso, vamos a centrarnos en mi trabajo de fin de grado.&lt;/p>
+&lt;p>En tercero de grado de ingeniería informática es posible escoger una especialidad. Yo descontento con la mayoría me decidí por Ingeniería de Computadores &lt;em>a.k.a.&lt;/em> Hardware. Y a lo largo de estos dos cursos me encontré con dos asignaturas de &lt;strong>Arquitectura de Computadores&lt;/strong>.&lt;/p></description></item><item><title>Empezar a programar</title><link>https://adrianabreu.com/blog/2017-06-04-empezar-a-programar/</link><pubDate>Sun, 04 Jun 2017 13:07:30 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-06-04-empezar-a-programar/</guid><description>&lt;p>Creo que me he visto en más de una decena de ocasiones aconsejando a gente como empezar en el mundo
+de la programación, así que esta entrada viene dedicada a todos ellos.&lt;/p>
+&lt;p>Por supuesto se trata de una guía basada en mi opinión y solo mi opinión.&lt;/p>
+&lt;h3 id="daw-o-dam">¿DAW o DAM?&lt;/h3>
+&lt;p>Realmente mi respuesta es bastante clara: &lt;strong>DAW&lt;/strong>.&lt;/p>
+&lt;p>El mundo web cada vez va tomando más y más fuerza.
+Ya se pueden desarrollar aplicaciones de escritorio utilizando como base aplicaciones web con tecnologías
+como &lt;a href="https://electron.atom.io/">electron&lt;/a> (un buen ejemplo de este tipo de aplicaciones &lt;a href="https://code.visualstudio.com/">Visual Studio Code&lt;/a>). Y además también
+se pueden desarrollar aplicaciones móviles con &lt;a href="https://facebook.github.io/react-native/">React Native&lt;/a> e &lt;a href="https://ionicframework.com/">Ionic&lt;/a>.&lt;/p></description></item><item><title>Docker</title><link>https://adrianabreu.com/blog/2017-04-09-docker/</link><pubDate>Sun, 09 Apr 2017 15:20:44 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-04-09-docker/</guid><description>&lt;h2 id="qué-es-docker">¿Qué es docker?&lt;/h2>
+&lt;p>Docker es un software que permite automatizar el despliegue de aplicaciones utilizando contenedores.&lt;/p>
+&lt;p>Los contenedores hacen uso de la virtualización a nivel de sistema operativo, con lo cual son mucho más ligeros y rápidos que las máquinas virtuales.&lt;/p>
+&lt;h2 id="para-qué-lo-puedo-necesitar">¿Para qué lo puedo necesitar?&lt;/h2>
+&lt;p>En el día a día, una de las cosas para las que Docker me resulta más útil sin duda es para desplegar las bases de datos en desarrollo.&lt;/p></description></item><item><title>Capas en el backend</title><link>https://adrianabreu.com/blog/2017-04-08-capas-en-el-backend/</link><pubDate>Sat, 08 Apr 2017 17:33:10 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-04-08-capas-en-el-backend/</guid><description>&lt;p>Una de las cosas más difíciles cuando ves un proyecto de backend por primera vez es discernir la funcionalidad y responsabilidad de las distintas capas. Así que me he planteado dar una visión general.&lt;/p>
+&lt;p>Antes de nada, quiero aclarar que es probable que esta nomenclatura no coincida con otra que veais por ahí, existen muchos sinónimos para los mismos conceptos, yo por mi parte, voy a explicar cual utilizo actualmente.&lt;/p></description></item><item><title>Interacción a través de ViewChild en Angular</title><link>https://adrianabreu.com/blog/2017-03-24-interaccion-a-traves-de-viewchild/</link><pubDate>Fri, 24 Mar 2017 23:11:22 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-03-24-interaccion-a-traves-de-viewchild/</guid><description>&lt;p>Hoy me he encontrado con una situación peculiar en un código. Aunque considero que quizás como está realizada la tarea no sea la mejor opción, creo que es un buen ejemplo para entender algunos conceptos de Angular.&lt;/p>
+&lt;p>Partiendo de una aplicaicón muy básica donde tenemos dos componentes: &lt;strong>AppComponent&lt;/strong> y &lt;strong>ChildComponent&lt;/strong>, vamos a renderizar dinámicamente el componente hijo desde el componente padre y ejecutar una serie de acciones.&lt;/p>
+&lt;p>Empecemos por el componente padre:&lt;/p></description></item><item><title>Como construir un portfolio</title><link>https://adrianabreu.com/blog/2017-03-12-como-construir-un-portfolio/</link><pubDate>Sun, 12 Mar 2017 10:39:22 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-03-12-como-construir-un-portfolio/</guid><description>&lt;p>Desde hace un tiempo en los países anglosajones los desarrolladores tienen una herramienta más importante que su CV, el portfolio.&lt;/p>
+&lt;p>Un portfolio no es más que una muestra de tus trabajos y una justificación de las habilidades escritas en tu CV. A día de hoy, es increíblemente fácil tener un portfolio. Pero ya que voy a hablar de eso, aprovecharé para hablar también de qué debería contener un portfolio, y como enfocar el portfolio de un desarrollador junior proporcionando algunas ideas básicas.&lt;/p></description></item><item><title>Sin componentes a componentes</title><link>https://adrianabreu.com/blog/2017-03-11-sin-componentes-a-componentes/</link><pubDate>Sat, 11 Mar 2017 17:44:11 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-03-11-sin-componentes-a-componentes/</guid><description>&lt;p>Hace unos meses mientras me formaba en Angular 1 hice con un amigo un cliente para una api que proporcionaba frases de Chuck Norris.&lt;/p>
+&lt;p>Fue un desarrollo divertido donde almacenábamos las frases descargadas en localStorage y permítiamos filtrar las frases por categorías.&lt;/p>
+&lt;p>El diseño era modular y me quedé contento con lo que aprendí. Pero entonces entré en prácticas en la empresa y me puse a formarme en Angular 2.&lt;/p></description></item><item><title>Quizás deberías empezar un blog</title><link>https://adrianabreu.com/blog/2017-03-04-quizas-deberias-empezara-un-blog/</link><pubDate>Sat, 04 Mar 2017 19:46:22 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-03-04-quizas-deberias-empezara-un-blog/</guid><description>&lt;p>Me encanta leer artículos de programación y de tecnología. Leo muchísimos artículos.&lt;/p>
+&lt;p>Es más, considero que paso al menos de media, 2 horas diarias leyendo esta clase de artículos.&lt;/p>
+&lt;p>Pero soy otro lector invisible más, no devuelvo lo que aprendo a la comunidad (aunque ahora me he ido animando con los comentarios) y lo peor, no lo almaceno.&lt;/p>
+&lt;p>Un blog puede ser una parte más de tu portfolio, puede recoger tus dudas y tu avance. Recuerdo, leer muchos artículos del blog de &lt;a href="https://giltesa.com/">giltesa&lt;/a>, aunque en aquellos momentos yo estaba programando en pañales, me gustaba mucho ver los pequeños códigos en C que ponía.&lt;/p></description></item><item><title>Probando Hugo</title><link>https://adrianabreu.com/blog/2017-02-05-probando-hugo/</link><pubDate>Sun, 05 Feb 2017 17:31:42 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-02-05-probando-hugo/</guid><description>&lt;p>La verdad es que estoy asombrado. Hexo me tenía muy contento, pero aún así el rendimiento no me convencía tanto como esperaba. Y me pasaba los días dando largas hasta ponerme a postear. Aprovechando que quería hacer una pequeña limpieza antes de ponerme con el trabajo de fin de grado, he estado mirando este generador, Hugo.&lt;/p>
+&lt;p>Este generador basado en el lenguaje Go, es increíblemente potente, portable, y sencillo de instalar. Sinceramente, tras probar Jekyll, Hexo y Hugo, sin duda me quedo con este último. Habia visto otros como Octopress, pero tampoco llegó a convencerme.&lt;/p></description></item><item><title>Contact me</title><link>https://adrianabreu.com/about/</link><pubDate>Sun, 05 Feb 2017 16:28:10 +0000</pubDate><guid>https://adrianabreu.com/about/</guid><description>&lt;p>If you want to reach me you can do through:&lt;/p>
+&lt;p>&lt;strong>&lt;a href="https://github.com/adrianabreu">Github&lt;/a>&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>&lt;a href="https://twitter.com/adrianabreudev">Twitter&lt;/a>&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>&lt;a href="https://linkedin.com/in/adrianabreu">Linkedin&lt;/a>&lt;/strong>&lt;/p>
+&lt;p>O incluso a través de mi correo electrónico: &lt;strong>&lt;a href="mailto:adrianabreugonzalez@outlook.com">adrianabreugonzalez@outlook.com&lt;/a>&lt;/strong>&lt;/p></description></item><item><title>Nuevos comienzos</title><link>https://adrianabreu.com/blog/2017-01-08-nuevos-comienzos/</link><pubDate>Sun, 08 Jan 2017 10:22:36 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-01-08-nuevos-comienzos/</guid><description>&lt;p>No creía que fuera a estar escribiendo esto tan pronto, pero hace poco terminé de realizar las prácticas externas y ya tengo un trabajo en esa misma empresa.&lt;/p>
+&lt;p>Mis labores, al igual que en las prácticas, consiste en desarrollar utilizando Angular 2 y Java.&lt;/p>
+&lt;p>He ido aprendiendo (y sigo, y seguiré) muchísimo. Y es por eso que necesito este blog. Un lugar donde compartir toda la información que voy absorbiendo sobre esta tecnología que cada día me gusta más.&lt;/p></description></item></channel></rss>

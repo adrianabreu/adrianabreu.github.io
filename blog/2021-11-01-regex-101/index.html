@@ -10,7 +10,33 @@
 <meta property='og:description' content='-You will spent your whole life relearning regex, there is a beginning, but never and end.
 Last year I participated in some small code problems and practised some regex. I got used to it and feel quite good at it.
 And today I had to use it again. I had the following dataframe:
-product attributes 1 (SIZE-36) 2 (COLOR-RED) 3 (SIZE-38, COLOR-BLUE) 4 (COLOR-GREEN, SIZE-39) A wonderful set of string merged with properties that could vary.'>
+
+  
+      
+          product
+          attributes
+      
+  
+  
+      
+          1
+          (SIZE-36)
+      
+      
+          2
+          (COLOR-RED)
+      
+      
+          3
+          (SIZE-38, COLOR-BLUE)
+      
+      
+          4
+          (COLOR-GREEN, SIZE-39)
+      
+  
+
+A wonderful set of string merged with properties that could vary. And we wanted one column for each:'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2021-11-01-regex-101/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Regex'><meta property='article:tag' content='Spark'><meta property='article:published_time' content='2021-11-05T16:39:32Z'/><meta property='article:modified_time' content='2021-11-05T16:39:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
@@ -115,67 +141,67 @@ product attributes 1 (SIZE-36) 2 (COLOR-RED) 3 (SIZE-38, COLOR-BLUE) 4 (COLOR-GR
 <p>Last year I participated in some small code problems and practised some regex. I got used to it and feel quite good at it.</p>
 <p>And today I had to use it again. I had the following dataframe:</p>
 <table>
-<thead>
-<tr>
-<th>product</th>
-<th>attributes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>(SIZE-36)</td>
-</tr>
-<tr>
-<td>2</td>
-<td>(COLOR-RED)</td>
-</tr>
-<tr>
-<td>3</td>
-<td>(SIZE-38, COLOR-BLUE)</td>
-</tr>
-<tr>
-<td>4</td>
-<td>(COLOR-GREEN, SIZE-39)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">product</th>
+          <th style="text-align: left">attributes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">(SIZE-36)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">(COLOR-RED)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">(SIZE-38, COLOR-BLUE)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">(COLOR-GREEN, SIZE-39)</td>
+      </tr>
+  </tbody>
 </table>
 <p>A wonderful set of string merged with properties that could vary. And we wanted one column for each:</p>
 <table>
-<thead>
-<tr>
-<th>product</th>
-<th>attributes</th>
-<th>size</th>
-<th>color</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>(SIZE-36)</td>
-<td>36</td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>(COLOR-RED)</td>
-<td></td>
-<td>RED</td>
-</tr>
-<tr>
-<td>3</td>
-<td>(SIZE-38, COLOR-BLUE)</td>
-<td>38</td>
-<td>BLUE</td>
-</tr>
-<tr>
-<td>4</td>
-<td>(COLOR-GREEN, SIZE-39)</td>
-<td>39</td>
-<td>GREEN</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">product</th>
+          <th style="text-align: left">attributes</th>
+          <th style="text-align: left">size</th>
+          <th style="text-align: left">color</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">(SIZE-36)</td>
+          <td style="text-align: left">36</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">(COLOR-RED)</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">RED</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">(SIZE-38, COLOR-BLUE)</td>
+          <td style="text-align: left">38</td>
+          <td style="text-align: left">BLUE</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">(COLOR-GREEN, SIZE-39)</td>
+          <td style="text-align: left">39</td>
+          <td style="text-align: left">GREEN</td>
+      </tr>
+  </tbody>
 </table>
 <p>So&hellip; the solution seemed quite straightforward. I went to regex101 and start typing&hellip; I want everything behind my keyword  and the &lsquo;-&rsquo; until I found a comma or a closing )</p>
 <p>And I ended up with this regexp for color:

@@ -114,7 +114,8 @@
       <div class="content">
         I&rsquo;ve been subscribed to https://www.dataengineeringweekly.com/p/data-engineering-weekly-148 for years. This last number included several on-call posts on Medium. I found these quite useful.
 Today, I got an alert from Metaplane that a cost monitor dashboard was out of date. I checked the processes, and everything was fine. I ran a query to check the freshness of the data and it was ok too.
-Metaplane checks our delta table freshness by querying the table information available in the Unity Catalog.
+Metaplane checks our delta table freshness by querying the table information available in the Unity Catalog. For some unknown reason that metadata didn&rsquo;t receive any update. I ran an optimization operation (the table tiny) and the metadata didn&rsquo;t update either.
+
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2023-10-02-repairing-metadata-unity-catalog/" style="height:28px">
           Read more
@@ -145,6 +146,7 @@ Metaplane checks our delta table freshness by querying the table information ava
       <div class="content">
         I&rsquo;ve spent the last few weeks setting up the unity catalog for my company. It&rsquo;s been an extremely tiring process. And there are several concepts to bring here. My main point is to have a clear view of the requirements.
 Disclaimer: as of today with https://github.com/databricks/terraform-provider-databricks release 1.17.0, some steps should be done in an &ldquo;awkward way&rdquo; that is, the account API does not expose the catalog&rsquo;s endpoint and should be done through a workspace.
+
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2023-05-23-enabling-unity-catalog/" style="height:28px">
           Read more

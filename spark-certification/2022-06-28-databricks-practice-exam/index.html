@@ -7,7 +7,651 @@
 <title>Spark Cert Exam Practice | Adrián Abreu</title>
 
 <meta property='og:title' content='Spark Cert Exam Practice - Adrián Abreu'>
-<meta property='og:description' content='--- primary_color: orange secondary_color: lightgray text_color: black shuffle_questions: false --- ## Which of the following statements about the Spark driver is incorrect? - [ ] The Spark driver is the node in which the Spark application&#39;s main method runs to ordinate the Spark application. - [X] The Spark driver is horizontally scaled to increase overall processing throughput. - [ ] The Spark driver contains the SparkContext object. - [ ] The Spark driver is responsible for scheduling the execution of data by various worker nodes in cluster mode.'>
+<meta property='og:description' content='
+
+
+ 
+
+
+  
+
+---
+primary_color: orange
+secondary_color: lightgray
+text_color: black
+shuffle_questions: false
+---
+
+## Which of the following statements about the Spark driver is incorrect?
+
+- [ ] The Spark driver is the node in which the Spark application&#39;s main method runs to ordinate the Spark application.
+- [X] The Spark driver is horizontally scaled to increase overall processing throughput.
+- [ ] The Spark driver contains the SparkContext object.
+- [ ] The Spark driver is responsible for scheduling the execution of data by various worker nodes in cluster mode.
+- [ ] The Spark driver should be as close as possible to worker nodes for optimal performance.
+
+## Which of the following describes nodes in cluster-mode Spark?
+
+- [ ] Nodes are the most granular level of execution in the Spark execution hierarchy.
+- [ ] There is only one node and it hosts both the driver and executors.
+- [ ] Nodes are another term for executors, so they are processing engine instances for performing computations.
+- [ ] There are driver nodes and worker nodes, both of which can scale horizontally.
+- [X] Worker nodes are machines that host the executors responsible for the execution of tasks
+
+## Which of the following statements about slots is true?
+
+- [ ] There must be more slots than executors.
+- [ ] There must be more tasks than slots.
+- [ ] Slots are the most granular level of execution in the Spark execution hierarchy.
+- [ ] Slots are not used in cluster mode.
+- [X] Slots are resources for parallelization within a Spark application.
+
+## Which of the following is a combination of a block of data and a set of transformers that will run on a single executor?
+
+- [ ] Executor
+- [ ] Node
+- [ ] Job
+- [X] Task
+- [ ] Slot
+
+## Which of the following is a group of tasks that can be executed in parallel to compute the same set of operations on potentially multiple machines?
+
+- [ ] Job
+- [ ] Slot
+- [ ] Executor
+- [ ] Task
+- [X] Stage
+
+## Which of the following describes a shuffle?
+- [X] A shuffle is the process by which data is compared across partitions.
+- [ ] A shuffle is the process by which data is compared across executors.
+- [ ] A shuffle is the process by which partitions are allocated to tasks.
+- [ ] A shuffle is the process by which partitions are ordered for write.
+- [ ] A shuffle is the process by which tasks are ordered for execution.
+
+## DataFrame df is very large with a large number of partitions, more than there are executors in the cluster. Based on this situation, which of the following is incorrect? Assume there is one core per executor.
+
+- [X] Performance will be suboptimal because not all executors will be utilized at the same time.
+- [ ] Performance will be suboptimal because not all data can be processed at the same time.
+- [ ] There will be a large number of shuffle connections performed on DataFrame df when operations inducing a shuffle are called.
+- [ ] There will be a lot of overhead associated with managing resources for data processing within each task.
+- [ ] There might be risk of out-of-memory errors depending on the size of the executors in the cluster.
+
+## Which of the following operations will trigger evaluation?
+- [ ] DataFrame.filter()
+- [ ] DataFrame.distinct()
+- [ ] DataFrame.intersect()
+- [ ] DataFrame.join()
+- [X] DataFrame.count()
+
+## Which of the following describes the difference between transformations and actions?
+
+- [ ] Transformations work on DataFrames/Datasets while actions are reserved for native language objects.
+- [ ] There is no difference between actions and transformations.
+- [ ] Actions are business logic operations that do not induce execution while transformations are execution triggers focused on returning results.
+- [ ] Actions work on DataFrames/Datasets while transformations are reserved for native  language objects.
+- [X] Transformations are business logic operations that do not induce execution while actions  are execution triggers focused on returning results.
+
+## Which of the following DataFrame operations is always classified as a narrow transformation?
+- [ ] DataFrame.sort()
+- [ ] DataFrame.distinct()
+- [ ] DataFrame.repartition()
+- [X] DataFrame.select()
+- [ ] DataFrame.join()
+
+## Spark has a few different execution/deployment modes: cluster, client, and local. Which of the following describes Spark&#39;s execution/deployment mode? 
+
+- [X] Spark&#39;s execution/deployment mode determines where the driver and executors are physically located when a Spark application is run
+- [ ] Spark&#39;s execution/deployment mode determines which tasks are allocated to which  executors in a cluster
+- [ ] Spark&#39;s execution/deployment mode determines which node in a cluster of nodes is responsible for running the driver program
+- [ ] Spark&#39;s execution/deployment mode determines exactly how many nodes the driver will connect to when a Spark application is run
+- [ ] Spark&#39;s execution/deployment mode determines whether results are run interactively in a notebook environment or in batch
+
+## Which of the following cluster configurations will ensure the completion of a Spark application in light of a worker node failure? Note: each configuration has roughly the same compute power using 100GB of RAM and 200 cores. 
+
+![](&#34;/images/databricks-cert/q12.png&#34;)
+
+- [ ] Scenario #1
+- [X] They should all ensure completion because worker nodes are fault-tolerant.
+- [ ] Scenario #4
+- [ ] Scenario #5
+- [ ] Scenario #6
+
+## Which of the following describes out-of-memory errors in Spark?
+
+- [X] An out-of-memory error occurs when either the driver or an executor does not have enough memory to collect or process the data allocated to it.
+- [ ] An out-of-memory error occurs when Spark&#39;s storage level is too lenient and allows data objects to be cached to both memory and disk.
+- [ ] An out-of-memory error occurs when there are more tasks than are executors regardless of the number of worker nodes.
+- [ ] An out-of-memory error occurs when the Spark application calls too many transformations in a row without calling an action regardless of the size of the data object  on which the transformations are operating.
+- [ ] An out-of-memory error occurs when too much data is allocated to the driver for computational purposes.
+
+## Which of the following is the default storage level for persist() for a non-streaming DataFrame/Dataset?
+
+- [X] MEMORY_AND_DISK
+- [ ] MEMORY_AND_DISK_SER
+- [ ] DISK_ONLY
+- [ ] MEMORY_ONLY_SER
+- [ ] MEMORY_ONLY
+
+## Which of the following describes a broadcast variable?
+
+- [ ] A broadcast variable is a Spark object that needs to be partitioned onto multiple worker  nodes because it&#39;s too large to fit on a single worker node.
+- [ ] A broadcast variable can only be created by an explicit call to the broadcast() operation.
+- [ ] A broadcast variable is entirely cached on the driver node so it doesn&#39;t need to be present on any worker nodes.
+- [X] A broadcast variable is entirely cached on each worker node so it doesn&#39;t need to be shipped or shuffled between nodes with each stage.
+- [ ] A broadcast variable is saved to the disk of each worker node to be easily read into memory  when needed.
+
+## Which of the following operations is most likely to induce a skew in the size of your data&#39;s partitions?
+
+- [ ] DataFrame.collect()
+- [ ] DataFrame.cache()
+- [ ] DataFrame.repartition(n)
+- [X] DataFrame.coalesce(n)
+- [ ] DataFrame.persist()
+
+## Which of the following data structures are Spark DataFrames built on top of?
+- [ ] Arrays
+- [ ] Strings
+- [X] RDDs
+- [ ] Vectors
+- [ ] SQL Tables
+
+### Which of the following code blocks returns a DataFrame containing only column storeId and column **division** from DataFrame **storesDF?**
+
+- [ ] `storesDF.select(&#34;storeId&#34;).select(&#34;division&#34;)`
+- [ ] `storesDF.select(storeId, division)`
+- [X] `storesDF.select(&#34;storeId&#34;, &#34;division&#34;)`
+- [ ] `storesDF.select(col(&#34;storeId&#34;, &#34;division&#34;))`
+- [ ] `storesDF.select(storeId).select(division)`
+
+## Which of the following code blocks returns a DataFrame containing all columns from DataFrame storesDF except for column sqft and column customerSatisfaction?  A sample of DataFrame storesDF is below:
+![](&#34;/images/databricks-cert/q19.png&#34;)
+
+- [X] `storesDF.drop(&#34;sqft&#34;, &#34;customerSatisfaction&#34;)`
+- [ ] `storesDF.select(&#34;storeId&#34;, &#34;open&#34;, &#34;openDate&#34;, &#34;division&#34;)`
+- [ ] `storesDF.select(-col(sqft), -col(customerSatisfaction))`
+- [ ] `storesDF.drop(sqft, customerSatisfaction)`
+- [ ] `storesDF.drop(col(sqft), col(customerSatisfaction))`
+
+## The below code shown block contains an error. The code block is intended to return a DataFrame  containing only the rows from DataFrame storesDF where the value in DataFrame storesDF&#39;s &#34;sqft&#34; column is less than or equal to 25,000. Assume DataFrame storesDF is the only defined language variable. Identify the error. Code block: `storesDF.filter(sqft &lt;= 25000)`
+
+- [ ] The column name **sqft** needs to be quoted like s**toresDF.filter(&#34;sqft&#34; &lt;=000).**
+- [X] The column name sqft needs to be quoted and wrapped in the **col()** function like **storesDF.filter(col(&#34;sqft&#34;) &lt;= 25000).**
+- [ ] The sign in the logical condition inside **filter()** needs to be changed from &lt;= to &gt;.
+- [ ] The sign in the logical condition inside **filter()** needs to be changed from &lt;= to &gt;=.
+- [ ] The column name sqft needs to be wrapped in the **col()** function like **storesDF.filter(col(sqft) &lt;= 25000).**
+
+## The code block shown below should return a DataFrame containing only the rows from DataFrame storesDF where the value in column sqft is less than or equal to 25,000 OR the value in column customerSatisfaction is greater than or equal to 30. Choose the response that correctly fills in the numbered blanks within the code block to complete this task. Code block: storesDF.__**1__**(__**2**__ __3__ __4__)
+
+- [X] ```
+    1. filter
+    2. (col(&#34;sqft&#34;) &lt;= 25000)
+    3. |
+    4. (col(&#34;customerSatisfaction&#34;) &gt;= 30)
+     ```
+- [ ] ```
+  1. drop
+  2. (col(sqft) &lt;= 25000)
+  3. |
+  4. (col(customerSatisfaction) &gt;= 30)
+```
+- [ ] ```
+  1. filter
+  2. col(&#34;sqft&#34;) &lt;= 25000
+  3. |
+  4. col(&#34;customerSatisfaction&#34;) &gt;= 30
+```
+- [ ] ```
+  1. filter
+  2. col(&#34;sqft&#34;) &lt;= 25000
+  3. or
+  4. col(&#34;customerSatisfaction&#34;) &gt;= 30
+```
+- [ ] ```
+  1. filter
+  2. (col(&#34;sqft&#34;) &lt;= 25000)
+  3. or
+  4. (col(&#34;customerSatisfaction&#34;) &gt;= 30)
+```
+
+## Which of the following operations can be used to convert a DataFrame column from one type to another type?
+
+- [X] col().cast()
+- [ ] convert()
+- [ ] castAs()
+- [ ] col().coerce()
+- [ ] col()
+
+## Which of the following code blocks returns a new DataFrame with a new column sqft100 that is 1/100th of column sqft in DataFrame storesDF? Note that column sqft100 is not in the original DataFrame storesDF.
+
+- [ ] `storesDF.withColumn(&#34;sqft100&#34;, col(&#34;sqft&#34;) * 100)`
+- [ ] `storesDF.withColumn(&#34;sqft100&#34;, sqft / 100)`
+- [ ] `storesDF.withColumn(col(&#34;sqft100&#34;), col(&#34;sqft&#34;) / 100)`
+- [X] `storesDF.withColumn(&#34;sqft100&#34;, col(&#34;sqft&#34;) / 100)`
+- [ ] `storesDF.newColumn(&#34;sqft100&#34;, sqft / 100)`
+
+## Which of the following code blocks returns a new DataFrame from DataFrame storesDF where column numberOfManagers is the constant integer 1?
+
+- [ ] `storesDF.withColumn(&#34;numberOfManagers&#34;, col(1))`
+- [ ] `storesDF.withColumn(&#34;numberOfManagers&#34;, 1)`
+- [X] `storesDF.withColumn(&#34;numberOfManagers&#34;, lit(1))`
+- [ ] `storesDF.withColumn(&#34;numberOfManagers&#34;, lit(&#34;1&#34;))`
+- [ ] `storesDF.withColumn(&#34;numberOfManagers&#34;, IntegerType(1))`
+
+## The code block shown below contains an error. The code block intends to return a new DataFrame where column storeCategory from DataFrame storesDF is split at the underscore character into column storeValueCategory and column storeSizeCategory. Identify the error. A sample of DataFrame storesDF is displayed below: Code block:
+```
+(storesDF.withColumn(
+    &#34;storeValueCategory&#34;, col(&#34;storeCategory&#34;).split(&#34;*&#34;)[0]
+  ).withColumn(
+    &#34;storeSizeCategory&#34;, col(&#34;storeCategory&#34;).split(&#34;*&#34;)[1]
+  )
+)
+```
+![](&#34;/images/spark-certification/q25.png&#34;)
+
+- [ ] The split() operation comes from the imported functions object. It accepts a string column name and split character as arguments. It is not a method of a Column object.
+- [X] The split() operation comes from the imported functions object. It accepts a Column object and split character as arguments. It is not a method of a Column object.
+- [ ] The index values of 0 and 1 should be provided as second arguments to the split() operation rather than indexing the result.
+- [ ] The index values of 0 and 1 are not correct — they should be 1 and 2, respectively.
+- [ ] The withColumn() operation cannot be called twice in a row.
+
+
+## Which of the following operations can be used to split an array column into an individual DataFrame row for each element in the array?
+- [ ] extract()
+- [ ] split()
+- [X] explode()
+- [ ] arrays_zip()
+- [ ] unpack()
+
+## Which of the following code blocks returns a new DataFrame where column storeCategory is an all-lowercase version of column storeCategory in DataFrame storesDF? Assume DataFrame storesDF is the only defined language variable.
+
+- [X] `storesDF.withColumn(&#34;storeCategory&#34;, lower(col(&#34;storeCategory&#34;)))`
+- [ ] `storesDF.withColumn(&#34;storeCategory&#34;, coll(&#34;storeCategory&#34;).lower())`
+- [ ] `storesDF.withColumn(&#34;storeCategory&#34;, tolower(col(&#34;storeCategory&#34;)))`
+- [ ] `storesDF.withColumn(&#34;storeCategory&#34;, lower(&#34;storeCategory&#34;))`
+- [ ] `storesDF.withColumn(&#34;storeCategory&#34;, lower(storeCategory))`
+
+## The code block shown below contains an error. The code block is intended to return a new DataFrame where column division from DataFrame storesDF has been renamed to column state and column managerName from DataFrame storesDF has been renamed to column managerFullName. Identify the error. Code block:
+```
+(storesDF.withColumnRenamed(&#34;state&#34;, &#34;division&#34;)
+.withColumnRenamed(&#34;managerFullName&#34;, &#34;managerName&#34;))
+```
+
+- [ ] Both arguments to operation withColumnRenamed() should be wrapped in the col() operation.
+- [ ] The operations withColumnRenamed() should not be called twice, and the first argument should be [&#34;state&#34;, &#34;division&#34;] and the second argument should be[&#34;managerFullName&#34;, &#34;managerName&#34;].
+- [ ] The old columns need to be explicitly dropped.
+- [X] The first argument to operation withColumnRenamed() should be the old column name and the second argument should be the new column name.
+- [ ] The operation withColumnRenamed() should be replaced with withColumn().
+
+## Which of the following code blocks returns a DataFrame where rows in DataFrame storesDF containing missing values in every column have been dropped?
+
+- [ ] storesDF.nadrop(&#34;all&#34;)
+- [ ] storesDF.na.drop(&#34;all&#34;, subset = &#34;sqft&#34;)
+- [ ] storesDF.dropna()
+- [ ] storesDF.na.drop()
+- [X] storesDF.na.drop(&#34;all&#34;)
+
+## Which of the following operations fails to return a DataFrame where every row is unique?
+
+- [ ] DataFrame.distinct()
+- [ ] DataFrame.drop_duplicates(subset = None)
+- [ ] DataFrame.drop_duplicates()
+- [ ] DataFrame.dropDuplicates()
+- [X] DataFrame.drop_duplicates(subset = &#34;all&#34;)
+
+## Which of the following code blocks will not always return the exact number of distinct values in column division?
+
+- [X] `storesDF.agg(approx_count_distinct(col(&#34;division&#34;)).alias(&#34;divisionDistinct&#34;))`
+- [ ] `storesDF.agg(approx_count_distinct(col(&#34;division&#34;), 0).alias(&#34;divisionDistinct&#34;))`
+- [ ] `storesDF.agg(countDistinct(col(&#34;division&#34;)).alias(&#34;divisionDistinct&#34;))`
+- [ ] `storesDF.select(&#34;division&#34;).dropDuplicates().count()`
+- [ ] `storesDF.select(&#34;division&#34;).distinct().count()`
+
+## The code block shown below should return a new DataFrame with the mean of column sqft from DataFrame storesDF in column sqftMean. Choose the response that correctly fills in the numbered blanks within the code block to complete this task. Code block:
+`storesDF.__**1__**(__2__(__**3**__).alias(&#34;sqftMean&#34;))`
+
+- [X] ```
+  1. agg
+  2. mean
+  3. col(&#34;sqft&#34;)
+```
+- [ ] ```
+  1. mean
+  2. col
+  3. &#34;sqft&#34;
+```
+- [ ] ```
+  1. withColumn
+  2. mean
+  3. col(&#34;sqft&#34;)
+```
+- [ ] ```
+  1. agg
+  2. mean
+  3. &#34;sqft&#34;
+```
+- [ ] ```
+  1. agg
+  2. average
+  3. col(&#34;sqft&#34;)
+```
+
+## Which of the following code blocks returns the number of rows in DataFrame storesDF?
+
+- [ ] storesDF.withColumn(&#34;numberOfRows&#34;, count())
+- [ ] storesDF.withColumn(count().alias(&#34;numberOfRows&#34;))
+- [ ] storesDF.countDistinct()
+- [X] storesDF.count()
+- [ ] storesDF.agg(count())
+
+## Which of the following code blocks returns the sum of the values in column sqft in DataFrame storesDF grouped by distinct value in column division?
+
+- [ ] storesDF.groupBy.agg(sum(col(&#34;sqft&#34;)))
+- [ ] storesDF.groupBy(&#34;division&#34;).agg(sum())
+- [ ] storesDF.agg(groupBy(&#34;division&#34;).sum(col(&#34;sqft&#34;)))
+- [ ] storesDF.groupby.agg(sum(col(&#34;sqft&#34;)))
+- [X] storesDF.groupBy(&#34;division&#34;).agg(sum(col(&#34;sqft&#34;)))
+
+## Which of the following code blocks returns a DataFrame containing summary statistics only for column sqft in DataFrame storesDF?
+
+- [ ] storesDF.summary(&#34;mean&#34;)
+- [X] storesDF.describe(&#34;sqft&#34;)
+- [ ] storesDF.summary(col(&#34;sqft&#34;))
+- [ ] storesDF.describeColumn(&#34;sqft&#34;)
+- [ ] storesDF.summary()
+
+## Which of the following operations can be used to sort the rows of a DataFrame?
+
+- [X] sort() and orderBy()
+- [ ] orderby()
+- [ ] sort() and orderby()
+- [ ] orderBy()
+- [ ] sort()
+
+## The code block shown below contains an error. The code block is intended to return a 15 percent sample of rows from DataFrame storesDF without replacement. Identify the error.  Code block: storesDF.sample(True, fraction = 0.15)
+
+- [ ] There is no argument specified to the seed parameter.
+- [ ] There is no argument specified to the withReplacement parameter.
+- [ ] The sample() operation does not sample without replacement — sampleby() should be  used instead.
+- [ ] The sample() operation is not reproducible.
+- [X] The first argument True sets the sampling to be with replacement.
+
+## Which of the following operations can be used to return the top n rows from a DataFrame?
+
+- [ ] DataFrame.n()
+- [X] DataFrame.take(n)
+- [ ] DataFrame.head
+- [ ] DataFrame.show(n)
+- [ ] DataFrame.collect(n)
+
+## The code block shown below should extract the value for column sqft from the first row of DataFrame storesDF. Choose the response that correctly fills in the numbered blanks within the  code block to complete this task.
+Code block:
+`__**1__.__2 __.__3 __**`
+
+- [ ] ```
+  1. storesDF
+  2. first
+  3. col(&#34;sqft&#34;)
+```
+- [ ] ```
+  1. storesDF
+  2. first
+  3. sqft
+```
+- [ ] ```
+  1. storesDF
+  2. first
+  3. [&#34;sqft&#34;]
+```
+- [X] ```
+  1. storesDF
+  2. first()
+  3. sqft
+```
+- [ ] ```
+  1. storesDF
+  2. first()
+  3. col(&#34;sqft&#34;)
+```
+
+## Which of the following lines of code prints the schema of a DataFrame?
+
+- [ ] print(storesDF)
+- [ ] storesDF.schema
+- [ ] print(storesDF.schema())
+- [X] DataFrame.printSchema()
+- [ ] DataFrame.schema()
+
+## In what order should the below lines of code be run in order to create and register a SQL UDF named &#34;ASSESS_PERFORMANCE&#34; using the Python function assessPerformance and apply it to column customerSatistfaction in table stores?
+```
+Lines of code:
+1.`spark.udf.register(&#34;ASSESS_PERFORMANCE&#34;, assessPerformance)`
+2.`spark.sql(&#34;SELECT customerSatisfaction, assessPerformance(customerSatisfaction) AS result FROM stores&#34;)`
+3.`spark.udf.register(assessPerformance, &#34;ASSESS_PERFORMANCE&#34;)`
+4. `spark.sql(&#34;SELECT customerSatisfaction, ASSESS_PERFORMANCE(customerSatisfaction) AS result FROM
+stores&#34;)`
+```
+
+- [ ] 3, 4
+- [X] 1, 4
+- [ ] 3, 2
+- [ ] 2
+- [ ] 1, 2
+
+## In what order should the below lines of code be run in order to create a Python UDF assessPerformanceUDF() using the integer-returning Python function assessPerformance and apply it to column customerSatisfaction in DataFrame storesDF?
+```
+Lines of code:
+1. assessPerformanceUDF = udf(assessPerformance, IntegerType)
+2. assessPerformanceUDF = spark.register.udf(&#34;ASSESS_PERFORMANCE&#34;,
+assessPerformance)
+3. assessPerformanceUDF = udf(assessPerformance, IntegerType())
+4. storesDF.withColumn(&#34;result&#34;,
+assessPerformanceUDF(col(&#34;customerSatisfaction&#34;)))
+5. storesDF.withColumn(&#34;result&#34;,
+assessPerformance(col(&#34;customerSatisfaction&#34;)))
+6. storesDF.withColumn(&#34;result&#34;,
+ASSESS_PERFORMANCE(col(&#34;customerSatisfaction&#34;)))
+```
+
+- [X] 3, 4
+- [ ] 2, 6
+- [ ] 3, 5
+- [ ] 1, 4
+- [ ] 2, 5
+
+## Which of the following operations can execute a SQL query on a table?
+
+- [ ] spark.query()
+- [ ] DataFrame.sql()
+- [X] spark.sql()
+- [ ] DataFrame.createOrReplaceTempView()
+- [ ] DataFrame.createTempView()
+
+## Which of the following code blocks creates a single-column DataFrame from Python list years which is made up of integers?
+
+- [ ] `spark.createDataFrame([years], IntegerType())`
+- [X] `spark.createDataFrame(years, IntegerType())`
+- [ ] `spark.DataFrame(years, IntegerType())`
+- [ ] `spark.createDataFrame(years)`
+- [ ] `spark.createDataFrame(years, IntegerType)`
+
+
+## Which of the following operations can be used to cache a DataFrame only in Spark’s memory assuming the default arguments can be updated?
+
+- [ ] DataFrame.clearCache()
+- [ ] DataFrame.storageLevel
+- [ ] StorageLevel
+- [X] DataFrame.persist()
+- [ ] DataFrame.cache()
+
+## The code block shown below contains an error. The code block is intended to return a new 4-partition DataFrame from the 8-partition DataFrame storesDF without inducing a shuffle. Identify the error. Code block: storesDF.repartition(4)
+
+- [ ] The repartition operation will only work if the DataFrame has been cached to memory. 
+- [ ] The repartition operation requires a column on which to partition rather than a number of partitions.
+- [ ] The number of resulting partitions, 4, is not achievable for an 8-partition DataFrame.
+- [X] The repartition operation induced a full shuffle. The coalesce operation should be used instead.
+- [ ] The repartition operation cannot guarantee the number of result partitions.
+
+## Which of the following code blocks will always return a new 12-partition DataFrame from the 8-partition DataFrame storesDF?
+
+- [ ] storesDF.coalesce(12)
+- [ ] storesDF.repartition()
+- [X] storesDF.repartition(12)
+- [ ] storesDF.coalesce()
+- [ ] storesDF.coalesce(12, &#34;storeId&#34;)
+
+## Which of the following Spark config properties represents the number of partitions used in wide transformations like join()?
+
+- [x] `spark.sql.shuffle.partitions`
+- [ ] `spark.shuffle.partitions`
+- [ ] `spark.shuffle.io.maxRetries`
+- [ ] `spark.shuffle.file.buffer`
+- [ ] `spark.default.parallelism`
+
+###  In what order should the below lines of code be run in order to return a DataFrame containing a column openDateString, a string representation of Java’s SimpleDateFormat? Note that column openDate is of type integer and represents a date in the UNIX epoch format — the number of seconds since midnight on January 1st, 1970. An example of Java&#39;s SimpleDateFormat is &#34;Sunday, Dec 4, 2008 1:05 PM&#34;. A sample of storesDF is displayed below:
+```
+Lines of code:
+1. `storesDF.withColumn(&#34;openDateString&#34;,
+from_unixtime(col(&#34;openDate&#34;), simpleDateFormat))`
+2. `simpleDateFormat = &#34;EEEE, MMM d, yyyy h:mm a&#34;`
+3. `storesDF.withColumn(&#34;openDateString&#34;,
+from_unixtime(col(&#34;openDate&#34;), SimpleDateFormat()))`
+4.`storesDF.withColumn(&#34;openDateString&#34;,
+date_format(col(&#34;openDate&#34;), simpleDateFormat))`
+5.`storesDF.withColumn(&#34;openDateString&#34;,
+date_format(col(&#34;openDate&#34;), SimpleDateFormat()))`
+6.`simpleDateFormat = &#34;wd, MMM d, yyyy h:mm a&#34;`
+```
+
+- [ ] 2, 3
+- [X] 2, 1
+- [ ] 6, 5
+- [ ] 2, 4
+- [ ] 6, 1
+
+## Which of the following code blocks returns a DataFrame containing a column month, an integer representation of the month from column openDate from DataFrame storesDF? Note that column openDate is of type integer and represents a date in the UNIX epoch format — the number of seconds since midnight on January 1st, 1970. A sample of storesDF is displayed below:
+![](&#34;/images/databricks-cert/q50.png&#34;)
+
+- [ ] `storesDF.withColumn(&#34;month&#34;, getMonth(col(&#34;openDate&#34;)))`
+- [X] `storesDF.withColumn(&#34;openTimestamp&#34;, col(&#34;openDate&#34;).cast(&#34;Timestamp&#34;)).withColumn(&#34;month&#34;, month(col(&#34;openTimestamp&#34;)))`
+- [ ] `storesDF.withColumn(&#34;openDateFormat&#34;, col(&#34;openDate&#34;).cast(&#34;Date&#34;)).withColumn(&#34;month&#34;, month(col(&#34;openDateFormat&#34;)))`
+- [ ] `storesDF.withColumn(&#34;month&#34;, substr(col(&#34;openDate&#34;), 4, 2))`
+- [ ] `storesDF.withColumn(&#34;month&#34;, month(col(&#34;openDate&#34;)))`
+
+
+## Which of the following operations performs an inner join on two DataFrames?
+
+- [ ] DataFrame.innerJoin()
+- [X] DataFrame.join()
+- [ ] Standalone join() function
+- [ ] DataFrame.merge()
+- [ ] DataFrame.crossJoin()
+
+## Which of the following code blocks returns a new DataFrame that is the result of an outer join between DataFrame storesDF and DataFrame employeesDF on column storeId?
+
+- [X] storesDF.join(employeesDF, &#34;storeId&#34;, &#34;outer&#34;)
+- [ ] storesDF.join(employeesDF, &#34;storeId&#34;)
+- [ ] storesDF.join(employeesDF, &#34;outer&#34;, col(&#34;storeId&#34;))
+- [ ] storesDF.join(employeesDF, &#34;outer&#34;, storesDF.storeId == employeesDF.storeId)
+- [ ] storesDF.merge(employeesDF, &#34;outer&#34;, col(&#34;storeId&#34;))
+
+## The below code block contains an error. The code block is intended to return a new DataFrame that is the result of an inner join between DataFrame storesDF and DataFrame employeesDF on column storeId and column employeeId which are in both DataFrames. Identify the error.
+Code block:
+`storesDF.join(employeesDF, [col(&#34;storeId&#34;), col(&#34;employeeId&#34;)])`
+
+- [ ] The join() operation is a standalone function rather than a method of DataFrame — the join() operation should be called where its first two arguments are storesDF and employeesDF.
+- [ ] There must be a third argument to join() because the default to the how parameter is not &#34;inner&#34;.
+- [ ] The col(&#34;storeId&#34;) and col(&#34;employeeId&#34;) arguments should not be separate elements of a list — they should be tested to see if they&#39;re equal to one another like col(&#34;storeId&#34;) == col(&#34;employeeId&#34;).
+- [ ] There is no DataFrame.join() operation — DataFrame.merge() should be used instead.
+- [X] The references to &#34;storeId&#34; and &#34;employeeId&#34; should not be inside the col() function — removing the col() function should result in a successful join.
+
+## Which of the following Spark properties is used to configure the broadcasting of a DataFrame without the use of the broadcast() operation?
+
+- [X] spark.sql.autoBroadcastJoinThreshold
+- [ ] spark.sql.broadcastTimeout
+- [ ] spark.broadcast.blockSize
+- [ ] spark.broadcast.compress
+- [ ] spark.executor.memoryOverhead
+
+
+## The code block shown below should return a new DataFrame that is the result of a cross join between DataFrame storesDF and DataFrame employeesDF. Choose the response that correctly fills in the numbered blanks within the code block to complete this task. Code block:
+
+__***1*__**.__**2__**(__3__)
+
+- [ ] ```
+  1. storesDF
+  2. crossJoin
+  3. employeesDF, &#34;storeId&#34;
+```
+- [ ] ```
+  1. storesDF
+  2. join
+  3. employeesDF, &#34;cross&#34;
+```
+- [ ] ```
+  1. storesDF
+  2. crossJoin
+  3. employeesDF, &#34;storeId&#34;
+```
+- [ ] ```
+  1. storesDF
+  2. join
+  3. employeesDF, &#34;storeId&#34;, &#34;cross&#34;
+```
+- [X] ```
+  1. storesDF
+  2. crossJoin
+  3. employeesDF
+```
+
+## Which of the following operations performs a position-wise union on two DataFrames?
+
+- [ ] The standalone concat() function
+- [ ] The standalone unionAll() function
+- [ ] The standalone union() function
+- [ ] DataFrame.unionByName()
+- [X] DataFrame.union()
+
+## Which of the following code blocks writes DataFrame storesDF to file path filePath as parquet?
+
+- [ ] storesDF.write.option(&#34;parquet&#34;).path(filePath)
+- [ ] storesDF.write.path(filePath)
+- [ ] storesDF.write().parquet(filePath)
+- [ ] storesDF.write(filePath)
+- [X] storesDF.write.parquet(filePath)
+
+## The code block shown below contains an error. The code block is intended to write DataFrame storesDF to file path filePath as parquet and partition by values in column division. Identify the error. Code block:
+
+`storesDF.write.repartition(&#34;division&#34;).parquet(filePath)`
+
+- [ ] The argument division to operation repartition() should be wrapped in the col() function to return a Column object.
+- [ ] There is no parquet() operation for DataFrameWriter — the save() operation should be used instead.
+- [X] There is no repartition() operation for DataFrameWriter — the partitionBy() operation should be used instead.
+- [ ] DataFrame.write is an operation — it should be followed by parentheses to return a
+DataFrameWriter.
+- [ ] The mode() operation must be called to specify that this write should not overwrite
+existing files.
+
+## Which of the following code blocks reads a parquet at the file path filePath into a DataFrame?
+
+- [ ] spark.read().parquet(filePath)
+- [ ] spark.read().path(filePath, source = &#34;parquet&#34;)
+- [ ] spark.read.path(filePath, source = &#34;parquet&#34;)
+- [x] spark.read.parquet(filePath)
+- [ ] spark.read().path(filePath)
+
+
+## Which of the following code blocks reads JSON at the file path filePath into a DataFrame with the specified schema schema?
+
+- [ ] spark.read().schema(schema).format(json).load(filePath)
+- [ ] spark.read().schema(schema).format(&#34;json&#34;).load(filePath)
+- [ ] spark.read.schema(&#34;schema&#34;).format(&#34;json&#34;).load(filePath)
+- [ ] spark.read.schema(&#34;schema&#34;).format(&#34;json&#34;).load(filePath)
+- [x] spark.read.schema(schema).format(&#34;json&#34;).load(filePath)
+
+
+
+'>
 <meta property='og:url' content='https://adrianabreu.com/spark-certification/2022-06-28-databricks-practice-exam/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Spark-Certification'><meta property='article:tag' content='Spark'><meta property='article:tag' content='Certification'><meta property='article:tag' content='Data Engineer'><meta property='article:published_time' content='2022-06-28T13:43:22Z'/><meta property='article:modified_time' content='2022-06-28T13:43:22Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>

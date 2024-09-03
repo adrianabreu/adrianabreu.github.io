@@ -1,3 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C# on Adrián Abreu</title><link>https://adrianabreu.com/tags/c%23/</link><description>Recent content in C# on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Wed, 21 Jul 2021 18:52:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/tags/c%23/index.xml" rel="self" type="application/rss+xml"/><item><title>A funny bug</title><link>https://adrianabreu.com/blog/2021-07-21-funny-bug/</link><pubDate>Wed, 21 Jul 2021 18:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-07-21-funny-bug/</guid><description>Ayer mismo estaba intentando analizar unos data_types para completar una exportación al backend. La idea era sencilla, buscar para cada usuario la ultima información disponible en una tabla que representaba actualizaciones sobre su perfil.
-Como a su perfil podías &amp;ldquo;añadir&amp;rdquo;, &amp;ldquo;actualizar&amp;rdquo; y &amp;ldquo;eliminar&amp;rdquo; cosas, pues existian los tres tipos en la tabla. Para que la imaginemos mejor sería tal que así:
-user_id favorite_stuff operation metadata A Chocolate Add &amp;hellip; A Chocolate Update &amp;hellip; B Milk Remove &amp;hellip; B Cornflakes Add &amp;hellip; De tal manera que habría que combinar todos los eventos para saber cual es el perfil actual del usuario y aplicar cierta lógica.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C# on Adrián Abreu</title><link>https://adrianabreu.com/tags/c%23/</link><description>Recent content in C# on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Wed, 21 Jul 2021 18:52:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/tags/c%23/index.xml" rel="self" type="application/rss+xml"/><item><title>A funny bug</title><link>https://adrianabreu.com/blog/2021-07-21-funny-bug/</link><pubDate>Wed, 21 Jul 2021 18:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-07-21-funny-bug/</guid><description>&lt;p>Ayer mismo estaba intentando analizar unos data_types para completar una exportación al backend. La idea era sencilla, buscar para cada usuario la ultima información disponible en una tabla que representaba actualizaciones sobre su perfil.&lt;/p>
+&lt;p>Como a su perfil podías &amp;ldquo;añadir&amp;rdquo;, &amp;ldquo;actualizar&amp;rdquo; y &amp;ldquo;eliminar&amp;rdquo; cosas, pues existian los tres tipos en la tabla. Para que la imaginemos mejor sería tal que así:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">user_id&lt;/th>
+ &lt;th style="text-align: left">favorite_stuff&lt;/th>
+ &lt;th style="text-align: left">operation&lt;/th>
+ &lt;th style="text-align: left">metadata&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">A&lt;/td>
+ &lt;td style="text-align: left">Chocolate&lt;/td>
+ &lt;td style="text-align: left">Add&lt;/td>
+ &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">A&lt;/td>
+ &lt;td style="text-align: left">Chocolate&lt;/td>
+ &lt;td style="text-align: left">Update&lt;/td>
+ &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">B&lt;/td>
+ &lt;td style="text-align: left">Milk&lt;/td>
+ &lt;td style="text-align: left">Remove&lt;/td>
+ &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">B&lt;/td>
+ &lt;td style="text-align: left">Cornflakes&lt;/td>
+ &lt;td style="text-align: left">Add&lt;/td>
+ &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>De tal manera que habría que combinar todos los eventos para saber cual es el perfil actual del usuario y aplicar cierta lógica. Sin embargo los eventos que habían llegado realmente eran así:&lt;/p></description></item></channel></rss>

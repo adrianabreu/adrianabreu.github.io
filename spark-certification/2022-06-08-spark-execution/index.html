@@ -7,7 +7,8 @@
 <title>Spark Execution | Adrián Abreu</title>
 
 <meta property='og:title' content='Spark Execution - Adrián Abreu'>
-<meta property='og:description' content='Spark provides an api and an engine, that engine is responsible for analyzing the code and performing several optimizations. But how does this work? We can do two kinds of operations with Spark, transformations and actions.
+<meta property='og:description' content='Spark provides an api and an engine, that engine is responsible for analyzing the code and performing several optimizations. But how does this work?
+We can do two kinds of operations with Spark, transformations and actions.
 Transformations are operations on top of the data that modify the data but do not yield a result directly, that is because they all are lazily evaluated so, you can add new columns, filter rows, or perform some computations that won&rsquo;t be executed immediately.'>
 <meta property='og:url' content='https://adrianabreu.com/spark-certification/2022-06-08-spark-execution/'>
 <meta property='og:site_name' content='Adrián Abreu'>
@@ -177,55 +178,55 @@ We can do two kinds of operations with Spark, transformations and actions.</p>
 </div>
 <p>As we need to move the data we need two stages.  The group by operation will be subdivided into smaller stages and will delimit the two stages.</p>
 <table>
-<thead>
-<tr>
-<th>1</th>
-<th>read</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>select</td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td>filter</td>
-<td></td>
-</tr>
-<tr>
-<td>4</td>
-<td>groupBy 1</td>
-<td></td>
-</tr>
-<tr>
-<td>4a</td>
-<td>shuffle write</td>
-<td>STAGE 1</td>
-</tr>
-<tr>
-<td>4b</td>
-<td>shuffle read</td>
-<td>STAGE 2</td>
-</tr>
-<tr>
-<td>4c</td>
-<td>groupBy 2</td>
-<td></td>
-</tr>
-<tr>
-<td>5</td>
-<td>filter</td>
-<td></td>
-</tr>
-<tr>
-<td>6</td>
-<td>write</td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">1</th>
+          <th style="text-align: left">read</th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">select</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">filter</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">groupBy 1</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4a</td>
+          <td style="text-align: left">shuffle write</td>
+          <td style="text-align: left">STAGE 1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4b</td>
+          <td style="text-align: left">shuffle read</td>
+          <td style="text-align: left">STAGE 2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4c</td>
+          <td style="text-align: left">groupBy 2</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left">filter</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">6</td>
+          <td style="text-align: left">write</td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
 <p>That is, then each piece of data will be considered a <strong>partition</strong> and will be assigned to a task. That&rsquo;s how spark performs the computation and achieves parallelism. But who does this?</p>
 <p>The <strong>Catalyst Optimizer</strong></p>

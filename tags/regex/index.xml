@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Regex on Adrián Abreu</title><link>https://adrianabreu.com/tags/regex/</link><description>Recent content in Regex on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Fri, 05 Nov 2021 16:39:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/tags/regex/index.xml" rel="self" type="application/rss+xml"/><item><title>Regex 101</title><link>https://adrianabreu.com/blog/2021-11-01-regex-101/</link><pubDate>Fri, 05 Nov 2021 16:39:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-11-01-regex-101/</guid><description>-You will spent your whole life relearning regex, there is a beginning, but never and end.
-Last year I participated in some small code problems and practised some regex. I got used to it and feel quite good at it.
-And today I had to use it again. I had the following dataframe:
-product attributes 1 (SIZE-36) 2 (COLOR-RED) 3 (SIZE-38, COLOR-BLUE) 4 (COLOR-GREEN, SIZE-39) A wonderful set of string merged with properties that could vary.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Regex on Adrián Abreu</title><link>https://adrianabreu.com/tags/regex/</link><description>Recent content in Regex on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Fri, 05 Nov 2021 16:39:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/tags/regex/index.xml" rel="self" type="application/rss+xml"/><item><title>Regex 101</title><link>https://adrianabreu.com/blog/2021-11-01-regex-101/</link><pubDate>Fri, 05 Nov 2021 16:39:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2021-11-01-regex-101/</guid><description>&lt;p>&lt;em>-You will spent your whole life relearning regex, there is a beginning, but never and end.&lt;/em>&lt;/p>
+&lt;p>Last year I participated in some small code problems and practised some regex. I got used to it and feel quite good at it.&lt;/p>
+&lt;p>And today I had to use it again. I had the following dataframe:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">product&lt;/th>
+ &lt;th style="text-align: left">attributes&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">1&lt;/td>
+ &lt;td style="text-align: left">(SIZE-36)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">2&lt;/td>
+ &lt;td style="text-align: left">(COLOR-RED)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">3&lt;/td>
+ &lt;td style="text-align: left">(SIZE-38, COLOR-BLUE)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">4&lt;/td>
+ &lt;td style="text-align: left">(COLOR-GREEN, SIZE-39)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>A wonderful set of string merged with properties that could vary. And we wanted one column for each:&lt;/p></description></item></channel></rss>

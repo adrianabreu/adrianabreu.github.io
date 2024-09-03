@@ -127,52 +127,52 @@ But maybe your lake is in AWS or Azure. In the next lines, I will try to explain
 <h1 id="shifted-hours">Shifted hours</h1>
 <p>If you parse the timestamp of the rows you will find that for a given day there are two shifter hours from the day before, like:</p>
 <table>
-<thead>
-<tr>
-<th>hours</th>
-<th>day</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0 - 22</td>
-<td>n</td>
-</tr>
-<tr>
-<td>23 - 0</td>
-<td>n - 1</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">hours</th>
+          <th style="text-align: left">day</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">0 - 22</td>
+          <td style="text-align: left">n</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">23 - 0</td>
+          <td style="text-align: left">n - 1</td>
+      </tr>
+  </tbody>
 </table>
 <p>So when we load data from one day we should modify at least two partitions, the one for the given day and the one from the previous one.</p>
 <h1 id="delta-comes-to-the-rescue">Delta comes to the rescue!</h1>
 <p>Usually, our mobile events tend to be the biggest entity. For example in the project I&rsquo;m working on now I&rsquo;m on the magnitude of billions of events per day and we&rsquo;re talking about 3 hours every day to load the data and publish it.</p>
 <p>To improve the load we revamp the process to load the data into delta directly. We generated a table modeling the big query schema, and added the following fields:</p>
 <table>
-<thead>
-<tr>
-<th>field_name</th>
-<th>type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>is_intraday</td>
-<td>boolean</td>
-</tr>
-<tr>
-<td>p_date_key</td>
-<td>string</td>
-</tr>
-<tr>
-<td>p_shifted</td>
-<td>integer</td>
-</tr>
-<tr>
-<td>p_event_name</td>
-<td>string</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">field_name</th>
+          <th style="text-align: left">type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">is_intraday</td>
+          <td style="text-align: left">boolean</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">p_date_key</td>
+          <td style="text-align: left">string</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">p_shifted</td>
+          <td style="text-align: left">integer</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">p_event_name</td>
+          <td style="text-align: left">string</td>
+      </tr>
+  </tbody>
 </table>
 <p>So, now let&rsquo;s write a simple process. Today is the 1st of July and we want to load the data from yesterday.
 We should query both tables:</p>
@@ -189,53 +189,53 @@ We should query both tables:</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span></code></pre></div><p>And probably we will extract the data from the intraday, so we will end with (event_names are omitted since they would be a lot).</p>
 <table>
-<thead>
-<tr>
-<th>is_intraday</th>
-<th>p_date_key</th>
-<th>p_shifted</th>
-<th>p_event_name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>true</td>
-<td>2022-06-30</td>
-<td>0</td>
-<td>&hellip;</td>
-</tr>
-<tr>
-<td>true</td>
-<td>2022-06-29</td>
-<td>1</td>
-<td>&hellip;</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">is_intraday</th>
+          <th style="text-align: left">p_date_key</th>
+          <th style="text-align: left">p_shifted</th>
+          <th style="text-align: left">p_event_name</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">true</td>
+          <td style="text-align: left">2022-06-30</td>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">true</td>
+          <td style="text-align: left">2022-06-29</td>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">&hellip;</td>
+      </tr>
+  </tbody>
 </table>
 <p>On day 3rd of July, we should have the events table ready, so we will load:</p>
 <table>
-<thead>
-<tr>
-<th>is_intraday</th>
-<th>p_date_key</th>
-<th>p_shifted</th>
-<th>p_event_name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>false</td>
-<td>2022-06-30</td>
-<td>0</td>
-<td>&hellip;</td>
-</tr>
-<tr>
-<td>false</td>
-<td>2022-06-29</td>
-<td>1</td>
-<td>&hellip;</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">is_intraday</th>
+          <th style="text-align: left">p_date_key</th>
+          <th style="text-align: left">p_shifted</th>
+          <th style="text-align: left">p_event_name</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">false</td>
+          <td style="text-align: left">2022-06-30</td>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">false</td>
+          <td style="text-align: left">2022-06-29</td>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">&hellip;</td>
+      </tr>
+  </tbody>
 </table>
 <p>Since we want to overwrite that specific part of p_date_key and p_shifted, ignoring the event_names underneath (as there may be events that were already in the intraday table but not in the consolidated one), we can use the <a href="https://docs.databricks.com/delta/delta-batch.html#overwrite"><code>replaceWhere</code> statement</a>, with this we can merge the delete and write operation in one.</p>
 

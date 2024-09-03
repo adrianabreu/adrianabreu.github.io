@@ -8,7 +8,8 @@
 
 <meta property='og:title' content='Datos I - Introducción al Datawarehousing - Adrián Abreu'>
 <meta property='og:description' content='En los últimos meses mi trabajo ha pivotado del mundo de la web al mundo de los datos. He entrado a participar en un proyecto de Data Warehouse y he acabado muy contento en él. Hace unos días mi cambio se oficializó completamente y ahora me he dado cuenta de que no solo tengo un mundo técnico ante mí, sino que además necesito consolidar algunas bases teóricas.
-Investigando la bibliografía, me han recomendado en Reddit: The Data Warehouse Toolkit, The Complete Guide to Dimensional Modeling 2nd Edition.'>
+Investigando la bibliografía, me han recomendado en Reddit: The Data Warehouse Toolkit, The Complete Guide to Dimensional Modeling 2nd Edition.
+Y el libro parece encajar perfectamente en el conocimiento que busco. Aun así, como todo, por necesidad, intentaré resumir en unas cuantas entradas el conocimiento que se puede obtener de este libro. El cual recomiendo encarecidamente.'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2019-02-05-data-i-introduccion-al-datawarehouse/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Analytics'><meta property='article:tag' content='SQL'><meta property='article:published_time' content='2019-02-05T14:43:32Z'/><meta property='article:modified_time' content='2019-02-05T14:43:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
@@ -145,28 +146,28 @@ Y el libro parece encajar perfectamente en el conocimiento que busco. Aun así, 
 <h3 id="fact-table-tabla-de-hechos">Fact Table (Tabla de hechos):</h3>
 <p>Esta es la tabla primaria de un modelo dimensional. Aquí se almacenan las medidas del negocio. Si ponemos un ejemplo como el del libro, en el sector de ventas, podríamos definir la tabla de hecho de ventas como:</p>
 <table>
-<thead>
-<tr>
-<th>Daily Sales Fact Table</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Date Key FK</td>
-</tr>
-<tr>
-<td>Product Key FK</td>
-</tr>
-<tr>
-<td>Store Key FK</td>
-</tr>
-<tr>
-<td>Quantity Sold</td>
-</tr>
-<tr>
-<td>Dollar Sales Amount</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Daily Sales Fact Table</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Date Key FK</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Product Key FK</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Store Key FK</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Quantity Sold</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Dollar Sales Amount</td>
+      </tr>
+  </tbody>
 </table>
 <p>Y lo que vemos en cada fila es una medida de un producto vendiéndose en una tienda. Cada una de las medidas que componen la tabla es una <strong>dimensión</strong>.</p>
 <p>Como nota, los <strong>hechos</strong> más útiles son numéricos y sumables, como la cantidad de dólares de una venta. Los que no son sumables tienen que ser convertidos en conteos o medias y los semiaditivos no encajaran en algunas dimensiones.</p>
@@ -176,34 +177,34 @@ Para las claves primarias no debería hacer falta añadir un ROWID, aunque es po
 <h3 id="dimension-table-tabla-de-dimensiones">Dimension Table (Tabla de dimensiones):</h3>
 <p>Las tablas de dimensiones contienen los descriptores del negocio. Una buena tabla de dimensiones tiene varias columnas que actúan como atributos y que son descripciones textuales. Por ejemplo, en el caso anterior, para un producto, podemos tener:</p>
 <table>
-<thead>
-<tr>
-<th>Product Dimension Table</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Product Key</td>
-</tr>
-<tr>
-<td>Product Description</td>
-</tr>
-<tr>
-<td>Brand Description</td>
-</tr>
-<tr>
-<td>Category Description</td>
-</tr>
-<tr>
-<td>Weight</td>
-</tr>
-<tr>
-<td>Storage</td>
-</tr>
-<tr>
-<td>&hellip;.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Product Dimension Table</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Product Key</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Product Description</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Brand Description</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Category Description</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Weight</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Storage</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">&hellip;.</td>
+      </tr>
+  </tbody>
 </table>
 <p>Los mejores atributos son textutales y discretos. Deberían ser palabras reales y no criptogramas, o códigos. La idea es facilitar de cara al usuario del negocio el entendimiento del modelo.</p>
 <p>Las tablas de dimensiones, además, están altamente desnormalizadas y a veces representan información de forma redundante. Por ejemplo en la tabla anterior para cada producto almacenamos su categoría y marca, pero lo hacemos en pos de mejorar la facilidad de uso y el rendimiento.</p>

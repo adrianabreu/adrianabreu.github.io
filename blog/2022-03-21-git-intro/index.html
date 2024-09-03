@@ -9,7 +9,10 @@
 <meta property='og:title' content='Git 101 - Adrián Abreu'>
 <meta property='og:description' content='From time to time I get to the same place, telling some people about git, what it solves and some basic usage.
 Since I&rsquo;ve done it a lot recenly I wanted to write down a post and enjoy it.
-What is git? Git is a gift from the gods for the following use cases:
+What is git?
+Git is a gift from the gods for the following use cases:
+
+
 My laptop is broke! I need the data there is a whole month of work there!'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2022-03-21-git-intro/'>
 <meta property='og:site_name' content='Adrián Abreu'>
@@ -176,22 +179,22 @@ But this will be really slow to regenerate the state at some point since all ope
 </ul>
 <p>Lets summarize the areas:</p>
 <table>
-<thead>
-<tr>
-<th>working area</th>
-<th> staging area</th>
-<th>commit area</th>
-<th>stash area</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>where the untracked changes reside my &ldquo;bare&rdquo; filesystem</td>
-<td>it holds the changes I decided to add</td>
-<td>the &ldquo;stored&rdquo; changes applied to my files</td>
-<td>the trsh bin</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">working area</th>
+          <th style="text-align: left"> staging area</th>
+          <th style="text-align: left">commit area</th>
+          <th style="text-align: left">stash area</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">where the untracked changes reside my &ldquo;bare&rdquo; filesystem</td>
+          <td style="text-align: left">it holds the changes I decided to add</td>
+          <td style="text-align: left">the &ldquo;stored&rdquo; changes applied to my files</td>
+          <td style="text-align: left">the trsh bin</td>
+      </tr>
+  </tbody>
 </table>
 <p>When we take the first paths there are 3 possibilities:</p>
 <ol>
