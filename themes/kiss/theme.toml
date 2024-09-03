@@ -31,5 +31,5 @@ min_version = 0.28
 
 [original]
   name = "hemingway"
-  homepage = "http://tanksuzuki.com"
+  homepage = "https://tanksuzuki.com"
   repo = "https://github.com/tanksuzuki/hemingway"

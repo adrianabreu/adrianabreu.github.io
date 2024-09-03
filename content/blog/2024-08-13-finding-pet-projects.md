@@ -14,4 +14,3 @@ Within a day, I decided to create a script that emails my Lichess statistics usi
 I also wanted to experiment with [Pydantic settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/), as I plan to incorporate them into upcoming projects with [Databricks Asset Bundles](https://docs.databricks.com/en/dev-tools/bundles/index.html).
 
 In just a few hours, I developed a solid project skeleton that I'm excited to iterate on further. You can check it out here: [Lichess Mail Reporter](https://github.com/adrianabreu/lichess-mail-reporter).
-
