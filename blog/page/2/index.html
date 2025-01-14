@@ -10,7 +10,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://adrianabreu.com/blog/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='og:updated_time' content='2024-08-13T07:00:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='og:updated_time' content='2025-01-13T20:07:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,6 +90,37 @@
 </section>
 <section class="section">
   <div class="container">
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/databricks/">#Databricks</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/terraform/">#Terraform</a>
+  
+  | <a class="subtitle is-6" href="/tags/unity-catalog/">#Unity Catalog</a>
+  
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">May 23, 2023</h2>
+      <h1 class="title"><a href="https://adrianabreu.com/blog/2023-05-23-enabling-unity-catalog/">Enabling Unity Catalog</a></h1>
+      <div class="content">
+        I&rsquo;ve spent the last few weeks setting up the unity catalog for my company. It&rsquo;s been an extremely tiring process. And there are several concepts to bring here. My main point is to have a clear view of the requirements.
+Disclaimer: as of today with https://github.com/databricks/terraform-provider-databricks release 1.17.0, some steps should be done in an &ldquo;awkward way&rdquo; that is, the account API does not expose the catalog&rsquo;s endpoint and should be done through a workspace.
+
+        
+        <a class="button is-link" href="https://adrianabreu.com/blog/2023-05-23-enabling-unity-catalog/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
     
     <article>
       <div class="subtitle tags is-6 is-pulled-right">
@@ -271,6 +302,7 @@ But maybe your lake is in AWS or Azure. In the next lines, I will try to explain
         A few days ago I ran into Qbeast which is an open-source project on top of delta lake I needed to dig into.
 This introductory post explains it quite well: https://qbeast.io/qbeast-format-enhanced-data-lakehouse/
 The project is quite good and it seems helpful if you need to write your custom data source as everything is documented. And well as I&rsquo;m in love with note-taking I want to dig into the following three topics:
+Explaining how the format works (including optimizations) Describing how the sampling push is implementing Understanding the table tolerance 1. Qbeast format This would be better explained with diagrams. Remember delta lake? We had a _delta_log folder with files pointing to files. Now Qbeast has extended this delta_log and has added some new properties.
 
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2022-06-30-qbeast/" style="height:28px">
@@ -300,33 +332,6 @@ In this case, I want to generate a small dataset for a dimension product table i
 
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2022-05-31-faker-pyspark/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/git/">#Git</a>
-
-
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">March 21, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/blog/2022-03-21-git-intro/">Git 101</a></h1>
-      <div class="content">
-        From time to time I get to the same place, telling some people about git, what it solves and some basic usage.
-Since I&rsquo;ve done it a lot recenly I wanted to write down a post and enjoy it.
-What is git? Git is a gift from the gods for the following use cases:
-My laptop is broke! I need the data there is a whole month of work there!
-
-        
-        <a class="button is-link" href="https://adrianabreu.com/blog/2022-03-21-git-intro/" style="height:28px">
           Read more
         </a>
         

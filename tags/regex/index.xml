@@ -4,26 +4,26 @@
 &lt;table>
  &lt;thead>
  &lt;tr>
- &lt;th style="text-align: left">product&lt;/th>
- &lt;th style="text-align: left">attributes&lt;/th>
+ &lt;th>product&lt;/th>
+ &lt;th>attributes&lt;/th>
  &lt;/tr>
  &lt;/thead>
  &lt;tbody>
  &lt;tr>
- &lt;td style="text-align: left">1&lt;/td>
- &lt;td style="text-align: left">(SIZE-36)&lt;/td>
+ &lt;td>1&lt;/td>
+ &lt;td>(SIZE-36)&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">2&lt;/td>
- &lt;td style="text-align: left">(COLOR-RED)&lt;/td>
+ &lt;td>2&lt;/td>
+ &lt;td>(COLOR-RED)&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">3&lt;/td>
- &lt;td style="text-align: left">(SIZE-38, COLOR-BLUE)&lt;/td>
+ &lt;td>3&lt;/td>
+ &lt;td>(SIZE-38, COLOR-BLUE)&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">4&lt;/td>
- &lt;td style="text-align: left">(COLOR-GREEN, SIZE-39)&lt;/td>
+ &lt;td>4&lt;/td>
+ &lt;td>(COLOR-GREEN, SIZE-39)&lt;/td>
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>

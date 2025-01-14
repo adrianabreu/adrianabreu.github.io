@@ -10,7 +10,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://adrianabreu.com/tags/spark/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Tags'><meta property='og:updated_time' content='2024-08-13T07:00:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Tags'><meta property='og:updated_time' content='2025-01-13T20:07:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -109,6 +109,7 @@
         A few days ago I ran into Qbeast which is an open-source project on top of delta lake I needed to dig into.
 This introductory post explains it quite well: https://qbeast.io/qbeast-format-enhanced-data-lakehouse/
 The project is quite good and it seems helpful if you need to write your custom data source as everything is documented. And well as I&rsquo;m in love with note-taking I want to dig into the following three topics:
+Explaining how the format works (including optimizations) Describing how the sampling push is implementing Understanding the table tolerance 1. Qbeast format This would be better explained with diagrams. Remember delta lake? We had a _delta_log folder with files pointing to files. Now Qbeast has extended this delta_log and has added some new properties.
 
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2022-06-30-qbeast/" style="height:28px">
@@ -140,7 +141,8 @@ The project is quite good and it seems helpful if you need to write your custom 
       <div class="content">
         I can perfectly describe this as the scariest part of the exam. I&rsquo;m used to working with dates but I&rsquo;m especially used to suffering from the typical UTC / not UTC / summer time hours difference.
 I will try to make some simple exercises for this, the idea would be:
-We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL. So we decided to aggregate at different levels the same KPI, our sales per store. Considering some data as: data = [ (1656520076, 1001, 10), (1656520321, 1001, 8), (1656509025, 1002, 5), (1656510826, 1002, 3), (1656510056, 1001, 5), (1656514076, 1001, 8), ] ts = &#34;ts&#34; store_id = &#34;store_id&#34; amount = &#34;amount&#34; df = spark.createDataFrame(data, [ts, store_id, amount]) 
+We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL. So we decided to aggregate at different levels the same KPI, our sales per store. Considering some data as: data = [ (1656520076, 1001, 10), (1656520321, 1001, 8), (1656509025, 1002, 5), (1656510826, 1002, 3), (1656510056, 1001, 5), (1656514076, 1001, 8), ] ts = &#34;ts&#34; store_id = &#34;store_id&#34; amount = &#34;amount&#34; df = spark.createDataFrame(data, [ts, store_id, amount]) We need to parse that data into a readable date as the first number is an epoch or unix_time. Using the function from_unixttime this is quite simple:
+
         
         <a class="button is-link" href="https://adrianabreu.com/spark-certification/2022-06-29-spark-dates/" style="height:28px">
           Read more
@@ -321,6 +323,7 @@ Transformations are operations on top of the data that modify the data but do no
       <div class="content">
         Spark works on top of a cluster supervised by a cluster manager. The later is responsible of:
 Tracking resource allocation across all applications running on the cluster. Monitoring the health of all the nodes. Inside each node there is a node manager which is responsible to track each node health and resources and inform the cluster manager.
+C l u s t e r M a n a g e r N N N o o o d d d e e e M M M a a a n n n a a a g g g e e e r r r When we run a Spark application we generate processes inside the cluster where one node will act as a Driver and the rest will be Workers. Here there are two main points:
 
         
         <a class="button is-link" href="https://adrianabreu.com/spark-certification/2022-06-07-spark-architecture/" style="height:28px">

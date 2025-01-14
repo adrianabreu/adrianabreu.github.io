@@ -10,7 +10,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://adrianabreu.com/tags/data-engineer/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Tags'><meta property='og:updated_time' content='2024-08-13T07:00:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Tags'><meta property='og:updated_time' content='2025-01-13T20:07:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -244,7 +244,8 @@ First of all, I needed to install Windows as there was no Linux support for the 
       <div class="content">
         I can perfectly describe this as the scariest part of the exam. I&rsquo;m used to working with dates but I&rsquo;m especially used to suffering from the typical UTC / not UTC / summer time hours difference.
 I will try to make some simple exercises for this, the idea would be:
-We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL. So we decided to aggregate at different levels the same KPI, our sales per store. Considering some data as: data = [ (1656520076, 1001, 10), (1656520321, 1001, 8), (1656509025, 1002, 5), (1656510826, 1002, 3), (1656510056, 1001, 5), (1656514076, 1001, 8), ] ts = &#34;ts&#34; store_id = &#34;store_id&#34; amount = &#34;amount&#34; df = spark.createDataFrame(data, [ts, store_id, amount]) 
+We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL. So we decided to aggregate at different levels the same KPI, our sales per store. Considering some data as: data = [ (1656520076, 1001, 10), (1656520321, 1001, 8), (1656509025, 1002, 5), (1656510826, 1002, 3), (1656510056, 1001, 5), (1656514076, 1001, 8), ] ts = &#34;ts&#34; store_id = &#34;store_id&#34; amount = &#34;amount&#34; df = spark.createDataFrame(data, [ts, store_id, amount]) We need to parse that data into a readable date as the first number is an epoch or unix_time. Using the function from_unixttime this is quite simple:
+
         
         <a class="button is-link" href="https://adrianabreu.com/spark-certification/2022-06-29-spark-dates/" style="height:28px">
           Read more

@@ -9,7 +9,14 @@
 <meta property='og:title' content='Qbeast - Adrián Abreu'>
 <meta property='og:description' content='A few days ago I ran into Qbeast which is an open-source project on top of delta lake I needed to dig into.
 This introductory post explains it quite well: https://qbeast.io/qbeast-format-enhanced-data-lakehouse/
-The project is quite good and it seems helpful if you need to write your custom data source as everything is documented. And well as I&rsquo;m in love with note-taking I want to dig into the following three topics:'>
+The project is quite good and it seems helpful if you need to write your custom data source as everything is documented. And well as I&rsquo;m in love with note-taking I want to dig into the following three topics:
+
+Explaining how the format works (including optimizations)
+Describing how the sampling push is implementing
+Understanding the table tolerance
+
+1. Qbeast format
+This would be better explained with diagrams. Remember delta lake? We had a _delta_log folder with files pointing to files. Now Qbeast has extended this delta_log and has added some new properties.'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2022-06-30-qbeast/'>
 <meta property='og:site_name' content='Adrián Abreu'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='Spark'><meta property='article:published_time' content='2022-06-30T07:28:32Z'/><meta property='article:modified_time' content='2022-06-30T07:28:32Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>

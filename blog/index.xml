@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Adrián Abreu</title><link>https://adrianabreu.com/blog/</link><description>Recent content in Blogs on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Tue, 13 Aug 2024 07:00:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Finding pet projects</title><link>https://adrianabreu.com/blog/2024-08-13-finding-pet-projects/</link><pubDate>Tue, 13 Aug 2024 07:00:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-08-13-finding-pet-projects/</guid><description>&lt;p>As my company undergoes layoffs, I&amp;rsquo;m back on the job hunt. While I&amp;rsquo;m in the field of data, I often find myself missing the hands-on experience that comes from personal projects. I realized that I&amp;rsquo;m not practicing all the skills I need.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Adrián Abreu</title><link>https://adrianabreu.com/blog/</link><description>Recent content in Blogs on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Mon, 13 Jan 2025 20:07:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>I’m Building Stuff – My New Motto</title><link>https://adrianabreu.com/blog/2025-01-13-building-stuff/</link><pubDate>Mon, 13 Jan 2025 20:07:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2025-01-13-building-stuff/</guid><description>&lt;p>For the past seven years, I worked in data, and I have mixed feelings about it. I still believe data is the most important part of any app, but it’s meaningless without the app itself.&lt;/p>
+&lt;p>Now that I’m working at a startup, I’ve decided to focus on building things. To start, I revisited one of my older projects: a PDF parser about professor designations in the Canary Islands, where one of my best friends works as a teacher.&lt;/p></description></item><item><title>Finding pet projects</title><link>https://adrianabreu.com/blog/2024-08-13-finding-pet-projects/</link><pubDate>Tue, 13 Aug 2024 07:00:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-08-13-finding-pet-projects/</guid><description>&lt;p>As my company undergoes layoffs, I&amp;rsquo;m back on the job hunt. While I&amp;rsquo;m in the field of data, I often find myself missing the hands-on experience that comes from personal projects. I realized that I&amp;rsquo;m not practicing all the skills I need.&lt;/p>
 &lt;p>During a recent interview, I was asked about my experience with sending reports via email—something I hadn’t done in a few years. That got me thinking: could I turn this into a pet project?&lt;/p></description></item><item><title>Developing on windows</title><link>https://adrianabreu.com/blog/2024-03-22-developing-on-windows/</link><pubDate>Fri, 22 Mar 2024 18:06:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-03-22-developing-on-windows/</guid><description>&lt;p>Over the years, I&amp;rsquo;ve been using MacOS at work and Ubuntu at home for my development tasks. However, my Lenovo P1 Gen 3 laptop didn&amp;rsquo;t work well with Linux, leading to frequent issues with the camera and graphics (screen flickering, I&amp;rsquo;m looking at you, and it hurts).&lt;/p>
 &lt;p>I&amp;rsquo;ve triend Windows Subsystem for Linux (WSL) but it was quite bad to be honest. But as I&amp;rsquo;ve heard of WSL2 and WSLg, I decided to give it another shot.&lt;/p></description></item><item><title>Querying the databricks api</title><link>https://adrianabreu.com/blog/2024-01-26-querying-the-databricks-api/</link><pubDate>Fri, 26 Jan 2024 09:06:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2024-01-26-querying-the-databricks-api/</guid><description>&lt;p>Exploring databricks SQL usage&lt;/p>
 &lt;p>At my company, we adopted databricks SQL for most of our users. Some users have developed applications that use the JDBC connector, some users have built their dashboards, and some users write plain ad-hoc queries.&lt;/p>
@@ -34,7 +35,14 @@ The analyst created a table that will make a window of 5 minutes, select some sp
 &lt;p>It is quite simple to export your data to BigQuery: &lt;a href="https://firebase.google.com/docs/projects/bigquery-export">https://firebase.google.com/docs/projects/bigquery-export&lt;/a>&lt;/p>
 &lt;p>But maybe your lake is in AWS or Azure. In the next lines, I will try to explain how to load the data in your lake and some improvements we have applied.&lt;/p></description></item><item><title>Qbeast</title><link>https://adrianabreu.com/blog/2022-06-30-qbeast/</link><pubDate>Thu, 30 Jun 2022 07:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-06-30-qbeast/</guid><description>&lt;p>A few days ago I ran into &lt;a href="https://twitter.com/Qbeast_io">Qbeast&lt;/a> which is an open-source project on top of delta lake I needed to dig into.&lt;/p>
 &lt;p>This introductory post explains it quite well: &lt;a href="https://qbeast.io/qbeast-format-enhanced-data-lakehouse/">https://qbeast.io/qbeast-format-enhanced-data-lakehouse/&lt;/a>&lt;/p>
-&lt;p>The project is quite good and it seems helpful if you need to write your custom data source as everything is documented. And well as I&amp;rsquo;m in love with note-taking I want to dig into the following three topics:&lt;/p></description></item><item><title>Faker with PySpark</title><link>https://adrianabreu.com/blog/2022-05-31-faker-pyspark/</link><pubDate>Tue, 31 May 2022 09:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-05-31-faker-pyspark/</guid><description>&lt;p>I’m preparing a small blog post about some tweakings I’ve done for a delta table, but I want to dig into the Spark UI differences before this. As this was done as part of my work I’m reproducing the problem with some generated data.&lt;/p>
+&lt;p>The project is quite good and it seems helpful if you need to write your custom data source as everything is documented. And well as I&amp;rsquo;m in love with note-taking I want to dig into the following three topics:&lt;/p>
+&lt;ol>
+&lt;li>Explaining how the format works (including optimizations)&lt;/li>
+&lt;li>Describing how the sampling push is implementing&lt;/li>
+&lt;li>Understanding the table tolerance&lt;/li>
+&lt;/ol>
+&lt;h1 id="1-qbeast-format">1. Qbeast format&lt;/h1>
+&lt;p>This would be better explained with diagrams. Remember delta lake? We had a _delta_log folder with files pointing to files. Now Qbeast has extended this delta_log and has added some new properties.&lt;/p></description></item><item><title>Faker with PySpark</title><link>https://adrianabreu.com/blog/2022-05-31-faker-pyspark/</link><pubDate>Tue, 31 May 2022 09:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-05-31-faker-pyspark/</guid><description>&lt;p>I’m preparing a small blog post about some tweakings I’ve done for a delta table, but I want to dig into the Spark UI differences before this. As this was done as part of my work I’m reproducing the problem with some generated data.&lt;/p>
 &lt;p>I didn’t know about &lt;a href="https://faker.readthedocs.io/en/master/">Faker&lt;/a> and &lt;em>boy&lt;/em> it is really simple and easy.&lt;/p>
 &lt;p>In this case, I want to generate a small dataset for a dimension product table including its id, category and price.&lt;/p></description></item><item><title>Git 101</title><link>https://adrianabreu.com/blog/2022-03-21-git-intro/</link><pubDate>Mon, 21 Mar 2022 22:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-03-21-git-intro/</guid><description>&lt;p>From time to time I get to the same place, telling some people about git, what it solves and some basic usage.&lt;/p>
 &lt;p>Since I&amp;rsquo;ve done it a lot recenly I wanted to write down a post and enjoy it.&lt;/p>
@@ -49,26 +57,26 @@ The analyst created a table that will make a window of 5 minutes, select some sp
 &lt;table>
  &lt;thead>
  &lt;tr>
- &lt;th style="text-align: left">campaign_id&lt;/th>
- &lt;th style="text-align: left">inviter_cash&lt;/th>
- &lt;th style="text-align: left">receiver_cash&lt;/th>
+ &lt;th>campaign_id&lt;/th>
+ &lt;th>inviter_cash&lt;/th>
+ &lt;th>receiver_cash&lt;/th>
  &lt;/tr>
  &lt;/thead>
  &lt;tbody>
  &lt;tr>
- &lt;td style="text-align: left">FakeBank001&lt;/td>
- &lt;td style="text-align: left">50&lt;/td>
- &lt;td style="text-align: left">30&lt;/td>
+ &lt;td>FakeBank001&lt;/td>
+ &lt;td>50&lt;/td>
+ &lt;td>30&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">FakeBank002&lt;/td>
- &lt;td style="text-align: left">40&lt;/td>
- &lt;td style="text-align: left">20&lt;/td>
+ &lt;td>FakeBank002&lt;/td>
+ &lt;td>40&lt;/td>
+ &lt;td>20&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">FakeBank003&lt;/td>
- &lt;td style="text-align: left">30&lt;/td>
- &lt;td style="text-align: left">20&lt;/td>
+ &lt;td>FakeBank003&lt;/td>
+ &lt;td>30&lt;/td>
+ &lt;td>20&lt;/td>
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>
@@ -80,26 +88,26 @@ The analyst created a table that will make a window of 5 minutes, select some sp
 &lt;table>
  &lt;thead>
  &lt;tr>
- &lt;th style="text-align: left">product&lt;/th>
- &lt;th style="text-align: left">attributes&lt;/th>
+ &lt;th>product&lt;/th>
+ &lt;th>attributes&lt;/th>
  &lt;/tr>
  &lt;/thead>
  &lt;tbody>
  &lt;tr>
- &lt;td style="text-align: left">1&lt;/td>
- &lt;td style="text-align: left">(SIZE-36)&lt;/td>
+ &lt;td>1&lt;/td>
+ &lt;td>(SIZE-36)&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">2&lt;/td>
- &lt;td style="text-align: left">(COLOR-RED)&lt;/td>
+ &lt;td>2&lt;/td>
+ &lt;td>(COLOR-RED)&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">3&lt;/td>
- &lt;td style="text-align: left">(SIZE-38, COLOR-BLUE)&lt;/td>
+ &lt;td>3&lt;/td>
+ &lt;td>(SIZE-38, COLOR-BLUE)&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">4&lt;/td>
- &lt;td style="text-align: left">(COLOR-GREEN, SIZE-39)&lt;/td>
+ &lt;td>4&lt;/td>
+ &lt;td>(COLOR-GREEN, SIZE-39)&lt;/td>
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>
@@ -109,36 +117,36 @@ The analyst created a table that will make a window of 5 minutes, select some sp
 &lt;table>
  &lt;thead>
  &lt;tr>
- &lt;th style="text-align: left">user_id&lt;/th>
- &lt;th style="text-align: left">favorite_stuff&lt;/th>
- &lt;th style="text-align: left">operation&lt;/th>
- &lt;th style="text-align: left">metadata&lt;/th>
+ &lt;th>user_id&lt;/th>
+ &lt;th>favorite_stuff&lt;/th>
+ &lt;th>operation&lt;/th>
+ &lt;th>metadata&lt;/th>
  &lt;/tr>
  &lt;/thead>
  &lt;tbody>
  &lt;tr>
- &lt;td style="text-align: left">A&lt;/td>
- &lt;td style="text-align: left">Chocolate&lt;/td>
- &lt;td style="text-align: left">Add&lt;/td>
- &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;td>A&lt;/td>
+ &lt;td>Chocolate&lt;/td>
+ &lt;td>Add&lt;/td>
+ &lt;td>&amp;hellip;&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">A&lt;/td>
- &lt;td style="text-align: left">Chocolate&lt;/td>
- &lt;td style="text-align: left">Update&lt;/td>
- &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;td>A&lt;/td>
+ &lt;td>Chocolate&lt;/td>
+ &lt;td>Update&lt;/td>
+ &lt;td>&amp;hellip;&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">B&lt;/td>
- &lt;td style="text-align: left">Milk&lt;/td>
- &lt;td style="text-align: left">Remove&lt;/td>
- &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;td>B&lt;/td>
+ &lt;td>Milk&lt;/td>
+ &lt;td>Remove&lt;/td>
+ &lt;td>&amp;hellip;&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">B&lt;/td>
- &lt;td style="text-align: left">Cornflakes&lt;/td>
- &lt;td style="text-align: left">Add&lt;/td>
- &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;td>B&lt;/td>
+ &lt;td>Cornflakes&lt;/td>
+ &lt;td>Add&lt;/td>
+ &lt;td>&amp;hellip;&lt;/td>
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>
@@ -195,7 +203,10 @@ Y el libro parece encajar perfectamente en el conocimiento que busco. Aun así, 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">”as-template”&lt;/span>&amp;gt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> I won’t be rendered
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">ng-template&lt;/span>&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item><item><title>Experimentando con Redux</title><link>https://adrianabreu.com/blog/2017-11-06-experimentando-con-redux/</link><pubDate>Mon, 06 Nov 2017 23:18:17 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-11-06-experimentando-con-redux/</guid><description>&lt;p>Con el objetivo de mejorar el &lt;a href="https://github.com/etsiiull/SIMDE">simulador SIMDE&lt;/a> me decidí a probar un sistema de gestión de estados y concentrar el funcionamiento de la aplicación. ¿El motivo? Era la única forma sensata que tenía de poder gestionar la UI cuando entrara la máquina VLIW sin que todo fuera un caos.&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">ng-template&lt;/span>&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Si esto lo ponemos en un componente, tal como en el siguiente ejemplo en el navegador aparecerá: NADA.&lt;/p>
+&lt;iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-template-series?ctl=1&amp;embed=1&amp;file=app/parent/parent1.component.ts&amp;view=preview">&lt;/iframe>
+&lt;p>&lt;strong>¿Por qué?&lt;/strong> Porque las plantillas de angular no se renderizan al ser evaluadas. Se renderizan donde una directiva les indique.&lt;/p></description></item><item><title>Experimentando con Redux</title><link>https://adrianabreu.com/blog/2017-11-06-experimentando-con-redux/</link><pubDate>Mon, 06 Nov 2017 23:18:17 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-11-06-experimentando-con-redux/</guid><description>&lt;p>Con el objetivo de mejorar el &lt;a href="https://github.com/etsiiull/SIMDE">simulador SIMDE&lt;/a> me decidí a probar un sistema de gestión de estados y concentrar el funcionamiento de la aplicación. ¿El motivo? Era la única forma sensata que tenía de poder gestionar la UI cuando entrara la máquina VLIW sin que todo fuera un caos.&lt;/p>
 &lt;p>Para ello he recurrido a mi aplicación favorita: Chuck Norris client app. (Ya la he hecho en AngularJS y Angular previamente). Como boilerplate he utilizado el template de visual studio, ya que quería tener compatibilidad con typescript.&lt;/p></description></item><item><title>Un breve sumario</title><link>https://adrianabreu.com/blog/2017-10-08-breve-sumario/</link><pubDate>Sun, 08 Oct 2017 18:28:17 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-10-08-breve-sumario/</guid><description>&lt;p>El mes de septiembre ha sido un poco caótico, pero ya creo que me he adaptado a la rutina. Por lo pronto he empezado con el blog, ahora el auto despliegue va mucho mejor, estoy utilizando CircleCI en vez de Wecker.&lt;/p>
 &lt;p>Por otra parte, el diseño del blog se ha separado por mucho del tema original, y no contento con esto he mejorado el desarrollo del tema permitiendo el uso de Sass.&lt;/p></description></item><item><title>Angular series I - Proyección de contenido (Content projection)</title><link>https://adrianabreu.com/blog/2017-08-14-angular-series-i-transclusion/</link><pubDate>Mon, 14 Aug 2017 17:32:37 +0000</pubDate><guid>https://adrianabreu.com/blog/2017-08-14-angular-series-i-transclusion/</guid><description>&lt;p>Cuando creé este blog tenía bastante claro que uno de los objetivos principales era que me sirviera de utilidad para interiorizar lo que voy aprendiendo.
 Y aunque he escrito ciertas cosas útiles para mi día a día no estoy registrando ni una centésima parte de la información que mi mente ha ido procesando estos

@@ -7,36 +7,36 @@ The analyst created a table that will make a window of 5 minutes, select some sp
 &lt;table>
  &lt;thead>
  &lt;tr>
- &lt;th style="text-align: left">user_id&lt;/th>
- &lt;th style="text-align: left">favorite_stuff&lt;/th>
- &lt;th style="text-align: left">operation&lt;/th>
- &lt;th style="text-align: left">metadata&lt;/th>
+ &lt;th>user_id&lt;/th>
+ &lt;th>favorite_stuff&lt;/th>
+ &lt;th>operation&lt;/th>
+ &lt;th>metadata&lt;/th>
  &lt;/tr>
  &lt;/thead>
  &lt;tbody>
  &lt;tr>
- &lt;td style="text-align: left">A&lt;/td>
- &lt;td style="text-align: left">Chocolate&lt;/td>
- &lt;td style="text-align: left">Add&lt;/td>
- &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;td>A&lt;/td>
+ &lt;td>Chocolate&lt;/td>
+ &lt;td>Add&lt;/td>
+ &lt;td>&amp;hellip;&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">A&lt;/td>
- &lt;td style="text-align: left">Chocolate&lt;/td>
- &lt;td style="text-align: left">Update&lt;/td>
- &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;td>A&lt;/td>
+ &lt;td>Chocolate&lt;/td>
+ &lt;td>Update&lt;/td>
+ &lt;td>&amp;hellip;&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">B&lt;/td>
- &lt;td style="text-align: left">Milk&lt;/td>
- &lt;td style="text-align: left">Remove&lt;/td>
- &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;td>B&lt;/td>
+ &lt;td>Milk&lt;/td>
+ &lt;td>Remove&lt;/td>
+ &lt;td>&amp;hellip;&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">B&lt;/td>
- &lt;td style="text-align: left">Cornflakes&lt;/td>
- &lt;td style="text-align: left">Add&lt;/td>
- &lt;td style="text-align: left">&amp;hellip;&lt;/td>
+ &lt;td>B&lt;/td>
+ &lt;td>Cornflakes&lt;/td>
+ &lt;td>Add&lt;/td>
+ &lt;td>&amp;hellip;&lt;/td>
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>

@@ -40,7 +40,7 @@ The analyst created a table that will make a window of 5 minutes, select some sp
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>amount &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;amount&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>df &lt;span style="color:#f92672">=&lt;/span> spark&lt;span style="color:#f92672">.&lt;/span>createDataFrame(data, [ts, store_id, amount])
-&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item><item><title>Spark Cert Exam Practice</title><link>https://adrianabreu.com/spark-certification/2022-06-28-databricks-practice-exam/</link><pubDate>Tue, 28 Jun 2022 13:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-28-databricks-practice-exam/</guid><description>&lt;script 
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We need to parse that data into a readable date as the first number is an epoch or &lt;em>unix_time&lt;/em>. Using the function from_unixttime this is quite simple:&lt;/p></description></item><item><title>Spark Cert Exam Practice</title><link>https://adrianabreu.com/spark-certification/2022-06-28-databricks-practice-exam/</link><pubDate>Tue, 28 Jun 2022 13:43:22 +0000</pubDate><guid>https://adrianabreu.com/spark-certification/2022-06-28-databricks-practice-exam/</guid><description>&lt;script 
 src="https://cdn.jsdelivr.net/npm/quizdown@latest/public/build/quizdown.js">
 &lt;/script>
 &lt;script 
@@ -697,26 +697,26 @@ existing files.
 &lt;table>
  &lt;thead>
  &lt;tr>
- &lt;th style="text-align: left">Type&lt;/th>
- &lt;th style="text-align: left">Description&lt;/th>
- &lt;th style="text-align: left">Advantages&lt;/th>
+ &lt;th>Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Advantages&lt;/th>
  &lt;/tr>
  &lt;/thead>
  &lt;tbody>
  &lt;tr>
- &lt;td style="text-align: left">Datasets&lt;/td>
- &lt;td style="text-align: left">Structured composed of a list of &lt;T> where you can specify your custom class (only Scala)&lt;/td>
- &lt;td style="text-align: left">Type-safe operations, support for operations that cannot be expressed otherwise.&lt;/td>
+ &lt;td>Datasets&lt;/td>
+ &lt;td>Structured composed of a list of &lt;T> where you can specify your custom class (only Scala)&lt;/td>
+ &lt;td>Type-safe operations, support for operations that cannot be expressed otherwise.&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">Dataframes&lt;/td>
- &lt;td style="text-align: left">Datasets of type Row (a generic spark type)&lt;/td>
- &lt;td style="text-align: left">Allow optimizations and are more flexible&lt;/td>
+ &lt;td>Dataframes&lt;/td>
+ &lt;td>Datasets of type Row (a generic spark type)&lt;/td>
+ &lt;td>Allow optimizations and are more flexible&lt;/td>
  &lt;/tr>
  &lt;tr>
- &lt;td style="text-align: left">SQL tables and views&lt;/td>
- &lt;td style="text-align: left">Same as Dataframes but in the scope of databases instead of programming languages&lt;/td>
- &lt;td style="text-align: left">&lt;/td>
+ &lt;td>SQL tables and views&lt;/td>
+ &lt;td>Same as Dataframes but in the scope of databases instead of programming languages&lt;/td>
+ &lt;td>&lt;/td>
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>
@@ -741,4 +741,69 @@ We can do two kinds of operations with Spark, transformations and actions.&lt;/p
  viewBox="0 0 328 105"
  >
  &lt;g transform='translate(8,16)'>
-&lt;path d='M 0,16 L 136,16' fill='none' stroke='currentColor'>&lt;/pa</description></item></channel></rss>
+&lt;path d='M 0,16 L 136,16' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 176,16 L 208,16' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 136,32 L 176,32' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 0,48 L 136,48' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 176,48 L 208,48' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 176,80 L 208,80' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 0,16 L 0,48' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 136,16 L 136,32' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 136,32 L 136,48' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 176,16 L 176,32' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 176,32 L 176,48' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 176,48 L 176,64' fill='none' stroke='currentColor'>&lt;/path>
+&lt;path d='M 176,64 L 176,80' fill='none' stroke='currentColor'>&lt;/path>
+&lt;text text-anchor='middle' x='8' y='36' fill='currentColor' style='font-size:1em'>C&lt;/text>
+&lt;text text-anchor='middle' x='16' y='36' fill='currentColor' style='font-size:1em'>l&lt;/text>
+&lt;text text-anchor='middle' x='24' y='36' fill='currentColor' style='font-size:1em'>u&lt;/text>
+&lt;text text-anchor='middle' x='32' y='36' fill='currentColor' style='font-size:1em'>s&lt;/text>
+&lt;text text-anchor='middle' x='40' y='36' fill='currentColor' style='font-size:1em'>t&lt;/text>
+&lt;text text-anchor='middle' x='48' y='36' fill='currentColor' style='font-size:1em'>e&lt;/text>
+&lt;text text-anchor='middle' x='56' y='36' fill='currentColor' style='font-size:1em'>r&lt;/text>
+&lt;text text-anchor='middle' x='72' y='36' fill='currentColor' style='font-size:1em'>M&lt;/text>
+&lt;text text-anchor='middle' x='80' y='36' fill='currentColor' style='font-size:1em'>a&lt;/text>
+&lt;text text-anchor='middle' x='88' y='36' fill='currentColor' style='font-size:1em'>n&lt;/text>
+&lt;text text-anchor='middle' x='96' y='36' fill='currentColor' style='font-size:1em'>a&lt;/text>
+&lt;text text-anchor='middle' x='104' y='36' fill='currentColor' style='font-size:1em'>g&lt;/text>
+&lt;text text-anchor='middle' x='112' y='36' fill='currentColor' style='font-size:1em'>e&lt;/text>
+&lt;text text-anchor='middle' x='120' y='36' fill='currentColor' style='font-size:1em'>r&lt;/text>
+&lt;text text-anchor='middle' x='224' y='20' fill='currentColor' style='font-size:1em'>N&lt;/text>
+&lt;text text-anchor='middle' x='224' y='52' fill='currentColor' style='font-size:1em'>N&lt;/text>
+&lt;text text-anchor='middle' x='224' y='84' fill='currentColor' style='font-size:1em'>N&lt;/text>
+&lt;text text-anchor='middle' x='232' y='20' fill='currentColor' style='font-size:1em'>o&lt;/text>
+&lt;text text-anchor='middle' x='232' y='52' fill='currentColor' style='font-size:1em'>o&lt;/text>
+&lt;text text-anchor='middle' x='232' y='84' fill='currentColor' style='font-size:1em'>o&lt;/text>
+&lt;text text-anchor='middle' x='240' y='20' fill='currentColor' style='font-size:1em'>d&lt;/text>
+&lt;text text-anchor='middle' x='240' y='52' fill='currentColor' style='font-size:1em'>d&lt;/text>
+&lt;text text-anchor='middle' x='240' y='84' fill='currentColor' style='font-size:1em'>d&lt;/text>
+&lt;text text-anchor='middle' x='248' y='20' fill='currentColor' style='font-size:1em'>e&lt;/text>
+&lt;text text-anchor='middle' x='248' y='52' fill='currentColor' style='font-size:1em'>e&lt;/text>
+&lt;text text-anchor='middle' x='248' y='84' fill='currentColor' style='font-size:1em'>e&lt;/text>
+&lt;text text-anchor='middle' x='264' y='20' fill='currentColor' style='font-size:1em'>M&lt;/text>
+&lt;text text-anchor='middle' x='264' y='52' fill='currentColor' style='font-size:1em'>M&lt;/text>
+&lt;text text-anchor='middle' x='264' y='84' fill='currentColor' style='font-size:1em'>M&lt;/text>
+&lt;text text-anchor='middle' x='272' y='20' fill='currentColor' style='font-size:1em'>a&lt;/text>
+&lt;text text-anchor='middle' x='272' y='52' fill='currentColor' style='font-size:1em'>a&lt;/text>
+&lt;text text-anchor='middle' x='272' y='84' fill='currentColor' style='font-size:1em'>a&lt;/text>
+&lt;text text-anchor='middle' x='280' y='20' fill='currentColor' style='font-size:1em'>n&lt;/text>
+&lt;text text-anchor='middle' x='280' y='52' fill='currentColor' style='font-size:1em'>n&lt;/text>
+&lt;text text-anchor='middle' x='280' y='84' fill='currentColor' style='font-size:1em'>n&lt;/text>
+&lt;text text-anchor='middle' x='288' y='20' fill='currentColor' style='font-size:1em'>a&lt;/text>
+&lt;text text-anchor='middle' x='288' y='52' fill='currentColor' style='font-size:1em'>a&lt;/text>
+&lt;text text-anchor='middle' x='288' y='84' fill='currentColor' style='font-size:1em'>a&lt;/text>
+&lt;text text-anchor='middle' x='296' y='20' fill='currentColor' style='font-size:1em'>g&lt;/text>
+&lt;text text-anchor='middle' x='296' y='52' fill='currentColor' style='font-size:1em'>g&lt;/text>
+&lt;text text-anchor='middle' x='296' y='84' fill='currentColor' style='font-size:1em'>g&lt;/text>
+&lt;text text-anchor='middle' x='304' y='20' fill='currentColor' style='font-size:1em'>e&lt;/text>
+&lt;text text-anchor='middle' x='304' y='52' fill='currentColor' style='font-size:1em'>e&lt;/text>
+&lt;text text-anchor='middle' x='304' y='84' fill='currentColor' style='font-size:1em'>e&lt;/text>
+&lt;text text-anchor='middle' x='312' y='20' fill='currentColor' style='font-size:1em'>r&lt;/text>
+&lt;text text-anchor='middle' x='312' y='52' fill='currentColor' style='font-size:1em'>r&lt;/text>
+&lt;text text-anchor='middle' x='312' y='84' fill='currentColor' style='font-size:1em'>r&lt;/text>
+&lt;/g>
+
+ &lt;/svg>
+ 
+&lt;/div>
+&lt;p>When we run a Spark application we generate processes inside the cluster where one node will act as a Driver and the rest will be Workers. Here there are two main points:&lt;/p></description></item></channel></rss>
