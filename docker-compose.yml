@@ -1,12 +1,12 @@
 version: "3.8"
 services: 
     build:
-        image: hugomods/hugo:0.133.0
+        image: hugomods/hugo:0.140.2
         volumes:
             - ".:/src"
             - "./public:/target"
     server:
-        image: hugomods/hugo:0.133.0
+        image: hugomods/hugo:0.140.2
         command: server
         volumes:
             - ".:/src"
