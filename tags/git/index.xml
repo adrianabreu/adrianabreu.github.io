@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Adrián Abreu</title><link>https://adrianabreu.com/tags/git/</link><description>Recent content in Git on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Mon, 21 Mar 2022 22:28:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git 101</title><link>https://adrianabreu.com/blog/2022-03-21-git-intro/</link><pubDate>Mon, 21 Mar 2022 22:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-03-21-git-intro/</guid><description>&lt;p>From time to time I get to the same place, telling some people about git, what it solves and some basic usage.&lt;/p>
-&lt;p>Since I&amp;rsquo;ve done it a lot recenly I wanted to write down a post and enjoy it.&lt;/p>
-&lt;h1 id="what-is-git">What is git?&lt;/h1>
-&lt;p>Git is a gift from the gods for the following use cases:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>My laptop is broke! I need the data there is a whole month of work there!&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Adrián Abreu</title><link>https://adrianabreu.com/tags/git/</link><description>Recent content in Git on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Mon, 21 Mar 2022 22:28:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git 101</title><link>https://adrianabreu.com/blog/2022-03-21-git-intro/</link><pubDate>Mon, 21 Mar 2022 22:28:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-03-21-git-intro/</guid><description>&lt;p&gt;From time to time I get to the same place, telling some people about git, what it solves and some basic usage.&lt;/p&gt;
+&lt;p&gt;Since I&amp;rsquo;ve done it a lot recenly I wanted to write down a post and enjoy it.&lt;/p&gt;
+&lt;h1 id="what-is-git"&gt;What is git?&lt;/h1&gt;
+&lt;p&gt;Git is a gift from the gods for the following use cases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;My laptop is broke! I need the data there is a whole month of work there!&lt;/p&gt;</description></item></channel></rss>

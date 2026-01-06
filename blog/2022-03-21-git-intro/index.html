@@ -247,7 +247,7 @@ commit1 --&gt; commit2 --&gt; commit3 --&gt; commit4 [HEAD]
 <p>First you need to create a branch with <code>git branch &lt;branch name&gt;</code>. Then you must <em>change</em> to that branch, checking it. <code>git checkout &lt;branch name&gt;</code>.</p>
 <p>This operation is sooo common that there is a shorcut: <code>git checkout -b &lt;branch name&gt;</code>.</p>
 <p>So for case <strong>2</strong> (did you forget it?), we need to generate a new branch with the previous command it will contain the current commits. Then we can <strong>reset</strong> the branch were we add those changes so everything is ok and nobody will ever know. (<em>How would they know?</em>)</p>
-<h4 id="ok-so-now-i-have-several-changes-on-my-branch-_featurex_-and-i-want-them-on-master-what-do-i-need-to-do">Ok, so now I have several changes on my branch <em>feature/X</em> and I want them on master, what do I need to do?</h4>
+<h4 id="ok-so-now-i-have-several-changes-on-my-branch-featurex-and-i-want-them-on-master-what-do-i-need-to-do">Ok, so now I have several changes on my branch <em>feature/X</em> and I want them on master, what do I need to do?</h4>
 <p>On a team you will do a pull request, and that operations is automating the following commands:</p>
 <p><code>git checkout master</code></p>
 <p><code>git diff feature/X</code></p>

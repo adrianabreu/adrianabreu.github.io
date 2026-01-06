@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Photon on Adrián Abreu</title><link>https://adrianabreu.com/tags/photon/</link><description>Recent content in Photon on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Fri, 12 Aug 2022 09:52:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/tags/photon/index.xml" rel="self" type="application/rss+xml"/><item><title>Testing Databricks Photon</title><link>https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/</link><pubDate>Fri, 12 Aug 2022 09:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/</guid><description>&lt;p>I was a bit skeptical about photon since I realized that it cost about double the amount of DBU, required specifically optimized machines and did not support UDFs (it was my main target).&lt;/p>
-&lt;p>From the Databricks Official Docs:&lt;/p>
-&lt;h1 id="limitations">&lt;strong>Limitations&lt;/strong>&lt;/h1>
-&lt;ul>
-&lt;li>Does not support Spark Structured Streaming.&lt;/li>
-&lt;li>Does not support UDFs.&lt;/li>
-&lt;li>Does not support RDD APIs.&lt;/li>
-&lt;li>Not expected to improve short-running queries (&amp;lt;2 seconds), for example, queries against small amounts of data.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a href="https://docs.databricks.com/runtime/photon.html">Photon runtime&lt;/a>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Photon on Adrián Abreu</title><link>https://adrianabreu.com/tags/photon/</link><description>Recent content in Photon on Adrián Abreu</description><generator>Hugo</generator><language>es-ES</language><copyright>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</copyright><lastBuildDate>Fri, 12 Aug 2022 09:52:32 +0000</lastBuildDate><atom:link href="https://adrianabreu.com/tags/photon/index.xml" rel="self" type="application/rss+xml"/><item><title>Testing Databricks Photon</title><link>https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/</link><pubDate>Fri, 12 Aug 2022 09:52:32 +0000</pubDate><guid>https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/</guid><description>&lt;p&gt;I was a bit skeptical about photon since I realized that it cost about double the amount of DBU, required specifically optimized machines and did not support UDFs (it was my main target).&lt;/p&gt;
+&lt;p&gt;From the Databricks Official Docs:&lt;/p&gt;
+&lt;h1 id="limitations"&gt;&lt;strong&gt;Limitations&lt;/strong&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Does not support Spark Structured Streaming.&lt;/li&gt;
+&lt;li&gt;Does not support UDFs.&lt;/li&gt;
+&lt;li&gt;Does not support RDD APIs.&lt;/li&gt;
+&lt;li&gt;Not expected to improve short-running queries (&amp;lt;2 seconds), for example, queries against small amounts of data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://docs.databricks.com/runtime/photon.html"&gt;Photon runtime&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
