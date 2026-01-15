@@ -92,9 +92,10 @@ And then a colleague suggest, may he be using a dashboard?
 
 And that's it
 
-[Snowflake built a native "safety net" that only exists in the SQL editor. They made the UI a liar—it tricks you into thinking your migration is successful because your queries run fine in a worksheet. But the moment you move three inches to the left into a native Dashboard, the platform "truth-checks" you, the secondary roles vanish, and your dashboard turns into a graveyard of "Unauthorized" errors.
+Snowflake built a native "safety net" that only exists in the SQL editor. They made the UI a liar—it tricks you into thinking your migration is successful because your queries run fine in a worksheet. But the moment you move three inches to the left into a native Dashboard, the platform "truth-checks" you, the secondary roles vanish, and your dashboard turns into a graveyard of "Unauthorized" errors.
 
-They didn't just break the migration; they built a trap where the platform's own "convenience" features mask your infrastructure gaps until it's too late.](https://docs.snowflake.com/en/release-notes/bcr-bundles/2024_08/bcr-1801)
+[They didn't just break the migration; they built a trap where the platform's own "convenience" features mask your infrastructure gaps until it's too late.](https://docs.snowflake.com/en/release-notes/bcr-bundles/2024_08/bcr-1801)
 
+The punch line above is AI generated and I like it.
 
 Damn how I miss Databricks.
