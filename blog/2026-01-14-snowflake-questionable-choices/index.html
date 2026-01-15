@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Snowflake questionable choices | Adrián Abreu</title>
+
+<meta property='og:title' content='Snowflake questionable choices - Adrián Abreu'>
+<meta property='og:description' content='Snowflake questionable choices about their grant system'>
+<meta property='og:url' content='https://adrianabreu.com/blog/2026-01-14-snowflake-questionable-choices/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='data engineering'><meta property='article:tag' content='snowflake'><meta property='article:tag' content='rbac'><meta property='article:published_time' content='2026-01-14T20:14:10Z'/><meta property='article:modified_time' content='2026-01-14T20:14:10Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.com/blog/2026-01-14-snowflake-questionable-choices/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:image" content="/preview.png" />
+<meta name="twitter:image" content="/preview.png" />
+<script
+    defer
+    src="https://unpkg.com/@tinybirdco/flock.js"
+    data-token="p.eyJ1IjogImUzY2IxNjA4LThmYjEtNDBjNC04NzNlLTFmNjE3ZmI2NGMzMCIsICJpZCI6ICI1NzQ5MDAyMC02Yjg1LTQ2YjEtYWVmOS1lNzMwMjYwYmM1YmQiLCAiaG9zdCI6ICJldV9zaGFyZWQifQ.bcYOUv9CsZ5Fg6UoqxSZk-SYZ6Z_mdrzjbEiE4TPcAA">
+</script>
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.com/">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/data-engineering/">#data engineering</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/snowflake/">#snowflake</a>
+  
+  | <a class="subtitle is-6" href="/tags/rbac/">#rbac</a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">January 14, 2026</h2>
+    <h1 class="title">Snowflake questionable choices</h1>
+    
+    <div class="content">
+      <p>I switched jobs all over again. I&rsquo;m working in a data company called Shalion, where we provide insights about retail products online. If you&rsquo;re brave enough to handle Snowflake&rsquo;s quirks, <a href="https://shalion.teamtailor.com/jobs/6328344-data-engineer">we&rsquo;re hiring</a>&hellip;</p>
+<p>I&rsquo;m working on revamping our permission grant system from <a href="https://gitlab.com/gitlab-data/permifrost">permifrost</a> to a terraform managed approach.</p>
+<p>We also decided to embrace a 2 layer permission grant, using Access Roles (AR) and Functional Roles (FR). The former has access to the resources with the typical permissions (SELECT, USAGE, CREATE)&hellip;, while the latter is the one that we assign to people and just groups access roles.</p>
+<p>e.g the data engineering team with <code>FR_DATA_ENGINEERING</code> can have <code>AR_DB_BRONZE_READ</code>, <code>AR_DB_SILVER_READWRITE</code> and <code>AR_DB_GOLD_READWRITE</code></p>
+<p>Conceptually it was a solid model, in fact it is recommend across internet, check:</p>
+<ul>
+<li><a href="https://docs.snowflake.com/en/user-guide/security-access-control-considerations#aligning-object-access-with-business-functions">https://docs.snowflake.com/en/user-guide/security-access-control-considerations#aligning-object-access-with-business-functions</a></li>
+<li><a href="https://select.dev/posts/snowflake-roles">https://select.dev/posts/snowflake-roles</a></li>
+</ul>
+<h1 id="future-grants">Future Grants</h1>
+<p>Coming from Databricks I find quite hard to justify some decisions in snowflake, in fact future grants is one of them.</p>
+<p>Usually if you define select on the container, you can see everything that exists within that container.</p>
+<p>In snowflake no, you can define select on all existing objects at some point, with
+<code>GRANT SELECT ON ALL TABLES IN SCHEMA d1.s1 TO ROLE r1;</code></p>
+<p>But new created tables (like created from created and replace or swapped tables) won&rsquo;t have that permission. So you need to use futures.</p>
+<p><code>GRANT SELECT ON FUTURE TABLES IN SCHEMA d1.s1 TO ROLE r1;</code></p>
+<p>So everything makes sense.</p>
+<p>Now let&rsquo;s migrate a typical organization.
+Let&rsquo;s say we have bronze, silver and gold databases.</p>
+<p>I want DATA ENGINEERS to be able to read the whole gold layer, so I prepare the following statements.</p>
+<pre tabindex="0"><code>GRANT SELECT ON ALL TABLES IN DATABASE gold TO ROLE AR__DB__GOLD_READ;
+GRANT SELECT ON FUTURE TABLES IN DATABASE gold TO ROLE AR__DB__GOLD_READ;
+</code></pre><p>Then I create the <code>FR__DATA_ENGINEER</code> and assign the <code>AR__DB__GOLD_READ</code>. It works.</p>
+<p>Now let&rsquo;s say I create an app to read a small mart and display insights in a web. It should only access the schema &ldquo;sales&rdquo;.</p>
+<pre tabindex="0"><code>GRANT SELECT ON ALL TABLES IN SCHEMA gold.sales TO ROLE AR__SCH__GOLD_SALES_READ;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA gold.sales TO ROLE AR__SCH__GOLD_SALES_READ;
+</code></pre><p>And then I create a role <code>FR__SVC_SALES_SERVICE</code> and assign <code>AR__SCH__GOLD_SALES_READ</code>.</p>
+<p><strong>And just like that, the Data Engineering team loses access to every new table created in that schema.</strong></p>
+<p>From Snowflake docs <a href="https://docs.snowflake.com/en/sql-reference/sql/grant-privilege#considerations">https://docs.snowflake.com/en/sql-reference/sql/grant-privilege#considerations</a></p>
+<pre tabindex="0"><code>When future grants are defined on the same object type for a database and a schema in the same database, the schema-level grants take precedence over the database level grants, and the database level grants are ignored. This behavior applies to privileges on future objects granted to one role or different roles.
+</code></pre><p>This is quite questionable in my opinion. By trying to be specific for one app-service role, I accidentally nuked the broad permissions for the entire engineering team.</p>
+<p>I can accept that if I have a database permission to the role <code>AR__SCH__GOLD_SALES_READ</code> and I define other permissions at the schema you can decide to overwrite it, but to do that for every other role? How can you overwrite every other grant given to that from the database level? This breaks the hierarchy inheritance.</p>
+<p>The solution is a blunder. We need to inherit the <code>AR__SCH__GOLD_SALES_READ</code> in the <code>AR__DB__GOLD_READ</code>.</p>
+<p>But that means, that for every schema we create we need to do this. Create the schema permission, and add it. Also we mentioned that this is per object.
+So if you have a <code>AR__DB__GOLD_WRITE</code> we need to create <code>AR__SCH__GOLD_SALES_WRITE</code> despite the fact that we don&rsquo;t need it. This is a maintenance nightmare. And this is the recommended path.</p>
+<h1 id="secondary-roles">Secondary Roles</h1>
+<p>When migrating users to the new terraform version my <code>default_secondary_roles</code> value was set to <code>DEFAULT</code>. And suddenly no matter what role I selected on the UI I could see everything. One of my colleagues told me that this shouldn&rsquo;t happen. And it&rsquo;s ok. On <a href="https://docs.snowflake.com/en/release-notes/bcr-bundles/2024_08/bcr-1692">August 2024 Snowflake decided to modify the default secondary roles from null to all</a>, so every user should see a merge of all their permissions.</p>
+<p>I could take advantage of that for solving the future grant problem, users can be in both roles, and that means if the new ones are not properly provisioned we can fallback to the old roles managed by permifrost.</p>
+<p>I created a new warehouse, assign it to the new FR and told the user he can use it.</p>
+<p>And suddenly he complains that he can&rsquo;t access the table.</p>
+<p>I debugged everything, all containers have permission on the old role.</p>
+<p>I can select the wh, it works.</p>
+<p>And then a colleague suggest, may he be using a dashboard?</p>
+<p>And that&rsquo;s it</p>
+<p>[Snowflake built a native &ldquo;safety net&rdquo; that only exists in the SQL editor. They made the UI a liar—it tricks you into thinking your migration is successful because your queries run fine in a worksheet. But the moment you move three inches to the left into a native Dashboard, the platform &ldquo;truth-checks&rdquo; you, the secondary roles vanish, and your dashboard turns into a graveyard of &ldquo;Unauthorized&rdquo; errors.</p>
+<p>They didn&rsquo;t just break the migration; they built a trap where the platform&rsquo;s own &ldquo;convenience&rdquo; features mask your infrastructure gaps until it&rsquo;s too late.](<a href="https://docs.snowflake.com/en/release-notes/bcr-bundles/2024_08/bcr-1801">https://docs.snowflake.com/en/release-notes/bcr-bundles/2024_08/bcr-1801</a>)</p>
+<p>Damn how I miss Databricks.</p>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+</body>
+</html>
+
