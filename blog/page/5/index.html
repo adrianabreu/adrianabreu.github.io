@@ -10,7 +10,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://adrianabreu.com/blog/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='og:updated_time' content='2026-01-14T20:14:10Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='og:updated_time' content='2026-01-27T11:40:43Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,6 +90,37 @@
 </section>
 <section class="section">
   <div class="container">
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/analytics/">#Analytics</a>
+  
+  | <a class="subtitle is-6" href="/tags/datalake/">#Datalake</a>
+  
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">August 25, 2020</h2>
+      <h1 class="title"><a href="https://adrianabreu.com/blog/2020-08-25-detectando-ficheros-pequenos/">Detectando ficheros pequenos Spark</a></h1>
+      <div class="content">
+        Uno de los mayores problemas de rendimiento que podemos encontrar en los datalake es tener que mover una enorme cantidad de ficheros pequeños, por el overhead que eso representa en las transacciones. Este post de databricks recomendada https://forums.databricks.com/questions/101/what-is-an-optimal-size-for-file-partitions-using.html que se crearan ficheros de 1GB parquet.
+Sin embargo mucha gente no sabe como detectar esto. Hace poco estuve jugando con un notebook y usando simplemente las herramientas del dbutils pude clasificar los ficheros que tenia en las entidades del datalake en múltiples categorías, así podría estimar cuantos ficheros había en un rango de tiempo.
+
+        
+        <a class="button is-link" href="https://adrianabreu.com/blog/2020-08-25-detectando-ficheros-pequenos/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
     
     <article>
       <div class="subtitle tags is-6 is-pulled-right">
@@ -287,37 +318,6 @@ Nota del autor: Como disclaimer esto ocurre probablemente porque estoy en Manjar
 
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2019-11-10-empezando-en-spark-con-docker/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/analytics/">#Analytics</a>
-  
-  | <a class="subtitle is-6" href="/tags/sql/">#SQL</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">September 26, 2019</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/blog/2019-09-26-correlated-subqueries/">Correlated subqueries</a></h1>
-      <div class="content">
-        Llevo un par de meses viendo como la mayoría de esfuerzos en el proyecto en el que estoy se centran en evitar los joins en las distintas capas de análisis. Aprovechando las capacidades de spark se busca tener las estructuras muy desnormalizadas y se había &ldquo;endemoniado&rdquo; al join considerarlo perjudicial.
-Tanto es así que llevo un par de días peleando con una pieza de código que me ha sorprendido. Partiendo de una tabla de hechos que agrupa datos para un periodo a hasta b, se quiere que se &ldquo;colapsen&rdquo; los datos de hace 14 días. Será mejor con un ejemplo:
-
-        
-        <a class="button is-link" href="https://adrianabreu.com/blog/2019-09-26-correlated-subqueries/" style="height:28px">
           Read more
         </a>
         

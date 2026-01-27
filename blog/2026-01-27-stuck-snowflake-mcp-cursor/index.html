@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Stuck connecting snowflake integrated mcp and cursor | Adrián Abreu</title>
+
+<meta property='og:title' content='Stuck connecting snowflake integrated mcp and cursor - Adrián Abreu'>
+<meta property='og:description' content='Stuck connecting snowflake integrated mcp and cursor'>
+<meta property='og:url' content='https://adrianabreu.com/blog/2026-01-27-stuck-snowflake-mcp-cursor/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='data engineering'><meta property='article:tag' content='snowflkake'><meta property='article:tag' content='mcp '><meta property='article:published_time' content='2026-01-27T11:40:43Z'/><meta property='article:modified_time' content='2026-01-27T11:40:43Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.com/blog/2026-01-27-stuck-snowflake-mcp-cursor/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:image" content="/preview.png" />
+<meta name="twitter:image" content="/preview.png" />
+<script
+    defer
+    src="https://unpkg.com/@tinybirdco/flock.js"
+    data-token="p.eyJ1IjogImUzY2IxNjA4LThmYjEtNDBjNC04NzNlLTFmNjE3ZmI2NGMzMCIsICJpZCI6ICI1NzQ5MDAyMC02Yjg1LTQ2YjEtYWVmOS1lNzMwMjYwYmM1YmQiLCAiaG9zdCI6ICJldV9zaGFyZWQifQ.bcYOUv9CsZ5Fg6UoqxSZk-SYZ6Z_mdrzjbEiE4TPcAA">
+</script>
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.com/">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/data-engineering/">#data engineering</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/snowflkake/">#snowflkake</a>
+  
+  | <a class="subtitle is-6" href="/tags/mcp/">#mcp </a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">January 27, 2026</h2>
+    <h1 class="title">Stuck connecting snowflake integrated mcp and cursor</h1>
+    
+    <div class="content">
+      <p>Lately I&rsquo;m not exactly enjoying my job. Snowflake step curve from a data engineer perspective is really hard.</p>
+<p>Yesterday my boss asked me to test the Snowflake integrated MCP from Cursor. He’d been looking into Snowflake OAuth access, so I went to check the resources. Once again—as of January 27th, 2026—the Terraform resource for this still doesn&rsquo;t exist (though the data source does, for some reason).</p>
+<p>For connecting to snowflake you need to define a <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#set-up-oauth-authentication">security integration</a>.</p>
+<p>Looks straightforward on paper:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>    <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">SECURITY</span> INTEGRATION cursor_mcp_integration
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">TYPE</span> <span style="color:#f92672">=</span> OAUTH
+</span></span><span style="display:flex;"><span>      OAUTH_CLIENT <span style="color:#f92672">=</span> CUSTOM
+</span></span><span style="display:flex;"><span>      ENABLED <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>
+</span></span><span style="display:flex;"><span>      OAUTH_CLIENT_TYPE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;CONFIDENTIAL&#39;</span>
+</span></span><span style="display:flex;"><span>      OAUTH_REDIRECT_URI <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;uri&gt;&gt;
+</span></span></span></code></pre></div><p>But it’s not. <a href="https://cursor.com/es/docs/context/mcp#static-oauth-for-remote-servers">Cursor uses a fixed redirect URI</a> <code>cursor://anysphere.cursor-mcp/oauth/callback</code></p>
+<p>Snowflake rejects this because the URL must be https (or http if you toggle a specific internal parameter). Snowflake basically won&rsquo;t let you use a custom protocol scheme for the callback.</p>
+<p>I’ve written to support and I’ll probably post in the Snowflake community forum.</p>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+</body>
+</html>
+
