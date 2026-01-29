@@ -27,3 +27,5 @@ But it’s not. [Cursor uses a fixed redirect URI](https://cursor.com/es/docs/co
 Snowflake rejects this because the URL must be https (or http if you toggle a specific internal parameter). Snowflake basically won't let you use a custom protocol scheme for the callback.
 
 I’ve written to support and I’ll probably post in the Snowflake community forum.
+
+Update 2026-01-28: Support says that the recommended pat is to use a PAT token, after complaining about the 24 hour token duration without a network policy and the fail to log in with it if you are not in the allowed list, their answer is to create a Service User and create PAts from it (current maximum is 15).
