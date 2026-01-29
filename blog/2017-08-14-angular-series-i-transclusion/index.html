@@ -112,7 +112,7 @@ reusables al cien por cien, pero mucha gente acaba haciendo lo mismo.</p>
 en estos dos hijos. De hecho, para darle más &ldquo;gracia&rdquo;, el objetivo es que para una misma cadena el componente B muestre esta cadena en mayúsculas y el C en minúsculas.</p>
 <p>Asumiendo que ya están los componentes definidos en sus respectivos módulos y demás, vamos a poner una estructura muy simple. La clave de esto es la
 etiqueta <code>ng-content</code>que será reemplazada por el contenido que proyectemos.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">@Component</span>({
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">@Component</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-b&#39;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`&lt;h2&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;h2&gt;`</span>
 </span></span><span style="display:flex;"><span>})
@@ -128,7 +128,7 @@ etiqueta <code>ng-content</code>que será reemplazada por el contenido que proye
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>Como vemos los componentes no hacen nada más que proyectar el contenido de su padre y decorar el mismo.</p>
 <p>Ahora el componente A se encargará de mandar la información necesaria.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">@Component</span>({
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">@Component</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-a&#39;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`&lt;app-c&gt;{{title | uppercase }}&lt;/app-c&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &lt;app-b&gt;{{title | lowercase}} &lt;/app-b&gt;
@@ -142,13 +142,13 @@ etiqueta <code>ng-content</code>que será reemplazada por el contenido que proye
 <p>Y esto nos genera como resultado&hellip;</p>
 <iframe class="aa_iframes" src="https://stackblitz.com/edit/angular-transclusion-i?ctl=1&embed=1&file=index.html&view=preview"></iframe>
 <p>¿Sencillo, verdad? Ahora solo queda un problema. ¿Que pasaría si quisieramos pasar diversas parte de un contenido? Pensemos en esta plantilla para un componente <strong>Artículo</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">article</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">article</span>&gt;
 </span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">header</span>&gt;&lt;<span style="color:#f92672">ng-content</span>&gt;&lt;/<span style="color:#f92672">ng-content</span>&gt;&lt;/<span style="color:#f92672">header</span>&gt;
 </span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">section</span>&gt;&lt;<span style="color:#f92672">ng-content</span>&gt;&lt;/<span style="color:#f92672">ng-content</span>&gt;&lt;/<span style="color:#f92672">section</span>&gt;
 </span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">footer</span>&gt;&lt;<span style="color:#f92672">ng-content</span>&gt;&lt;/<span style="color:#f92672">ng-content</span>&gt;&lt;/<span style="color:#f92672">footer</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">article</span>&gt;</span></span></code></pre></div>
 <p>Como vemos este &ldquo;artículo&rdquo;, soporta no uno, sino <strong>tres</strong> ng-content. ¿Como identificamos donde va lo que corresponde? Simplemente: nombrándolos.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">article</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">article</span>&gt;
 </span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">header</span>&gt;
 </span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">ng-content</span> <span style="color:#a6e22e">select</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.header&#34;</span>&gt;&lt;/<span style="color:#f92672">ng-content</span>&gt;
 </span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">header</span>&gt;
@@ -162,7 +162,7 @@ etiqueta <code>ng-content</code>que será reemplazada por el contenido que proye
 <p>En este caso le decimos al ng-content, que nos reemplace el contenido por el de aquellos elementos que tengan la clase del tipo correspondiente.</p>
 <p>Se pueden usar etiquetas o directivas, <a href="https://angular-2-training-book.rangle.io/handout/components/projection.html">como explica el fabuloso libro de Rangle.io</a></p>
 <p>Y si ahora nuestro componente padre nos indica el contenido de esas secciones&hellip;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">ng-container</span> <span style="color:#960050;background-color:#1e0010">*</span><span style="color:#a6e22e">ngFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;let datum of data&#34;</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">ng-container</span> <span style="color:#960050;background-color:#1e0010">*</span><span style="color:#a6e22e">ngFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;let datum of data&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">article</span>&gt;
 </span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;header&#34;</span>&gt;{{datum.header}}&lt;/<span style="color:#f92672">div</span>&gt;
 </span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;{{datum.body}}&lt;/<span style="color:#f92672">div</span>&gt;

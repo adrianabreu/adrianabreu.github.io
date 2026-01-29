@@ -114,7 +114,7 @@
 <p>Yesterday my boss asked me to test the Snowflake integrated MCP from Cursor. He’d been looking into Snowflake OAuth access, so I went to check the resources. Once again—as of January 27th, 2026—the Terraform resource for this still doesn&rsquo;t exist (though the data source does, for some reason).</p>
 <p>For connecting to snowflake you need to define a <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#set-up-oauth-authentication">security integration</a>.</p>
 <p>Looks straightforward on paper:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>    <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">SECURITY</span> INTEGRATION cursor_mcp_integration
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>    <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">SECURITY</span> INTEGRATION cursor_mcp_integration
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">TYPE</span> <span style="color:#f92672">=</span> OAUTH
 </span></span><span style="display:flex;"><span>      OAUTH_CLIENT <span style="color:#f92672">=</span> CUSTOM
 </span></span><span style="display:flex;"><span>      ENABLED <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>
@@ -123,6 +123,7 @@
 </span></span></span></code></pre></div><p>But it’s not. <a href="https://cursor.com/es/docs/context/mcp#static-oauth-for-remote-servers">Cursor uses a fixed redirect URI</a> <code>cursor://anysphere.cursor-mcp/oauth/callback</code></p>
 <p>Snowflake rejects this because the URL must be https (or http if you toggle a specific internal parameter). Snowflake basically won&rsquo;t let you use a custom protocol scheme for the callback.</p>
 <p>I’ve written to support and I’ll probably post in the Snowflake community forum.</p>
+<p>Update 2026-01-28: Support says that the recommended pat is to use a PAT token, after complaining about the 24 hour token duration without a network policy and the fail to log in with it if you are not in the allowed list, their answer is to create a Service User and create PAts from it (current maximum is 15).</p>
 
       
     </div>

@@ -135,7 +135,7 @@ We need to parse that data into a readable date as the first number is an epoch 
 <ul>
 <li>We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL. So we decided to aggregate at different levels the same KPI, our sales per store. Considering some data as:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>  (<span style="color:#ae81ff">1656520076</span>, <span style="color:#ae81ff">1001</span>, <span style="color:#ae81ff">10</span>),
 </span></span><span style="display:flex;"><span>  (<span style="color:#ae81ff">1656520321</span>, <span style="color:#ae81ff">1001</span>, <span style="color:#ae81ff">8</span>),
@@ -151,7 +151,7 @@ We need to parse that data into a readable date as the first number is an epoch 
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>createDataFrame(data, [ts, store_id, amount])
 </span></span></code></pre></div><p>We need to parse that data into a readable date as the first number is an epoch or <em>unix_time</em>. Using the function from_unixttime this is quite simple:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> (from_unixtime, col)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> (from_unixtime, col)
 </span></span><span style="display:flex;"><span>display(df<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#34;date_parsed&#34;</span>, from_unixtime(col(ts))))
 </span></span></code></pre></div><p>Not we need to perform different aggregations, we want the sum of the amount per store on:</p>
 <ul>
@@ -161,7 +161,7 @@ We need to parse that data into a readable date as the first number is an epoch 
 <li>Day of the year</li>
 </ul>
 <p>All those aggregations can be done with Spark, and not only that but Spark has first-level functions for those, making the transformations direct:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> reduce
 </span></span><span style="display:flex;"><span>functions <span style="color:#f92672">=</span> [quarter, month, weekofyear, dayofyear]
 </span></span><span style="display:flex;"><span>
@@ -226,7 +226,7 @@ We need to parse that data into a readable date as the first number is an epoch 
 <p><code>YYYY-MM-DDTHH:mm:SS[.f]'Z'</code></p>
 <p>If we want to parse that kind of ts with spark we have the function <em>from_utc_timestamp</em> which accepts both the column and the format (the format could also be another column).</p>
 <p>Spark provides an alias for the default format so I can avoid writing all the stuff above and just type &ldquo;Z&rdquo; as the UTC format.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark.sql.types <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>data_ts <span style="color:#f92672">=</span> [

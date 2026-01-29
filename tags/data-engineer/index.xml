@@ -25,7 +25,7 @@ The analyst created a table that will make a window of 5 minutes, select some sp
 &lt;ul&gt;
 &lt;li&gt;We have some sales data and god knows how the business people love to refresh super fast their dashboards on Databricks SQL. So we decided to aggregate at different levels the same KPI, our sales per store. Considering some data as:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;data &lt;span style="color:#f92672"&gt;=&lt;/span&gt; [
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; (&lt;span style="color:#ae81ff"&gt;1656520076&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1001&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;),
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; (&lt;span style="color:#ae81ff"&gt;1656520321&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1001&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;8&lt;/span&gt;),

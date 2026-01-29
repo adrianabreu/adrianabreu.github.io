@@ -150,7 +150,7 @@ Tanto es así que llevo un par de días peleando con una pieza de código que me
 </table>
 </div>
 <p>En un primer momento, el código que se usó para resolver el problema fue tal que este:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>,
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(sales) <span style="color:#66d9ef">from</span> fact_table f <span style="color:#66d9ef">where</span> f.datekey <span style="color:#f92672">=</span> historic.datekey_14_ago) <span style="color:#66d9ef">as</span> sales_14_days_ago,
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(profit) <span style="color:#66d9ef">from</span> fact_table f <span style="color:#66d9ef">where</span> f.datekey <span style="color:#f92672">=</span> historic.datekey_14_ago) <span style="color:#66d9ef">as</span> profit_14_days_ago
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> (
@@ -179,7 +179,7 @@ Project [datekey#1509, sales#1510L, profit#1511, datekey_14_ago#1572, max(sales)
          +- Filter isnotnull(datekey#1509)
             +- Relation[datekey#1509,sales#1510L,profit#1511] orc
 </code></pre><p>Y en el optimized logical plan al final lo que tenemos un <strong>join por columna</strong> y una <strong>función de agrupacion por columna</strong>. Como vemos que se usa la misma condición para unir vamos a reescribir la query con un join:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> historic.<span style="color:#f92672">*</span>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> historic.<span style="color:#f92672">*</span>,
 </span></span><span style="display:flex;"><span>f.sales <span style="color:#66d9ef">as</span> sales_14_days_ago,
 </span></span><span style="display:flex;"><span>f.profit <span style="color:#66d9ef">as</span> profit_14_days_ago
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> (

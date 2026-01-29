@@ -129,9 +129,9 @@ Port 49882
 #ListenAddress ::
 ...
 </code></pre><p>Restart the SSH service:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart ssh.service
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart ssh.service
 </span></span></code></pre></div><p>Now, log in again using:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh user@ip -p <span style="color:#ae81ff">49882</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh user@ip -p <span style="color:#ae81ff">49882</span>
 </span></span></code></pre></div><p>To further secure the server, I configured SSH to use a key-based login and disabled password authentication. This part was a bit tricky. While it seems like you can modify the same <code>/etc/ssh/sshd_config</code> file, the configuration also includes other files with the line:</p>
 <pre tabindex="0"><code>Include /etc/ssh/sshd_config.d/*.conf
 </code></pre><p>One of these files, <code>/etc/ssh/sshd_config.d/50-cloud-init.conf</code>, contains <code>PasswordAuthentication yes</code>. To disable password authentication, you’ll need to either edit this file or remove it altogether.</p>
@@ -140,13 +140,13 @@ Port 49882
 <pre tabindex="0"><code>Permission denied (publickey).  
 </code></pre><h2 id="enabling-a-firewall">Enabling a Firewall</h2>
 <p>As suggested in the video, we’ll use UFW to limit traffic. To do this, enable the following rules:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw default deny incoming
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw default deny incoming
 </span></span><span style="display:flex;"><span>sudo ufw default allow outgoing
 </span></span><span style="display:flex;"><span>sudo ufw allow <span style="color:#ae81ff">49882</span>  <span style="color:#75715e"># SSH port</span>
 </span></span><span style="display:flex;"><span>sudo ufw allow <span style="color:#ae81ff">80</span>     <span style="color:#75715e"># HTTP</span>
 </span></span><span style="display:flex;"><span>sudo ufw allow <span style="color:#ae81ff">443</span>    <span style="color:#75715e"># HTTPS</span>
 </span></span></code></pre></div><p>Then, enable the firewall with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw enable
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw enable
 </span></span></code></pre></div><p>For more detailed documentation, refer to: <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu">How to Set Up a Firewall with UFW on Ubuntu</a>.</p>
 <hr>
 <h2 id="dockerization">Dockerization</h2>
@@ -208,12 +208,12 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 </code></pre><p>Next, we update the images remotely by logging into our GitHub namespace from the VPS. Due to a GitHub registry limitation, you’ll need to configure a personal access token. Export it as an environment variable (<code>CR_PAT</code>) and log in with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
 </span></span></code></pre></div><p>To enable automatic updates for Docker images, add Watchtower. Assign the following label to your services:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">labels</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">labels</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;com.centurylinklab.watchtower.enable=true&#34;</span>
 </span></span></code></pre></div><p>Then add the Watchtower service:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">watchtower</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">watchtower</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">containrrr/watchtower</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">command</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;--interval&#34;</span>

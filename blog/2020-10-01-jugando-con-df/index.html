@@ -139,7 +139,7 @@ Este proceso nos permitía trabajar con dos versiones del proyecto en lo que hac
 </ol>
 <p>La configuración de los mismos es muy visual y no requiere nada en especial.</p>
 <p>Configuramos dos datasets, uno de origen asociado al storage que reciba dos parámetros y que usaremos para discriminar el path del fichero.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Binary1&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;properties&#34;</span>: {
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;linkedServiceName&#34;</span>: {
@@ -174,7 +174,7 @@ Este proceso nos permitía trabajar con dos versiones del proyecto en lo que hac
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Y otro de sink. Sin parámetros.</p>
 <p>Configuramos la acitvity de copy data con ambos y estaría casi todo, nos falta saber que fichero queremos leer. Marcamos la opción en el source de &lsquo;File path in dataset&rsquo; y nos dedicamos a configurar dos parámetros para la pipeline que usaremos aquí.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;parameters&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;parameters&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
 </span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;sourcePath&#34;</span>: {
 </span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
 </span></span><span style="display:flex;"><span>            },
@@ -192,7 +192,7 @@ sourceName - @trigger().outputs.body.fileName
 <p>Para que entendamos el problema, quiero que el fichero que acabe en <strong>PL_POC.csv.gz</strong> coja las credenciales asociadas a &ldquo;PL&rdquo;. De tal manera que haya un usuario por país en un modelo internacional.</p>
 <p>Así que necesitamos hacer dos cosas, primero tenemos que parametrizar el linked service del ftp para que acepte parámetros, y segundo, tenemos que buscar las credenciales que corresponden.</p>
 <p>Para lo primero tenems que hacer uso de las dynamic properties de los linked services, cuyo problema es que solo se puede hacer directamente desde el json, no tiene ayuda visual como el resto. Dejo aquí un json de ejemplo:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;SftpSink&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Microsoft.DataFactory/factories/linkedservices&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;properties&#34;</span>: {
