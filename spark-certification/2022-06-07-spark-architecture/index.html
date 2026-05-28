@@ -17,9 +17,9 @@ Inside each node there is a node manager which is responsible to track each node
 
 
 
-  
-    
-      
+	
+		
+			
 
 
 
@@ -82,8 +82,8 @@ r
 r
 
 
-    
-  
+		
+	
 
 When we run a Spark application we generate processes inside the cluster where one node will act as a Driver and the rest will be Workers. Here there are two main points:'>
 <meta property='og:url' content='https://adrianabreu.com/spark-certification/2022-06-07-spark-architecture/'>
@@ -198,14 +198,14 @@ When we run a Spark application we generate processes inside the cluster where o
 
 
 <div class="goat svg-container ">
-  
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      font-family="Menlo,Lucida Console,monospace"
-      
-        viewBox="0 0 328 105"
-      >
-      <g transform='translate(8,16)'>
+	
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			font-family="Menlo,Lucida Console,monospace"
+			
+				viewBox="0 0 328 105"
+			>
+			<g transform='translate(8,16)'>
 <path d='M 0,16 L 136,16' fill='none' stroke='currentColor'></path>
 <path d='M 176,16 L 208,16' fill='none' stroke='currentColor'></path>
 <path d='M 136,32 L 176,32' fill='none' stroke='currentColor'></path>
@@ -268,8 +268,8 @@ When we run a Spark application we generate processes inside the cluster where o
 <text text-anchor='middle' x='312' y='84' fill='currentColor' style='font-size:1em'>r</text>
 </g>
 
-    </svg>
-  
+		</svg>
+	
 </div>
 <p>When we run a Spark application we generate processes inside the cluster where one node will act as a Driver and the rest will be Workers. Here there are two main points:</p>
 <ul>
@@ -280,14 +280,14 @@ When we run a Spark application we generate processes inside the cluster where o
 
 
 <div class="goat svg-container ">
-  
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      font-family="Menlo,Lucida Console,monospace"
-      
-        viewBox="0 0 200 89"
-      >
-      <g transform='translate(8,16)'>
+	
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			font-family="Menlo,Lucida Console,monospace"
+			
+				viewBox="0 0 200 89"
+			>
+			<g transform='translate(8,16)'>
 <path d='M 80,16 L 152,16' fill='none' stroke='currentColor'></path>
 <path d='M 80,16 L 80,48' fill='none' stroke='currentColor'></path>
 <path d='M 152,16 L 152,48' fill='none' stroke='currentColor'></path>
@@ -317,8 +317,8 @@ When we run a Spark application we generate processes inside the cluster where o
 <text text-anchor='middle' x='184' y='68' fill='currentColor' style='font-size:1em'>s</text>
 </g>
 
-    </svg>
-  
+		</svg>
+	
 </div>
 <p>Who are that Driver and those Workers? That depends on the <strong>Execution Mode</strong> selected during the application submission.</p>
 <p>There 3 kinds:</p>
@@ -333,14 +333,14 @@ When we run a Spark application we generate processes inside the cluster where o
 
 
 <div class="goat svg-container ">
-  
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      font-family="Menlo,Lucida Console,monospace"
-      
-        viewBox="0 0 328 105"
-      >
-      <g transform='translate(8,16)'>
+	
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			font-family="Menlo,Lucida Console,monospace"
+			
+				viewBox="0 0 328 105"
+			>
+			<g transform='translate(8,16)'>
 <path d='M 0,48 L 16,48' fill='none' stroke='currentColor'></path>
 <path d='M 32,80 L 40,80' fill='none' stroke='currentColor'></path>
 <path d='M 0,32 L 0,48' fill='none' stroke='currentColor'></path>
@@ -409,8 +409,8 @@ When we run a Spark application we generate processes inside the cluster where o
 <text text-anchor='middle' x='312' y='84' fill='currentColor' style='font-size:1em'>)</text>
 </g>
 
-    </svg>
-  
+		</svg>
+	
 </div>
 <p>So we will have <strong>Tasks</strong> running in our Executors <strong>Cores</strong> (alias <strong>slots</strong> alias <strong>threads</strong> -it is quite confusing that they are called  cores as they are not related to phsyical cores). We can now the number of cores with <code>sc.defaultParallelism</code></p>
 

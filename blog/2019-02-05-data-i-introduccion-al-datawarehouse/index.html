@@ -146,28 +146,28 @@ Y el libro parece encajar perfectamente en el conocimiento que busco. Aun así, 
 <h3 id="fact-table-tabla-de-hechos">Fact Table (Tabla de hechos):</h3>
 <p>Esta es la tabla primaria de un modelo dimensional. Aquí se almacenan las medidas del negocio. Si ponemos un ejemplo como el del libro, en el sector de ventas, podríamos definir la tabla de hecho de ventas como:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Daily Sales Fact Table</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Date Key FK</td>
-      </tr>
-      <tr>
-          <td>Product Key FK</td>
-      </tr>
-      <tr>
-          <td>Store Key FK</td>
-      </tr>
-      <tr>
-          <td>Quantity Sold</td>
-      </tr>
-      <tr>
-          <td>Dollar Sales Amount</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Daily Sales Fact Table</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Date Key FK</td>
+			</tr>
+			<tr>
+					<td>Product Key FK</td>
+			</tr>
+			<tr>
+					<td>Store Key FK</td>
+			</tr>
+			<tr>
+					<td>Quantity Sold</td>
+			</tr>
+			<tr>
+					<td>Dollar Sales Amount</td>
+			</tr>
+	</tbody>
 </table>
 <p>Y lo que vemos en cada fila es una medida de un producto vendiéndose en una tienda. Cada una de las medidas que componen la tabla es una <strong>dimensión</strong>.</p>
 <p>Como nota, los <strong>hechos</strong> más útiles son numéricos y sumables, como la cantidad de dólares de una venta. Los que no son sumables tienen que ser convertidos en conteos o medias y los semiaditivos no encajaran en algunas dimensiones.</p>
@@ -177,34 +177,34 @@ Para las claves primarias no debería hacer falta añadir un ROWID, aunque es po
 <h3 id="dimension-table-tabla-de-dimensiones">Dimension Table (Tabla de dimensiones):</h3>
 <p>Las tablas de dimensiones contienen los descriptores del negocio. Una buena tabla de dimensiones tiene varias columnas que actúan como atributos y que son descripciones textuales. Por ejemplo, en el caso anterior, para un producto, podemos tener:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Product Dimension Table</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Product Key</td>
-      </tr>
-      <tr>
-          <td>Product Description</td>
-      </tr>
-      <tr>
-          <td>Brand Description</td>
-      </tr>
-      <tr>
-          <td>Category Description</td>
-      </tr>
-      <tr>
-          <td>Weight</td>
-      </tr>
-      <tr>
-          <td>Storage</td>
-      </tr>
-      <tr>
-          <td>&hellip;.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Product Dimension Table</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Product Key</td>
+			</tr>
+			<tr>
+					<td>Product Description</td>
+			</tr>
+			<tr>
+					<td>Brand Description</td>
+			</tr>
+			<tr>
+					<td>Category Description</td>
+			</tr>
+			<tr>
+					<td>Weight</td>
+			</tr>
+			<tr>
+					<td>Storage</td>
+			</tr>
+			<tr>
+					<td>&hellip;.</td>
+			</tr>
+	</tbody>
 </table>
 <p>Los mejores atributos son textutales y discretos. Deberían ser palabras reales y no criptogramas, o códigos. La idea es facilitar de cara al usuario del negocio el entendimiento del modelo.</p>
 <p>Las tablas de dimensiones, además, están altamente desnormalizadas y a veces representan información de forma redundante. Por ejemplo en la tabla anterior para cada producto almacenamos su categoría y marca, pero lo hacemos en pos de mejorar la facilidad de uso y el rendimiento.</p>

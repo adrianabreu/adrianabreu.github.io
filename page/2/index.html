@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
 <head>
-	<meta name="generator" content="Hugo 0.161.1">
+	<meta name="generator" content="Hugo 0.162.0">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -11,7 +11,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://adrianabreu.com/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content=''><meta property='og:updated_time' content='2026-01-27T11:40:43Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content=''><meta property='og:updated_time' content='2026-05-28T06:40:10Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -91,6 +91,70 @@
 </section>
 <section class="section">
   <div class="container">
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/databricks/">#Databricks</a>
+  
+  | <a class="subtitle is-6" href="/tags/python/">#Python</a>
+  
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">January 26, 2024</h2>
+      <h1 class="title"><a href="https://adrianabreu.com/blog/2024-01-26-querying-the-databricks-api/">Querying the databricks api</a></h1>
+      <div class="content">
+        Exploring databricks SQL usage
+At my company, we adopted databricks SQL for most of our users. Some users have developed applications that use the JDBC connector, some users have built their dashboards, and some users write plain ad-hoc queries.
+We wanted to know what they queried, so we tried to use Unity Catalog&rsquo;s insights, but it wasn&rsquo;t enough for our case. We work with IOT and we are interested in what filters they apply within our tables.
+
+        
+        <a class="button is-link" href="https://adrianabreu.com/blog/2024-01-26-querying-the-databricks-api/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/databricks/">#Databricks</a>
+  
+  | <a class="subtitle is-6" href="/tags/structured-streaming/">#Structured Streaming</a>
+  
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">October 27, 2023</h2>
+      <h1 class="title"><a href="https://adrianabreu.com/blog/2023-10-27-tweaking-spark-kafka/">Tweaking Spark Kafka</a></h1>
+      <div class="content">
+        Well, I&rsquo;m facing a huge interesting case. I&rsquo;m working at Wallbox where we need to deal with billions of rows every day. Now we need to use Spark for some Kafka filtering and publish the results into different topics according to some rules.
+I won&rsquo;t dig deep into the logic except for performance-related stuff, let&rsquo;s try to increase the processing speed.
+When reading from Kafka you usually get 1 task per partition, so if you have 6 partitions and 48 cores you are not using 87.5 percent of your cluster. That could be adjusted with the following property **minPartitions.**
+
+        
+        <a class="button is-link" href="https://adrianabreu.com/blog/2023-10-27-tweaking-spark-kafka/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
     
     <article>
       <div class="subtitle tags is-6 is-pulled-right">
@@ -278,68 +342,6 @@ Limitations Does not support Spark Structured Streaming. Does not support UDFs. 
 
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2022-08-12-testing-photon-engine/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/spark/">#Spark</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/databricks/">#DataBricks</a>
-  
-  | <a class="subtitle is-6" href="/tags/data-engineer/">#Data Engineer</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 30, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/blog/2022-07-30-databricks-cluster-management/">Databricks Cluster Management</a></h1>
-      <div class="content">
-        For the last few months, I&rsquo;ve been into ETL optimization. Most of the changes were as dramatic as moving tables from ORC to delta revamping the partition strategy to some as simple as upgrading the runtime version to 10.4 so the ETL starts using low-shuffle merge.
-But at my job, we have a lot of jobs. Each ETL can be easily launched at *30 with different parameters so I wanted to dig into the most effective strategy for it.
-
-        
-        <a class="button is-link" href="https://adrianabreu.com/blog/2022-07-30-databricks-cluster-management/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/github/">#Github</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/streaming/">#Streaming</a>
-  
-  | <a class="subtitle is-6" href="/tags/tinybird/">#Tinybird</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 25, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/blog/2022-07-25-pushing-data-to-tinybird-free/">Pusing data to tinybird for free</a></h1>
-      <div class="content">
-        So my azure subscription expired and I ended up losing the function I was using to feed my real-time data on analytics (part of the Transportes Insulares de Tenerife SA analysis I was making).
-And after some struggle, I decided to move it to a GitHub action. Why? Because the free mins per month were more than enough and because I just needed some script to run on a cron and that script just makes a quest and a post. So, it was quite straightforward.
-
-        
-        <a class="button is-link" href="https://adrianabreu.com/blog/2022-07-25-pushing-data-to-tinybird-free/" style="height:28px">
           Read more
         </a>
         

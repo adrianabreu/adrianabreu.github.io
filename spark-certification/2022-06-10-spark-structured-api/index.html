@@ -9,30 +9,30 @@
 <meta property='og:title' content='Spark Dataframes - Adrián Abreu'>
 <meta property='og:description' content='Spark was initially released for dealing with a particular type of data called RDD. Nowadays we work with abstract structures on top of it, and the following tables summarize them.
 
-  
-      
-          Type
-          Description
-          Advantages
-      
-  
-  
-      
-          Datasets
-          Structured composed of a list of  where you can specify your custom class (only Scala)
-          Type-safe operations, support for operations that cannot be expressed otherwise.
-      
-      
-          Dataframes
-          Datasets of type Row (a generic spark type)
-          Allow optimizations and are more flexible
-      
-      
-          SQL tables and views
-          Same as Dataframes but in the scope of databases instead of programming languages
-          
-      
-  
+	
+			
+					Type
+					Description
+					Advantages
+			
+	
+	
+			
+					Datasets
+					Structured composed of a list of  where you can specify your custom class (only Scala)
+					Type-safe operations, support for operations that cannot be expressed otherwise.
+			
+			
+					Dataframes
+					Datasets of type Row (a generic spark type)
+					Allow optimizations and are more flexible
+			
+			
+					SQL tables and views
+					Same as Dataframes but in the scope of databases instead of programming languages
+					
+			
+	
 
 Let&rsquo;s dig into the Dataframes.
 They are a data abstraction for interacting with name columns, those names are defined in a schema.'>
@@ -140,30 +140,30 @@ They are a data abstraction for interacting with name columns, those names are d
     <div class="content">
       <p>Spark was initially released for dealing with a particular type of data called <strong>RDD</strong>. Nowadays we work with abstract structures on top of it, and the following tables summarize them.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Advantages</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Datasets</td>
-          <td>Structured composed of a list of <T> where you can specify your custom class (only Scala)</td>
-          <td>Type-safe operations, support for operations that cannot be expressed otherwise.</td>
-      </tr>
-      <tr>
-          <td>Dataframes</td>
-          <td>Datasets of type Row (a generic spark type)</td>
-          <td>Allow optimizations and are more flexible</td>
-      </tr>
-      <tr>
-          <td>SQL tables and views</td>
-          <td>Same as Dataframes but in the scope of databases instead of programming languages</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Type</th>
+					<th>Description</th>
+					<th>Advantages</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Datasets</td>
+					<td>Structured composed of a list of <T> where you can specify your custom class (only Scala)</td>
+					<td>Type-safe operations, support for operations that cannot be expressed otherwise.</td>
+			</tr>
+			<tr>
+					<td>Dataframes</td>
+					<td>Datasets of type Row (a generic spark type)</td>
+					<td>Allow optimizations and are more flexible</td>
+			</tr>
+			<tr>
+					<td>SQL tables and views</td>
+					<td>Same as Dataframes but in the scope of databases instead of programming languages</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <p>Let&rsquo;s dig into the Dataframes.
 They are a data abstraction for interacting with name columns, those names are defined in a <strong>schema</strong>.</p>
@@ -176,34 +176,34 @@ spark = SparkSession \
     .config(&#34;spark.some.config.option&#34;, &#34;some-value&#34;) \
     .getOrCreate()
 </code></pre><table>
-  <thead>
-      <tr>
-          <th>Method</th>
-          <th>Scope</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>SQL</td>
-          <td>Queries</td>
-      </tr>
-      <tr>
-          <td>table</td>
-          <td>Metastore tables</td>
-      </tr>
-      <tr>
-          <td>read</td>
-          <td>Files</td>
-      </tr>
-      <tr>
-          <td>range</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>createDataframe</td>
-          <td>Testing</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Method</th>
+					<th>Scope</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>SQL</td>
+					<td>Queries</td>
+			</tr>
+			<tr>
+					<td>table</td>
+					<td>Metastore tables</td>
+			</tr>
+			<tr>
+					<td>read</td>
+					<td>Files</td>
+			</tr>
+			<tr>
+					<td>range</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>createDataframe</td>
+					<td>Testing</td>
+			</tr>
+	</tbody>
 </table>
 <p>While reading from files there are several data sources: CSV, Parquet, JSON, Delta&hellip; And each one has its particular option. For example, for the CSV you can point out if the header is included or what is the field delimiter.</p>
 <p>For those sources, the schema can be inferred or given. We can declare and schema programmatically using the <strong>StructType</strong> methods in the package <strong>pyspark.sql.types</strong>.</p>
@@ -228,34 +228,34 @@ $&#34;columnName&#34;
 $&#34;columnName.field&#34;
 </code></pre><p>And provide an API for applying conditions on top of them for filtering, for example, here is a list of operators for columns:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Operator</th>
-          <th>Method</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>&amp;&amp;,</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>*, +, &lt;, ≥</td>
-          <td>Math and comparison</td>
-      </tr>
-      <tr>
-          <td>alias, as</td>
-          <td>alias of columns</td>
-      </tr>
-      <tr>
-          <td>cast</td>
-          <td>cast to different data_type</td>
-      </tr>
-      <tr>
-          <td>isNull, isNan</td>
-          <td>check null equality</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Operator</th>
+					<th>Method</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>&amp;&amp;,</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>*, +, &lt;, ≥</td>
+					<td>Math and comparison</td>
+			</tr>
+			<tr>
+					<td>alias, as</td>
+					<td>alias of columns</td>
+			</tr>
+			<tr>
+					<td>cast</td>
+					<td>cast to different data_type</td>
+			</tr>
+			<tr>
+					<td>isNull, isNan</td>
+					<td>check null equality</td>
+			</tr>
+	</tbody>
 </table>
 
       

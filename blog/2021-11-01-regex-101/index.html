@@ -11,30 +11,30 @@
 Last year I participated in some small code problems and practised some regex. I got used to it and feel quite good at it.
 And today I had to use it again. I had the following dataframe:
 
-  
-      
-          product
-          attributes
-      
-  
-  
-      
-          1
-          (SIZE-36)
-      
-      
-          2
-          (COLOR-RED)
-      
-      
-          3
-          (SIZE-38, COLOR-BLUE)
-      
-      
-          4
-          (COLOR-GREEN, SIZE-39)
-      
-  
+	
+			
+					product
+					attributes
+			
+	
+	
+			
+					1
+					(SIZE-36)
+			
+			
+					2
+					(COLOR-RED)
+			
+			
+					3
+					(SIZE-38, COLOR-BLUE)
+			
+			
+					4
+					(COLOR-GREEN, SIZE-39)
+			
+	
 
 A wonderful set of string merged with properties that could vary. And we wanted one column for each:'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2021-11-01-regex-101/'>
@@ -141,67 +141,67 @@ A wonderful set of string merged with properties that could vary. And we wanted 
 <p>Last year I participated in some small code problems and practised some regex. I got used to it and feel quite good at it.</p>
 <p>And today I had to use it again. I had the following dataframe:</p>
 <table>
-  <thead>
-      <tr>
-          <th>product</th>
-          <th>attributes</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>(SIZE-36)</td>
-      </tr>
-      <tr>
-          <td>2</td>
-          <td>(COLOR-RED)</td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>(SIZE-38, COLOR-BLUE)</td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td>(COLOR-GREEN, SIZE-39)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>product</th>
+					<th>attributes</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>(SIZE-36)</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>(COLOR-RED)</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>(SIZE-38, COLOR-BLUE)</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>(COLOR-GREEN, SIZE-39)</td>
+			</tr>
+	</tbody>
 </table>
 <p>A wonderful set of string merged with properties that could vary. And we wanted one column for each:</p>
 <table>
-  <thead>
-      <tr>
-          <th>product</th>
-          <th>attributes</th>
-          <th>size</th>
-          <th>color</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>(SIZE-36)</td>
-          <td>36</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>2</td>
-          <td>(COLOR-RED)</td>
-          <td></td>
-          <td>RED</td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>(SIZE-38, COLOR-BLUE)</td>
-          <td>38</td>
-          <td>BLUE</td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td>(COLOR-GREEN, SIZE-39)</td>
-          <td>39</td>
-          <td>GREEN</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>product</th>
+					<th>attributes</th>
+					<th>size</th>
+					<th>color</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>(SIZE-36)</td>
+					<td>36</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>(COLOR-RED)</td>
+					<td></td>
+					<td>RED</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>(SIZE-38, COLOR-BLUE)</td>
+					<td>38</td>
+					<td>BLUE</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>(COLOR-GREEN, SIZE-39)</td>
+					<td>39</td>
+					<td>GREEN</td>
+			</tr>
+	</tbody>
 </table>
 <p>So&hellip; the solution seemed quite straightforward. I went to regex101 and start typing&hellip; I want everything behind my keyword  and the &lsquo;-&rsquo; until I found a comma or a closing )</p>
 <p>And I ended up with this regexp for color:

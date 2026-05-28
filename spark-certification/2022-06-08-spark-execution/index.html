@@ -131,14 +131,14 @@ We can do two kinds of operations with Spark, transformations and actions.</p>
 
 
 <div class="goat svg-container ">
-  
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      font-family="Menlo,Lucida Console,monospace"
-      
-        viewBox="0 0 184 137"
-      >
-      <g transform='translate(8,16)'>
+	
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			font-family="Menlo,Lucida Console,monospace"
+			
+				viewBox="0 0 184 137"
+			>
+			<g transform='translate(8,16)'>
 <path d='M 16,16 L 32,16' fill='none' stroke='currentColor'></path>
 <path d='M 104,16 L 144,16' fill='none' stroke='currentColor'></path>
 <path d='M 16,32 L 32,32' fill='none' stroke='currentColor'></path>
@@ -173,60 +173,60 @@ We can do two kinds of operations with Spark, transformations and actions.</p>
 <text text-anchor='middle' x='168' y='116' fill='currentColor' style='font-size:1em'>W</text>
 </g>
 
-    </svg>
-  
+		</svg>
+	
 </div>
 <p>As we need to move the data we need two stages.  The group by operation will be subdivided into smaller stages and will delimit the two stages.</p>
 <table>
-  <thead>
-      <tr>
-          <th>1</th>
-          <th>read</th>
-          <th></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>2</td>
-          <td>select</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>filter</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td>groupBy 1</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>4a</td>
-          <td>shuffle write</td>
-          <td>STAGE 1</td>
-      </tr>
-      <tr>
-          <td>4b</td>
-          <td>shuffle read</td>
-          <td>STAGE 2</td>
-      </tr>
-      <tr>
-          <td>4c</td>
-          <td>groupBy 2</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>5</td>
-          <td>filter</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>6</td>
-          <td>write</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>1</th>
+					<th>read</th>
+					<th></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>2</td>
+					<td>select</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>filter</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>groupBy 1</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>4a</td>
+					<td>shuffle write</td>
+					<td>STAGE 1</td>
+			</tr>
+			<tr>
+					<td>4b</td>
+					<td>shuffle read</td>
+					<td>STAGE 2</td>
+			</tr>
+			<tr>
+					<td>4c</td>
+					<td>groupBy 2</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>filter</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>write</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <p>That is, then each piece of data will be considered a <strong>partition</strong> and will be assigned to a task. That&rsquo;s how spark performs the computation and achieves parallelism. But who does this?</p>
 <p>The <strong>Catalyst Optimizer</strong></p>
@@ -234,14 +234,14 @@ We can do two kinds of operations with Spark, transformations and actions.</p>
 
 
 <div class="goat svg-container ">
-  
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      font-family="Menlo,Lucida Console,monospace"
-      
-        viewBox="0 0 976 153"
-      >
-      <g transform='translate(8,16)'>
+	
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			font-family="Menlo,Lucida Console,monospace"
+			
+				viewBox="0 0 976 153"
+			>
+			<g transform='translate(8,16)'>
 <path d='M 224,0 L 328,0' fill='none' stroke='currentColor'></path>
 <path d='M 736,0 L 840,0' fill='none' stroke='currentColor'></path>
 <path d='M 224,48 L 328,48' fill='none' stroke='currentColor'></path>
@@ -424,8 +424,8 @@ We can do two kinds of operations with Spark, transformations and actions.</p>
 <text text-anchor='middle' x='960' y='68' fill='currentColor' style='font-size:1em'>N</text>
 </g>
 
-    </svg>
-  
+		</svg>
+	
 </div>
 <p>It converts the query into a tree which we can call the <strong>unresolved logical plan</strong>.</p>
 <p>That plain is validated against the metadata catalog and it checks that all the column exists and there are no typos. As result, we get the <strong>logical plan</strong>.</p>

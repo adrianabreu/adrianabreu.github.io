@@ -10,40 +10,40 @@
 <meta property='og:description' content='Ayer mismo estaba intentando analizar unos data_types para completar una exportación al backend. La idea era sencilla, buscar para cada usuario la ultima información disponible en una tabla que representaba actualizaciones sobre su perfil.
 Como a su perfil podías &ldquo;añadir&rdquo;, &ldquo;actualizar&rdquo; y &ldquo;eliminar&rdquo; cosas, pues existian los tres tipos en la tabla. Para que la imaginemos mejor sería tal que así:
 
-  
-      
-          user_id
-          favorite_stuff
-          operation
-          metadata
-      
-  
-  
-      
-          A
-          Chocolate
-          Add
-          &hellip;
-      
-      
-          A
-          Chocolate
-          Update
-          &hellip;
-      
-      
-          B
-          Milk
-          Remove
-          &hellip;
-      
-      
-          B
-          Cornflakes
-          Add
-          &hellip;
-      
-  
+	
+			
+					user_id
+					favorite_stuff
+					operation
+					metadata
+			
+	
+	
+			
+					A
+					Chocolate
+					Add
+					&hellip;
+			
+			
+					A
+					Chocolate
+					Update
+					&hellip;
+			
+			
+					B
+					Milk
+					Remove
+					&hellip;
+			
+			
+					B
+					Cornflakes
+					Add
+					&hellip;
+			
+	
 
 De tal manera que habría que combinar todos los eventos para saber cual es el perfil actual del usuario y aplicar cierta lógica. Sin embargo los eventos que habían llegado realmente eran así:'>
 <meta property='og:url' content='https://adrianabreu.com/blog/2021-07-21-funny-bug/'>
@@ -151,107 +151,107 @@ De tal manera que habría que combinar todos los eventos para saber cual es el p
       <p>Ayer mismo estaba intentando analizar unos data_types para completar una exportación al backend. La idea era sencilla, buscar para cada usuario la ultima información disponible en una tabla que representaba actualizaciones sobre su perfil.</p>
 <p>Como a su perfil podías &ldquo;añadir&rdquo;, &ldquo;actualizar&rdquo; y &ldquo;eliminar&rdquo; cosas, pues existian los tres tipos en la tabla. Para que la imaginemos mejor sería tal que así:</p>
 <table>
-  <thead>
-      <tr>
-          <th>user_id</th>
-          <th>favorite_stuff</th>
-          <th>operation</th>
-          <th>metadata</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>A</td>
-          <td>Chocolate</td>
-          <td>Add</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>A</td>
-          <td>Chocolate</td>
-          <td>Update</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>B</td>
-          <td>Milk</td>
-          <td>Remove</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>B</td>
-          <td>Cornflakes</td>
-          <td>Add</td>
-          <td>&hellip;</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>user_id</th>
+					<th>favorite_stuff</th>
+					<th>operation</th>
+					<th>metadata</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A</td>
+					<td>Chocolate</td>
+					<td>Add</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>A</td>
+					<td>Chocolate</td>
+					<td>Update</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>Milk</td>
+					<td>Remove</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>Cornflakes</td>
+					<td>Add</td>
+					<td>&hellip;</td>
+			</tr>
+	</tbody>
 </table>
 <p>De tal manera que habría que combinar todos los eventos para saber cual es el perfil actual del usuario y aplicar cierta lógica. Sin embargo los eventos que habían llegado realmente eran así:</p>
 <table>
-  <thead>
-      <tr>
-          <th>user_id</th>
-          <th>favorite_stuff</th>
-          <th>operation</th>
-          <th>metadata</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>A</td>
-          <td>Chocolate</td>
-          <td>Add</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>A</td>
-          <td>Chocolate</td>
-          <td>Update</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>A</td>
-          <td>Chocolate</td>
-          <td>Remove</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>B</td>
-          <td>Milk</td>
-          <td>Add</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>B</td>
-          <td>Milk</td>
-          <td>Update</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>B</td>
-          <td>Milk</td>
-          <td>Remove</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>B</td>
-          <td>Cornflakes</td>
-          <td>Add</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>B</td>
-          <td>Cornflakes</td>
-          <td>Update</td>
-          <td>&hellip;</td>
-      </tr>
-      <tr>
-          <td>B</td>
-          <td>Cornflakes</td>
-          <td>Remove</td>
-          <td>&hellip;</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>user_id</th>
+					<th>favorite_stuff</th>
+					<th>operation</th>
+					<th>metadata</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A</td>
+					<td>Chocolate</td>
+					<td>Add</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>A</td>
+					<td>Chocolate</td>
+					<td>Update</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>A</td>
+					<td>Chocolate</td>
+					<td>Remove</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>Milk</td>
+					<td>Add</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>Milk</td>
+					<td>Update</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>Milk</td>
+					<td>Remove</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>Cornflakes</td>
+					<td>Add</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>Cornflakes</td>
+					<td>Update</td>
+					<td>&hellip;</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>Cornflakes</td>
+					<td>Remove</td>
+					<td>&hellip;</td>
+			</tr>
+	</tbody>
 </table>
 <p>Y así para toda combinación de user_id / favorite_stuff.</p>
 <p>Y como buen &ldquo;golifión&rdquo; que soy, me puse a intentar encontrar el problema en backend porque el comportamiento era realmente anómalo. Está hecho en C# y aún me acuerdo de algo :-)</p>
