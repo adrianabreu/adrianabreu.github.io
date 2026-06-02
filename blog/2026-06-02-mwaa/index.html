@@ -4,20 +4,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>Tags | Adrián Abreu</title>
+<title>Disappointed with MWAA | Adrián Abreu</title>
 
-<meta property='og:title' content='Tag: Tags - Adrián Abreu'>
-<meta property='og:description' content=''>
-<meta property='og:url' content='https://adrianabreu.com/tags/'>
+<meta property='og:title' content='Disappointed with MWAA - Adrián Abreu'>
+<meta property='og:description' content='MWAA: Time to look elsewhere?'>
+<meta property='og:url' content='https://adrianabreu.com/blog/2026-06-02-mwaa/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Tags'><meta property='og:updated_time' content='2026-06-02T06:22:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='data engineering'><meta property='article:tag' content='airflow'><meta property='article:tag' content='cloud'><meta property='article:published_time' content='2026-06-02T06:22:00Z'/><meta property='article:modified_time' content='2026-06-02T06:22:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="canonical" href="https://adrianabreu.com/tags/">
+<link rel="canonical" href="https://adrianabreu.com/blog/2026-06-02-mwaa/">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:image" content="/preview.png" />
@@ -90,141 +90,39 @@
 </section>
 <section class="section">
   <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/data-engineering/">#data engineering</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/airflow/">#airflow</a>
+  
+  | <a class="subtitle is-6" href="/tags/cloud/">#cloud</a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">June 2, 2026</h2>
+    <h1 class="title">Disappointed with MWAA</h1>
     
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-      </div>
-      <h2 class="subtitle is-6 date">March 20, 2023</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/tags/data-engineer/">Data Engineer</a></h1>
-      <div class="content">
-        
-        
-      </div>
-    </article>
+    <div class="content">
+      <p>I just signed up for a new course from Astronomer in a few days, and honestly, I think I’ll be trying to convince my company to migrate over to them.</p>
+<p>We are currently relying on AWS MWAA (Managed Workflows for Apache Airflow), but boy, this has been quite bad.</p>
+<p>Lately, I’ve been putting a lot of effort into optimizing our setup. I adapted and improved all our existing Airflow code, made a heavy bet on deferred operators, moved our workloads—specifically the non-intense but long-running processes like dbt calls—into ECS, and meticulously prepared our migration to version 3.0.6.</p>
+<p>Development was ready. Everything seemed good to go.</p>
+<p>But then the cloud reality check hit. We found out that MWAA&rsquo;s 3.0.6 image had stability issues due to a mismatch between Python 3.12 and Celery. That issue dragged on, open for more than six months.</p>
+<p>When they finally released Airflow 3.2.1 on May 19th, I immediately updated it, hoping for a fix. Instead, we just traded one headache for another: now we are facing workers randomly rebooting every 65 minutes.</p>
+<p>I&rsquo;m currently tracking an AWS Re:Post thread (<a href="https://repost.aws/questions/QUB7LC2vV2Rem-fGa7zJDbTw/mwaa-3-2-1-workers-being-recycled-approximately-every-65-minutes">https://repost.aws/questions/QUB7LC2vV2Rem-fGa7zJDbTw/mwaa-3-2-1-workers-being-recycled-approximately-every-65-minutes</a>) where others are hitting the exact same 65-minute worker recycling loop, and I&rsquo;ve opened a new support ticket to push for answers.</p>
+<p>If there is one thing I am absolutely sure of right now, it&rsquo;s that no cloud provider is perfect. Managed services are supposed to take away the operational pain, but sometimes they just block you from fixing the actual problem.</p>
+<p>I’ll keep you posted on how the Astronomer course goes.</p>
+
+      
+    </div>
     
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-      </div>
-      <h2 class="subtitle is-6 date">March 20, 2023</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/tags/sql/">SQL</a></h1>
-      <div class="content">
-        
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-      </div>
-      <h2 class="subtitle is-6 date">August 12, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/tags/photon/">Photon</a></h1>
-      <div class="content">
-        
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 25, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/tags/github/">Github</a></h1>
-      <div class="content">
-        
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 25, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/tags/streaming/">Streaming</a></h1>
-      <div class="content">
-        
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 25, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/tags/tinybird/">Tinybird</a></h1>
-      <div class="content">
-        
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 21, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/tags/certification/">Certification</a></h1>
-      <div class="content">
-        
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-      </div>
-      <h2 class="subtitle is-6 date">July 1, 2022</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/tags/bigquery/">BigQuery</a></h1>
-      <div class="content">
-        
-        
-      </div>
-    </article>
-    
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <div class="level-item">
-          
-          <a class="button" href="/tags/page/3/">
-            <span class="icon is-small is-marginless">
-              <svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <polyline points="15 18 9 12 15 6"/>
-    
-  </svg>
-            </span>
-            Newer
-          </a>
-          
-        </div>
-      </div>
-      <div class="level-right is-marginless">
-        <div class="level-item">
-          
-          <a class="button" href="/tags/page/5/">
-            Older
-            <span class="icon is-small is-marginless">
-              <svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <polyline points="14 6 20 12 14 18"/>
-    
-  </svg>
-            </span>
-          </a>
-          
-        </div>
-      </div>
-    </nav>
   </div>
 </section>
 
