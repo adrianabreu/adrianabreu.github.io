@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
 <head>
-	<meta name="generator" content="Hugo 0.162.1">
+	<meta name="generator" content="Hugo 0.163.3">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -11,7 +11,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://adrianabreu.com/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content=''><meta property='og:updated_time' content='2026-06-02T06:22:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content=''><meta property='og:updated_time' content='2026-06-19T10:00:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -91,6 +91,32 @@
 </section>
 <section class="section">
   <div class="container">
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/scala/">#Scala</a>
+
+
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">February 7, 2022</h2>
+      <h1 class="title"><a href="https://adrianabreu.com/blog/2022-02-07-sbt-tests/">Sbt tests</a></h1>
+      <div class="content">
+        Últimamente en el trabajo estoy usando mucho delta para algunas tablas de dimensiones y estas tablas realizan actualizaciones parciales de las filas para replicar la lógica de negocio.
+Esto, nos lleva a varios tests que replican un estado de la tabla y realizan las actualizaciones pertinentes para comprobar todos los flujos y por ende un sobrecoste de ejecución de ese tipo de tests que acaba siendo agotador.
+Una de las soluciones planteadas fue incluir en las builds un parámetro para saltarse el step de ejecución de los tests. Lo cual es legítimo pero al menos para mí, resulta algo arbitrario. Buscando otro concens llegamos a: en las pull request se ejecutarán todos los tests y en el resto de builds (manuales o automáticas de rama) se excluirán estos tests, para que al hacer pruebas o durante las integraciones de las ramas no estemos acumulando tiempo en tests ya validados.
+
+        
+        <a class="button is-link" href="https://adrianabreu.com/blog/2022-02-07-sbt-tests/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
     
     <article>
       <div class="subtitle tags is-6 is-pulled-right">
@@ -291,35 +317,6 @@ Aún así, empezando un dashboard de cero, es muy difícil transmitir la informa
 
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2021-01-04-notes-storytelling-with-data-/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/python/">#Python</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/poetry/">#Poetry</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">December 30, 2020</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/blog/2020-12-30-configurando-poetry-gitlab/">Configurando poetry y gitlab</a></h1>
-      <div class="content">
-        Hace poco más de un mes cambié de trabajo y me encontré además con un cambio de stack considerable. Ahora estoy trabajando con aws + github + python. Y bueno, al margen de los cambios de conceptos y demás, me ha llevado bastante encontrar un flujo de trabajo que no me pareciera &ldquo;frágil&rdquo;.
-Lo primero y que me ha decepcionado bastante es que github no incluye soporte para hostear paquetes de python. Lo tendrá sí, pero sin fecha clara y por lo pronto parece que será despues de Junio de 2021.
-
-        
-        <a class="button is-link" href="https://adrianabreu.com/blog/2020-12-30-configurando-poetry-gitlab/" style="height:28px">
           Read more
         </a>
         

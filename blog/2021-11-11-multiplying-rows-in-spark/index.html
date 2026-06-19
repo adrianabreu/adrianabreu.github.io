@@ -222,7 +222,7 @@ campaignDf
 </code></pre><p>Well it does what we want but if we don&rsquo;t cache this, Spark will compute the same dataframe twice and it will dupllicate efforts and perform poorly. And well, we&rsquo;re not doing anything quite special with any of them, so&hellip; Let&rsquo;s rewrite it.</p>
 <p>We want to multiply our current rows, there is an operation that does it and that&rsquo;s the <code>explode</code>.
 So what we need is to add a column with and array thas has both values and explode it.</p>
-<pre tabindex="0"><code class="language-campaignDf.withColumn("type"," data-lang="campaignDf.withColumn("type","></code></pre><p>So now we have duplicated our rows and have something like this:</p>
+<pre tabindex="0"><code class="language-campaignDf.withColumn(&#34;type&#34;," data-lang="campaignDf.withColumn(&#34;type&#34;,"></code></pre><p>So now we have duplicated our rows and have something like this:</p>
 <table>
 	<thead>
 			<tr>
