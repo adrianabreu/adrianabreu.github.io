@@ -15,7 +15,7 @@ authorName = "Adrian Abreu" # Author full name
 authorEmail = "adrianabreugonzalez@outlook.com" # Author email
 
 [params.info]
-adsense = "" # Adsense ID (ID only, without ca-pub-)
+adsense = "8210822241309658" # Adsense ID (ID only, without ca-pub-)
 enableSocial = true # Adds OpenGraph and Twitter cards
 homeTitle = "Adrian Abreu Data Engineering Blog" # Title for home page
 
