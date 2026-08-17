@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Preparando databricks certified engineer professional (II) | Adrián Abreu</title>
+
+<meta property='og:title' content='Preparando databricks certified engineer professional (II) - Adrián Abreu'>
+<meta property='og:description' content='Preparando databricks certified engineer professional (II)'>
+<meta property='og:url' content='https://adrianabreu.com/blog/2026-08-16-preparando-databricks-certified-engineer-profesional-ii/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='data engineering'><meta property='article:tag' content='databricks'><meta property='article:published_time' content='2026-08-17T15:13:00Z'/><meta property='article:modified_time' content='2026-08-17T15:13:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.com/blog/2026-08-16-preparando-databricks-certified-engineer-profesional-ii/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:image" content="/preview.png" />
+<meta name="twitter:image" content="/preview.png" />
+<script
+    defer
+    src="https://unpkg.com/@tinybirdco/flock.js"
+    data-token="p.eyJ1IjogImUzY2IxNjA4LThmYjEtNDBjNC04NzNlLTFmNjE3ZmI2NGMzMCIsICJpZCI6ICI1NzQ5MDAyMC02Yjg1LTQ2YjEtYWVmOS1lNzMwMjYwYmM1YmQiLCAiaG9zdCI6ICJldV9zaGFyZWQifQ.bcYOUv9CsZ5Fg6UoqxSZk-SYZ6Z_mdrzjbEiE4TPcAA">
+</script>
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.com/">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/data-engineering/">#data engineering</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/databricks/">#databricks</a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">August 17, 2026</h2>
+    <h1 class="title">Preparando databricks certified engineer professional (II)</h1>
+    
+    <div class="content">
+      <p>Continuamos aprendiendo, hoy con github caído :)</p>
+<p>Hoy me toca centrarme en Data Sharing and Federation y Data Governance.</p>
+<p>De nuevo vamos a la guía del PDF:</p>
+<h3 id="section-4-data-sharing-and-federation">Section 4: Data Sharing and Federation</h3>
+<ul>
+<li>Demonstrate delta sharing securely between Databricks deployments using Databricks
+to Databricks Sharing (D2D) or to external platforms using the open sharing protocol
+(D2O).</li>
+<li>Configure Lakehouse Federation with proper governance across the supported source
+Systems.</li>
+<li>Use Delta Share to share live data from Lakehouse to any computing platform.</li>
+</ul>
+<h3 id="section-8-data-governance">Section 8: Data Governance</h3>
+<ul>
+<li>Create and add descriptions/metadata about enterprise data to make it more
+discoverable.</li>
+<li>Demonstrate understanding of Unity Catalog permission inheritance model.</li>
+</ul>
+<p>En el caso de la gestión de los datos corporativos, tenemos que tener en cuenta que siempre pasa lo mismo, se recopilan miles de millones de datos y luego se cae en el descontrol. Descontrol por dos partes, nadie a sabe a donde pertenece un dato y peor, nadie sabe qué significa un dato. Aparece en todas las reuniones esa misma pregunta: &ldquo;este usuario es activo por que&hellip;&rdquo; y esa persona de BI entra en trance y repite esa definición que vive en el comentario del sql y en una página de confluence cuyo último visitante dejó la empresa hace tres años.</p>
+<p>Para resolver a donde pertenece, para agrupar, para poder monitorizar costes, responsaibiliades, productos, podemos usar tags. Lo cual es realmente útil en productos que son transversales. ¿La tabla de usuarios a quien pertenece? ¿A ventas? ¿A marketing? ¿A soporte? Quizás pertenezca a todos, y por eso podemos taggear recursos.</p>
+<p>Los tags son parejas clave valor que se pueden poner en catalogs, schemas, tablas, y por defecto se heredan. Cuidado, porque he dicho clave valor pero realmente el valor es opcional, podemos tener un tag <code>team=BI</code> que es igual de valido que <code>PII</code>.</p>
+<p>Para consultar los tags tenemos el information schema (schema_tags, table_tags) y la ui.</p>
+<p>¿Pero como evitar que esto acabe en un descontrol? Usando los governed tags. En el ejemplo enseño como añadir un governed tag a una tabla. Los governed tags nos permiten también hacer algo muy chulo que introdujimos ayer, hacer <a href="https://docs.databricks.com/aws/en/data-governance/unity-catalog/abac/core-concepts">column masking y row filter automaticamente cuando tageamos recursos</a>.</p>
+<ol start="2">
+<li>Añadir comentarios y descripciones</li>
+</ol>
+<p>Estos son facilmente añadibles con el comando <code>COMMENT ON &lt;object&gt; is</code></p>
+<p>Pero también podemos aprovechar la IA, porque sinceramente que escribe el código de la pipeline no me ayuda, pero que me escriba los comentarios de las 500 columnas que pidió el de marketing&hellip;</p>
+<p><img src="https://docs.databricks.com/aws/en/assets/images/ai-generate-button-49bc13979d2e474ab6847c6085735e4d.png" alt=""></p>
+<p>Aquí no hay mucho que añadir, pasemos a lo otro :)</p>
+<p>En cuanto al sistema de permisos para mí solo se puede explicar con una imagen:</p>
+<p><img src="https://docs.databricks.com/aws/en/assets/images/object-hierarchy-data-objects-f3cc8c2008f012e7deb38e87387dfa64.png" alt=""></p>
+<p>Existen muchísimos tipos de objetos cada uno con su permiso particular, pero lo que más nos interesa es la jerarquía que tenemos al medio:</p>
+<p>Catalog &gt; Schema &gt; Table / View / Secret / Function&hellip;</p>
+<p>Para saber que permisos pdemos dar a cada objeto: <a href="https://docs.databricks.com/aws/en/data-governance/unity-catalog/access-control/privileges-reference">https://docs.databricks.com/aws/en/data-governance/unity-catalog/access-control/privileges-reference</a></p>
+<p>¿Qué quiere decir esto?
+Primero para acceder a la tabla <code>my_catalog.my_schema.my_table</code>. Necesito varios permisos.
+Primero, permiso de <code>USE CATALOG</code> sobre <code>my_catalog</code>.
+Luego permiso de <code>USE SCHEMA</code> sobre <code>my_schema</code>.
+Y por último permiso de <code>SELECT</code> sobre <code>my_table</code>.</p>
+<p>¿Como funciona el sistema de herencia? Muy sencillo.
+Si doy select sobre <code>my_table</code> solo puedo seleccionar esa tabla dentro de <code>my_schema</code>.
+Si doy select sobre <code>my_schema</code>, puedo seleccionar <code>my_table</code> y cualquier tabla que exista o se cree en <code>my_schema</code>.
+Si doy select sobre <code>my_catalog</code> puedo seleccionar cualquier tabla de cualquier schema que pueda usar.</p>
+<p>Lo único curioso del select es que si lo das a un contenedor permites select de tablas, vistas y funciones.  No se puede separar por tipo de objeto.</p>
+<p>Tambien puedo dar <code>use_schema</code> sobre <code>my_schema</code> o sobre <code>my_catalog</code>, haciendo lo mismo con todos los schemas.</p>
+<p>Break: gracias a dios snowflake ha copiado a databricks en esto y ha publicado los <a href="https://docs.snowflake.com/en/user-guide/inherited-grants-intro">inherited grants</a>, de verdad como odio los malditos futures, que sin sentido de decisión tecnologica. Perdón, es que ha sido un año duro.</p>
+<p>Como recomendación esto permite hacer un sistema de permisos bsados en roles muy chulos:</p>
+<p>AR_CATALOG_READ -&gt; SELECT EN CATALOG
+AR_CATALOG_WRITE -&gt; MODIFY EN CATALOG
+AR_CATALOG_SCHEMA_READ -&gt; SELECT EN SCHEMA</p>
+<p>Y luego definimos los roles de los equipos y encajamos</p>
+<p>De nuevo, ejemplos disponibles en:</p>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+</body>
+</html>
+
