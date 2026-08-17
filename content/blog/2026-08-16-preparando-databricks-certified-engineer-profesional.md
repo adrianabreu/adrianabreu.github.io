@@ -33,13 +33,13 @@ Voy a ir añadiendo contenidos en base al tamaño del módulo. El último, evide
 
 Hoy me centraré en Ensuring Data Security and Compliance. Si abrimos la guía del PDF, estos son los contenidos detallados:
 
-● Applying Data Security mechanisms.
-  ○ Use ACLs to secure Workspace Objects, enforcing the principle of least privilege including enforcing principles like least privilege, policy enforcement.
-  ○ Use row filters and column masks to filter and mask sensitive table data.
-  ○ Apply anonymization and pseudonymization methods, such as Hashing, Tokenization, Suppression, and generalization, to confidential data.
-● Ensuring Compliance
-  ○ Implement a compliant batch & streaming pipeline that detects and applies masking of PII to ensure data privacy.
-  ○ Develop a data purging solution ensuring compliance with data retention policies.
+* Applying Data Security mechanisms.
+  * Use ACLs to secure Workspace Objects, enforcing the principle of least privilege including enforcing principles like least privilege, policy enforcement.
+  * Use row filters and column masks to filter and mask sensitive table data.
+  * Apply anonymization and pseudonymization methods, such as Hashing, Tokenization, Suppression, and generalization, to confidential data.
+* Ensuring Compliance
+  * Implement a compliant batch & streaming pipeline that detects and applies masking of PII to ensure data privacy.
+  * Develop a data purging solution ensuring compliance with data retention policies.
 
 
 De todo he incluido un pequeño ejemplo en este repositorio git:  https://github.com/adrianabreu/de-professional-training/tree/main/07.Ensuring%20Data%20Security
