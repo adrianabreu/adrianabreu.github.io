@@ -18,8 +18,52 @@ to Databricks Sharing (D2D) or to external platforms using the open sharing prot
 (D2O).
 * Configure Lakehouse Federation with proper governance across the supported source
 Systems.
-*  Use Delta Share to share live data from Lakehouse to any computing platform.
+*  Use Delta Share to share live data from Lakehouse to any computing platform. <- Eso es ahora Opensharing, así que no sé.
 
+Ya pido perdón porque esta parte es un poco de peñazo teórico, pero es lo que hay. De paso dejo en negrita la tipica pregunta trampa:
+
+**El intercambio metastore-to-metastore dentro de una sola cuenta de Databricks está habilitado por defecto.**
+
+
+Hablemos de OpenSharing es un protocolo abierto desarrollado por Databricks para el intercambio seguro de datos con otras organizaciones.
+
+Existen algunas formas de compartir datos utilizando OpenSharing:
+
+* D2D: te permite compartir datos y activos de AI desde tu workspace habilitado con Unity Catalog con usuarios que también tienen acceso a un workspace de Databricks habilitado con Unity Catalog. Soporta algunas funciones adicionales: intercambio de notebooks, intercambio de volúmenes de Unity Catalog, intercambio de modelos de AI de Unity Catalog, gobernanza de datos de Unity Catalog, auditoría y seguimiento de uso tanto para providers como para recipients. Además, el recipient de la share no necesita un token para acceder a la share, y el provider no necesita gestionar los tokens del recipient.
+
+* D2O:, que te permite compartir datos tabulares que gestionas en un workspace de Databricks habilitado con Unity Catalog con usuarios de cualquier plataforma de cómputo.
+
+* Una implementación gestionada por el cliente del servidor de código abierto OpenSharing, que te permite compartir de cualquier plataforma a cualquier plataforma, ya sea Databricks o no.
+
+
+Para que OpenSharing funcione necesitamos tres entidades:
+
+- Shares: colección de solo lectura de tables y table partitions que se van a compartir. Estas se pueden añadir o eliminar en cualquier momento.
+
+- Providers: un provider es una entidad que comparte datos con un recipient. Puedes definir múltiples recipients para cualquier metastore de Unity Catalog dado, pero si quieres compartir datos de múltiples metastores con un usuario o grupo de usuarios particular, debes definir el recipient por separado para cada metastore. Un recipient puede tener acceso a múltiples shares.
+
+- Recipients: un recipient es una entidad que recibe shares de un provider. En Unity Catalog, un recipient es un objeto asegurable que representa a una organización y la asocia con una credencial o un identificador de intercambio seguro que permite a esa organización acceder a una o más shares.
+
+
+¿Es gratis? Já, no. Nos pueden cobrar por:
+Coste de compute, cobrado por Databricks. (normalmente al que recibe)
+Coste de storage y transferencia de red (egress), cobrado por el proveedor de storage, o por Databricks si el provider utiliza SecureConnect.
+Coste de fuentes de compute externas, al compartir schemas y tables externos.
+
+
+Para añadir una table a una share podemos usar el siguiente comando:
+
+```SQL
+ALTER SHARE <share-name> ADD TABLE <catalog-name>.<schema-name>.<table-name>  [COMMENT "<comment>"]
+   [PARTITION(<clause>)] [AS <alias>]
+   [WITH HISTORY | WITHOUT HISTORY];
+```
+Las tablas en D2D pueden mejorar el rendimiento si le ponemos el history. Se generan unas credenciales temporales en el storage y viene a  leerlo directamente. Esto habilita funciones como el deletion vector. Las tables con partitioning habilitado no reciben los beneficios de rendimiento del intercambio de history.
+
+La otra parte teórica, conectarnos a bases de datos.
+Databricks compró neon, una plataforma para crear postgres, vamos a crear un postgres y a conectarnos a el.
+
+Para ello necesitmaos dos cosas, una conneciton y crear el foreign catalog. Yo en mi caso he añadido un pequeño ejemplo connectandome a una bbdd que tenía de prueba en neon :) 
 
 
 ### Section 8: Data Governance
@@ -87,4 +131,4 @@ AR_CATALOG_SCHEMA_READ -> SELECT EN SCHEMA
 Y luego definimos los roles de los equipos y encajamos
 
 
-De nuevo, ejemplos disponibles en: 
+De nuevo, ejemplos disponibles en: https://github.com/adrianabreu/de-professional-training
