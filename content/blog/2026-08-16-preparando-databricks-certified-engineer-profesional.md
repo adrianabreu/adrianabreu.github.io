@@ -13,21 +13,21 @@ Hace unos meses fue el [Databricks Learning Festival]() donde por completar unos
 2) Automatizar infraestructura de databricks usando terraform. 
 3) Gestionar pequeños dashboards en databricks sql.
 
-Por supuesto me dejo la parte divertida: mantener miles de millones de eventos diarios en kafka, hacer frameworks que imitaban a las delta live tables a menor coste y tunear hasta el mínimo detalle mientras se hacían miles de reportes sobre las tabals de billing.
+Por supuesto me dejo la parte divertida: mantener miles de millones de eventos diarios en kafka, hacer frameworks que imitaban a las delta live tables a menor coste y tunear hasta el mínimo detalle mientras se hacían miles de reportes sobre las tablas de billing.
 
 Ahora me encuentro con una docena de tecnologías nuevas que simplifican el trabajo, y con la necesidad de hacer muchas notas. El examen está actualizado en julio de 2026. Voy a usar databricks free en la medida de lo posible para intentar valida casi todos los conceptos. E intentaré publicar el repo con los ejercicios de ejemplo acompañando esto. 
 
 Para estudiar simplemente se coge la guia de referencia:
-Developing Code for Data Processing using Python and SQL – 22%
-Data Ingestion & Acquisition – 7%
-Data Transformation, Cleansing, and Quality – 10%
-Data Sharing and Federation – 5%
-Monitoring and Alerting – 10%
-Cost & Performance Optimisation – 13%
-Ensuring Data Security and Compliance – 10%
-Data Governance – 7%
-Debugging and Deploying – 10%
-Data Modelling – 6%
+- Developing Code for Data Processing using Python and SQL – 22%
+- Data Ingestion & Acquisition – 7%
+- Data Transformation, Cleansing, and Quality – 10%
+- Data Sharing and Federation – 5%
+- Monitoring and Alerting – 10%
+- Cost & Performance Optimisation – 13%
+- Ensuring Data Security and Compliance – 10%
+- Data Governance – 7%
+- Debugging and Deploying – 10%
+- Data Modelling – 6%
 
 Voy a ir añadiendo contenidos en base al tamaño del módulo. El último, evidentemente, será el primero. Por ser el más grande y el que más ejemplos necesita.
 
