@@ -10,7 +10,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://adrianabreu.com/blog/'>
 <meta property='og:site_name' content='Adrián Abreu'>
-<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='og:updated_time' content='2026-08-17T15:13:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+<meta property='og:type' content='website'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='og:updated_time' content='2026-08-18T15:13:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
 
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,6 +90,38 @@
 </section>
 <section class="section">
   <div class="container">
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/data-engineering/">#data engineering</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/snowflake/">#snowflake</a>
+  
+  | <a class="subtitle is-6" href="/tags/rbac/">#rbac</a>
+  
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">January 14, 2026</h2>
+      <h1 class="title"><a href="https://adrianabreu.com/blog/2026-01-14-snowflake-questionable-choices/">Snowflake questionable choices</a></h1>
+      <div class="content">
+        I switched jobs all over again. I&rsquo;m working in a data company called Shalion, where we provide insights about retail products online. If you&rsquo;re brave enough to handle Snowflake&rsquo;s quirks, we&rsquo;re hiring&hellip;
+I&rsquo;m working on revamping our permission grant system from permifrost to a terraform managed approach.
+We also decided to embrace a 2 layer permission grant, using Access Roles (AR) and Functional Roles (FR). The former has access to the resources with the typical permissions (SELECT, USAGE, CREATE)&hellip;, while the latter is the one that we assign to people and just groups access roles.
+
+        
+        <a class="button is-link" href="https://adrianabreu.com/blog/2026-01-14-snowflake-questionable-choices/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
     
     <article>
       <div class="subtitle tags is-6 is-pulled-right">
@@ -295,38 +327,6 @@ I had hoped for a more robust product that would align with our needs. Previousl
 
         
         <a class="button is-link" href="https://adrianabreu.com/blog/2023-10-22-ksql-a-horror-tale/" style="height:28px">
-          Read more
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <div class="subtitle tags is-6 is-pulled-right">
-        
-        
-<a class="subtitle is-6" href="/tags/databricks/">#Databricks</a>
-
-
-
-  
-  | <a class="subtitle is-6" href="/tags/delta/">#Delta</a>
-  
-  | <a class="subtitle is-6" href="/tags/unity-catalog/">#Unity Catalog</a>
-  
-
-
-        
-      </div>
-      <h2 class="subtitle is-6 date">October 2, 2023</h2>
-      <h1 class="title"><a href="https://adrianabreu.com/blog/2023-10-02-repairing-metadata-unity-catalog/">Repairing metadata unity catalog</a></h1>
-      <div class="content">
-        I&rsquo;ve been subscribed to https://www.dataengineeringweekly.com/p/data-engineering-weekly-148 for years. This last number included several on-call posts on Medium. I found these quite useful.
-Today, I got an alert from Metaplane that a cost monitor dashboard was out of date. I checked the processes, and everything was fine. I ran a query to check the freshness of the data and it was ok too.
-Metaplane checks our delta table freshness by querying the table information available in the Unity Catalog. For some unknown reason that metadata didn&rsquo;t receive any update. I ran an optimization operation (the table tiny) and the metadata didn&rsquo;t update either.
-
-        
-        <a class="button is-link" href="https://adrianabreu.com/blog/2023-10-02-repairing-metadata-unity-catalog/" style="height:28px">
           Read more
         </a>
         

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Preparando databricks certified engineer professional (III) | Adrián Abreu</title>
+
+<meta property='og:title' content='Preparando databricks certified engineer professional (III) - Adrián Abreu'>
+<meta property='og:description' content='Preparando databricks certified engineer professional (III)'>
+<meta property='og:url' content='https://adrianabreu.com/blog/2026-08-18-preparando-databricks-certified-engineer-profesional-iii/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='data engineering'><meta property='article:tag' content='databricks'><meta property='article:published_time' content='2026-08-18T15:13:00Z'/><meta property='article:modified_time' content='2026-08-18T15:13:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.com/blog/2026-08-18-preparando-databricks-certified-engineer-profesional-iii/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:image" content="/preview.png" />
+<meta name="twitter:image" content="/preview.png" />
+<script
+    defer
+    src="https://unpkg.com/@tinybirdco/flock.js"
+    data-token="p.eyJ1IjogImUzY2IxNjA4LThmYjEtNDBjNC04NzNlLTFmNjE3ZmI2NGMzMCIsICJpZCI6ICI1NzQ5MDAyMC02Yjg1LTQ2YjEtYWVmOS1lNzMwMjYwYmM1YmQiLCAiaG9zdCI6ICJldV9zaGFyZWQifQ.bcYOUv9CsZ5Fg6UoqxSZk-SYZ6Z_mdrzjbEiE4TPcAA">
+</script>
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.com/">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/data-engineering/">#data engineering</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/databricks/">#databricks</a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">August 18, 2026</h2>
+    <h1 class="title">Preparando databricks certified engineer professional (III)</h1>
+    
+    <div class="content">
+      <p>Esto es una pequeña maratón, cada día, un tema :)</p>
+<p>Hoy hablaré de dos cosas interesantes, de data modeling y cost &amp; optimization. Cambio un poco el formato porque esto más bien, será un pequeño dump de mis memorias.</p>
+<h2 id="section-6-cost--performance-optimization">Section 6: Cost &amp; Performance Optimization</h2>
+<h3 id="understand-delta-optimization-techniques-such-as-deletion-vectors-and-liquid-clustering">Understand delta optimization techniques, such as deletion vectors and liquid clustering.</h3>
+<p>Delta fue una gran ventaja sobre parquet, antes eliminar datos de una tabla, había que o reescribir la tabla entera, o al menos la partición de esta. Cuando llegó delta, esto se hacía automáticamente, muchísimo más cómodo, ¿pero te imaginas reescribir un fichero de mil millones de filas solo porque quieres eliminar 4 datos? Pues esto pasaba, al menos hasta que llegaron los <a href="https://docs.delta.io/delta-deletion-vectors/">deletion vectors</a></p>
+<p>Otro problema que había también era que había que reescribir la tabla frecuentemente para compactar los datos existentes, esto también se pudo solventar primero con el comando <code>OPTIMIZE</code> que permitía reescribir tablas y/o particiones para conseguir ficheros de 1GB.</p>
+<p>Y más tarde con <code>AUTO OPTIMIZE</code>, una feature basada en otras dos Auto Compaction y Optimized writes. Con la primera se intentan combinar los datos ya existentes cuando se pasa por la tabla aprovechando esa operación de escritura para reescribir algunos ficheros. Con optimized writes se intenta hacer una especie de autorepartition para minimizar los ficheros que salen. De hecho en la propia doc lo indican:
+<code>If you use optimized writes, Databricks recommends that you don't run coalesce(n) or repartition(n) just before a write to control the number of files written.</code></p>
+<p>Esto hace que estemos añadiendo de forma constante ficheros a la tabla, teniendo copias y copias de los datos. Estos datos se pueden limpiar usando <code>vacuum</code>. Vacuum elimina los ficheros de datos (excepto si el directorio empieza por _) cuando se pasa el periodo de <code>delta.deletedFileRetentionDuration</code>. Que por defecto es 7 días. Obviamente solo se elimina si el fichero no está en la versión actual de una tabla. Por hacer vacuum de una tabla que se creó hace un mes, no te quedas sin datos.</p>
+<p>Una mejora muy común es permitir el paralelo: <code>&quot;spark.databricks.delta.vacuum.parallelDelete.enabled&quot; to &quot;true&quot;.</code></p>
+<p>En features más avanzadas, tenemos el liquid clustering. Normalmente una tabla se balancea en tres aspectos: el particionado (cómo distribuimos los datos para que sean consistentes a medida que crezcan), la colocation (cómo usamos el zorder para redistribuir los datos dentro de los ficheros). Estas técnicas no son triviales, una tabla sobre particionada puede generar miles de ficheros pequeños y una tabla mal particionada puede causar particiones muy grandes y otras muy pequeñas.</p>
+<p>El caso de <a href="https://docs.databricks.com/aws/en/tables/data-skipping#delta-zorder">zorder</a> es aún más complejo, el zorder es una función que reescribe los datos para co-ubicarlos. Es una operación que intenta dejar ficheros balanceados en base a las columns que ponemos. Normalmente se utiliza una partición en combinación con ella:</p>
+<pre tabindex="0"><code>OPTIMIZE events
+WHERE date &gt;= current_timestamp() - INTERVAL 1 day
+ZORDER BY (eventType)
+</code></pre><p>Y una mejora sobre esto, es confiar en quien tiene más información, que es el motor. En este caso NO podemos usar ni particiones ni zorder. Lo que se busca es flexibilidad, se recomienda para tablas que tienen skew, tablas que se filtran por varios tipos de columnas y es liquid clustering. El liquid clustering usa Hilbert space-filling curves que son mejores para hacer skipping de muchas columnas, además al ejecutar el optimize es incremental, los ficheros que ya estén ordenados no tienen que volver a escribirse.</p>
+<h3 id="understand-how--why-using-unity-catalog-managed-tables-reduces-operations-overhead-and-maintenance-burden">Understand how / why using Unity Catalog managed tables reduces operations overhead and maintenance burden.</h3>
+<p>La sutil diferencia entre una tabla managed y no se basa en especificar la cláusula <code>location</code> cuando creamos una tabla. Al hacerlo, le decimos a Unity Catalog que nosotros somos responsables de esa tabla. El ejemplo más típico es que decidimos que una tabla ya no es útil y hacemos <code>DROP TABLE my_catalog.gold.a</code> ¿qué pasa con esto? Pues que solamente estamos borrando la definición de la tabla en Unity Catalog, no los datos en sí de las tablas. Estos viven en la localización que hemos definido y tenemos que gestionarlos a mano. <a href="https://docs.databricks.com/aws/en/tables/managed#drop-a-managed-table">En una tabla managed, esto no pasa, se borra todo</a>.</p>
+<p>Pero es que además tenemos cosas muy buenas como <code>Predictive Optimization</code> donde en background se ejecutará automáticamente el analyze, el vacuum y el optimize. E incluso podremos tener un <code>auto liquid clustering</code> (cluster by auto) donde la clave de clustering irá cambiando automáticamente en base a los patrones de accesos.</p>
+<h3 id="understand-the-optimization-techniques-used-by-databricks-to-ensure-the-performance-of-queries-on-large-datasets-data-skipping-file-pruning-etc">Understand the optimization techniques used by Databricks to ensure the performance of queries on large datasets (data skipping, file pruning, etc.).</h3>
+<p>Aquí una lista de mejoras:</p>
+<p>Disk Cache: En databricks si tienes que ir al storage a buscar un fichero parquet, ya que estás te quedas una copia. Lo más probable es que tengas que volver a leerlo, así que las siguientes lecturas serán más rápidas. En SQL Warehouses hay un algoritmo de caché. Se activa con <code>spark.conf.get(&quot;spark.databricks.io.cache.enabled&quot;)</code>. Para usarlo lo mejor es buscar un worker con SSD, y la mitad de ese tamaño es el que se podrá destinar a caché.</p>
+<p>DFP: Al margen del data skipping de antes, la idea del dynamic file pruning es extraer más datos del plan para poder filtrar dinámicamente. Un ejemplo es este, mandar un set a dos sitios para crear un filtro y no descartar los datos en el join.
+<img src="https://www.databricks.com/wp-content/uploads/2020/04/blog-dynamic-file-pruning-4.png" alt=""></p>
+<p>AQE: Esta la crem de la crem, es básicamente rehacer el plan buscando optimizaciones a medida que tenemos más información. Cuando trabajamos con spark generamos un plan lógico que genera diversos modelos de coste que dan lugar al mejor plan físico (o el que se piensa que es mejor). ¿Pero y si a medida que avanzamos en el plan físico vemos problemas? AQE permite hacer mejoras automáticas como encontrar skew data, cambiar joins a broadcast joins, combinar partitions en tareas de un tamaño más razonable. <a href="https://docs.databricks.com/aws/en/optimizations/aqe">A leer</a>
+Data Skipping: Cuando escribimos en una tabla delta se guardan estadísticas por fichero (como parquet pero en general) donde se ponen máximos, mínimos, nulls y totales para intentar evitar ficheros irrelevantes.
+Si tenemos una tabla externa solo cogeremos las primeras 32 columnas (incluidos campos enlazados!)</p>
+<p><code>ANALYZE TABLE table_name COMPUTE DELTA STATISTICS</code></p>
+<h3 id="apply-change-data-feed-cdf-to-address-specific-limitations-of-streaming-tables-and-enhance-latency">Apply Change Data Feed (CDF) to address specific limitations of streaming tables and enhance latency.</h3>
+<p>Bueno, el CDF es un pasote, de lo mejorcito que he tocado nunca. ¿Qué te da el cdf? Un histórico de cambios sobre delta. Se activa con <code>ALTER TABLE table_name SET TBLPROPERTIES (delta.enableChangeDataFeed = true)</code> y básicamente te da unas columnas de cdc: <code>_change_type</code> <code>_commit_version</code> y <code>_commit_timestamp</code>. Pongamos que lees una tabla delta en streaming y actualizas 6 filas con un merge y metes 10 nuevas. Para el read stream del consumidor, lo que ve son ficheros nuevos, no cambios. Esto hace que tengas que reprocesar muchos datos que ya tenías antes. Con esto, a cambio de espacio, eres mucho más eficiente. Al activarlo cuando escribes se crea un directorio _change_data (el vacuum sí que lo toca que está puesto en el código!) que tiene deltas, si solo haces insert no hay deltas porque ya te vale el parquet.</p>
+<h3 id="use-the-query-profile-to-analyze-the-query-and-identify-bottlenecks-such-as-bad-data-skipping-inefficient-types-of-joins-and-data-shuffling">Use the query profile to analyze the query and identify bottlenecks, such as bad data skipping, inefficient types of joins, and data shuffling.</h3>
+<p>Aquí no me pienso meter en detalle, esto ya hace unos años bajó dios y escribió <a href="https://docs.databricks.com/aws/en/optimizations/spark-ui-guide/">esto</a>. Os lo leéis, punto.</p>
+<h3 id="section-10-data-modeling">Section 10: Data Modeling</h3>
+<ul>
+<li>Design and implement scalable data models using Delta Lake to manage large datasets.</li>
+<li>Simplify data layout decisions and optimize query performance using Liquid Clustering.</li>
+<li>Identify the benefits of using liquid Clustering over Partitioning and ZOrder.</li>
+<li>Design Dimensional Models for analytical workloads, ensuring efficient querying and
+aggregation.</li>
+</ul>
+<p>De los puntos dos y tres no hay mucho que hablar, ya están comentados arriba.
+Del primero, no sé qué decir</p>
+<p>Del cuarto, modelo en estrella :) Hechos por un lado, distribuidos a lo largo del tiempo y clusterizados.</p>
+<p>Para los modelos dimensionales, scd tipo 1 si solo queremos la actual, tipo 0 si es una referencia y tipo 2 si es necesario saber histórico. Estas además, se pueden hacer muy fácilmente con Spark Declarative Pipelines:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>APPLY CHANGES <span style="color:#66d9ef">INTO</span> silver.customers_scd1
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> STREAM(live.customers_cdc_clean)
+</span></span><span style="display:flex;"><span>KEYS (customer_id)
+</span></span><span style="display:flex;"><span>SEQUENCE <span style="color:#66d9ef">BY</span> update_timestamp
+</span></span><span style="display:flex;"><span>APPLY <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">WHEN</span> _change_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;delete&#39;</span>
+</span></span><span style="display:flex;"><span>STORED <span style="color:#66d9ef">AS</span> SCD <span style="color:#66d9ef">TYPE</span> <span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Si lo ponemos tipo dos, se añade __start_at y __end_at.</p>
+<p>Se puede determinar cuando se quieren filas nuevas en tipo dos:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>APPLY CHANGES <span style="color:#66d9ef">INTO</span> silver.customers_scd2
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> STREAM(live.customers_cdc_clean)
+</span></span><span style="display:flex;"><span>KEYS (customer_id)
+</span></span><span style="display:flex;"><span>SEQUENCE <span style="color:#66d9ef">BY</span> update_timestamp
+</span></span><span style="display:flex;"><span>STORED <span style="color:#66d9ef">AS</span> SCD <span style="color:#66d9ef">TYPE</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>COLUMNS <span style="color:#f92672">*</span> <span style="color:#66d9ef">EXCEPT</span> (last_login) <span style="color:#75715e">-- Ignora cambios en esta columna para el versionado histórico
+</span></span></span><span style="display:flex;"><span>TRACK HISTORY <span style="color:#66d9ef">ON</span> (address, status, membership_tier); <span style="color:#75715e">-- Solo genera nueva fila si estas cambian
+</span></span></span></code></pre></div><p>Del punto uno, ya lo veremos, por lo pronto hemos comentado muchas técnicas que usamos para gestionar grandes volúmenes de datos.</p>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+</body>
+</html>
+
