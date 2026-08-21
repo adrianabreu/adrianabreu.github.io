@@ -130,5 +130,36 @@ AR_CATALOG_SCHEMA_READ -> SELECT EN SCHEMA
 
 Y luego definimos los roles de los equipos y encajamos
 
-
 De nuevo, ejemplos disponibles en: https://github.com/adrianabreu/de-professional-training
+
+Creo que es importante añadir un par de detalles más que no se detallan en la guía original que son los entitlements y los permisos de workspace:
+
+
+A nivel de acceso tenemos tres entitlements:
+* Consumer access:
+* Databricks SQL access: para poder usar los sql warehouses y los dashboards
+* Workspace access: para entrar a los notebooks y ver los objetos de workspace.
+
+A nivel de compute tenemos:
+* Crear cluster
+* Crear pools
+
+Los admin de workspace SIEMPRE tendrán acceso a workspace, creación de cluster y creación de pool. Además por defecto tendrán acceso a SQL pero este se peude quitar.
+
+Los usuarios tendran Workspace access y Databricks SQL por defecto, pero se puede quitar. 
+
+
+A nivel de cluster tenemos el siguiente acl. Mi regla memotécnica es attach es mínimo, esta en el restart, para todo lo demás, a managear.
+
+| Ability                    | NO PERMISSIONS | CAN ATTACH TO | CAN RESTART | CAN MANAGE   |
+|----------------------------|----------------|---------------|-------------|--------------|
+| Attach notebook to compute |                | ✓             | ✓           | ✓            |
+| View Spark UI              |                | ✓             | ✓           | ✓            |
+| View compute metrics       |                | ✓             | ✓           | ✓            |
+| Terminate compute          |                |               | ✓           | ✓            |
+| Start and restart compute  |                |               | ✓           | ✓            |
+| View driver logs           |                |               |             | ✓ (see note) |
+| Edit compute               |                |               |             | ✓            |
+| Attach library to compute  |                |               |             | ✓            |
+| Resize compute             |                |               |             | ✓            |
+| Modify permissions         |                |               |             | ✓            |
