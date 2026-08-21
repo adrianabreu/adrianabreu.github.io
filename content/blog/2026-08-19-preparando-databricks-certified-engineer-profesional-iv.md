@@ -50,14 +50,23 @@ Aquí una lista de mejoras:
 
 Disk Cache: En databricks si tienes que ir al storage a buscar un fichero parquet, ya que estás te quedas una copia. Lo más probable es que tengas que volver a leerlo, así que las siguientes lecturas serán más rápidas. En SQL Warehouses hay un algoritmo de caché. Se activa con `spark.conf.get("spark.databricks.io.cache.enabled")`. Para usarlo lo mejor es buscar un worker con SSD, y la mitad de ese tamaño es el que se podrá destinar a caché.
 
+Data Skipping: Al escribir en delta lake en la entrada se incluyen estadísticas sobre las columnas que contien el fichero (máximos, mínimos, nulls y totales para intentar evitar ficheros irrelevantes.
+Si tenemos una tabla externa solo cogeremos las primeras 32 columnas (incluidos campos enlazados!)
+
+Estos campos se pueden modificar usando cualquiera de estas dos propiedades: 
+`ALTER TABLE table_name SET TBLPROPERTIES('delta.dataSkippingStatsColumns' = 'col1, col2, col3') y dataSkippingStatsColumns`
+
+Pero al hacerlo hay que reprocesar los ficheros ya escritos, para eso podemos ejecutar: 
+`ANALYZE TABLE table_name COMPUTE DELTA STATISTICS`
+
+Por cierto si tenemos un campo de texto, sacar estadísticas de este es muy difícil, se recomienda excluirlo.
+
 DFP: Al margen del data skipping de antes, la idea del dynamic file pruning es extraer más datos del plan para poder filtrar dinámicamente. Un ejemplo es este, mandar un set a dos sitios para crear un filtro y no descartar los datos en el join.
 ![](https://www.databricks.com/wp-content/uploads/2020/04/blog-dynamic-file-pruning-4.png)
 
 AQE: Esta la crem de la crem, es básicamente rehacer el plan buscando optimizaciones a medida que tenemos más información. Cuando trabajamos con spark generamos un plan lógico que genera diversos modelos de coste que dan lugar al mejor plan físico (o el que se piensa que es mejor). ¿Pero y si a medida que avanzamos en el plan físico vemos problemas? AQE permite hacer mejoras automáticas como encontrar skew data, cambiar joins a broadcast joins, combinar partitions en tareas de un tamaño más razonable. [A leer](https://docs.databricks.com/aws/en/optimizations/aqe)
-Data Skipping: Cuando escribimos en una tabla delta se guardan estadísticas por fichero (como parquet pero en general) donde se ponen máximos, mínimos, nulls y totales para intentar evitar ficheros irrelevantes.
-Si tenemos una tabla externa solo cogeremos las primeras 32 columnas (incluidos campos enlazados!)
 
-`ANALYZE TABLE table_name COMPUTE DELTA STATISTICS`
+
 
 
 ### Apply Change Data Feed (CDF) to address specific limitations of streaming tables and enhance latency.
