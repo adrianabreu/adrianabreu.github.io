@@ -298,6 +298,19 @@ AR_CATALOG_SCHEMA_READ -&gt; SELECT EN SCHEMA</p>
 			</tr>
 	</tbody>
 </table>
+<p>Una última cosa a comentar es el modo del clúster. Existe don modos principales:</p>
+<ul>
+<li>Standard (USER_ISOLATION): Multiples usuarios pueden usar el clúster compartido. Cada usuario está aislado.</li>
+<li>Dedicated (SINGLE_USER): Se asigna a un usuario o grupo cuando se crea.  Solo ese usuario o grupo puede usarlo. Como curiosidad yo tuve que implementar este porque user isolation no podia con scala cuando empecé la migración.</li>
+</ul>
+<p>Existen mucho más detalles que varían con el workload, por ejemplo el tipo de máquina que usamos en los worker (aquí un graviton fan).</p>
+<p>Como dato extra si tenemos que configurar algo y usar un init script, este puede estar
+As of recent Databricks updates, DBFS (Databricks File System) can no longer be used to store init scripts:</p>
+<ul>
+<li>Volumes</li>
+<li>Cloud storage</li>
+<li>Workspace files</li>
+</ul>
 
       
     </div>
