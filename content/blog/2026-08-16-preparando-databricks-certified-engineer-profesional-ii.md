@@ -163,3 +163,16 @@ A nivel de cluster tenemos el siguiente acl. Mi regla memotécnica es attach es 
 | Attach library to compute  |                |               |             | ✓            |
 | Resize compute             |                |               |             | ✓            |
 | Modify permissions         |                |               |             | ✓            |
+
+Una última cosa a comentar es el modo del clúster. Existe don modos principales:
+
+* Standard (USER_ISOLATION): Multiples usuarios pueden usar el clúster compartido. Cada usuario está aislado. 
+* Dedicated (SINGLE_USER): Se asigna a un usuario o grupo cuando se crea.  Solo ese usuario o grupo puede usarlo. Como curiosidad yo tuve que implementar este porque user isolation no podia con scala cuando empecé la migración.
+
+Existen mucho más detalles que varían con el workload, por ejemplo el tipo de máquina que usamos en los worker (aquí un graviton fan).
+
+Como dato extra si tenemos que configurar algo y usar un init script, este puede estar
+As of recent Databricks updates, DBFS (Databricks File System) can no longer be used to store init scripts:
+- Volumes
+- Cloud storage
+- Workspace files
