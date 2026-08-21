@@ -200,6 +200,104 @@ AR_CATALOG_WRITE -&gt; MODIFY EN CATALOG
 AR_CATALOG_SCHEMA_READ -&gt; SELECT EN SCHEMA</p>
 <p>Y luego definimos los roles de los equipos y encajamos</p>
 <p>De nuevo, ejemplos disponibles en: <a href="https://github.com/adrianabreu/de-professional-training">https://github.com/adrianabreu/de-professional-training</a></p>
+<p>Creo que es importante añadir un par de detalles más que no se detallan en la guía original que son los entitlements y los permisos de workspace:</p>
+<p>A nivel de acceso tenemos tres entitlements:</p>
+<ul>
+<li>Consumer access:</li>
+<li>Databricks SQL access: para poder usar los sql warehouses y los dashboards</li>
+<li>Workspace access: para entrar a los notebooks y ver los objetos de workspace.</li>
+</ul>
+<p>A nivel de compute tenemos:</p>
+<ul>
+<li>Crear cluster</li>
+<li>Crear pools</li>
+</ul>
+<p>Los admin de workspace SIEMPRE tendrán acceso a workspace, creación de cluster y creación de pool. Además por defecto tendrán acceso a SQL pero este se peude quitar.</p>
+<p>Los usuarios tendran Workspace access y Databricks SQL por defecto, pero se puede quitar.</p>
+<p>A nivel de cluster tenemos el siguiente acl. Mi regla memotécnica es attach es mínimo, esta en el restart, para todo lo demás, a managear.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Ability</th>
+					<th>NO PERMISSIONS</th>
+					<th>CAN ATTACH TO</th>
+					<th>CAN RESTART</th>
+					<th>CAN MANAGE</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Attach notebook to compute</td>
+					<td></td>
+					<td>✓</td>
+					<td>✓</td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>View Spark UI</td>
+					<td></td>
+					<td>✓</td>
+					<td>✓</td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>View compute metrics</td>
+					<td></td>
+					<td>✓</td>
+					<td>✓</td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>Terminate compute</td>
+					<td></td>
+					<td></td>
+					<td>✓</td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>Start and restart compute</td>
+					<td></td>
+					<td></td>
+					<td>✓</td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>View driver logs</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>✓ (see note)</td>
+			</tr>
+			<tr>
+					<td>Edit compute</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>Attach library to compute</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>Resize compute</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>Modify permissions</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>✓</td>
+			</tr>
+	</tbody>
+</table>
 
       
     </div>
