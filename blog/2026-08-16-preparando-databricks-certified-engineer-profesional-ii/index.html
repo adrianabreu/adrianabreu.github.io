@@ -170,7 +170,14 @@ discoverable.</li>
 <p>Los tags son parejas clave valor que se pueden poner en catalogs, schemas, tablas, y por defecto se heredan. Cuidado, porque he dicho clave valor pero realmente el valor es opcional, podemos tener un tag <code>team=BI</code> que es igual de valido que <code>PII</code>.</p>
 <p>Para consultar los tags tenemos el information schema (schema_tags, table_tags) y la ui.</p>
 <p>¿Pero como evitar que esto acabe en un descontrol? Usando los governed tags. En el ejemplo enseño como añadir un governed tag a una tabla. Los governed tags nos permiten también hacer algo muy chulo que introdujimos ayer, hacer <a href="https://docs.databricks.com/aws/en/data-governance/unity-catalog/abac/core-concepts">column masking y row filter automaticamente cuando tageamos recursos</a>.</p>
-<ol start="2">
+<p>Como curiosidad la sitnaxis de los tags es un poco rara:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">table_name</span> <span style="color:#66d9ef">SET</span> TAGS (<span style="color:#e6db74">&#39;tag_key1&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;tag_value1&#39;</span>, <span style="color:#e6db74">&#39;tag_key2&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;tag_value2&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">table_name</span> <span style="color:#66d9ef">SET</span> TAGS (<span style="color:#e6db74">&#39;tag_key&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;tag_value&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Pero para poner uno es <span style="color:#66d9ef">set</span> tag directamente:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> TAG <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">table_name</span> tag_key <span style="color:#f92672">=</span> tag_value;
+</span></span></code></pre></div><ol start="2">
 <li>Añadir comentarios y descripciones</li>
 </ol>
 <p>Estos son facilmente añadibles con el comando <code>COMMENT ON &lt;object&gt; is</code></p>
