@@ -81,6 +81,16 @@ Para consultar los tags tenemos el information schema (schema_tags, table_tags) 
 
 ¿Pero como evitar que esto acabe en un descontrol? Usando los governed tags. En el ejemplo enseño como añadir un governed tag a una tabla. Los governed tags nos permiten también hacer algo muy chulo que introdujimos ayer, hacer [column masking y row filter automaticamente cuando tageamos recursos](https://docs.databricks.com/aws/en/data-governance/unity-catalog/abac/core-concepts).
 
+Como curiosidad la sitnaxis de los tags es un poco rara:
+
+```sql
+
+ALTER TABLE table_name SET TAGS ('tag_key1' = 'tag_value1', 'tag_key2' = 'tag_value2');
+ALTER TABLE table_name SET TAGS ('tag_key' = 'tag_value');
+
+Pero para poner uno es set tag directamente:
+SET TAG ON TABLE table_name tag_key = tag_value;
+```
 
 
 2. Añadir comentarios y descripciones 
