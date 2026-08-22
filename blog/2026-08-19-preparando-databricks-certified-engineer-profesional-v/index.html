@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml"  lang="es-ES">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Preparando databricks certified engineer professional (IV) | Adrián Abreu</title>
+
+<meta property='og:title' content='Preparando databricks certified engineer professional (IV) - Adrián Abreu'>
+<meta property='og:description' content='Preparando databricks certified engineer professional (IV)'>
+<meta property='og:url' content='https://adrianabreu.com/blog/2026-08-19-preparando-databricks-certified-engineer-profesional-v/'>
+<meta property='og:site_name' content='Adrián Abreu'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/a77b883f262f485b0135c6e352fc6b87?s=256'><meta property='article:section' content='Blog'><meta property='article:tag' content='data engineering'><meta property='article:tag' content='databricks'><meta property='article:published_time' content='2026-08-18T15:13:00Z'/><meta property='article:modified_time' content='2026-08-18T15:13:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@adrianabreudev'><meta name='twitter:creator' content='@adrianabreudev'>
+
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://adrianabreu.com/blog/2026-08-19-preparando-databricks-certified-engineer-profesional-v/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:image" content="/preview.png" />
+<meta name="twitter:image" content="/preview.png" />
+<script
+    defer
+    src="https://unpkg.com/@tinybirdco/flock.js"
+    data-token="p.eyJ1IjogImUzY2IxNjA4LThmYjEtNDBjNC04NzNlLTFmNjE3ZmI2NGMzMCIsICJpZCI6ICI1NzQ5MDAyMC02Yjg1LTQ2YjEtYWVmOS1lNzMwMjYwYmM1YmQiLCAiaG9zdCI6ICJldV9zaGFyZWQifQ.bcYOUv9CsZ5Fg6UoqxSZk-SYZ6Z_mdrzjbEiE4TPcAA">
+</script>
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://adrianabreu.com/">
+          <h1 id="nav-heading" class="title is-4">Adrián Abreu</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/adrianabreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/adrianabreudev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:adrianabreugonzalez@outlook.com'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/AdrianAbreu'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/data-engineering/">#data engineering</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/databricks/">#databricks</a>
+  
+
+
+      
+    </div>
+    <h2 class="subtitle is-6">August 18, 2026</h2>
+    <h1 class="title">Preparando databricks certified engineer professional (IV)</h1>
+    
+    <div class="content">
+      <p>Seguimos repasando y estudiando, ha habido drama con Snowflake, asi que tengo más motivación.</p>
+<h2 id="section-3-data-transformation-cleansing-and-quality">Section 3: Data Transformation, Cleansing, and Quality</h2>
+<h1 id="write-efficient-spark-sql-and-pyspark-code-to-apply-advanced-data-transformations-including-window-functions-joins-and-aggregations-to-manipulate-and-analyze-large-datasets">Write efficient Spark SQL and PySpark code to apply advanced data transformations, including window functions, joins, and aggregations, to manipulate and analyze large Datasets.</h1>
+<p>Aquí voy a hablar de las reglas de oro:
+a) Lee lo mínimo indispensable. Si hay particiones, úsalas, si no necesitas una columna, no la leas.
+b) Rompe el plan una vez. Hubo un tiempo que vi abusacar del <code>.cache()</code>. La realidad es que partir las ejecuciones rara vez era mejor. Mucho más fiable confiar en el disk caché.
+c) Esto es programación funcional, componer es ganar.
+d) Ordena solo si lo necesitas, que no es gratis, leñe, que tiras un shuffle.</p>
+<p>Aprovecho para hablar de un código manual algo curioso que es cuando tenemos que unir unos datos que están muy desbalanceados (skewed). Hay una técnica llamada salting que lo que hace es &ldquo;encajar&rdquo; en n buckets conocidos los datos para que esten  uniformemente distribuidos.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>events <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>createDataFrame([
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;bot_user_123&#34;</span>, <span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#e6db74">&#34;2024-01-01&#34;</span>),
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">1000001</span>, <span style="color:#e6db74">&#34;regular_user_2&#34;</span>, <span style="color:#e6db74">&#34;view&#34;</span>, <span style="color:#e6db74">&#34;2024-01-01&#34;</span>),
+</span></span><span style="display:flex;"><span>], [<span style="color:#e6db74">&#34;event_id&#34;</span>, <span style="color:#e6db74">&#34;user_id&#34;</span>, <span style="color:#e6db74">&#34;event_type&#34;</span>, <span style="color:#e6db74">&#34;event_date&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>users <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>createDataFrame([
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;bot_user_123&#34;</span>, <span style="color:#e6db74">&#34;Bot Account&#34;</span>, <span style="color:#e6db74">&#34;bot@example.com&#34;</span>),
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;regular_user_1&#34;</span>, <span style="color:#e6db74">&#34;Alice&#34;</span>, <span style="color:#e6db74">&#34;alice@example.com&#34;</span>),
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;regular_user_2&#34;</span>, <span style="color:#e6db74">&#34;Bob&#34;</span>, <span style="color:#e6db74">&#34;bob@example.com&#34;</span>),
+</span></span><span style="display:flex;"><span>], [<span style="color:#e6db74">&#34;user_id&#34;</span>, <span style="color:#e6db74">&#34;user_name&#34;</span>, <span style="color:#e6db74">&#34;email&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SALT_RANGE <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> 
+</span></span><span style="display:flex;"><span>events_salted <span style="color:#f92672">=</span> events<span style="color:#f92672">.</span>withColumn(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;salt&#34;</span>,
+</span></span><span style="display:flex;"><span>    floor(rand() <span style="color:#f92672">*</span> SALT_RANGE)<span style="color:#f92672">.</span>cast(<span style="color:#e6db74">&#34;int&#34;</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>salt_values <span style="color:#f92672">=</span> array([lit(i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(SALT_RANGE)])
+</span></span><span style="display:flex;"><span>users_exploded <span style="color:#f92672">=</span> users<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#34;salt&#34;</span>, explode(salt_values))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> events_salted<span style="color:#f92672">.</span>join(
+</span></span><span style="display:flex;"><span>    users_exploded,
+</span></span><span style="display:flex;"><span>    on<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;user_id&#34;</span>, <span style="color:#e6db74">&#34;salt&#34;</span>],  
+</span></span><span style="display:flex;"><span>    how<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inner&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>Con esto nos aseguramos que los datos se distribuyen uniformemente.</p>
+<h1 id="develop-a-quarantining-process-for-bad-data-with-lakeflow-spark-declarative-pipelines-or-autoloader-in-classic-jobs">Develop a quarantining process for bad data with Lakeflow Spark Declarative Pipelines, or autoloader in classic jobs.</h1>
+<p>Esto ya databricks da todo el material, somos meros hijos de tu trabajo. Aunque yo lo hacía mano con tablas <code>_failed</code>.</p>
+<p><img src="https://docs.databricks.com/aws/en/assets/images/quarantine-flow-graph-76ab9bb57b6c26c3c5334b4193051d0f.png" alt=""></p>
+<p>Me he copiado el ejemplo, es chulísimo.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark <span style="color:#f92672">import</span> pipelines <span style="color:#66d9ef">as</span> dp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> expr
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rules <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;valid_pickup_zip&#34;</span>: <span style="color:#e6db74">&#34;(pickup_zip IS NOT NULL)&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;valid_dropoff_zip&#34;</span>: <span style="color:#e6db74">&#34;(dropoff_zip IS NOT NULL)&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>quarantine_rules <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NOT(</span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">)&#34;</span><span style="color:#f92672">.</span>format(<span style="color:#e6db74">&#34; AND &#34;</span><span style="color:#f92672">.</span>join(rules<span style="color:#f92672">.</span>values()))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.view</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">raw_trips_data</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> spark<span style="color:#f92672">.</span>readStream<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;samples.nyctaxi.trips&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.table</span>(
+</span></span><span style="display:flex;"><span>  temporary<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>  partition_cols<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;is_quarantined&#34;</span>],
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.expect_all</span>(rules)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">trips_data_quarantine</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    spark<span style="color:#f92672">.</span>readStream<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;raw_trips_data&#34;</span>)<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#34;is_quarantined&#34;</span>, expr(quarantine_rules))
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.view</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">valid_trips_data</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> spark<span style="color:#f92672">.</span>read<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;trips_data_quarantine&#34;</span>)<span style="color:#f92672">.</span>filter(<span style="color:#e6db74">&#34;is_quarantined=false&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.view</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">invalid_trips_data</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> spark<span style="color:#f92672">.</span>read<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;trips_data_quarantine&#34;</span>)<span style="color:#f92672">.</span>filter(<span style="color:#e6db74">&#34;is_quarantined=true&#34;</span>)
+</span></span></code></pre></div><p>Aquí vemos que hay unas &ldquo;expectations&rdquo; que son reglas de calidad que se validan sobre los datos.</p>
+<p><img src="https://docs.databricks.com/aws/en/assets/images/expectations-flow-graph-02ab5dd2011b18ad791c67c0e8449af6.png" alt=""></p>
+<p>A cada expectation le tenemos que dar un nombre y tiene que ser un codigo sql</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> REFRESH STREAMING <span style="color:#66d9ef">TABLE</span> customers(
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">CONSTRAINT</span> valid_customer_age EXPECT (age <span style="color:#66d9ef">BETWEEN</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">AND</span> <span style="color:#ae81ff">120</span>)
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> STREAM(datasets.samples.raw_customers);
+</span></span></code></pre></div><p>Sobre un registor que no satisfaga la condición podemos hacer varias cosas dependiendo del método que elijamos:</p>
+<ul>
+<li>warn (expect): se escribe en el target y se avisa en métrica.</li>
+<li>drop (expect_or_drop): no se escribe el registro pero se cuenta cuantos registros se dropean.</li>
+<li>fail (expect_or_fail): falla el pipeline.</li>
+</ul>
+<p>Los registros dropeados o con warning se pueden ver a través de la event_log table function, pero hablaremos de eso en el siguiente post. Los objetos a revisar son: <code>details:flow_progress.data_quality.expectations</code> y <code>details:flow_progress.data_quality</code>.</p>
+<p>Se pueden agrupar varias reglas en python con las funciones <code>expect_all, expect_all_or_drop, and expect_all_or_fail</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>valid_pages <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;valid_count&#34;</span>: <span style="color:#e6db74">&#34;count &gt; 0&#34;</span>, <span style="color:#e6db74">&#34;valid_current_page&#34;</span>: <span style="color:#e6db74">&#34;current_page_id IS NOT NULL AND current_page_title IS NOT NULL&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.table</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.expect_all</span>(valid_pages)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">raw_data</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Create a raw dataset</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.table</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.expect_all_or_drop</span>(valid_pages)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">prepared_data</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Create a cleaned and prepared dataset</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.table</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dp.expect_all_or_fail</span>(valid_pages)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">customer_facing_data</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Create cleaned and prepared to share the dataset</span>
+</span></span></code></pre></div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>2017-2024 Adrián Abreu powered by Hugo and Kiss Theme</p>
+    
+  </div>
+</section>
+</body>
+</html>
+
